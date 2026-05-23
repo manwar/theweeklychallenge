@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/rest-vs-grpc/">
+    <title>REST vs gRPC | May 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Difference between REST and gRPC architecture.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/rest-vs-grpc/">
+    <meta property="og:title"       content="REST vs gRPC">
+    <meta property="og:description" content="Difference between REST and gRPC architecture.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/rest-vs-grpc.jpg">
+    
+    <meta property="article:published_time" content="2026-05-23T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-05-23T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="REST vs gRPC">
+    <meta name="twitter:description" content="Difference between REST and gRPC architecture.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/rest-vs-grpc.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/rest-vs-grpc/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">REST vs gRPC</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>REST vs gRPC</span>
+        </nav>
+        <span class="reading-time" title="886 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  4 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 23 May 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/rest-vs-grpc.jpg" alt="REST vs gRPC"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>There was a time when I was working on a legacy, very large <code>monolithic</code> system. Then there was a change in policy, we decided to create <code>microservice</code> heavily using <code>Docker</code>. That was the first time, I was formally introduced to term <code>microservice</code>. This was about <code>10 years</code> ago, time just flies.</p>
+<p>Everytime I need <code>Representational State Transfer (REST)</code> solution, I go with <code>Dancer2</code> framework. My <a href="https://manwar.org"><strong>personal website</strong></a> is a <code>Dancer2</code> application with <code>REST</code> interface. Five years ago, I created <a href="https://github.com/manwar/Dancer2-REST-API"><strong>GitHub respository</strong></a> documenting all the <code>REST</code> actions.</p>
+<p>To a layman, <code>REST</code> treats everything as a resource that you fetch or change using standard web verbs.</p>
+<p>OK, then what is <code>gRPC</code>?</p>
+<p>In one line: <code>gRPC</code> treats everything as an action. It makes a remote server feel like it&rsquo;s just a local function running right inside your own code.</p>
+<p><code>REST</code> is an architectural style, not a rigid protocol. It can actually run on any version of <code>HTTP</code>.</p>
+<p>The vast majority of REST APIs today run on <code>HTTP/1.1</code>. This version introduced <code>&quot;keep-alive&quot;</code> connections so your app doesn&rsquo;t have to constantly open and close connections for every single <code>JSON</code> request. You can absolutely serve a REST API over <code>HTTP/2</code> too.</p>
+<p>Whereas <code>gRPC</code> strictly requires <code>HTTP/2</code> as its transport layer.</p>
+<p>In summary:</p>
+<blockquote>
+<p><code>REST</code> is like a letter. You can sent it via an old truck (<code>HTTP/1.1</code>) or high-speed bullet train (<code>HTTP/2</code>).</p>
+</blockquote>
+<blockquote>
+<p><code>gRPC</code> is like a maglev train capsule. It was designed with magnets built into the bottom. It physically cannot run on old trin tracks (<code>HTTP/1.1</code>). It requires special maglev track (<code>HTTP/2</code>).</p>
+</blockquote>
+<p>I must confess, <code>gRPC</code> is a new tech for me and I don&rsquo;t claim to know everything about it. I am still learning and whatever little I know so far is what I found on web. My first instinct was to see if there is any <code>Perl</code> client for <code>gRPC</code> on <code>CPAN</code>.</p>
+<p>A quick search didn&rsquo;t give me anything, so I decided to claim the namespace <code>gRPC::Client</code>. I have a working draft ready to be shipped. I am holding it for now, just to have well documented pod.</p>
+<p>The <code>gRPC</code> project was open-sourced in <code>2015</code> by <code>Google</code>. I thought <code>g</code> in <code>gRPC</code> stands for <code>Google</code> where as <code>RPC</code> is just standard <code>Remote Procedure Call</code>. I looked up online and found <a href="https://github.com/grpc/grpc/blob/master/doc/g_stands_for.md"><strong>this page</strong></a> that has documented the meaning of <code>g</code> historically.</p>
+<pre><code>v1.12: g stands for glorious
+v1.25: g stands for game
+v1.39: g stands for goofy
+v1.82: g stands for glacier
+</code></pre>
+<p>With <code>REST</code>, you can look at data flowing back and forth. Clients and servers don&rsquo;t need to know everything about each other&rsquo;s code structure.</p>
+<p>With <code>gRPC</code>, instead of heavy, text-based <code>JSON</code>, it uses <code>Protocol Buffers (protobuf)</code>. It packs data into a highly compressed binary format. Because it uses less bandwidth and requires less <code>CPU</code> to pack/unpack, it is significantly faster than <code>REST</code>.</p>
+<p>Back to the original topic, let me show you visual example.</p>
+<p>Imagine you want to send user data like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;id&#34;</span>: <span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Alice&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;is_active&#34;</span>: true
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>Before I share any code, we need <code>CPAN</code> module <a href="https://metacpan.org/dist/Google-ProtocolBuffers-Dynamic"><strong>Google::ProtocolBuffers::Dynamic</strong></a>.</p>
+<p>Installing the module wasn&rsquo;t straight forward unfortunately. If you also struggle then please follow these steps.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo apt update
+</span></span><span style="display:flex;"><span>$ sudo apt install -y build-essential cmake libprotobuf-dev libprotoc-dev protobuf-compiler
+</span></span></code></pre></div><p>Then install the module now:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cpanm -vS Google::ProtocolBuffers::Dynamic
+</span></span></code></pre></div><p>We will first create script using <code>REST</code> as below:</p>
+<p><strong>Filename:</strong> <code>using-rest.pl</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> JSON::MaybeXS;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. User data</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $user <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    id        <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>    name      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Alice&#34;</span>,
+</span></span><span style="display:flex;"><span>    is_active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Serialise to JSON</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $json_encoder <span style="color:#f92672">=</span> JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(utf8 <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, canonical <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $rest_payload <span style="color:#f92672">=</span> $json_encoder<span style="color:#f92672">-&gt;</span>encode($user);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;REST (JSON)\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Payload: $rest_payload\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Size: &#34;</span> <span style="color:#f92672">.</span> length($rest_payload) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; bytes\n\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Deserialise</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $decoded_user <span style="color:#f92672">=</span> $json_encoder<span style="color:#f92672">-&gt;</span>decode($rest_payload);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Decoded User Name: &#34;</span> <span style="color:#f92672">.</span> $decoded_user<span style="color:#f92672">-&gt;</span>{name} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span></code></pre></div><p>Now for <code>gRPC</code> as below:</p>
+<p><strong>Filename:</strong> <code>using-grpc.pl</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Google::ProtocolBuffers::Dynamic;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. Define the strict gRPC schema</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $proto_interface <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;&lt;&#39;</span><span style="color:#e6db74">EOF</span><span style="color:#e6db74">&#39;;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">syntax = &#34;proto3&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">message UserRequest {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    int32 id = 1;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    string name = 2;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    bool is_active = 3;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Compile and map the schema dynamically</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $dynamic <span style="color:#f92672">=</span> Google::ProtocolBuffers::Dynamic<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>$dynamic<span style="color:#f92672">-&gt;</span>load_string(<span style="color:#e6db74">&#34;user.proto&#34;</span>, $proto_interface);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$dynamic<span style="color:#f92672">-&gt;</span>map({
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">package</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>    prefix  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;MyAPI&#39;</span>,
+</span></span><span style="display:flex;"><span>    options <span style="color:#f92672">=&gt;</span> {},
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$dynamic<span style="color:#f92672">-&gt;</span>resolve_references();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. User data matching the schema</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $user_data <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    id        <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>    name      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Alice&#34;</span>,
+</span></span><span style="display:flex;"><span>    is_active <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. Serialise to Binary</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $grpc_payload <span style="color:#f92672">=</span> MyAPI::UserRequest<span style="color:#f92672">-&gt;</span>encode($user_data);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;gRPC (Protocol Buffers)\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Payload (Hex): &#34;</span> <span style="color:#f92672">.</span> unpack(<span style="color:#e6db74">&#34;H*&#34;</span>, $grpc_payload) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Size: &#34;</span> <span style="color:#f92672">.</span> length($grpc_payload) <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34; bytes\n\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5. Deserialise</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $decoded_grpc <span style="color:#f92672">=</span> MyAPI::UserRequest<span style="color:#f92672">-&gt;</span>decode($grpc_payload);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Decoded User Name: &#34;</span> <span style="color:#f92672">.</span> $decoded_grpc<span style="color:#f92672">-&gt;</span>{name} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span></code></pre></div><p>Time to test the action.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl using-rest.pl
+</span></span><span style="display:flex;"><span>REST <span style="color:#f92672">(</span>JSON<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Payload: <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;id&#34;</span>:1024,<span style="color:#e6db74">&#34;is_active&#34;</span>:1,<span style="color:#e6db74">&#34;name&#34;</span>:<span style="color:#e6db74">&#34;Alice&#34;</span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>Size: <span style="color:#ae81ff">40</span> bytes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Decoded User Name: Alice
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl using-grpc.pl
+</span></span><span style="display:flex;"><span>gRPC <span style="color:#f92672">(</span>Protocol Buffers<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Payload <span style="color:#f92672">(</span>Hex<span style="color:#f92672">)</span>: 0880081205416c6963651801
+</span></span><span style="display:flex;"><span>Size: <span style="color:#ae81ff">12</span> bytes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Decoded User Name: Alice
+</span></span></code></pre></div><h3 id="the-takeaway">The Takeaway</h3>
+<hr>
+<br>
+<p>The <code>REST</code> Payload (<code>41 bytes</code>)</p>
+<blockquote>
+<p>Every time your <code>Perl</code> app makes a <code>REST</code> call, it wastes bandwidth resending the strings <code>&quot;id&quot;</code>, <code>&quot;is_active&quot;</code>, and <code>&quot;name&quot;</code>. It is highly readable but heavy.</p>
+</blockquote>
+<p>The <code>gRPC</code> Payload (<code>12 bytes</code>)</p>
+<blockquote>
+<p><code>gRPC</code> sends raw binary (<code>08800812...</code>). The field names are gone, compressed down to their numeric positions. It cuts network traffic by nearly <code>70%</code> for the exact same information, allowing a microservice to parse it significantly faster.</p>
+</blockquote>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">perl</a>
+        
+        <a href="https://theweeklychallenge.org/tags/rest" class="post-tag">REST</a>
+        
+        <a href="https://theweeklychallenge.org/tags/grpc" class="post-tag">gRPC</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/strategy-design-pattern/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Strategy Design Pattern</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">design pattern</span>
+            </span>
+            <span class="related-post-date">22 May 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/big-o-notation/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Big O Notation</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+            </span>
+            <span class="related-post-date">13 May 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/dbic-schema-part-3/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">DBIx::Class - Schema Class (Part 3)</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">dbic</span>
+                <span class="related-post-tag">mysql</span>
+            </span>
+            <span class="related-post-date">9 May 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/rest-vs-grpc\/';
+            this.page.identifier = 'd81f1a435fa89021277a542c5c31f1f6';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
