@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>REST vs gRPC</span>
         </nav>
-        <span class="reading-time" title="886 words">
+        <span class="reading-time" title="888 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -186,14 +186,14 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>OK, then what is <code>gRPC</code>?</p>
 <p>In one line: <code>gRPC</code> treats everything as an action. It makes a remote server feel like it&rsquo;s just a local function running right inside your own code.</p>
 <p><code>REST</code> is an architectural style, not a rigid protocol. It can actually run on any version of <code>HTTP</code>.</p>
-<p>The vast majority of REST APIs today run on <code>HTTP/1.1</code>. This version introduced <code>&quot;keep-alive&quot;</code> connections so your app doesn&rsquo;t have to constantly open and close connections for every single <code>JSON</code> request. You can absolutely serve a REST API over <code>HTTP/2</code> too.</p>
+<p>The vast majority of <code>REST APIs</code> today run on <code>HTTP/1.1</code>. This version introduced <code>&quot;keep-alive&quot;</code> connections so your app doesn&rsquo;t have to constantly open and close connections for every single <code>JSON</code> request. You can absolutely serve a <code>REST API</code> over <code>HTTP/2</code> too.</p>
 <p>Whereas <code>gRPC</code> strictly requires <code>HTTP/2</code> as its transport layer.</p>
 <p>In summary:</p>
 <blockquote>
 <p><code>REST</code> is like a letter. You can sent it via an old truck (<code>HTTP/1.1</code>) or high-speed bullet train (<code>HTTP/2</code>).</p>
 </blockquote>
 <blockquote>
-<p><code>gRPC</code> is like a maglev train capsule. It was designed with magnets built into the bottom. It physically cannot run on old trin tracks (<code>HTTP/1.1</code>). It requires special maglev track (<code>HTTP/2</code>).</p>
+<p><code>gRPC</code> is like a maglev train capsule. It was designed with magnets built into the bottom. It physically cannot run on old train tracks (<code>HTTP/1.1</code>). It requires special maglev track (<code>HTTP/2</code>).</p>
 </blockquote>
 <p>I must confess, <code>gRPC</code> is a new tech for me and I don&rsquo;t claim to know everything about it. I am still learning and whatever little I know so far is what I found on web. My first instinct was to see if there is any <code>Perl</code> client for <code>gRPC</code> on <code>CPAN</code>.</p>
 <p>A quick search didn&rsquo;t give me anything, so I decided to claim the namespace <code>gRPC::Client</code>. I have a working draft ready to be shipped. I am holding it for now, just to have well documented pod.</p>
@@ -218,7 +218,7 @@ v1.82: g stands for glacier
 </span></span><span style="display:flex;"><span>$ sudo apt install -y build-essential cmake libprotobuf-dev libprotoc-dev protobuf-compiler
 </span></span></code></pre></div><p>Then install the module now:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cpanm -vS Google::ProtocolBuffers::Dynamic
-</span></span></code></pre></div><p>We will first create script using <code>REST</code> as below:</p>
+</span></span></code></pre></div><p>We will first create script using <code>REST</code> payload as below:</p>
 <p><strong>Filename:</strong> <code>using-rest.pl</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
 </span></span><span style="display:flex;"><span>
@@ -244,7 +244,7 @@ v1.82: g stands for glacier
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Deserialise</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $decoded_user <span style="color:#f92672">=</span> $json_encoder<span style="color:#f92672">-&gt;</span>decode($rest_payload);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Decoded User Name: &#34;</span> <span style="color:#f92672">.</span> $decoded_user<span style="color:#f92672">-&gt;</span>{name} <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
-</span></span></code></pre></div><p>Now for <code>gRPC</code> as below:</p>
+</span></span></code></pre></div><p>Now for <code>gRPC</code> payload as below:</p>
 <p><strong>Filename:</strong> <code>using-grpc.pl</code></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
 </span></span><span style="display:flex;"><span>

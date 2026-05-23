@@ -24,7 +24,7 @@ In one line: `gRPC` treats everything as an action. It makes a remote server fee
 
 `REST` is an architectural style, not a rigid protocol. It can actually run on any version of `HTTP`.
 
-The vast majority of REST APIs today run on `HTTP/1.1`. This version introduced `"keep-alive"` connections so your app doesn't have to constantly open and close connections for every single `JSON` request. You can absolutely serve a REST API over `HTTP/2` too.
+The vast majority of `REST APIs` today run on `HTTP/1.1`. This version introduced `"keep-alive"` connections so your app doesn't have to constantly open and close connections for every single `JSON` request. You can absolutely serve a `REST API` over `HTTP/2` too.
 
 Whereas `gRPC` strictly requires `HTTP/2` as its transport layer.
 
@@ -32,7 +32,7 @@ In summary:
 
 > `REST` is like a letter. You can sent it via an old truck (`HTTP/1.1`) or high-speed bullet train (`HTTP/2`).
 
-> `gRPC` is like a maglev train capsule. It was designed with magnets built into the bottom. It physically cannot run on old trin tracks (`HTTP/1.1`). It requires special maglev track (`HTTP/2`).
+> `gRPC` is like a maglev train capsule. It was designed with magnets built into the bottom. It physically cannot run on old train tracks (`HTTP/1.1`). It requires special maglev track (`HTTP/2`).
 
 I must confess, `gRPC` is a new tech for me and I don't claim to know everything about it. I am still learning and whatever little I know so far is what I found on web. My first instinct was to see if there is any `Perl` client for `gRPC` on `CPAN`.
 
@@ -76,7 +76,7 @@ Then install the module now:
 $ cpanm -vS Google::ProtocolBuffers::Dynamic
 ```
 
-We will first create script using `REST` as below:
+We will first create script using `REST` payload as below:
 
 **Filename:** `using-rest.pl`
 
@@ -107,7 +107,7 @@ my $decoded_user = $json_encoder->decode($rest_payload);
 print "Decoded User Name: " . $decoded_user->{name} . "\n";
 ```
 
-Now for `gRPC` as below:
+Now for `gRPC` payload as below:
 
 **Filename:** `using-grpc.pl`
 
