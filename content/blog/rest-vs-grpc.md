@@ -30,7 +30,7 @@ Whereas `gRPC` strictly requires `HTTP/2` as its transport layer.
 
 In summary:
 
-> `REST` is like a letter. You can sent it via an old truck (`HTTP/1.1`) or high-speed bullet train (`HTTP/2`).
+> `REST` is like a letter. You can send it via an old truck (`HTTP/1.1`) or high-speed bullet train (`HTTP/2`).
 
 > `gRPC` is like a maglev train capsule. It was designed with magnets built into the bottom. It physically cannot run on old train tracks (`HTTP/1.1`). It requires special maglev track (`HTTP/2`).
 
