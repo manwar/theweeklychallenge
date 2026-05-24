@@ -14,7 +14,7 @@ tags: ["perl", "REST", "gRPC"]
 
 There was a time when I was working on a legacy, very large `monolithic` system. Then there was a change in policy, we decided to create `microservice` heavily using `Docker`. That was the first time, I was formally introduced to term `microservice`. This was about `10 years` ago, time just flies.
 
-Everytime I need `Representational State Transfer (REST)` solution, I go with `Dancer2` framework. My [**personal website**](https://manwar.org) is a `Dancer2` application with `REST` interface. Five years ago, I created [**GitHub respository**](https://github.com/manwar/Dancer2-REST-API) documenting all the `REST` actions.
+Everytime I need `Representational State Transfer (REST)` solution, I go with `Dancer2` framework. My [**personal website**](https://manwar.org) is a single page `Dancer2` application with `REST` interface. Five years ago, I created [**GitHub respository**](https://github.com/manwar/Dancer2-REST-API) documenting all the `REST` actions.
 
 To a layman, `REST` treats everything as a resource that you fetch or change using standard web verbs.
 
