@@ -29,7 +29,7 @@ We are still waiting for `summer` in England but the holiday season has already 
 
 I don't know if you've noticed, but team members are blogging regularly now. One day, I will start doing so too.
 
-Below is my contributions to the `Task #1` of `Week #372`.
+Below is my contributions to the `Task #1` of `Week #373`.
 
 ### Perl: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-373/mohammad-anwar/perl/ch-1.pl)
 ***
