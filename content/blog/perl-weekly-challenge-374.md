@@ -97,7 +97,7 @@ Do you see your favourite language in the `Top #10`? If not then why not contrib
      1. Python     (4390)
      2. Rust       (1155)
      3. C          (1028)
-     3. Ruby       (905)
+     4. Ruby       (905)
      5. Haskell    (901)
      6. Lua        (894)
      7. C++        (718)
