@@ -129,7 +129,7 @@ if __name__ == "__main__":
     print("Extended conditional tests passed successfully!")
 ```
 
-To avoid that we can implement the `Strategy` design pattern. For this we would create an `interface` and three `concrete class` using `abc` module as below:
+To avoid that we can implement the `Strategy` design pattern. For this we would create an `interface` and three `concrete` classes using `abc` module. Also one `context` class as below:
 
 ```python
 from abc import ABC, abstractmethod
