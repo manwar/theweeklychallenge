@@ -1182,6 +1182,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/eric-cheung/python/ch-2.py) in **Python**.
 
+##### **Jorge Morales** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/mrbocch/gleam/ch-1.gleam) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/mrbocch/gleam/ch-2.gleam) in **Gleam**.
+
 ##### **Jorge Morales** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/mrbocch/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/mrbocch/ruby/ch-2.rb) in **Ruby**.
 
 ##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/mohammad-anwar/python/ch-1.py) in **Python**.
