@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/strategy-in-python/">
+    <title>Strategy in Python | May 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Implement Strategy design design in Python.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/strategy-in-python/">
+    <meta property="og:title"       content="Strategy in Python">
+    <meta property="og:description" content="Implement Strategy design design in Python.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/strategy-in-python.jpg">
+    
+    <meta property="article:published_time" content="2026-05-26T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-05-26T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Strategy in Python">
+    <meta name="twitter:description" content="Implement Strategy design design in Python.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/strategy-in-python.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/strategy-in-python/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Strategy in Python</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>Strategy in Python</span>
+        </nav>
+        <span class="reading-time" title="1313 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  6 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 26 May 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/strategy-in-python.jpg" alt="Strategy in Python"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>My formal introduction to <code>Python</code> was about <code>two years</code> ago when I took some courses by <code>LinkedIn Learnings</code>. Since I don&rsquo;t use <code>Python</code> on a daily basis, I tend to forget things. Luckliy, participating in <a href="https://theweeklychallenge.org"><strong>The Weekly Challenge</strong></a> helps me keep my skills sharp.</p>
+<p>A few days ago, I published a blog post about <a href="https://theweeklychallenge.org/blog/strategy-design-pattern"><strong>Strategy Design Pattern in Perl</strong></a>, and I received a lot of positive feedback. Last night, I started thinking: why not re-create the same concept in <code>Python</code>? As I was preparing for that post, an idea popped into my head: why not expand the project to cover design patterns in their entirety?</p>
+<p>Hang on, what if I rewrote, <a href="https://perlschool.com/books/design-patterns/"><strong>Design Patterns in Modern Perl</strong></a> for <code>Python</code>.</p>
+<p>It&rsquo;s a good idea, but there is one challenge: I am already working on my second book which focuses on <code>DBIx::Class</code> and is about <code>60%-70%</code> finished. I can&rsquo;t start another project until that one is complete.</p>
+<p>That said, I assume there would be a demand for a book that explores these patterns using <code>Modern Python</code>.</p>
+<p>The premise would remain the same as the original <code>Perl</code> book, but it would leverage all the latest <code>Python</code> features.</p>
+<p>I am presenting a &quot;flavour&quot; of that makeover in this blog post using my original <code>Perl</code> post as the foundation.</p>
+<blockquote>
+<p>The Strategy design pattern is a behavioural design pattern that allows behaviour to be selected dynamically at runtime.</p>
+</blockquote>
+<p>The main objective is to create concrete for each behaviour.</p>
+<p>Traditionally, in <code>OOP</code>, you define an <code>interface</code> and implement <code>concrete</code> class for each strategy.</p>
+<p>In <code>Python</code>, normally you use <code>abc</code> module to define an <code>Abstract Base Class</code>.</p>
+<p>But why creating <code>abstract</code> class?</p>
+<p>Don&rsquo;t we need an <code>interface</code>?</p>
+<p>Let&rsquo;s get the basic define first.</p>
+<blockquote>
+<p><code>Interface:</code> A completely empty contract. It contains only method signatures but no data (state) and no implementation code. A class implements an interface.</p>
+</blockquote>
+<blockquote>
+<p><code>Abstract Class:</code> A partially written class. It can have method signatures, but it can also have concrete ethods and member variables. It cannot be instantiated on its own. A class extends inherits from) an abstract class.</p>
+</blockquote>
+<p><code>Python</code> does not have a built-in <code>interface</code> keyword. Instead, <code>Python</code> uses the <code>abc</code> module to do dual roles for both concepts.</p>
+<p>For example:</p>
+<p><strong>Interface</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FormatterStrategy</span>(ABC):
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div><p><strong>Abstract Class</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FormatterStrategy</span>(ABC):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">strip</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>strip()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div><p>Here is the same example from the post in <code>Perl</code>, re-written in <code>Python</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TextFormatter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, strategy: str):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>strategy <span style="color:#f92672">=</span> strategy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">publish</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>strategy<span style="color:#f92672">.</span>lower() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;upper&#34;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>upper()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> self<span style="color:#f92672">.</span>strategy<span style="color:#f92672">.</span>lower() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;lower&#34;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    upper_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;upper&#34;</span>)
+</span></span><span style="display:flex;"><span>    lower_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lower&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;IpHonE&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> upper_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;IPHONE&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> lower_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;iphone&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Initial tests passed successfully!&#34;</span>)
+</span></span></code></pre></div><p>Same issue, if we want to add another strategy then we would violate <code>Open/Closed Principle (OCP)</code>, one of the five <code>SOLID</code> code design principles.</p>
+<p>Like below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TextFormatter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, strategy: str):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>strategy <span style="color:#f92672">=</span> strategy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">publish</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>strategy<span style="color:#f92672">.</span>lower() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;upper&#34;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>upper()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> self<span style="color:#f92672">.</span>strategy<span style="color:#f92672">.</span>lower() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;lower&#34;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> self<span style="color:#f92672">.</span>strategy<span style="color:#f92672">.</span>lower() <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;camel&#34;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> len(text) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> text[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>lower() <span style="color:#f92672">+</span> text[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>upper() <span style="color:#f92672">+</span> text[<span style="color:#ae81ff">2</span>:]<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> text
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    upper_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;upper&#34;</span>)
+</span></span><span style="display:flex;"><span>    lower_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lower&#34;</span>)
+</span></span><span style="display:flex;"><span>    camel_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;camel&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;IpHonE&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> upper_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;IPHONE&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> lower_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;iphone&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> camel_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;iPhone&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Extended conditional tests passed successfully!&#34;</span>)
+</span></span></code></pre></div><p>To avoid that we can implement the <code>Strategy</code> design pattern. For this we would create an <code>interface</code> and three <code>concrete class</code> using <code>abc</code> module as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> abc <span style="color:#f92672">import</span> ABC, abstractmethod
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FormatterStrategy</span>(ABC):
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UpperCaseFormatter</span>(FormatterStrategy):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>upper()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LowerCaseFormatter</span>(FormatterStrategy):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CamelCaseFormatter</span>(FormatterStrategy):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>lower() <span style="color:#f92672">+</span> text[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>upper() <span style="color:#f92672">+</span> text[<span style="color:#ae81ff">2</span>:]<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TextFormatter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, strategy: FormatterStrategy):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>strategy <span style="color:#f92672">=</span> strategy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">publish</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>strategy<span style="color:#f92672">.</span>format(text)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    upper_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span>UpperCaseFormatter())
+</span></span><span style="display:flex;"><span>    lower_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span>LowerCaseFormatter())
+</span></span><span style="display:flex;"><span>    camel_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span>CamelCaseFormatter())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;IpHonE&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> upper_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;IPHONE&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> lower_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;iphone&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> camel_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;iPhone&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;OOP Strategy tests passed successfully!&#34;</span>)
+</span></span></code></pre></div><p>So far, <code>Perl</code> and <code>Python</code> shares the same ground.</p>
+<p>Now comes the <code>Python</code> magic, type-hinted <code>Callable</code> object.</p>
+<p>In <code>Python</code>, functions are first-class citizens. When a design pattern dictates an object that contains exactly one method, <code>Python</code> brain will try to replace the entire class with <code>Callable</code>.</p>
+<p>So the above example becomes this now:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>from typing import Callable
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>FormatterStrategy <span style="color:#f92672">=</span> Callable[[str], str]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>def upper_case_formatter(text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>upper()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>def lower_case_formatter(text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>def camel_case_formatter(text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> len(text) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>lower() <span style="color:#f92672">+</span> text[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>upper() <span style="color:#f92672">+</span> text[<span style="color:#ae81ff">2</span>:]<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> text
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class TextFormatter:
+</span></span><span style="display:flex;"><span>    def __init__(self, strategy: FormatterStrategy):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>strategy <span style="color:#f92672">=</span> strategy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    def publish(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>strategy(text)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    upper_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span>upper_case_formatter)
+</span></span><span style="display:flex;"><span>    lower_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span>lower_case_formatter)
+</span></span><span style="display:flex;"><span>    camel_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span>camel_case_formatter)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;IpHonE&#34;</span>
+</span></span><span style="display:flex;"><span>    assert upper_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;IPHONE&#34;</span>
+</span></span><span style="display:flex;"><span>    assert lower_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;iphone&#34;</span>
+</span></span><span style="display:flex;"><span>    assert camel_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;iPhone&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span>(<span style="color:#e6db74">&#34;Functional Modern Python Strategy tests passed!&#34;</span>)
+</span></span></code></pre></div><p>Here, we declare that our strategy is simply any function or lambda that matches a specific signature <code>(str -&gt; str)</code>.</p>
+<p>There is more in offer, so stay back.</p>
+<p><code>Python 3.8</code> introduced something called <code>typing.Protocol (Structural Subtyping)</code>.</p>
+<p>Instead of explicitly inheriting from an <code>Abstract Base Class</code>, a <code>Protocol</code> lets you define an interface implicitly via <code>&quot;duck typing&quot;</code>.</p>
+<p>If a class has a <code>format</code> method matching the signature, <code>Python</code>&rsquo;s type checkers accept it as implementing the interface, no inheritance required!</p>
+<p>A <code>Protocol</code> is simply a tool used to design a custom interface. It doesn&rsquo;t matter if your application needs rigid, predictable logic or abstract, it easily flexes to handle both.</p>
+<p>Now the above example becomes this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Protocol
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FormatterStrategy</span>(Protocol):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Any object with this exact method signature fits the protocol.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UpperCaseFormatter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>upper()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LowerCaseFormatter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CamelCaseFormatter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(text) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> text[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>lower() <span style="color:#f92672">+</span> text[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>upper() <span style="color:#f92672">+</span> text[<span style="color:#ae81ff">2</span>:]<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TextFormatter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, strategy: FormatterStrategy):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>strategy <span style="color:#f92672">=</span> strategy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">publish</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>strategy<span style="color:#f92672">.</span>format(text)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    upper_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span>UpperCaseFormatter())
+</span></span><span style="display:flex;"><span>    lower_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span>LowerCaseFormatter())
+</span></span><span style="display:flex;"><span>    camel_case <span style="color:#f92672">=</span> TextFormatter(strategy<span style="color:#f92672">=</span>CamelCaseFormatter())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;IpHonE&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> upper_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;IPHONE&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> lower_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;iphone&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> camel_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;iPhone&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Protocol-based Strategy tests passed!&#34;</span>)
+</span></span></code></pre></div><p>Nice, but think of a situation, if I want <code>format</code> to handle <code>integer</code> as well, then the above code would break.</p>
+<p><code>Python</code> has something called <code>generics</code> which allows you to create function that works with many different data types.</p>
+<p>To use generics, you need <code>Python 3.12+</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Protocol
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FormatterStrategy</span>[T](Protocol):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, data: T) <span style="color:#f92672">-&gt;</span> T:
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;&#34;&#34;Any object with a format method matching the generic type parameter T fits this protocol.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UpperCaseFormatter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>upper()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LowerCaseFormatter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CamelCaseFormatter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, text: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(text) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> text[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>lower() <span style="color:#f92672">+</span> text[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>upper() <span style="color:#f92672">+</span> text[<span style="color:#ae81ff">2</span>:]<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> text
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MultiplierFormatter</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, factor: float):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>factor <span style="color:#f92672">=</span> factor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format</span>(self, number: float) <span style="color:#f92672">-&gt;</span> float:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> number <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>factor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataFormatter</span>[T]:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, strategy: FormatterStrategy[T]):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>strategy <span style="color:#f92672">=</span> strategy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">publish</span>(self, data: T) <span style="color:#f92672">-&gt;</span> T:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>strategy<span style="color:#f92672">.</span>format(data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    upper_case <span style="color:#f92672">=</span> DataFormatter(strategy<span style="color:#f92672">=</span>UpperCaseFormatter())
+</span></span><span style="display:flex;"><span>    lower_case <span style="color:#f92672">=</span> DataFormatter(strategy<span style="color:#f92672">=</span>LowerCaseFormatter())
+</span></span><span style="display:flex;"><span>    camel_case <span style="color:#f92672">=</span> DataFormatter(strategy<span style="color:#f92672">=</span>CamelCaseFormatter())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;IpHonE&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> upper_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;IPHONE&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> lower_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;iphone&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> camel_case<span style="color:#f92672">.</span>publish(text) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;iPhone&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;String generic protocol tests passed!&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    double_multiplier <span style="color:#f92672">=</span> DataFormatter(strategy<span style="color:#f92672">=</span>MultiplierFormatter(factor<span style="color:#f92672">=</span><span style="color:#ae81ff">2.0</span>))
+</span></span><span style="display:flex;"><span>    number <span style="color:#f92672">=</span> <span style="color:#ae81ff">4.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">assert</span> double_multiplier<span style="color:#f92672">.</span>publish(number) <span style="color:#f92672">==</span> <span style="color:#ae81ff">8.0</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Numeric generic protocol tests passed!&#34;</span>)
+</span></span></code></pre></div><p>If you noticed, we created context class <code>DataFormatter</code> instead of <code>TextFormatter</code> and it can handle both text and number data.</p>
+<p>That was too much to handle in one post, I need a break now.</p>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/python" class="post-tag">python</a>
+        
+        <a href="https://theweeklychallenge.org/tags/design-pattern" class="post-tag">design pattern</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/strategy-design-pattern/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Strategy Design Pattern</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">design pattern</span>
+            </span>
+            <span class="related-post-date">22 May 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/grafana-prometheus/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Grafana &#43; Prometheus</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">python</span>
+                <span class="related-post-tag">Grafana</span>
+            </span>
+            <span class="related-post-date">15 Nov 2025</span>
+        </a>
+        <a class="related-post-card" href="/blog/aws-s3-bucket-events/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">AWS S3 Bucket Events</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">python</span>
+                <span class="related-post-tag">aws</span>
+            </span>
+            <span class="related-post-date">7 Nov 2025</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/strategy-in-python\/';
+            this.page.identifier = 'c9d8752f4ea84ace72666fc09d56d46e';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
