@@ -42,7 +42,7 @@ Let's get the basic define first.
 
 > `Interface:` A completely empty contract. It contains only method signatures but no data (state) and no implementation code. A class implements an interface.
 
-> `Abstract Class:` A partially written class. It can have method signatures, but it can also have concrete ethods and member variables. It cannot be instantiated on its own. A class extends inherits from) an abstract class.
+> `Abstract Class:` A partially written class. It can have method signatures, but it can also have concrete methods and member variables. It cannot be instantiated on its own. A class extends inherits from) an abstract class.
 
 `Python` does not have a built-in `interface` keyword. Instead, `Python` uses the `abc` module to do dual roles for both concepts.
 
