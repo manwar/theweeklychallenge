@@ -217,7 +217,7 @@ Here, we declare that our strategy is simply any function or lambda that matches
 
 There is more in offer, so stay back.
 
-`Python 3.8` introduced something called `typing.Protocol (Structural Subtyping)`.
+`Python 3.8` introduced something called `typing.Protocol`, i.e. Structural Subtyping.
 
 Instead of explicitly inheriting from an `Abstract Base Class`, a `Protocol` lets you define an interface implicitly via `"duck typing"`.
 
