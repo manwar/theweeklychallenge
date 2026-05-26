@@ -97,7 +97,7 @@ if __name__ == "__main__":
     print("Initial tests passed successfully!")
 ```
 
-Same issue, if we want to add another strategy then we would violate `Open/Closed Principle (OCP)`, one of the five `SOLID` code design principles.
+Same issue, if we want to add another strategy then we would violate `Open/Closed Principle (OCP)`, one of the five `SOLID` core design principles.
 
 Like below:
 
