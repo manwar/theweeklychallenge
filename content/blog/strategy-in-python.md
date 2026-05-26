@@ -28,7 +28,7 @@ I am presenting a \"flavour\" of that makeover in this blog post using my origin
 
 > The Strategy design pattern is a behavioural design pattern that allows behaviour to be selected dynamically at runtime.
 
-The main objective is to create concrete for each behaviour.
+The main objective is to create `concrete` class for each behaviour.
 
 Traditionally, in `OOP`, you define an `interface` and implement `concrete` class for each strategy.
 
