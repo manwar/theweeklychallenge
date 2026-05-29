@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>Result Class - Components</span>
         </nav>
-        <span class="reading-time" title="909 words">
+        <span class="reading-time" title="902 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -180,9 +180,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
         <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
 <hr>
 <br>
-<p>For my upcoming book on <code>DBIx::Class</code>, I have been working on examples to support the thoeretical narrations. This exercise helped me a lot to fill the gaps in the narration. I started with <a href="/blog/dbic-resultset"><strong>DBIx::Class - Result Class &amp; ResultSet Class</strong></a> followed by three part series on <code>Schema Class</code>:  <a href="/blog/dbic-schema"><strong>Part 1</strong></a>,   <a href="/dbic-schema-part-2"><strong>Part 2</strong></a>  and <a href="/blog/dbic-schema-part-3"><strong>Part 3</strong></a>.</p>
-<p>In this post, I am going to share the power of <code>components</code> in <code>Result Class</code>. This is likely to be a multi-part series as well.</p>
-<p>The <code>components</code> makes it easy to get the job done with much effort.</p>
+<p>For my upcoming book on <code>DBIx::Class</code>, I have been working on examples to support the thoeretical chapters. This exercise helped me fill several gaps in my narration. I started with <a href="/blog/dbic-resultset"><strong>DBIx::Class - Result Class &amp; ResultSet Class</strong></a> followed by a three-part series on <code>Schema Class</code>:  <a href="/blog/dbic-schema"><strong>Part 1</strong></a>,   <a href="/dbic-schema-part-2"><strong>Part 2</strong></a>  and <a href="/blog/dbic-schema-part-3"><strong>Part 3</strong></a>.</p>
+<p>In this post, I am going to explore the power of <code>components</code> within <code>Result Class</code>. This will likely be another multi-part series, as components make it easy to get the job done with minimal effort.</p>
 <p>Take a look at this result class, from the post: <a href="/blog/dbic-resultset"><strong>DBIx::Class - Result Class &amp; ResultSet Class</strong></a></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> MyApp::Schema::Result::User;
 </span></span><span style="display:flex;"><span>
@@ -214,9 +213,9 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Table
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Row
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">/</span>);
-</span></span></code></pre></div><p>OK, how about if we want to load some other components?</p>
-<p>We can still do that e.g. <code>__PACKAGE__-&gt;load_components(qw/InflateColumn::DateTime/);</code>.</p>
-<p>We have used the term <code>components</code> so many times already but what is it actually?</p>
+</span></span></code></pre></div><p>Okay, but what if we want to load additional components?</p>
+<p>We can do that easily, for example: <code>__PACKAGE__-&gt;load_components(qw/InflateColumn::DateTime/);</code>.</p>
+<p>We have used the term <code>components</code> many times already, but what exactly are they?</p>
 <p>From a <code>DBIx::Class (DBIC)</code> perspective, <code>Components</code> are modular &ldquo;mix-ins&rdquo; used to inject extra functionality into your Result classes.</p>
 <p>They allow you to compose your class behaviour dynamically at runtime rather than relying on a rigid, deep inheritance tree.</p>
 <p>In short, <code>Inheritance</code> (use base) defines what the class is, while <code>Components</code> (load_components) define what the class can do.</p>

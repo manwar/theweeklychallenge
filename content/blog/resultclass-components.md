@@ -12,11 +12,9 @@ tags: ["perl", "dbic", "components"]
 ***
 <br>
 
-For my upcoming book on `DBIx::Class`, I have been working on examples to support the thoeretical narrations. This exercise helped me a lot to fill the gaps in the narration. I started with [**DBIx::Class - Result Class & ResultSet Class**](/blog/dbic-resultset) followed by three part series on `Schema Class`:&nbsp; [**Part 1**](/blog/dbic-schema), &nbsp; [**Part 2**](/dbic-schema-part-2) &nbsp;and&nbsp;[**Part 3**](/blog/dbic-schema-part-3).
+For my upcoming book on `DBIx::Class`, I have been working on examples to support the thoeretical chapters. This exercise helped me fill several gaps in my narration. I started with [**DBIx::Class - Result Class & ResultSet Class**](/blog/dbic-resultset) followed by a three-part series on `Schema Class`:&nbsp; [**Part 1**](/blog/dbic-schema), &nbsp; [**Part 2**](/dbic-schema-part-2) &nbsp;and&nbsp;[**Part 3**](/blog/dbic-schema-part-3).
 
-In this post, I am going to share the power of `components` in `Result Class`. This is likely to be a multi-part series as well.
-
-The `components` makes it easy to get the job done with much effort.
+In this post, I am going to explore the power of `components` within `Result Class`. This will likely be another multi-part series, as components make it easy to get the job done with minimal effort.
 
 Take a look at this result class, from the post: [**DBIx::Class - Result Class & ResultSet Class**](/blog/dbic-resultset)
 
@@ -60,11 +58,11 @@ __PACKAGE__->load_components(qw/
 /);
 ```
 
-OK, how about if we want to load some other components?
+Okay, but what if we want to load additional components?
 
-We can still do that e.g. `__PACKAGE__->load_components(qw/InflateColumn::DateTime/);`.
+We can do that easily, for example: `__PACKAGE__->load_components(qw/InflateColumn::DateTime/);`.
 
-We have used the term `components` so many times already but what is it actually?
+We have used the term `components` many times already, but what exactly are they?
 
 From a `DBIx::Class (DBIC)` perspective, `Components` are modular "mix-ins" used to inject extra functionality into your Result classes.
 
