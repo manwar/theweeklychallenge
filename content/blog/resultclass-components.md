@@ -64,7 +64,7 @@ We can do that easily, for example: `__PACKAGE__->load_components(qw/InflateColu
 
 We have used the term `components` many times already, but what exactly are they?
 
-From a `DBIx::Class (DBIC)` perspective, `Components` are modular "mix-ins" used to inject extra functionality into your Result classes.
+From a `DBIx::Class (DBIC)` perspective, `Components` are modular "mix-ins" used to inject extra functionality into your `Result` classes.
 
 They allow you to compose your class behaviour dynamically at runtime rather than relying on a rigid, deep inheritance tree.
 
@@ -131,9 +131,9 @@ __PACKAGE__->set_primary_key('id');
 
 Let's get to the specifics of component: `InflateColumn::DateTime`.
 
-If you have result class having one or more columns with data types: `date`, `datetime` or `timestamp` then the component `InflateColumn::DateTime` let us treat the column as [**DateTime**](https://metacpan.org/pod/DateTime) object. Then adding component `TimeStamp` as well, we can set update (`set_on_update`) or create (`set_on_create`) date and time automatically.
+If the `Result` class is having one or more columns with data types: `date`, `datetime` or `timestamp` then the component `InflateColumn::DateTime` let us treat the column as [**DateTime**](https://metacpan.org/pod/DateTime) object. Then adding component `TimeStamp` as well, we can set update (`set_on_update`) or create (`set_on_create`) date and time automatically.
 
-Let's create unit test now: `t/date-timestamp.t`
+Let's create the unit test now: `t/date-timestamp.t`
 
 First we build the clean schema.
 
@@ -150,7 +150,7 @@ use MyApp::Schema;
 
 my ( $fh, $filename ) = tempfile( SUFFIX => '.db', UNLINK => 1 );
 my $schema = MyApp::Schema->connect("dbi:SQLite:dbname=$filename");
-$schema->deploy();
+$schema->deploy;
 ```
 
 **Explicit: Row Creation Behaviour**

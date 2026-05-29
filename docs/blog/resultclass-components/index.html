@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>Result Class - Components</span>
         </nav>
-        <span class="reading-time" title="902 words">
+        <span class="reading-time" title="903 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -216,7 +216,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span></code></pre></div><p>Okay, but what if we want to load additional components?</p>
 <p>We can do that easily, for example: <code>__PACKAGE__-&gt;load_components(qw/InflateColumn::DateTime/);</code>.</p>
 <p>We have used the term <code>components</code> many times already, but what exactly are they?</p>
-<p>From a <code>DBIx::Class (DBIC)</code> perspective, <code>Components</code> are modular &ldquo;mix-ins&rdquo; used to inject extra functionality into your Result classes.</p>
+<p>From a <code>DBIx::Class (DBIC)</code> perspective, <code>Components</code> are modular &ldquo;mix-ins&rdquo; used to inject extra functionality into your <code>Result</code> classes.</p>
 <p>They allow you to compose your class behaviour dynamically at runtime rather than relying on a rigid, deep inheritance tree.</p>
 <p>In short, <code>Inheritance</code> (use base) defines what the class is, while <code>Components</code> (load_components) define what the class can do.</p>
 <p>Let&rsquo;s demonstrate the use of two most common components: <a href="https://metacpan.org/pod/DBIx::Class::InflateColumn::DateTime"><strong>InflateColumn::DateTime</strong></a> and <a href="https://metacpan.org/pod/DBIx::Class::TimeStamp"><strong>TimeStamp</strong></a></p>
@@ -266,8 +266,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
 </span></span></code></pre></div><p>Let&rsquo;s get to the specifics of component: <code>InflateColumn::DateTime</code>.</p>
-<p>If you have result class having one or more columns with data types: <code>date</code>, <code>datetime</code> or <code>timestamp</code> then the component <code>InflateColumn::DateTime</code> let us treat the column as <a href="https://metacpan.org/pod/DateTime"><strong>DateTime</strong></a> object. Then adding component <code>TimeStamp</code> as well, we can set update (<code>set_on_update</code>) or create (<code>set_on_create</code>) date and time automatically.</p>
-<p>Let&rsquo;s create unit test now: <code>t/date-timestamp.t</code></p>
+<p>If the <code>Result</code> class is having one or more columns with data types: <code>date</code>, <code>datetime</code> or <code>timestamp</code> then the component <code>InflateColumn::DateTime</code> let us treat the column as <a href="https://metacpan.org/pod/DateTime"><strong>DateTime</strong></a> object. Then adding component <code>TimeStamp</code> as well, we can set update (<code>set_on_update</code>) or create (<code>set_on_create</code>) date and time automatically.</p>
+<p>Let&rsquo;s create the unit test now: <code>t/date-timestamp.t</code></p>
 <p>First we build the clean schema.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
 </span></span><span style="display:flex;"><span>
@@ -281,7 +281,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> ( $fh, $filename ) <span style="color:#f92672">=</span> tempfile( SUFFIX <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;.db&#39;</span>, UNLINK <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> );
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $schema <span style="color:#f92672">=</span> MyApp::Schema<span style="color:#f92672">-&gt;</span>connect(<span style="color:#e6db74">&#34;dbi:SQLite:dbname=$filename&#34;</span>);
-</span></span><span style="display:flex;"><span>$schema<span style="color:#f92672">-&gt;</span>deploy();
+</span></span><span style="display:flex;"><span>$schema<span style="color:#f92672">-&gt;</span>deploy;
 </span></span></code></pre></div><p><strong>Explicit: Row Creation Behaviour</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>subtest <span style="color:#e6db74">&#39;Explicit: Row Creation Behaviour&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $row <span style="color:#f92672">=</span> $schema<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Member&#39;</span>)
