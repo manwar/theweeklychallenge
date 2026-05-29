@@ -14,9 +14,9 @@ tags: ["perl", "dbic", "components"]
 
 For my upcoming book on `DBIx::Class`, I have been working on examples to support the thoeretical chapters. This exercise helped me fill several gaps in my narration. I started with [**DBIx::Class - Result Class & ResultSet Class**](/blog/dbic-resultset) followed by a three-part series on `Schema Class`:&nbsp; [**Part 1**](/blog/dbic-schema), &nbsp; [**Part 2**](/dbic-schema-part-2) &nbsp;and&nbsp;[**Part 3**](/blog/dbic-schema-part-3).
 
-In this post, I am going to explore the power of `components` within `Result Class`. This will likely be another multi-part series, as components make it easy to get the job done with minimal effort.
+In this post, I am going to explore the power of `Components` within `Result` class. This will likely be another multi-part series, as components make it easy to get the job done with minimal effort.
 
-Take a look at this result class, from the post: [**DBIx::Class - Result Class & ResultSet Class**](/blog/dbic-resultset)
+Take a look at this `Result` class, from the post: [**DBIx::Class - Result Class & ResultSet Class**](/blog/dbic-resultset)
 
 ```perl
 package MyApp::Schema::Result::User;
