@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-05-29T00:00:00+00:00
+date: 2026-05-30T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1191,6 +1191,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ##### **Jorg Sommrey** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/jo-37/j/ch-1.ijs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/jo-37/j/ch-2.ijs) in **J**.
 
 ##### **Jorge Morales** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/mrbocch/gleam/ch-1.gleam) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/mrbocch/gleam/ch-2.gleam) in **Gleam**.
+
+##### **Jorge Morales** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/mrbocch/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/mrbocch/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Jorge Morales** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/mrbocch/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/mrbocch/ruby/ch-2.rb) in **Ruby**.
 
