@@ -346,6 +346,34 @@ sub generate_with_llm {
 }
 ```
 
+Finally some usage pod.
+
+```perl
+__END__
+
+=head1 NAME
+
+rag-engine - A CLI tool for RAG managing ChromaDB collections.
+
+=head1 SYNOPSIS
+
+./rag-engine [options]
+
+ Options:
+   --document <full path> --collection-id <id> --ingest Ingest document in collection id
+   --query <text> --collection-id <id> --search         Search text in collection id
+   --list-collections                                   List all collections
+   --create-collection --collection-name <name>         Create a new collection name
+   --delete-collection --collection-name <name>         Delete the named collection
+   --help                                               Show this help message
+
+=head1 DESCRIPTION
+
+This tool allows you to manage vector database collections for your RAG engine.
+
+=cut
+```
+
 The application looks like this:
 
 ```bash
