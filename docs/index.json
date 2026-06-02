@@ -1,5 +1,12 @@
 [
   {
+    "title": "CPAN Debian Package",
+    "url":   "/blog/cpan-deb-package/",
+    "tags":  "perl, CPAN, Debian",
+    "section": "blog",
+    "body":  "DISCLAIMER: Image is generated using ChatGPT. I remember when I used to work with ActiveState Perl, I always struggled to find a PPM for CPAN modules. I reached the point where I decided to create the missing PPMs myself, but I never managed to create one, not even once.\nFast forward to my previous workplace, a friend of mine, who was a Release Manager, would always prepare Debian packages for updated CPAN modules. It was fascinating to see how it all worked. I have always been a pure developer, never tried anything outside of programming.\nThat said, now I try anything and everything, and it gives me complete satisfaction.\nA few days ago, while working on my CPAN module DBIx::Class::Async, I decided to create Debian package for it, just for fun. After a quick search online, I found step-by-step guide on how to do it.\nIn this post, I will take you through the process. At the time of experiment, I had v1.0.3 on CPAN, so I started by downloading the tarball.\n$ wget https://cpan.metacpan.org/authors/id/M/MA/MANWAR/DBIx-Class-Async-v1.0.3.tar.gz Next step was to extract the tarball.\n$ tar -xzf DBIx-Class-Async-v1.0.3.tar.gz $ cd DBIx-Class-Async-v1.0.3 Time to generate the Debian infrastructure.\n$ dh-make-perl . Then check the dependencies as below:\n$ dpkg-checkbuilddeps Luckily no missing dependencies found but I noticed the module description was missing in the control file.\nSo I added the description in debian/control file like below:\nDescription: Non-blocking, multi-worker asynchronous wrapper for DBIx::Class DBIx::Class::Async provides a way to execute DBIx::Class database operations asynchronously. It allows for multi-worker support, helping to prevent blocking the main event loop when performing database-heavy tasks in an IO::Async application. Finally time to build the package.\n$ dpkg-buildpackage -us -uc Then the fun started: I noticed a few unit tests throwing segfaults. This was unexpected as all tests had passed the last time I checked, and I hadn\u0026amp;rsquo;t …"
+  },
+  {
     "title": "RECAP - The Weekly Challenge - 375",
     "url":   "/blog/recap-challenge-375/",
     "tags":  "Perl, Raku",

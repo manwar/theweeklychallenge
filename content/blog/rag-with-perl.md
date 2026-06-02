@@ -1,7 +1,7 @@
 ---
 title: "RAG with Perl"
 date: 2026-05-30T00:00:00+00:00
-description: "Builf RAG using Perl."
+description: "Build RAG using Perl."
 type: post
 image: images/blog/rag-with-perl.jpg
 author: Mohammad Sajid Anwar
