@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/jsonrpc-with-perl/">
+    <title>JSON-RPC with Perl | Jun 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Working with JSON-RPC using Perl.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/jsonrpc-with-perl/">
+    <meta property="og:title"       content="JSON-RPC with Perl">
+    <meta property="og:description" content="Working with JSON-RPC using Perl.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/jsonrpc-with-perl.jpg">
+    
+    <meta property="article:published_time" content="2026-06-03T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-06-03T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="JSON-RPC with Perl">
+    <meta name="twitter:description" content="Working with JSON-RPC using Perl.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/jsonrpc-with-perl.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/jsonrpc-with-perl/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">JSON-RPC with Perl</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>JSON-RPC with Perl</span>
+        </nav>
+        <span class="reading-time" title="864 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  4 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 3 Jun 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/jsonrpc-with-perl.jpg" alt="JSON-RPC with Perl"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>Just a few days ago, <code>Dave Cross</code>, published an article titled <a href="https://perlhacks.com/2026/05/teaching-ai-about-the-british-monarchy-with-mcp"><strong>Teaching AI About the British Monarchy with MCP</strong></a>. It reminded me to finally get started on <code>MCP</code>, something I have been delaying for so long. While reading through the article, I noticed <code>JSON-RPC</code> being discussed quite prominently.</p>
+<blockquote>
+<p>MCP Is Mostly JSON-RPC</p>
+</blockquote>
+<p>So I thought, why not deal with <code>JSON-RPC</code> first?</p>
+<p>If you remember, a couple of weeks ago, I published a post comparing <a href="/blog/rest-vs-grpc"><strong>REST vs gRPC</strong></a>. I was deeply impressed by how <code>gRPC</code> handles data. Frankly, there is no real comparison between <code>REST</code> and <code>gPRC</code> as their purposes are entirely different. <code>REST</code> is meant for application where we need data instantly without complications. On the other hand, for critical applications, where data security and performance are vital, <code>gRPC</code> is the better option.</p>
+<p>If you want a general refresher on <code>gRPC</code>, I highly recommend you take a look at that blog post before continuing further.</p>
+<p>In this post, we will look at <code>JSON-RPC</code> more closely.</p>
+<p>As is always the case, my first instinct, was to check if there is a <code>CPAN</code> module that can do the job for me?</p>
+<p>I got lucky right away and found this module: <a href="https://metacpan.org/pod/JSON::RPC"><strong>JSON-RPC</strong></a>.</p>
+<p>I saw this note on <code>MetaCPAN</code>:</p>
+<blockquote>
+<p>This distribution is up for adoption! If you&rsquo;re interested then please contact the PAUSE module admins via email.</p>
+</blockquote>
+<p>And there are <a href="https://rt.cpan.org/Public/Dist/Display.html?Name=JSON-RPC"><strong>18 issues</strong></a> recorded in <code>RT</code>.</p>
+<p>I really want to help clear the outstanding issues but unfortunately, I have too many things on my plate. Most important of all is finishing my book on <code>DBIx::Class</code>. It would be great if I could finish the manuscript on time to launch it at the next London Perl Workshop event, just like I did last year when I launched my first book, <a href="https://perlschool.com/books/design-patterns"><strong>Design Patterns in Modern Perl</strong></a>.</p>
+<p>OK, let&rsquo;s get back to reality.</p>
+<p>The <code>RPC</code> in <code>JSON-RPC</code> stands for <code>Remote Procedure Call</code>, no rocket science there.</p>
+<blockquote>
+<p><code>JSON-RPC</code> is a lightweight, stateless remote procedure call (RPC) protocol encoded in JSON. It allows an application to send a request to a remote system over a network or WebSockets to execute a specific function or method and receive a structured response back.</p>
+</blockquote>
+<p>If you are familiar with <code>JSON</code> then half the job is already done. Unlike <code>gRPC</code>, the data stays unencrypted (plain text).</p>
+<p>Since we are using <code>JSON::RPC</code>, I noticed it relies on another <code>CPAN</code> module for routing i.e. <a href="https://metacpan.org/pod/Router::Simple"><strong>Router::Simple</strong></a>.</p>
+<p>For demo purpose, this is structure I created.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>├── client.pl
+</span></span><span style="display:flex;"><span>├── lib
+</span></span><span style="display:flex;"><span>│   └── App
+</span></span><span style="display:flex;"><span>│       └── Handler.pm
+</span></span><span style="display:flex;"><span>└── server.psgi
+</span></span></code></pre></div><p>Let&rsquo;s create the handler class. This is where we keep the core functions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> App::Handler;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> { bless {}, shift }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $params) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $params<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> $params<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">substract</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $params) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $params<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">-</span> $params<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">multiply</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $params) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $params<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">*</span> $params<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">divide</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $params) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $params<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">/</span> $params<span style="color:#f92672">-&gt;</span>[<span style="color:#ae81ff">1</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Nothing complicated, just four operations as simple as that.</p>
+<p>Time to create the server to expose these functions.</p>
+<p><strong>File:</strong> <code>server.psgi</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#f92672">!</span><span style="color:#e6db74">/usr/</span>bin<span style="color:#f92672">/</span>env perl
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;lib/&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> App::Handler;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Router::Simple;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> JSON::RPC::Dispatch;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $router <span style="color:#f92672">=</span> Router::Simple<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $operation (<span style="color:#e6db74">qw/add substract multiply divide/</span>) {
+</span></span><span style="display:flex;"><span>    $router<span style="color:#f92672">-&gt;</span>connect($operation, {
+</span></span><span style="display:flex;"><span>        handler <span style="color:#f92672">=&gt;</span> App::Handler<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>,
+</span></span><span style="display:flex;"><span>        action  <span style="color:#f92672">=&gt;</span> $operation
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $env <span style="color:#f92672">=</span> shift;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> JSON::RPC::Dispatch
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(router <span style="color:#f92672">=&gt;</span> $router)
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">-&gt;</span>handle_psgi($env);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Let me show you the payload structure first.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;jsonrpc&#34;</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;add&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;params&#34;</span>: [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>For more details, you can checkout the <a href="https://www.jsonrpc.org/specification"><strong>JSON-RPC 2.0 Specification</strong></a>.</p>
+<p>Here is the client finally.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> HTTP::Tiny;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> JSON::MaybeXS;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $http <span style="color:#f92672">=</span> HTTP::Tiny<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $json <span style="color:#f92672">=</span> JSON::MaybeXS<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(utf8 <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $HOST <span style="color:#f92672">=</span> $ENV{APP_HOST} <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;127.0.0.1&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $PORT <span style="color:#f92672">=</span> $ENV{APP_PORT} <span style="color:#f92672">||</span> <span style="color:#ae81ff">8080</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $payload ({ id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>, method <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;add&#34;</span>       },
+</span></span><span style="display:flex;"><span>                     { id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>, method <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;substract&#34;</span> },
+</span></span><span style="display:flex;"><span>                     { id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3</span>, method <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;multiply&#34;</span>  },
+</span></span><span style="display:flex;"><span>                     { id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">4</span>, method <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;divide&#34;</span>    }) {
+</span></span><span style="display:flex;"><span>    $payload<span style="color:#f92672">-&gt;</span>{jsonrpc} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;2.0&#34;</span>;
+</span></span><span style="display:flex;"><span>    $payload<span style="color:#f92672">-&gt;</span>{params}  <span style="color:#f92672">=</span> [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">2</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $http<span style="color:#f92672">-&gt;</span>post(<span style="color:#e6db74">&#34;http://$HOST:$PORT&#34;</span>, {
+</span></span><span style="display:flex;"><span>        content <span style="color:#f92672">=&gt;</span> $json<span style="color:#f92672">-&gt;</span>encode($payload),
+</span></span><span style="display:flex;"><span>        headers <span style="color:#f92672">=&gt;</span> { <span style="color:#e6db74">&#39;content-type&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;application/json&#39;</span> },
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>$response<span style="color:#f92672">-&gt;</span>{success}) {
+</span></span><span style="display:flex;"><span>        warn <span style="color:#e6db74">&#34;HTTP Request Failed for method &#39;&#34;</span>, $payload<span style="color:#f92672">-&gt;</span>{method},
+</span></span><span style="display:flex;"><span>             <span style="color:#e6db74">&#34;&#39;: &#34;</span>, $response<span style="color:#f92672">-&gt;</span>{content}, <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">next</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> $json<span style="color:#f92672">-&gt;</span>decode($response<span style="color:#f92672">-&gt;</span>{content});
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($data<span style="color:#f92672">-&gt;</span>{error}) {
+</span></span><span style="display:flex;"><span>        warn <span style="color:#e6db74">&#34;JSON-RPC Server Error on &#39;&#34;</span>, $payload<span style="color:#f92672">-&gt;</span>{method},
+</span></span><span style="display:flex;"><span>             <span style="color:#e6db74">&#34;&#39;: &#34;</span>, $data<span style="color:#f92672">-&gt;</span>{error}<span style="color:#f92672">-&gt;</span>{message}, <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Method: &#34;</span>, $payload<span style="color:#f92672">-&gt;</span>{method},
+</span></span><span style="display:flex;"><span>              <span style="color:#e6db74">&#34; (&#34;</span>, $data<span style="color:#f92672">-&gt;</span>{result}, <span style="color:#e6db74">&#34;)\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Time for some action now. Let&rsquo;s start the server in one terminal like below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ plackup server.psgi
+</span></span><span style="display:flex;"><span>HTTP::Server::PSGI: Accepting connections at http://0:8080/
+</span></span></code></pre></div><p>And in another terminal, we run the client script as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl client.pl
+</span></span><span style="display:flex;"><span>Method: add <span style="color:#f92672">(</span>6<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Method: substract <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Method: multiply <span style="color:#f92672">(</span>8<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Method: divide <span style="color:#f92672">(</span>2<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Your server terminal would look this after the first run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ plackup server.psgi
+</span></span><span style="display:flex;"><span>HTTP::Server::PSGI: Accepting connections at http://0:8081/
+</span></span><span style="display:flex;"><span>127.0.0.1 - - <span style="color:#f92672">[</span>03/Jun/2026:15:04:45 +0100<span style="color:#f92672">]</span> <span style="color:#e6db74">&#34;POST / HTTP/1.1&#34;</span> <span style="color:#ae81ff">200</span> <span style="color:#ae81ff">35</span> <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#e6db74">&#34;HTTP-Tiny/0.086&#34;</span>
+</span></span><span style="display:flex;"><span>127.0.0.1 - - <span style="color:#f92672">[</span>03/Jun/2026:15:04:45 +0100<span style="color:#f92672">]</span> <span style="color:#e6db74">&#34;POST / HTTP/1.1&#34;</span> <span style="color:#ae81ff">200</span> <span style="color:#ae81ff">35</span> <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#e6db74">&#34;HTTP-Tiny/0.086&#34;</span>
+</span></span><span style="display:flex;"><span>127.0.0.1 - - <span style="color:#f92672">[</span>03/Jun/2026:15:04:45 +0100<span style="color:#f92672">]</span> <span style="color:#e6db74">&#34;POST / HTTP/1.1&#34;</span> <span style="color:#ae81ff">200</span> <span style="color:#ae81ff">35</span> <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#e6db74">&#34;HTTP-Tiny/0.086&#34;</span>
+</span></span><span style="display:flex;"><span>127.0.0.1 - - <span style="color:#f92672">[</span>03/Jun/2026:15:04:45 +0100<span style="color:#f92672">]</span> <span style="color:#e6db74">&#34;POST / HTTP/1.1&#34;</span> <span style="color:#ae81ff">200</span> <span style="color:#ae81ff">35</span> <span style="color:#e6db74">&#34;-&#34;</span> <span style="color:#e6db74">&#34;HTTP-Tiny/0.086&#34;</span>
+</span></span></code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">perl</a>
+        
+        <a href="https://theweeklychallenge.org/tags/json-rpc" class="post-tag">JSON-RPC</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/cpan-deb-package/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">CPAN Debian Package</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">CPAN</span>
+                <span class="related-post-tag">Debian</span>
+            </span>
+            <span class="related-post-date">2 Jun 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/rag-with-perl/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">RAG with Perl</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">RAG</span>
+            </span>
+            <span class="related-post-date">30 May 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/resultclass-components/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Result Class - Components</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">dbic</span>
+                <span class="related-post-tag">components</span>
+            </span>
+            <span class="related-post-date">29 May 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/jsonrpc-with-perl\/';
+            this.page.identifier = '45853aafdbe839abdc94b9426432c0cf';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
