@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-06-02T00:00:00+00:00
+date: 2026-06-03T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1183,6 +1183,14 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-376/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-376/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-376/mohammad-anwar/python/ch-1.py) in **Python**.
+
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/ulrich-rieke/cpp/ch-1.cpp) in **C++**.
+
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/ulrich-rieke/haskell/ch-1.hs) in **Haskell**.
+
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/ulrich-rieke/python/ch-1.py) in **Python**.
+
+##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-375/ulrich-rieke/rust/ch-1.rs) in **Rust**.
 
 ___
 ## [The Weekly Challenge - 375](/blog/perl-weekly-challenge-375) {#375}
