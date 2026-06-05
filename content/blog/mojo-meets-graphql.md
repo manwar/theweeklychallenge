@@ -339,10 +339,10 @@ Do you want web interface to perform the same query?
 
 `GraphiQL` is the official, interactive, in-browser IDE for building and testing `GraphQL APIs`.
 
-We can add the following to get the `GraphiQL` web interface..
+We can add the following web route to the application to access the `GraphiQL` web interface..
 
 ```perl
-get '/graphiql' => sub ($c) {
+get '/graphql' => sub ($c) {
     $c->render(inline => <<'EOF');
 <!DOCTYPE html>
 <html lang="en">
@@ -378,7 +378,7 @@ EOF
 };
 ```
 
-Now restart the application and visit `http://127.0.0.1:3000/graphiql` in your favourite browser.
+Now restart the application and visit `http://127.0.0.1:3000/graphql` in your favourite browser.
 
 This is what you would get:
 
