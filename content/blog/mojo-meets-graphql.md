@@ -84,6 +84,24 @@ my $books = {
 ```perl
 my ($BookType, $AuthorType);
 
+$BookType = GraphQL::Type::Object->new(
+    name        => 'Book',
+    description => 'A book in our library',
+    fields      => sub {
+        {
+            id     => { type => $Int },
+            title  => { type => $String },
+            author => {
+                type    => $AuthorType,
+                resolve => sub ($book, $args, $context, $info) {
+                    my $id = $book->{author_id};
+                    return with_id($authors->{$id}, $id);
+                },
+            },
+        },
+    },
+);
+
 $AuthorType = GraphQL::Type::Object->new(
     name        => 'Author',
     description => 'An author in our library',
@@ -99,24 +117,6 @@ $AuthorType = GraphQL::Type::Object->new(
                         grep { $books->{$_}{author_id} == $author->{id} }
                         keys %$books
                     ];
-                },
-            },
-        },
-    },
-);
-
-$BookType = GraphQL::Type::Object->new(
-    name        => 'Book',
-    description => 'A book in our library',
-    fields      => sub {
-        {
-            id     => { type => $Int },
-            title  => { type => $String },
-            author => {
-                type    => $AuthorType,
-                resolve => sub ($book, $args, $context, $info) {
-                    my $id = $book->{author_id};
-                    return with_id($authors->{$id}, $id);
                 },
             },
         },
