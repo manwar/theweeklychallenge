@@ -276,14 +276,14 @@ $ curl -X POST http://127.0.0.1:3000/graphql \
 {
    "data" : {
       "author" : {
+         "id" : 1,
+         "name" : "J.R.R. Tolkien",
          "books" : [
             {
-               "id" : null,
+               "id" : 1,
                "title" : "The Hobbit"
             }
-         ],
-         "name" : "J.R.R. Tolkien",
-         "id" : 1
+         ]
       }
    }
 }
