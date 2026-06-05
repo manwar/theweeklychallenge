@@ -204,6 +204,8 @@ $ perl mojo-app.pl daemon
 Web application available at http://127.0.0.1:3000
 ```
 
+In another terminal, we start query the application.
+
 ### Search Book
 
 Here we search book with id 2 and we want book title and it's author's id and name.
