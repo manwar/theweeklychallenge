@@ -169,7 +169,7 @@ my $QueryType = GraphQL::Type::Object->new(
 ### Build Schema
 
 ```perl
-my $schema = GraphQL::Schema->new( query => $QueryType );
+my $schema = GraphQL::Schema->new(query => $QueryType);
 ```
 
 ### Define Web Route
