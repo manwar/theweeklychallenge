@@ -14,9 +14,9 @@ tags: ["perl", "Mojo", "GraphQL"]
 
 I was first introduced to `GraphQL` when I found out that a friend of mine, `Pete Sergeant`, of `Perl Careers` sponsored the work [**GraphQL**](https://metacpan.org/dist/GraphQL) in `2017`.
 
-`Ed J`, the lead developer of `GraphQL` is also my friend, he contributed to my module, [**Map::Tube**](https://metacpan.org/dist/Map-Tube) as well.
+`Ed J` is the lead developer of `GraphQL` is also my friend. He even contributed to my module, [**Map::Tube**](https://metacpan.org/dist/Map-Tube) as well.
 
-I even bought the book, [**The Road to GraphQL**](https://www.amazon.co.uk/Road-GraphQL-pragmatic-JavaScript-React-js/dp/1730853935) in `2022`. I have yet to finish reading it.
+I bought the book, [**The Road to GraphQL**](https://www.amazon.co.uk/Road-GraphQL-pragmatic-JavaScript-React-js/dp/1730853935) in `2022`. I have yet to finish reading it.
 
 Let's get to the subject now.
 
