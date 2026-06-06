@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>DBIx::Class and GraphQL</span>
         </nav>
-        <span class="reading-time" title="860 words">
+        <span class="reading-time" title="883 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -219,13 +219,20 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
 </span></span></code></pre></div><p><strong>Result Class:</strong> <code>lib/Library/Schema/Result/Author.pm</code></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Library::Schema;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Library::Schema::Result::Author;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> base <span style="color:#e6db74">&#39;DBIx::Class::Schema&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> base <span style="color:#e6db74">qw(DBIx::Class::Core)</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>load_namespaces;
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>table(<span style="color:#e6db74">&#39;authors&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>add_columns(
+</span></span><span style="display:flex;"><span>    id   <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;integer&#39;</span>, is_auto_increment <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span> },
+</span></span><span style="display:flex;"><span>    name <span style="color:#f92672">=&gt;</span> { data_type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;varchar&#39;</span>, size <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">255</span> },
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>set_primary_key(<span style="color:#e6db74">&#39;id&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__PACKAGE__<span style="color:#f92672">-&gt;</span>has_many(books <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Library::Schema::Result::Book&#39;</span>, <span style="color:#e6db74">&#39;author_id&#39;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
 </span></span></code></pre></div><p><strong>Result Class:</strong> <code>lib/Library/Schema/Result/Book.pm</code></p>
