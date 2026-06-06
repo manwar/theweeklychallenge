@@ -181,57 +181,46 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <hr>
 <br>
 <p>As a longtime <a href="https://metacpan.org/pod/Dancer2"><strong>Dancer2</strong></a> fan, I’ve always admired its elegance for building web apps. But recently, I decided to step out of my comfort zone and try something new, <a href="https://metacpan.org/pod/Mojolicious"><strong>Mojolicious</strong></a>. Known for its real‑time web capabilities, <strong>Mojo</strong> seemed like the perfect framework to experiment with <strong>WebSockets</strong>. And what better way to test it than building a live chat room?</p>
-<br>
 <h3 id="project-structure"><strong>Project Structure</strong></h3>
 <hr>
-<pre><code>├── chat-server.pl
-├── public
-│   ├── css
-│   │   └── style.css
-│   └── js
-│       └── chat.js
-└── templates
-    └── index.html.ep
-</code></pre>
-<br>
-<p>Here’s the script I came up with, a fully functional, minimal <strong>WebSocket Chat Server</strong> in just 60 lines of <strong>Perl</strong>. Let me walk you through it, piece by piece.</p>
-<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ├── chat-server.pl
+</span></span><span style="display:flex;"><span>    ├── public
+</span></span><span style="display:flex;"><span>    │   ├── css
+</span></span><span style="display:flex;"><span>    │   │   └── style.css
+</span></span><span style="display:flex;"><span>    │   └── js
+</span></span><span style="display:flex;"><span>    │       └── chat.js
+</span></span><span style="display:flex;"><span>    └── templates
+</span></span><span style="display:flex;"><span>        └── index.html.ep
+</span></span></code></pre></div><p>Here’s the script I came up with, a fully functional, minimal <strong>WebSocket Chat Server</strong> in just 60 lines of <strong>Perl</strong>. Let me walk you through it, piece by piece.</p>
 <h3 id="the-setup"><strong>The Setup</strong></h3>
 <hr>
 <p>We start by importing <a href="https://metacpan.org/pod/Mojolicious::Lite"><strong>Mojolicious::Lite</strong></a>, the lightweight version of <strong>Mojo</strong> that’s perfect for quick apps. <a href="https://metacpan.org/pod/Mojo::JSON"><strong>Mojo::JSON</strong></a> handles <strong>JSON</strong> encoding/decoding, essential for <strong>WebSocket</strong> messaging.</p>
-<br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Mojolicious::Lite;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Mojo::JSON <span style="color:#e6db74">qw(decode_json encode_json)</span>;
-</span></span></code></pre></div><br>
-<h3 id="global-state"><strong>Global State</strong></h3>
+</span></span></code></pre></div><h3 id="global-state"><strong>Global State</strong></h3>
 <hr>
 <p>Since <strong>WebSocket</strong> connections are persistent, we need to track connected clients and message history. <strong>$clients</strong> is a hashref keyed by connection ID, and <strong>@history</strong> keeps the last 10 messages for newcomers.</p>
-<br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $clients <span style="color:#f92672">=</span> {};
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @history;
-</span></span></code></pre></div><br>
-<h3 id="the-homepage"><strong>The Homepage</strong></h3>
+</span></span></code></pre></div><h3 id="the-homepage"><strong>The Homepage</strong></h3>
 <hr>
 <p>A simple <strong>GET</strong> route serves the <strong>HTML</strong> frontend (from a template named index). Mojo’s <strong>$c</strong> is the controller object, similar to <strong>Dancer2</strong>’s request object.</p>
-<br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> shift;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>render(template <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;index&#39;</span>, title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Online Chat App&#39;</span>);
 </span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div><br>
-<h3 id="the-websocket-handler"><strong>The WebSocket Handler</strong></h3>
+</span></span></code></pre></div><h3 id="the-websocket-handler"><strong>The WebSocket Handler</strong></h3>
 <hr>
 <p>When a client connects to <strong>/chat</strong>, we create a unique ID from the transaction object (<strong>$c-&gt;tx</strong>) and store the connection along with a default username.</p>
-<br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>websocket <span style="color:#e6db74">&#39;/chat&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $c  <span style="color:#f92672">=</span> shift;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $id <span style="color:#f92672">=</span> sprintf <span style="color:#e6db74">&#34;%p&#34;</span>, $c<span style="color:#f92672">-&gt;</span>tx;
 </span></span><span style="display:flex;"><span>    $clients<span style="color:#f92672">-&gt;</span>{$id} <span style="color:#f92672">=</span> { tx <span style="color:#f92672">=&gt;</span> $c<span style="color:#f92672">-&gt;</span>tx, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Anonymous&#39;</span> };
-</span></span></code></pre></div><br>
-<h3 id="handling-incoming-messages"><strong>Handling Incoming Messages</strong></h3>
+</span></span></code></pre></div><h3 id="handling-incoming-messages"><strong>Handling Incoming Messages</strong></h3>
 <hr>
 <p><strong>Mojo</strong> uses event-driven callbacks.</p>
 <p>Here, we listen for message events, decode the incoming <strong>JSON</strong>, and handle different message types:</p>
@@ -246,7 +235,6 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p><strong>Chat messages:</strong> Add a timestamp, store in history (capped at 10), and broadcast to all.</p>
 </li>
 </ul>
-<br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>on(message <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($self, $msg) <span style="color:#f92672">=</span> @_;
 </span></span><span style="display:flex;"><span>
@@ -291,21 +279,17 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>            broadcast($msg_out);
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    });
-</span></span></code></pre></div><br>
-<h3 id="cleaning-up-on-disconnect"><strong>Cleaning Up on Disconnect</strong></h3>
+</span></span></code></pre></div><h3 id="cleaning-up-on-disconnect"><strong>Cleaning Up on Disconnect</strong></h3>
 <hr>
 <p>When a <strong>WebSocket</strong> closes, we remove the client from <strong>$clients</strong> and notify everyone.</p>
-<br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>on(finish <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name};
 </span></span><span style="display:flex;"><span>        delete $clients<span style="color:#f92672">-&gt;</span>{$id};
 </span></span><span style="display:flex;"><span>        broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;system&#39;</span>, text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$name left&#34;</span> });
 </span></span><span style="display:flex;"><span>        send_user_list();
 </span></span><span style="display:flex;"><span>    });
-</span></span></code></pre></div><br>
-<h3 id="helper-subs"><strong>Helper Subs</strong></h3>
+</span></span></code></pre></div><h3 id="helper-subs"><strong>Helper Subs</strong></h3>
 <hr>
-<br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">broadcast</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $msg <span style="color:#f92672">=</span> encode_json(shift);
 </span></span><span style="display:flex;"><span>    $_<span style="color:#f92672">-&gt;</span>{tx}<span style="color:#f92672">-&gt;</span>send($msg) <span style="color:#66d9ef">for</span> values %$clients;
@@ -315,25 +299,30 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> @names <span style="color:#f92672">=</span> sort map { $_<span style="color:#f92672">-&gt;</span>{name} } values %$clients;
 </span></span><span style="display:flex;"><span>    broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;users&#39;</span>, list <span style="color:#f92672">=&gt;</span> <span style="color:#f92672">\</span>@names });
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><br>
-<h3 id="kicking-things-off"><strong>Kicking Things Off</strong></h3>
+</span></span></code></pre></div><h3 id="kicking-things-off"><strong>Kicking Things Off</strong></h3>
 <hr>
 <p>Finally, we start the Mojo app.</p>
-<br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>app<span style="color:#f92672">-&gt;</span>start;
-</span></span></code></pre></div><br>
-<p>With the built-in web server, launch the deamon like below:</p>
-<br>
+</span></span></code></pre></div><p>With the built-in web server, launch the deamon like below:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl chat-server deamon
 </span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>2026-02-07 21:43:08.63656<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>368424<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>info<span style="color:#f92672">]</span> Listening at <span style="color:#e6db74">&#34;http://*:3000&#34;</span>
 </span></span><span style="display:flex;"><span>Web application available at http://127.0.0.1:3000
-</span></span></code></pre></div><br>
-<h3 id="final-look"><strong>Final Look</strong></h3>
+</span></span></code></pre></div><h3 id="final-look"><strong>Final Look</strong></h3>
 <hr>
-<p><img src="/images/blog/mojo-with-websocket-img-1.jpg" alt="Welcome Screen"></p>
-<hr>
-<p><img src="/images/blog/mojo-with-websocket-img-2.jpg" alt="Main Chat Screen"></p>
-<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/mojo-with-websocket-img-1.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/mojo-with-websocket-img-2.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
 <h3 id="first-impressions"><strong>First Impressions</strong></h3>
 <hr>
 <p>Coming from <strong>Dancer2</strong>, I appreciated <strong>Mojo</strong>&rsquo;s all-in-one approach, no need for extra <strong>PSGI</strong> setup or external modules for <strong>WebSockets</strong>. The event-driven style felt natural for real-time apps, and the built-in <strong>JSON</strong> handling kept things tidy.</p>

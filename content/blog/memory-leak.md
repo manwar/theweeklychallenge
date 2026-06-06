@@ -12,79 +12,47 @@ tags: ["Perl"]
 
 I always find the topic `Memory Management` very fascinating. `Perl` being the **Perl**, there is nothing you need to worry about. All memory management is done for us for `FREE`.
 
-<br>
-
-### Still, there was something, I always wanted to find out about memory management in Perl.
-
-<br>
+Still, there was something, I always wanted to find out about memory management in Perl.
 
 All along, I knew that there is an easy way I can force my script to leak memory.
 
-<br>
-
-### How?
-
-<br>
+How?
 
 Just create a data structure with circular reference.
 
-<br>
-
-### Easy?
-
-<br>
+Easy?
 
 But the question is how do I demonstrate the memory leak?
 
-<br>
-
 Let me take you back in the memory, in the year 2015, `Gabor Szabo` handed over the maintenance of [**PDF::Create**](https://metacpan.org/dist/PDF-Create). At that time I had no clue about the internals of the module. I was hoping to keep it alive by fixing/patching bugs as and when time permits. During my peak, I had the opportunity to look into some of the core functions of the module. At that time I noticed the use of `weaken` for the first time. After little research, I found out more about it.
-
-<br>
 
 So now, I had two very important informations: `circular reference` can create memory leak and `weaken` can fix the leak.
 
-<br>
-
 Even, then I am back to my original question, `how can I easily demonstrate the behaviour?`
-
-<br>
 
 So, I decided to ask for help on my [**Twitter handle**](https://twitter.com/cpan_author).
 
-<br>
-
-![Image-1](/images/blog/ml-1.png)
-
-<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/ml-1.png" class="img-fluid">
+        </div>
+    </div>
+</div>
 
 To my request, I got this [**post**](https://perlmaven.com/eliminate-circular-reference-memory-leak-using-weaken) by `Gabor Szabo`. I tried to replicate the behaviour on my box but without any luck.
 
-<br>
-
-### So what next?
-
-<br>
+So what next?
 
 I didn't give up this time, I wanted to get to the bottom of it, no matter what.
 
-<br>
-
 After couple of evenings doing research, I found this very handy **CPAN** module [**Devel::Leak::Object**](https://metacpan.org/dist/Devel-Leak-Object) by `Karen Etheridge`, famously known as `ETHER`.
-
-<br>
 
 At this point, I felt little better.
 
-<br>
-
-### So time to demonstrate the memory leak?
-
-<br>
+So time to demonstrate the memory leak?
 
 Just for fun, I am using `Perl v5.36`.
-
-<br>
 
 ```perl
  1 #!/usr/bin/perl
@@ -104,31 +72,27 @@ Just for fun, I am using `Perl v5.36`.
 15 # This would leak memory.
 16 $l->{self_ref} = $l;
 ```
-<br>
 
-### Time to see the memory leak
+Time to see the memory leak
 
-<br>
+```bash
+manwar@VAIO:~/memory-leak$ p536 memory-leak.pl
+Tracked objects by class:
+        L
 
-![Image-2](/images/blog/ml-2.png)
-
-<br>
+Sources of leaks:
+L
+     1 from memory-leak.pl line: 13
+manwar@VAIO:~/memory-leak$
+```
 
 Thanks to the module `Devel::Leak::Object`, I can clearly see the source of leak `i.e. line 13`.
 
-<br>
-
 Well, it is good to know that we have memory leak.
 
-<br>
-
-### How to fix the memory leak?
-
-<br>
+How to fix the memory leak?
 
 Before `Perl v5.36`, you would take the help of **CPAN** module [**Scalar::Util**](https://metacpan.org/pod/Scalar::Util) which gives us the handy function `weaken`. Since I am playing with the latest toy, I would take the luxury and use the `experimental builtin` by the same name.
-
-<br>
 
 ```perl
  1 #!/usr/bin/perl
@@ -150,35 +114,26 @@ Before `Perl v5.36`, you would take the help of **CPAN** module [**Scalar::Util*
 17 # Fix the memory leak.
 18 $l->{self_ref} = weaken $l;
 ```
-<br>
 
-### Let us check, if the script still leak memory?
+Let us check, if the script still leak memory?
 
-<br>
+```bash
+manwar@VAIO:~/memory-leak$ p536 memory-leak.pl
+Tracked objects by class:
 
-![Image-3](/images/blog/ml-3.png)
+Sources of leaks:
+manwar@VAIO:~/memory-leak$
+```
 
-<br>
-
-### Wow, no more memory leak.
-
-<br>
+Wow, no more memory leak.
 
 Finally I have script that demonstrates the memory leak and then fix to the leak as well.
 
-<br>
-
-### I am very happy now.
-
-<br>
+I am very happy now.
 
 As you know, most of my **CPAN** [**distributions**](https://metacpan.org/author/MANWAR) use [**Moo**](https://metacpan.org/dist/Moo) for OO purpose. Can I use `Moo` object to demo the memory leak and fix as well?
 
-<br>
-
-### Why not? I sound more confident now. :-)
-
-<br>
+Why not? I sound more confident now. :-)
 
 ```perl
  1 #!/usr/bin/perl
@@ -200,19 +155,21 @@ As you know, most of my **CPAN** [**distributions**](https://metacpan.org/author
 17 $m->self_ref($m);
 ```
 
-<br>
+Lets run the script and see the memory leak.
 
-### Lets run the script and see the memory leak.
+```bash
+manwar@VAIO:~/memory-leak$ p536 memory-leak.pl
+Tracked objects by class:
+        M
+        Method::Generate::Constructor
 
-<br>
-
-![Image-4](/images/blog/ml-4.png)
-
-<br>
+Sources of leaks:
+M
+     1 from memory-leak.pl line: 14
+manwar@VAIO:~/memory-leak$
+```
 
 So we have seen the memory leak, time to fix the leak. To fix the leak, we can use `weak_ref` attribute supported by `Moo`.
-
-<br>
 
 ```perl
  1 #!/usr/bin/perl
@@ -234,14 +191,18 @@ So we have seen the memory leak, time to fix the leak. To fix the leak, we can u
 17 $m->self_ref($m);
 ```
 
-<br>
+Time to check if memory leak is fixed now.
 
-### Time to check if memory leak is fixed now.
+```bash
+manwar@VAIO:~/memory-leak$ p536 memory-leak.pl
+Tracked objects by class:
+        Method::Generate::Constructor
 
-<br>
+Sources of leaks:
+Method::Generate::Constructor
+     1 from /home/manwar/perl5/perlbrew/perls/perl-5.36.0/lib/site_perl/5.36.0/Method/Generate/Constructor.pm line: 248
+     1 from /home/manwar/perl5/perlbrew/perls/perl-5.36.0/lib/site_perl/5.36.0/Moo.pm line: 262
+manwar@VAIO:~/memory-leak$
+```
 
-![Image-5](/images/blog/ml-5.png)
-
-<br>
-
-### All good, so far.
+All good, so far.

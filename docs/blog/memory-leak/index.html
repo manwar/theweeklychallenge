@@ -151,13 +151,13 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>Memory Leak in Perl</span>
         </nav>
-        <span class="reading-time" title="731 words">
+        <span class="reading-time" title="802 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
     <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
   </svg>
-  3 min read
+  4 min read
 </span>
 
         <div class="post-meta">
@@ -179,43 +179,30 @@ if (localStorage.getItem('twc-theme') === 'light') {
 
         <br>
 <p>I always find the topic <code>Memory Management</code> very fascinating. <code>Perl</code> being the <strong>Perl</strong>, there is nothing you need to worry about. All memory management is done for us for <code>FREE</code>.</p>
-<br>
-<h3 id="still-there-was-something-i-always-wanted-to-find-out-about-memory-management-in-perl">Still, there was something, I always wanted to find out about memory management in Perl.</h3>
-<br>
+<p>Still, there was something, I always wanted to find out about memory management in Perl.</p>
 <p>All along, I knew that there is an easy way I can force my script to leak memory.</p>
-<br>
-<h3 id="how">How?</h3>
-<br>
+<p>How?</p>
 <p>Just create a data structure with circular reference.</p>
-<br>
-<h3 id="easy">Easy?</h3>
-<br>
+<p>Easy?</p>
 <p>But the question is how do I demonstrate the memory leak?</p>
-<br>
 <p>Let me take you back in the memory, in the year 2015, <code>Gabor Szabo</code> handed over the maintenance of <a href="https://metacpan.org/dist/PDF-Create"><strong>PDF::Create</strong></a>. At that time I had no clue about the internals of the module. I was hoping to keep it alive by fixing/patching bugs as and when time permits. During my peak, I had the opportunity to look into some of the core functions of the module. At that time I noticed the use of <code>weaken</code> for the first time. After little research, I found out more about it.</p>
-<br>
 <p>So now, I had two very important informations: <code>circular reference</code> can create memory leak and <code>weaken</code> can fix the leak.</p>
-<br>
 <p>Even, then I am back to my original question, <code>how can I easily demonstrate the behaviour?</code></p>
-<br>
 <p>So, I decided to ask for help on my <a href="https://twitter.com/cpan_author"><strong>Twitter handle</strong></a>.</p>
-<br>
-<p><img src="/images/blog/ml-1.png" alt="Image-1"></p>
-<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/ml-1.png" class="img-fluid">
+        </div>
+    </div>
+</div>
 <p>To my request, I got this <a href="https://perlmaven.com/eliminate-circular-reference-memory-leak-using-weaken"><strong>post</strong></a> by <code>Gabor Szabo</code>. I tried to replicate the behaviour on my box but without any luck.</p>
-<br>
-<h3 id="so-what-next">So what next?</h3>
-<br>
+<p>So what next?</p>
 <p>I didn&rsquo;t give up this time, I wanted to get to the bottom of it, no matter what.</p>
-<br>
 <p>After couple of evenings doing research, I found this very handy <strong>CPAN</strong> module <a href="https://metacpan.org/dist/Devel-Leak-Object"><strong>Devel::Leak::Object</strong></a> by <code>Karen Etheridge</code>, famously known as <code>ETHER</code>.</p>
-<br>
 <p>At this point, I felt little better.</p>
-<br>
-<h3 id="so-time-to-demonstrate-the-memory-leak">So time to demonstrate the memory leak?</h3>
-<br>
+<p>So time to demonstrate the memory leak?</p>
 <p>Just for fun, I am using <code>Perl v5.36</code>.</p>
-<br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> L {
@@ -232,19 +219,19 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">14</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">15</span> <span style="color:#75715e"># This would leak memory.</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span> $l<span style="color:#f92672">-&gt;</span>{self_ref} <span style="color:#f92672">=</span> $l;
-</span></span></code></pre></div><br>
-<h3 id="time-to-see-the-memory-leak">Time to see the memory leak</h3>
-<br>
-<p><img src="/images/blog/ml-2.png" alt="Image-2"></p>
-<br>
-<p>Thanks to the module <code>Devel::Leak::Object</code>, I can clearly see the source of leak <code>i.e. line 13</code>.</p>
-<br>
+</span></span></code></pre></div><p>Time to see the memory leak</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>manwar@VAIO:~/memory-leak$ p536 memory-leak.pl
+</span></span><span style="display:flex;"><span>Tracked objects by class:
+</span></span><span style="display:flex;"><span>        L
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Sources of leaks:
+</span></span><span style="display:flex;"><span>L
+</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">1</span> from memory-leak.pl line: <span style="color:#ae81ff">13</span>
+</span></span><span style="display:flex;"><span>manwar@VAIO:~/memory-leak$
+</span></span></code></pre></div><p>Thanks to the module <code>Devel::Leak::Object</code>, I can clearly see the source of leak <code>i.e. line 13</code>.</p>
 <p>Well, it is good to know that we have memory leak.</p>
-<br>
-<h3 id="how-to-fix-the-memory-leak">How to fix the memory leak?</h3>
-<br>
+<p>How to fix the memory leak?</p>
 <p>Before <code>Perl v5.36</code>, you would take the help of <strong>CPAN</strong> module <a href="https://metacpan.org/pod/Scalar::Util"><strong>Scalar::Util</strong></a> which gives us the handy function <code>weaken</code>. Since I am playing with the latest toy, I would take the luxury and use the <code>experimental builtin</code> by the same name.</p>
-<br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> L {
@@ -263,21 +250,17 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">17</span> <span style="color:#75715e"># Fix the memory leak.</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">18</span> $l<span style="color:#f92672">-&gt;</span>{self_ref} <span style="color:#f92672">=</span> weaken $l;
-</span></span></code></pre></div><br>
-<h3 id="let-us-check-if-the-script-still-leak-memory">Let us check, if the script still leak memory?</h3>
-<br>
-<p><img src="/images/blog/ml-3.png" alt="Image-3"></p>
-<br>
-<h3 id="wow-no-more-memory-leak">Wow, no more memory leak.</h3>
-<br>
+</span></span></code></pre></div><p>Let us check, if the script still leak memory?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>manwar@VAIO:~/memory-leak$ p536 memory-leak.pl
+</span></span><span style="display:flex;"><span>Tracked objects by class:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Sources of leaks:
+</span></span><span style="display:flex;"><span>manwar@VAIO:~/memory-leak$
+</span></span></code></pre></div><p>Wow, no more memory leak.</p>
 <p>Finally I have script that demonstrates the memory leak and then fix to the leak as well.</p>
-<br>
-<h3 id="i-am-very-happy-now">I am very happy now.</h3>
-<br>
+<p>I am very happy now.</p>
 <p>As you know, most of my <strong>CPAN</strong> <a href="https://metacpan.org/author/MANWAR"><strong>distributions</strong></a> use <a href="https://metacpan.org/dist/Moo"><strong>Moo</strong></a> for OO purpose. Can I use <code>Moo</code> object to demo the memory leak and fix as well?</p>
-<br>
-<h3 id="why-not-i-sound-more-confident-now--">Why not? I sound more confident now. :-)</h3>
-<br>
+<p>Why not? I sound more confident now. :-)</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> M {
@@ -295,13 +278,17 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">15</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span> <span style="color:#75715e"># This would leak memory.</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">17</span> $m<span style="color:#f92672">-&gt;</span>self_ref($m);
-</span></span></code></pre></div><br>
-<h3 id="lets-run-the-script-and-see-the-memory-leak">Lets run the script and see the memory leak.</h3>
-<br>
-<p><img src="/images/blog/ml-4.png" alt="Image-4"></p>
-<br>
-<p>So we have seen the memory leak, time to fix the leak. To fix the leak, we can use <code>weak_ref</code> attribute supported by <code>Moo</code>.</p>
-<br>
+</span></span></code></pre></div><p>Lets run the script and see the memory leak.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>manwar@VAIO:~/memory-leak$ p536 memory-leak.pl
+</span></span><span style="display:flex;"><span>Tracked objects by class:
+</span></span><span style="display:flex;"><span>        M
+</span></span><span style="display:flex;"><span>        Method::Generate::Constructor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Sources of leaks:
+</span></span><span style="display:flex;"><span>M
+</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">1</span> from memory-leak.pl line: <span style="color:#ae81ff">14</span>
+</span></span><span style="display:flex;"><span>manwar@VAIO:~/memory-leak$
+</span></span></code></pre></div><p>So we have seen the memory leak, time to fix the leak. To fix the leak, we can use <code>weak_ref</code> attribute supported by <code>Moo</code>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">#!/usr/bin/perl</span>
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span> <span style="color:#ae81ff">3</span> <span style="color:#66d9ef">package</span> M {
@@ -319,12 +306,17 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">15</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span> <span style="color:#75715e"># Fix the memory leak.</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">17</span> $m<span style="color:#f92672">-&gt;</span>self_ref($m);
-</span></span></code></pre></div><br>
-<h3 id="time-to-check-if-memory-leak-is-fixed-now">Time to check if memory leak is fixed now.</h3>
-<br>
-<p><img src="/images/blog/ml-5.png" alt="Image-5"></p>
-<br>
-<h3 id="all-good-so-far">All good, so far.</h3>
+</span></span></code></pre></div><p>Time to check if memory leak is fixed now.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>manwar@VAIO:~/memory-leak$ p536 memory-leak.pl
+</span></span><span style="display:flex;"><span>Tracked objects by class:
+</span></span><span style="display:flex;"><span>        Method::Generate::Constructor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Sources of leaks:
+</span></span><span style="display:flex;"><span>Method::Generate::Constructor
+</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">1</span> from /home/manwar/perl5/perlbrew/perls/perl-5.36.0/lib/site_perl/5.36.0/Method/Generate/Constructor.pm line: <span style="color:#ae81ff">248</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">1</span> from /home/manwar/perl5/perlbrew/perls/perl-5.36.0/lib/site_perl/5.36.0/Moo.pm line: <span style="color:#ae81ff">262</span>
+</span></span><span style="display:flex;"><span>manwar@VAIO:~/memory-leak$
+</span></span></code></pre></div><p>All good, so far.</p>
 
     </article>
     

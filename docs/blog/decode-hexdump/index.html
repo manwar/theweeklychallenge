@@ -151,7 +151,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>Decode Hexdump</span>
         </nav>
-        <span class="reading-time" title="636 words">
+        <span class="reading-time" title="647 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -182,25 +182,20 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Fortunately or unfortunately, I never got the opportunity to work with <code>Unicode</code>. Having said, It always was there in the back of my mind, one day I will conquer the battle. Few weeks ago, I had conversation with a senior member of <code>Perl Community</code> with regard to an issue in one of the <code>CPAN</code> module, that I currently maintain. I was pleasantly surprised to see how comfortable he was playing with <code>Unicode</code> and debugging using <code>hexdump</code>. I decided to get hold of it rather than delaying it any further.</p>
 <p>But the matter of fact is, my plate is always full, at any given point in time. So adding anything to the overloaded plate is going to tip over something already in the pipeline. As always the case, I went back to my <a href="https://twitter.com/cpan_author"><strong>Twitter handler</strong></a> and request for help. I did get some nice suggestions.</p>
 <p>In this post, I am going to share my experience with you all.</p>
-<br>
-<h3 id="so-what-exactly-is-the-problem">So what exactly is the problem?</h3>
-<br>
+<p>So what exactly is the problem?</p>
 <p>My initial blocker was that I am unable to decode the output of <code>hexdump</code>.</p>
-<br>
 <p>So for the purpose of this blog post, I created sample plain text file <code>sample.txt</code>.</p>
-<br>
-<p><img src="/images/blog/dh-1.png" alt="Sample File"></p>
-<br>
-<p>Now time, to get the <code>hexdump</code> dump some garbage (to me at least).</p>
-<br>
-<p><img src="/images/blog/dh-2.png" alt="Hexdump output"></p>
-<br>
-<p>Here comes the <code>trouble</code>, how the output relates to the actual text in the file?</p>
-<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>manwar@VAIO:~$ cat sample.txt
+</span></span><span style="display:flex;"><span>Hello World !!!
+</span></span><span style="display:flex;"><span>manwar@VAIO:~$
+</span></span></code></pre></div><p>Now time, to get the <code>hexdump</code> dump some garbage (to me at least).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>manwar@VAIO:~$ cat sample.txt | hexdump
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0000000</span> <span style="color:#ae81ff">6548</span> 6c6c 206f 6f57 6c72 <span style="color:#ae81ff">2064</span> <span style="color:#ae81ff">2121</span> 0a21
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0000010</span>
+</span></span><span style="display:flex;"><span>manwar@VAIO:~$
+</span></span></code></pre></div><p>Here comes the <code>trouble</code>, how the output relates to the actual text in the file?</p>
 <p>My twitter friends again helped me with decoding.</p>
-<br>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">6548</span>  eH
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>    <span style="color:#ae81ff">6548</span>  eH
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">6</span>c6c  ll
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">206</span>f  <span style="color:#e6db74">&lt;s&gt;</span>o
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">6</span>f57  oW
@@ -208,31 +203,20 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2064</span>  <span style="color:#e6db74">&lt;s&gt;</span>d
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">2121</span>  <span style="color:#f92672">!!</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">0</span>a21  <span style="color:#e6db74">&lt;l&gt;</span><span style="color:#f92672">!</span>
-</span></span></code></pre></div><br>
-<p><code>&lt;s&gt;</code> means space and <code>&lt;l&gt;</code> is linefeed. That was all, I needed.</p>
-<br>
-<h3 id="but-then-why-it-is-the-other-way-around">But then why it is the other way around?</h3>
-<br>
-<p>I am told again by my twitter friends, it is the <code>endianness</code> that is behind the order.</p>
+</span></span></code></pre></div><p><code>&lt;s&gt;</code> means space and <code>&lt;l&gt;</code> is linefeed. That was all, I needed.</p>
+<p>But then why it is the other way around?</p>
 <p>For me, this is another blocker that I had to deal with.</p>
 <p>With little search on <code>Google</code>, I found this <a href="https://www.freecodecamp.org/news/what-is-endianness-big-endian-vs-little-endian"><strong>post</strong></a> that explains the subject in details.</p>
 <p>In summary, <code>Big Endian (BE)</code> stores data <code>MSbyte first</code> where as <code>Little Endian (LE)</code> stores data <code>MSbyte last</code>.</p>
-<br>
 <p>Now what is <code>MSbyte</code>?</p>
-<br>
 <p>The term <code>Most Significant Byte (MSbyte)</code> is the most common method of defining <code>endianness</code>.</p>
 <p>The <code>byte</code> holding the greatest position is called <code>MSbyte</code>. Similarly the <code>bit</code> holding the greatest position is called <code>MSbit</code>.</p>
 <p>The <code>byte</code> holding the smallest position is called <code>LSbyte</code>. Similarly the <code>bit</code> holding the smallest position is called <code>LSbit</code>.</p>
-<br>
-<h3 id="going-back-to-the-original-why-the-hexdump-output-is-not-in-the-correct-order">Going back to the original, why the hexdump output is not in the correct order?</h3>
-<br>
+<p>Going back to the original, why the hexdump output is not in the correct order?</p>
 <p>The answer is my machine is configured/built as <code>LE</code>.</p>
-<br>
-<h3 id="so-how-do-i-know-what-endian-is-my-system-build-upon">So how do I know what <code>endian</code> is my system build upon?</h3>
-<br>
+<p>So how do I know what <code>endian</code> is my system build upon?</p>
 <p>I started looking for <code>Perl</code> way of figuring out.</p>
 <p>In no time, I found this <a href="https://www.perlmonks.org/?node_id=102506"><strong>solution</strong></a>. It had a typo in the original solution, I fixed it here <code>detect-endian-ness.pl</code>.</p>
-<br>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/perl</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
@@ -254,12 +238,11 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span> {
 </span></span><span style="display:flex;"><span>   say <span style="color:#e6db74">&#34;strange&#34;</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><br>
-<p>Time to find out the <code>endian</code> of my current system.</p>
-<br>
-<p><img src="/images/blog/dh-3.png" alt="Endian"></p>
-<br>
-<p>Before I end this discussion, I would like share another post that explains <a href="https://www.ionos.co.uk/digitalguide/websites/web-development/byte-order-mark"><strong>Byte Order Mark (BOM)</strong></a>, if you are interested.</p>
+</span></span></code></pre></div><p>Time to find out the <code>endian</code> of my current system.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>manwar@VAIO:~$ p536 detect-endian-ness.pl
+</span></span><span style="display:flex;"><span>little
+</span></span><span style="display:flex;"><span>manwar@VAIO:~$
+</span></span></code></pre></div><p>Before I end this discussion, I would like share another post that explains <a href="https://www.ionos.co.uk/digitalguide/websites/web-development/byte-order-mark"><strong>Byte Order Mark (BOM)</strong></a>, if you are interested.</p>
 <p>Last but not the least, I would like to thank everyone who helped me in this journey.</p>
 <p>That&rsquo;s it for now.</p>
 

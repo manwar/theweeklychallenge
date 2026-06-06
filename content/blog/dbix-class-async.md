@@ -10,7 +10,6 @@ tags: ["perl"]
 
 #### **DISCLAIMER:** Image is generated using `ChatGPT`.
 ***
-<br>
 
 ### **NOTE**
 
@@ -24,14 +23,15 @@ This book is dedicated to the memory of `Matt S. Trout`, whose work and influenc
 
 Here is the `TOC`:
 
-***
-[![TOC](/images/blog/dbix-class-async-1.jpg)
-***
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/dbix-class-async-1.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
 
-<br>
-
-### **What is DBIx::Class::Async?**
-***
+**What is DBIx::Class::Async?**
 
 If you've worked with [**DBIx::Class**](https://metacpan.org/dist/DBIx-Class) (`DBIC`) in `Perl`, you know it's the gold standard for database abstraction.
 
@@ -43,9 +43,7 @@ That's where [**DBIx::Class::Async**](https://metacpan.org/dist/DBIx-Class-Async
 
 Each worker maintains a persistent database connection and executes blocking `DBIC` operations outside the main event loop, returning results via [**Future**](https://metacpan.org/dist/Future) objects.
 
-<br>
-
-### **Key Features**
+**Key Features**
 ***
 - Process-based worker pool using [**IO::Async**](https://metacpan.org/dist/IO-Async)
 - Persistent [**DBIx::Class**](https://metacpan.org/dist/DBIx-Class) connections per worker
@@ -55,8 +53,6 @@ Each worker maintains a persistent database connection and executes blocking `DB
 - Optional retry with exponential backoff
 - Health checks and graceful shutdown
 
-<br>
-
 ### **Installation**
 ***
 
@@ -64,17 +60,11 @@ Each worker maintains a persistent database connection and executes blocking `DB
 $ cpanm -vS DBIx::Class::Async
 ```
 
-<br>
-
 Or add to your `cpanfile`:
-
-<br>
 
 ```perl
 requires 'DBIx::Class::Async', '0.01';
 ```
-
-<br>
 
 ### **Quick Start**
 ***
@@ -102,10 +92,7 @@ my $db = DBIx::Class::Async->new(
 );
 ```
 
-<br>
-
-### **APPROACH 1: `Future` chaining with `->then` / `->catch`**
-***
+**APPROACH 1: `Future` chaining with `->then` / `->catch`**
 
 **Best for:** Complex async workflows, transforming data, chaining operations
 - Creates a new `Future` chain that transforms results
@@ -115,8 +102,6 @@ my $db = DBIx::Class::Async->new(
 - Returns a new `Future` (must store it or use `->retain` to avoid void context warning)
 
 **Good for:** piping data through transformations, conditional logic, error recovery
-
-<br>
 
 ```perl
 my $f = $db->search('User', { active => 1 })
@@ -138,10 +123,7 @@ $loop->run;
 $db->disconnect;
 ```
 
-<br>
-
-### **APPROACH 2: Callback registration with `->on_done` / `->on_fail`**
-***
+**APPROACH 2: Callback registration with `->on_done` / `->on_fail`**
 
 **Best for:** Side effects, logging, simple async operations
 - Registers callbacks on the original `Future` (doesn't create a new one)
@@ -151,8 +133,6 @@ $db->disconnect;
 - Returns the same `Future` (safe to use in any context)
 
 **Good for:** fire-and-forget operations, logging, simple handling
-
-<br>
 
 ```perl
 my $f = $db->search('User', { active => 1 })
@@ -173,9 +153,7 @@ $loop->run;
 $db->disconnect;
 ```
 
-<br>
-
-### **APPROACH 3: Blocking with `->get()`**
+**APPROACH 3: Blocking with `->get()`**
 ***
 **Best for:** Scripts, simple sequential operations, testing
 - Blocks until the `Future` completes (synchronous-style)
@@ -185,8 +163,6 @@ $db->disconnect;
 - Returns the actual result value directly
 
 **Good for:** simple scripts, sequential operations, when you don't need concurrency
-
-<br>
 
 ```perl
 use Try::Tiny;
@@ -204,15 +180,11 @@ catch {
 $db->disconnect;
 ```
 
-<br>
-
 ### **SUMMARY**
 ***
 - `->then/->catch`:      For complex async workflows and data transformation
 - `->on_done/->on_fail`: For simple callbacks and side effects
 - `->get()`:             For blocking/synchronous-style code
-
-<br>
 
 ### **Core Methods**
 ***
@@ -226,8 +198,6 @@ my $users = $db->search('User',
 )->get;
 ```
 
-<br>
-
 **Find single record**
 
 ```perl
@@ -239,8 +209,6 @@ my $new_user = $db->create('User', {
 })->get;
 ```
 
-<br>
-
 **Update existing record**
 
 ```perl
@@ -249,23 +217,17 @@ my $updated = $db->update('User', 123, {
 })->get;
 ```
 
-<br>
-
 **Delete record**
 
 ```perl
 my $deleted = $db->delete('User', 456)->get;
 ```
 
-<br>
-
 **Count records**
 
 ```perl
 my $count = $db->count('User', { active => 1 })->get;
 ```
-
-<br>
 
 ### **Advanced Features**
 ***
@@ -279,10 +241,7 @@ my ($users, $orders) = $db->search_multi(
 )->get;
 ```
 
-<br>
-
 **Prefetching Relationships**
-
 
 ```perl
 my $users_with_orders = $db->search_with_prefetch(
@@ -292,8 +251,6 @@ my $users_with_orders = $db->search_with_prefetch(
     { rows => 10 }
 )->get;
 ```
-
-<br>
 
 **Transactions**
 
@@ -317,11 +274,7 @@ my $result = $db->txn_do(sub {
 })->get;
 ```
 
-<br>
-
 If you encounter serialisation errors, then you can try this instead `txn_batch()`.
-
-<br>
 
 ```perl
 my $result = $db->txn_batch(
@@ -338,8 +291,6 @@ my $result = $db->txn_batch(
 )->get;
 ```
 
-<br>
-
 **Raw SQL Queries**
 
 ```perl
@@ -347,8 +298,6 @@ my $rows = $db->raw_query(
     'SELECT * FROM users WHERE active = ?', [1]
 )->get;
 ```
-
-<br>
 
 ### **Configuration Options**
 ***
@@ -373,8 +322,6 @@ my $db = DBIx::Class::Async->new(
 );
 ```
 
-<br>
-
 ### **Performance Tips**
 ***
 - Worker Count: Adjust based on your database connection limits (`2-4` workers per `CPU` core usually works well)
@@ -382,8 +329,6 @@ my $db = DBIx::Class::Async->new(
 - Batch Operations: Use `search_multi` for fetching unrelated data concurrently
 - Connection Pooling: Each worker maintains its own persistent connection
 - Timeouts: Set appropriate `query_timeout` values to prevent hung queries
-
-<br>
 
 ### **Error Handling**
 ***
@@ -402,16 +347,12 @@ $db->search('User', { active => 1 })
    });
 ```
 
-<br>
-
 Common retryable errors (when `enable_retry` is true):
 
 - Deadlocks
 - Lock wait timeouts
 - Connection issues
 - MySQL server has gone away
-
-<br>
 
 ### **Metrics Collection**
 ***
@@ -429,8 +370,6 @@ my $db = DBIx::Class::Async->new(
 my $stats = $db->stats;
 ```
 
-<br>
-
 ### **When to use DBIx::Class::Async?**
 ***
 - Web applications with high concurrency
@@ -439,8 +378,6 @@ my $stats = $db->stats;
 - Background job processors
 - Real-time applications with `WebSocket` connections
 
-<br>
-
 ### **Limitations**
 ***
 - Returned rows are plain hashrefs, not DBIC row objects
@@ -448,14 +385,10 @@ my $stats = $db->stats;
 - Large result sets are loaded entirely into memory (use pagination)
 -  Worker processes add some memory overhead
 
-<br>
-
 ### **Contributions**
 ***
 - Repository: https://github.com/manwar/DBIx-Class-Async
 - Issues: https://github.com/manwar/DBIx-Class-Async/issues
-
-<br>
 
 ### **Conclusion**
 ***

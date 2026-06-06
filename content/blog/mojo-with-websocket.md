@@ -14,10 +14,10 @@ tags: ["perl"]
 
 As a longtime [**Dancer2**](https://metacpan.org/pod/Dancer2) fan, I’ve always admired its elegance for building web apps. But recently, I decided to step out of my comfort zone and try something new, [**Mojolicious**](https://metacpan.org/pod/Mojolicious). Known for its real‑time web capabilities, **Mojo** seemed like the perfect framework to experiment with **WebSockets**. And what better way to test it than building a live chat room?
 
-<br>
-
 ### **Project Structure**
 ***
+
+```bash
 
     ├── chat-server.pl
     ├── public
@@ -27,19 +27,14 @@ As a longtime [**Dancer2**](https://metacpan.org/pod/Dancer2) fan, I’ve always
     │       └── chat.js
     └── templates
         └── index.html.ep
-
-<br>
+```
 
 Here’s the script I came up with, a fully functional, minimal **WebSocket Chat Server** in just 60 lines of **Perl**. Let me walk you through it, piece by piece.
-
-<br>
 
 ### **The Setup**
 ***
 
 We start by importing [**Mojolicious::Lite**](https://metacpan.org/pod/Mojolicious::Lite), the lightweight version of **Mojo** that’s perfect for quick apps. [**Mojo::JSON**](https://metacpan.org/pod/Mojo::JSON) handles **JSON** encoding/decoding, essential for **WebSocket** messaging.
-
-<br>
 
 ```perl
 #!/usr/bin/env perl
@@ -48,28 +43,20 @@ use Mojolicious::Lite;
 use Mojo::JSON qw(decode_json encode_json);
 ```
 
-<br>
-
 ### **Global State**
 ***
 
 Since **WebSocket** connections are persistent, we need to track connected clients and message history. **$clients** is a hashref keyed by connection ID, and **@history** keeps the last 10 messages for newcomers.
-
-<br>
 
 ```perl
 my $clients = {};
 my @history;
 ```
 
-<br>
-
 ### **The Homepage**
 ***
 
 A simple **GET** route serves the **HTML** frontend (from a template named index). Mojo’s **$c** is the controller object, similar to **Dancer2**’s request object.
-
-<br>
 
 ```perl
 get '/' => sub {
@@ -79,14 +66,10 @@ get '/' => sub {
 };
 ```
 
-<br>
-
 ### **The WebSocket Handler**
 ***
 
 When a client connects to **/chat**, we create a unique ID from the transaction object (**$c->tx**) and store the connection along with a default username.
-
-<br>
 
 ```perl
 websocket '/chat' => sub {
@@ -95,8 +78,6 @@ websocket '/chat' => sub {
     $clients->{$id} = { tx => $c->tx, name => 'Anonymous' };
 
 ```
-
-<br>
 
 ### **Handling Incoming Messages**
 ***
@@ -110,8 +91,6 @@ Here, we listen for message events, decode the incoming **JSON**, and handle dif
 - **Join events:** Assign a username, send the message history to the new user, and announce their arrival to others.
 
 - **Chat messages:** Add a timestamp, store in history (capped at 10), and broadcast to all.
-
-<br>
 
 ```perl
     $c->on(message => sub {
@@ -160,14 +139,10 @@ Here, we listen for message events, decode the incoming **JSON**, and handle dif
     });
 ```
 
-<br>
-
 ### **Cleaning Up on Disconnect**
 ***
 
 When a **WebSocket** closes, we remove the client from **$clients** and notify everyone.
-
-<br>
 
 ```perl
     $c->on(finish => sub {
@@ -178,12 +153,8 @@ When a **WebSocket** closes, we remove the client from **$clients** and notify e
     });
 ```
 
-<br>
-
 ### **Helper Subs**
 ***
-
-<br>
 
 ```perl
 sub broadcast {
@@ -197,24 +168,16 @@ sub send_user_list {
 }
 ```
 
-<br>
-
 ### **Kicking Things Off**
 ***
 
 Finally, we start the Mojo app.
 
-<br>
-
 ```perl
 app->start;
 ```
 
-<br>
-
 With the built-in web server, launch the deamon like below:
-
-<br>
 
 ```bash
 $ perl chat-server deamon
@@ -222,18 +185,24 @@ $ perl chat-server deamon
 Web application available at http://127.0.0.1:3000
 ```
 
-<br>
-
 ### **Final Look**
 ***
 
-![Welcome Screen](/images/blog/mojo-with-websocket-img-1.jpg)
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/mojo-with-websocket-img-1.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
 
-***
-
-![Main Chat Screen](/images/blog/mojo-with-websocket-img-2.jpg)
-
-<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/mojo-with-websocket-img-2.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
 
 ### **First Impressions**
 ***

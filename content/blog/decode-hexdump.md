@@ -18,42 +18,32 @@ But the matter of fact is, my plate is always full, at any given point in time. 
 
 In this post, I am going to share my experience with you all.
 
-<br>
-
-### So what exactly is the problem?
-
-<br>
+So what exactly is the problem?
 
 My initial blocker was that I am unable to decode the output of `hexdump`.
 
-<br>
-
 So for the purpose of this blog post, I created sample plain text file `sample.txt`.
 
-<br>
-
-![Sample File](/images/blog/dh-1.png)
-
-<br>
+```bash
+manwar@VAIO:~$ cat sample.txt
+Hello World !!!
+manwar@VAIO:~$
+```
 
 Now time, to get the `hexdump` dump some garbage (to me at least).
 
-<br>
-
-![Hexdump output](/images/blog/dh-2.png)
-
-<br>
+```bash
+manwar@VAIO:~$ cat sample.txt | hexdump
+0000000 6548 6c6c 206f 6f57 6c72 2064 2121 0a21
+0000010
+manwar@VAIO:~$
+```
 
 Here comes the `trouble`, how the output relates to the actual text in the file?
 
-<br>
-
 My twitter friends again helped me with decoding.
 
-<br>
-
 ```perl
-
     6548  eH
     6c6c  ll
     206f  <s>o
@@ -62,20 +52,11 @@ My twitter friends again helped me with decoding.
     2064  <s>d
     2121  !!
     0a21  <l>!
-
 ```
-
-<br>
 
 `<s>` means space and `<l>` is linefeed. That was all, I needed.
 
-<br>
-
-### But then why it is the other way around?
-
-<br>
-
-I am told again by my twitter friends, it is the `endianness` that is behind the order.
+But then why it is the other way around?
 
 For me, this is another blocker that I had to deal with.
 
@@ -83,11 +64,7 @@ With little search on `Google`, I found this [**post**](https://www.freecodecamp
 
 In summary, `Big Endian (BE)` stores data `MSbyte first` where as `Little Endian (LE)` stores data `MSbyte last`.
 
-<br>
-
 Now what is `MSbyte`?
-
-<br>
 
 The term `Most Significant Byte (MSbyte)` is the most common method of defining `endianness`.
 
@@ -95,25 +72,15 @@ The `byte` holding the greatest position is called `MSbyte`. Similarly the `bit`
 
 The `byte` holding the smallest position is called `LSbyte`. Similarly the `bit` holding the smallest position is called `LSbit`.
 
-<br>
-
-### Going back to the original, why the hexdump output is not in the correct order?
-
-<br>
+Going back to the original, why the hexdump output is not in the correct order?
 
 The answer is my machine is configured/built as `LE`.
 
-<br>
-
-### So how do I know what `endian` is my system build upon?
-
-<br>
+So how do I know what `endian` is my system build upon?
 
 I started looking for `Perl` way of figuring out.
 
 In no time, I found this [**solution**](https://www.perlmonks.org/?node_id=102506). It had a typo in the original solution, I fixed it here `detect-endian-ness.pl`.
-
-<br>
 
 ```perl
 #!/usr/bin/perl
@@ -139,15 +106,13 @@ else {
 }
 ```
 
-<br>
-
 Time to find out the `endian` of my current system.
 
-<br>
-
-![Endian](/images/blog/dh-3.png)
-
-<br>
+```bash
+manwar@VAIO:~$ p536 detect-endian-ness.pl
+little
+manwar@VAIO:~$
+```
 
 Before I end this discussion, I would like share another post that explains [**Byte Order Mark (BOM)**](https://www.ionos.co.uk/digitalguide/websites/web-development/byte-order-mark), if you are interested.
 

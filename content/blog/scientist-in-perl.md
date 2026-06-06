@@ -13,51 +13,6 @@ tags: ["Perl"]
 
 <br>
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/slurp-in-perl" title="Slurp in Perl">
-                <img src="/images/blog/slurp-mini.png" class="img-fluid">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/subroutine-signatures" title="Subroutine Signatures in Perl">
-                <img src="/images/blog/subroutine-signatures-mini.png" class="img-fluid">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/extraction-in-perl" title="Text Extraction in Perl">
-                <img src="/images/blog/extraction-in-perl-mini.png" class="img-fluid">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/random-in-perl" title="Random in Perl">
-                <img src="/images/blog/random-in-perl-mini.png" class="img-fluid">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/perl-regex" title="Perl Regex">
-                <img src="/images/blog/perl-regex-mini.png" class="img-fluid rounded-3 border border-3">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/read-large-file" title="Read Large File">
-                <img src="/images/blog/read-large-file-mini.png" class="img-fluid">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/welcome-to-perl" title="Welcome to Perl">
-                <img src="/images/blog/welcome-to-perl-mini.png" class="img-fluid">
-            </a>
-        </div>
-    </div>
-</div>
-
-<br>
-
-## Scientist in Perl
-***
-
 It was in the year `2017`, I found out about the `CPAN` module [**Scientist**](https://metacpan.org/dist/Scientist) and guess what?
 
 It turned out be created by a very dear friend of mine, `Lance Wicks`.
@@ -159,9 +114,13 @@ Quick fix would be to explicitly import `Test2::Compare::Delta`, right?
 
 Something like below:
 
-
-![Pull Request](/images/blog/scientist-in-perl-pr.png)
-
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/scientist-in-perl-pr.png" class="img-fluid">
+        </div>
+    </div>
+</div>
 
 I fixed my local copy and I am good to go now.
 

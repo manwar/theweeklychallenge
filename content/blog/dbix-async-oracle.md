@@ -16,7 +16,13 @@ It has been a long time since I shared an update regarding `DBIx::Class::Async`.
 
 However, yesterday, I received an email regarding the project...
 
-![Email Notice](/images/blog/email-notice.jpg)
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/email-notice.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
 
 To be honest, as of `v0.65`, I haven't done any testing against an `Oracle` database. I wasn't entirely sure how to reply to the email, but my first thought was to add basic tests for `Oracle` database interaction.
 

@@ -8,37 +8,29 @@ author: Mohammad S Anwar
 tags: ["Perl"]
 ---
 
-<br>
-
 Last week I wrote blog post [**Do you want to get started with Perl v5.36?**](http://blogs.perl.org/users/mohammad_s_anwar/2022/06/do-you-want-to-get-started-with-perl-v536.html) where I shared my experience with the latest release `Perl v5.36`.
-
-<br>
 
 I received this email today.
 
-<br>
-
-***
-
-![Request](/images/blog/request.png)
-
-***
-
-<br>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/request.png" class="img-fluid">
+        </div>
+    </div>
+</div>
 
 The reality is, I never use `Perl on Windows`. And second never bothered creating `.exe` from the source file.
 
 I decided to give it a go, so first thing we need to download [**Strawberry Perl**](https://strawberryperl.com).
 
-T had the choice to download [**strawberry-perl-5.32.1.1-64bit.msi**](https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit.msi).
+I had the choice to download [**strawberry-perl-5.32.1.1-64bit.msi**](https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit.msi).
 
-Do the regular install using the msi.
+Do the regular install using the msi?
 
 After the installation, this is what I got.
 
-<br>
-
-```perl
+```bash
 C:\Users\mohammad.anwar\Desktop> perl -v
 
 This is perl 5, version 32, subversion 1 (v5.32.1) built for MSWin32-x64-multi-thread
@@ -56,13 +48,9 @@ Internet, point your browser at http://www.perl.org/, the Perl Home Page.
 C:\Users\mohammad.anwar\Desktop>
 ```
 
-<br>
-
 To be able to convert source into `exe`, I had to install `CPAN` module [**PAR::Packer**](https://metacpan.org/dist/PAR-Packer). To do that I opened the Windows shell as `administrator`.
 
-<br>
-
-```perl
+```bash
 C:\WINDOWS\system32> perl -MCPAN -e shell
 Unable to get Terminal Size. The Win32 GetConsoleScreenBufferInfo call didn't work. The COLUMNS and LINES environment variables didn't work. at C:\Strawberry\perl\vendor\lib/Term/ReadLine/readline.pm line 410.
 
@@ -72,13 +60,9 @@ Enter 'h' for help.
 cpan> install PAR::Packer
 ```
 
-<br>
-
 Time to create source file `hello.pl`
 
-<br>
-
-```perl
+```bash
 C:\Users\mohammad.anwar\Desktop> type hello.pl
 #!perl
 
@@ -89,30 +73,20 @@ say "Hello World !!!";
 C:\Users\mohammad.anwar\Desktop>
 ```
 
-<br>
-
 Create an `exe` file from the source.
 
-<br>
-
-```perl
+```bash
 C:\Users\mohammad.anwar\Desktop> pp hello.pl
 C:\Users\mohammad.anwar\Desktop>
 ```
 
-<br>
-
 Now we would have `a.exe`, let us run the executable.
 
-<br>
-
-```perl
+```bash
 C:\Users\mohammad.anwar\Desktop> a.exe
 Hello World !!!
 
 C:\Users\mohammad.anwar\Desktop>
 ```
-
-<br>
 
 That's it for now.
