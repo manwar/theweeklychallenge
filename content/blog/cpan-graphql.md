@@ -17,7 +17,7 @@ On the subject of `GraphQL`, I have written two blog posts so far:
 1) [**Mojo meets GraphQL**](/blog/mojo-meets-graphql)
 2) [**DBIx::Class and GraphQL**](/blog/dbic-graphql)
 
-In the first post, I used a plain `hash` as mock data store. In the second, I upgrade to a real `database` using a `DBIx::Class` layer.
+In the first post, I used a plain `hash` as mock data store. In the second, I upgraded to a real `database` using a `DBIx::Class` layer.
 
 It was a big improvement, but there were still a lot of moving parts scattered all over the place.
 
