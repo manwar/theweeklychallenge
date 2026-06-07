@@ -118,11 +118,11 @@ Let's setup the application first:
 use Mojolicious::Lite -signatures;
 
 use JSON::PP;
+use DBIx::Class::Schema::GraphQL;
 use GraphQL::Execution qw(execute);
 
 use lib 'lib/';
 use Library::Schema;
-use DBIx::Class::Schema::GraphQL;
 
 my $db = Library::Schema->connect('dbi:SQLite:dbname=:memory:', '', '');
 $db->deploy;
@@ -173,7 +173,7 @@ post '/graphql' => sub ($c) {
         $schema,
         $query,
         undef,       # root value
-        $ctx,        # contexti, passed to every resolver
+        $ctx,        # context, passed to every resolver
         $variables,
         $operation,
     );
