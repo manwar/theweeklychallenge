@@ -84,7 +84,7 @@ mutation {
 }
 ```
 
-Here author_id is not sent, and that is deliberate, the caller is saying `"I only want to rename this book"`.
+Here `author_id` is not sent, and that is deliberate, the caller is saying `"I only want to rename this book"`.
 
 Lets go through each one by one using sample data.
 
