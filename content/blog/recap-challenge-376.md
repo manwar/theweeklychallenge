@@ -54,9 +54,9 @@ Following members shared solutions to both tasks in `Perl` and `Raku` as well as
 ## CONTRIBUTION STATS {#CONTRIBUTIONSTATS}
 ***
 
-The total contributions in the week is `75`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
+The total contributions in the week is `73`. Well done **Team PWC**. I would also like to thank `Raku` contributors for catching up.
 
-#### 1. Perl: 42
+#### 1. Perl: 40
 #### 2. Raku: 19
 #### 3. Blog: 14
 
@@ -459,10 +459,10 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 ### Matthias Muth
 ![Matthias Muth](/images/team/matthias-muth.jpg)
 
-[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-376/matthias-muth/perl/ch-1.pl)]
-[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-376/matthias-muth/perl/ch-2.pl)]
 [[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-376/matthias-muth/perl-json/ch-1.pl)]
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-376/matthias-muth/perl-json/ch-2.pl)]
+[[**PERL #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-376/matthias-muth/perl/ch-1.pl)]
+[[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-376/matthias-muth/perl/ch-2.pl)]
 [[**BLOG #1**](https://github.com/MatthiasMuth/perlweeklychallenge-club/tree/muthm-376/challenge-376/matthias-muth#readme)]
 
 ***
