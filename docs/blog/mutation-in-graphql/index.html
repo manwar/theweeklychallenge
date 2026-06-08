@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/mutation-in-graphql/">
+    <title>Mutation in GraphQL | Jun 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Use of mutation in GraphQL using DBIx::Class::Schema::GraphQL.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/mutation-in-graphql/">
+    <meta property="og:title"       content="Mutation in GraphQL">
+    <meta property="og:description" content="Use of mutation in GraphQL using DBIx::Class::Schema::GraphQL.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/mutation-in-graphql.jpg">
+    
+    <meta property="article:published_time" content="2026-06-08T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-06-08T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Mutation in GraphQL">
+    <meta name="twitter:description" content="Use of mutation in GraphQL using DBIx::Class::Schema::GraphQL.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/mutation-in-graphql.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/mutation-in-graphql/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Mutation in GraphQL</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>Mutation in GraphQL</span>
+        </nav>
+        <span class="reading-time" title="850 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  4 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 8 Jun 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/mutation-in-graphql.jpg" alt="Mutation in GraphQL"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>In the last post, <a href="/blog/cpan-graphql"><strong>CPAN and GraphQL</strong></a>, I shared the new CPAN module <a href="https://metacpan.org/dist/DBIx-Class-Schema-GraphQL"><strong>DBIx::Class::Schema::GraphQL</strong></a>. It was the third post in the series so far. In all the post so far, I have only used <code>CREATE</code> and <code>READ</code> operation. Although the newly created CPAN module does support mutation but I didn&rsquo;t mention that in the previous post.</p>
+<p><code>John Napiorkowski</code> pointed out exactly that in a <code>Facebook</code> post:</p>
+<blockquote>
+<p>Would love to see an update of this that does full CRUDL</p>
+</blockquote>
+<p>In this post, I will use the same script, <code>mojo-app-v3.pl</code>, from the previous blog post.</p>
+<p>For demo purpose we have three authors and each author has one book each, something like below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$db<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Author&#39;</span>)<span style="color:#f92672">-&gt;</span>create({
+</span></span><span style="display:flex;"><span>    name  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;J.R.R. Tolkien&#34;</span>,
+</span></span><span style="display:flex;"><span>    books <span style="color:#f92672">=&gt;</span> [{ title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;The Hobbit&#34;</span> }]
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$db<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Author&#39;</span>)<span style="color:#f92672">-&gt;</span>create({
+</span></span><span style="display:flex;"><span>    name  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Isaac Asimov&#34;</span>,
+</span></span><span style="display:flex;"><span>    books <span style="color:#f92672">=&gt;</span> [{ title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Foundation&#34;</span> }]
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$db<span style="color:#f92672">-&gt;</span>resultset(<span style="color:#e6db74">&#39;Author&#39;</span>)<span style="color:#f92672">-&gt;</span>create({
+</span></span><span style="display:flex;"><span>    name  <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Damian Conway&#34;</span>,
+</span></span><span style="display:flex;"><span>    books <span style="color:#f92672">=&gt;</span> [{ title <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Perl Best Practices&#34;</span> }]
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">...</span>
+</span></span></code></pre></div><p>Let&rsquo;s start the app now:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl mojo-app-v3.pl daemon
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>2026-06-08 13:08:34.28544<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>22984<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>info<span style="color:#f92672">]</span> Listening at <span style="color:#e6db74">&#34;http://*:3000&#34;</span>
+</span></span><span style="display:flex;"><span>Web application available at http://127.0.0.1:3000
+</span></span></code></pre></div><p>The <code>DBIx::Class::Schema::GraphQL v0.0.1</code> already provides full <code>CRUDL</code>. However partial updates were not supported.</p>
+<p>So to demo the complete feature, I released <code>v0.0.2</code> and patched the module to support <code>patchX</code> for partial update.</p>
+<h3 id="updatex-full-update">updateX: full update</h3>
+<p>The intent is that you are supplying the complete new state of the row. You should pass all non-key columns. The resolver takes whatever you provided, builds an update hashref from the defined args, and calls <code>-&gt;update()</code>.
+However, if you omit a column, the resolver silently skips it. So the database won&rsquo;t null it out. That means <code>updateX</code> won&rsquo;t actively destroy data you forget to send, but that behaviour is <code>incidental</code>, not a <code>guarantee</code> you should rely on. The semantic contract is <code>&quot;here is the full row&quot;</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>mutation {
+</span></span><span style="display:flex;"><span>  updateBook(id: <span style="color:#ae81ff">1</span>, title: <span style="color:#e6db74">&#34;Dune Messiah&#34;</span>, author_id: <span style="color:#ae81ff">4</span>) {
+</span></span><span style="display:flex;"><span>    id title
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="patchx-sparse-update">patchX: sparse update</h3>
+<p>The intent is that you are supplying only the columns you want to change. Everything else is deliberately left alone. The resolver applies the same defined-arg filter, but it also enforces that at least one non-key column was provided. If you send only the key and nothing else, it dies with a clear error rather than silently doing nothing.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>mutation {
+</span></span><span style="display:flex;"><span>  patchBook(id: <span style="color:#ae81ff">1</span>, title: <span style="color:#e6db74">&#34;Dune Messiah&#34;</span>) {
+</span></span><span style="display:flex;"><span>    id title
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Here author_id is not sent, and that is deliberate, the caller is saying <code>&quot;I only want to rename this book&quot;</code>.</p>
+<p>Lets go through each one by one using sample data.</p>
+<h3 id="create">[C]reate</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -s -X POST http://127.0.0.1:3000/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -H <span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -d <span style="color:#e6db74">&#39;{&#34;query&#34;:&#34;mutation { createAuthor(name: \&#34;Frank Herbert\&#34;) { id name } }&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;data&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;createAuthor&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#34;id&#34;</span> : 4,
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;Frank Herbert&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="read">[R]ead</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -X POST http://127.0.0.1:3000/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -d <span style="color:#e6db74">&#39;{&#34;query&#34;: &#34;{ author(id: 4) { name } }&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;data&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;author&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;Frank Herbert&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="update">[U]pdate</h3>
+<p>Before we update, let&rsquo;s first fetch the book (id=1).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -s -X POST http://127.0.0.1:3000/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -H <span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -d <span style="color:#e6db74">&#39;{&#34;query&#34;:&#34;{ book(id: 1) { title } }&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;data&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;book&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#34;title&#34;</span> : <span style="color:#e6db74">&#34;The Hobbit&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>Now we will update the above book (id=1) title.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -s -X POST http://127.0.0.1:3000/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -H <span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -d <span style="color:#e6db74">&#39;{&#34;query&#34;:&#34;mutation { updateBook(id: 1, title: \&#34;The Hobbit: Revised\&#34;, author_id: 1) { title } }&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;data&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;updateBook&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#34;title&#34;</span> : <span style="color:#e6db74">&#34;The Hobbit: Revised&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>To prove the update was successful, let fetch the same book again.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">```</span>bash
+</span></span><span style="display:flex;"><span>$ curl -s -X POST http://127.0.0.1:3000/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -H <span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -d <span style="color:#e6db74">&#39;{&#34;query&#34;:&#34;{ book(id: 1) { title } }&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;data&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;book&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#34;title&#34;</span> : <span style="color:#e6db74">&#34;The Hobbit: Revised&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="patch">[P]atch</h3>
+<p>Let&rsquo;s update the same book (id=1), partially without providing the <code>author_id</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -s -X POST http://127.0.0.1:3000/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -H <span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -d <span style="color:#e6db74">&#39;{&#34;query&#34;: &#34;mutation { patchBook(id: 1, title: \&#34;Dune Messiah\&#34;) { title } }&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;data&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;patchBook&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#34;title&#34;</span> : <span style="color:#e6db74">&#34;Dune Messiah&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>To prove patch worked as expected, let&rsquo;s fetch the same book (id=1).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -s -X POST http://127.0.0.1:3000/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -H <span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -d <span style="color:#e6db74">&#39;{&#34;query&#34;:&#34;{ book(id: 1) { title } }&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;data&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;book&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#34;title&#34;</span> : <span style="color:#e6db74">&#34;Dune Messiah&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>The distinction maps directly to the <code>HTTP</code> analogy: <code>updateX</code> is <code>PUT</code>, <code>patchX</code> is <code>PATCH</code>.</p>
+<h3 id="delete">[D]elete</h3>
+<p>Now we will delete the author (id=4) we created earlier.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -s -X POST http://127.0.0.1:3000/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -H <span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -d <span style="color:#e6db74">&#39;{&#34;query&#34;:&#34;mutation { deleteAuthor(id: 4) }&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;data&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;deleteAuthor&#34;</span> : true
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="list">[L]ist</h3>
+<p>Finally list all authors.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -s -X POST http://127.0.0.1:3000/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -H <span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -d <span style="color:#e6db74">&#39;{&#34;query&#34;:&#34;{ allAuthors { total nodes { name } } }&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;data&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;allAuthors&#34;</span> : <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#34;total&#34;</span> : 3,
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#34;nodes&#34;</span> : <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;J.R.R. Tolkien&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;Isaac Asimov&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#e6db74">&#34;name&#34;</span> : <span style="color:#e6db74">&#34;Damian Conway&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">perl</a>
+        
+        <a href="https://theweeklychallenge.org/tags/dbic" class="post-tag">DBIC</a>
+        
+        <a href="https://theweeklychallenge.org/tags/graphql" class="post-tag">GraphQL</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/cpan-graphql/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">CPAN and GraphQL</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">DBIC</span>
+                <span class="related-post-tag">GraphQL</span>
+            </span>
+            <span class="related-post-date">7 Jun 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/dbic-graphql/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">DBIx::Class and GraphQL</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">DBIC</span>
+                <span class="related-post-tag">GraphQL</span>
+            </span>
+            <span class="related-post-date">6 Jun 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/mojo-meets-graphql/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Mojo meets GraphQL</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">Mojo</span>
+                <span class="related-post-tag">GraphQL</span>
+            </span>
+            <span class="related-post-date">4 Jun 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/mutation-in-graphql\/';
+            this.page.identifier = '2653d38647d536c56ff55c70bbe21a57';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
