@@ -149,6 +149,7 @@ $ curl -s -X POST http://127.0.0.1:3000/graphql \
       }
    }
 }
+```
 
 To prove the update was successful, let fetch the same book again.
 
