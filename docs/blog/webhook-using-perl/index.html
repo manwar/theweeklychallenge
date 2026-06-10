@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/webhook-using-perl/">
+    <title>Webhook using Perl | Jun 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Webhook using Perl.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/webhook-using-perl/">
+    <meta property="og:title"       content="Webhook using Perl">
+    <meta property="og:description" content="Webhook using Perl.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/webhook-using-perl.jpg">
+    
+    <meta property="article:published_time" content="2026-06-10T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-06-10T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Webhook using Perl">
+    <meta name="twitter:description" content="Webhook using Perl.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/webhook-using-perl.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/webhook-using-perl/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Webhook using Perl</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>Webhook using Perl</span>
+        </nav>
+        <span class="reading-time" title="1141 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  5 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 10 Jun 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/webhook-using-perl.jpg" alt="Webhook using Perl"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>Sometimes ago, I created a blog post on the subject, <code>WebSocket</code>. The post titled, <a href="/blog/mojo-with-websocket"><strong>Mojolicious with WebSocket</strong></a>, was well received. So I decided to create a dedicated <a href="https://github.com/manwar/Mojo-with-WebSocket"><strong>GitHub repository</strong></a>. It allowed me to re-create the application using different backends as listed below:</p>
+<ol>
+<li><a href="https://github.com/manwar/Mojo-with-WebSocket#2-chat-server-with-redis"><strong>Chat Server with Redis</strong></a></li>
+<li><a href="https://github.com/manwar/Mojo-with-WebSocket#3-chat-server-with-postgresql"><strong>Chat Server with PostgreSQL</strong></a></li>
+<li><a href="https://github.com/manwar/Mojo-with-WebSocket#4-chat-server-with-pagi"><strong>Chat Server with PAGI</strong></a></li>
+<li><a href="https://github.com/manwar/Mojo-with-WebSocket#5-chat-server-with-thunderhorse"><strong>Chat Server with Thunderhorse</strong></a></li>
+</ol>
+<p>Having done, <code>WebSocket</code>, I decided to explore <code>Webhook</code> next.</p>
+<p>Imagine ordering some pizza online and feeling very hungry at the moment.</p>
+<blockquote>
+<p>You could check every two minutes with the front counter if your pizza was ready yet by saying, &ldquo;Is it ready yet? How about now? Now?&rdquo; Not only would this be exhausting for you, but it would also be maddeningly annoying towards the person at the counter.</p>
+</blockquote>
+<p>In the software world, this repetitive process is called <code>API Polling</code>. For a long time, it was the only means of communication between apps, until there was a more efficient and sophisticated way to accomplish the same thing.</p>
+<p>Instead of the customer standing at the counter while the pizzeria worked on your pizza and asking how long until it would be ready, you give the pizzeria your phone number, go home to your couch, and the pizzeria texts you the precise moment the pizza leaves the oven.</p>
+<p>That approach of <code>&quot;text me when it is done&quot;</code> is an example of a <code>Webhook</code>.</p>
+<h2 id="what-is-a-webhook">What is a Webhook?</h2>
+<hr>
+<p>A <code>Webhook</code> is a way in which one app provides another application with real-time information. It is also known as a <code>&quot;reverse API&quot;</code> or <code>&quot;HTTP push&quot;</code>.</p>
+<p>By using <code>webhooks</code>, the provider server will automatically send your application the updated data at the exact milliseconds that the event occurred instead of requiring your application to continually ask the other server if an update was available.</p>
+<h2 id="how-does-it-work">How does it work?</h2>
+<hr>
+<p>A <code>webhook</code> is set up with two elements: <code>an event</code> from an app and <code>the location</code> of where that event is to be sent.</p>
+<h2 id="setting-up-the-webhook">Setting up the Webhook</h2>
+<hr>
+<p>You&rsquo;ll need the URL from your application, <code>App B</code>, to be able to send the information from <code>App A</code> to that URL.</p>
+<p>The URL will act as the <code>'mailbox'</code> for the <code>webhook</code>.</p>
+<blockquote>
+<p>The Event: An event (customer successfully purchasing a subscription) occurs in <code>App A</code>.</p>
+</blockquote>
+<blockquote>
+<p>The Payload: <code>App A</code> packages together all the information about the customer&rsquo;s purchase, in a single package (usually <code>JSON</code>).</p>
+</blockquote>
+<blockquote>
+<p>Delivery: <code>App A</code> then posts a request (via <code>HTTP POST</code>) containing the payload to <code>App B</code>&rsquo;s URL, once sent, <code>App B</code> reads the payload and updates its records accordingly.</p>
+</blockquote>
+<p>In short:</p>
+<blockquote>
+<p><code>Polling</code> (App to Server): Your app sends a query to the server at regular intervals to find out if there are any new updates.</p>
+</blockquote>
+<blockquote>
+<p><code>Webhooks</code> (Server to Server): A server pushes data to another server only when an event occurs. This creates a one-way street that is commonly used in back-end automation.</p>
+</blockquote>
+<blockquote>
+<p><code>WebSockets</code> (Client to Server): A client connects to the server via an open, two-way highway, allowing for immediate bi-directional data transfer. This allows for real-time interactive applications.</p>
+</blockquote>
+<h2 id="demo">Demo</h2>
+<hr>
+<p>Here is the micro-web application built using the <code>Mojolicious::Lite</code> framework. It acts as both a <code>Webhook Receiver</code> (catched the webhook events) and a <code>Dashboard</code> that shows those events in real time.</p>
+<p>The application, <code>logger.pl</code>, spins up a local server and sets up four main endpoints.</p>
+<h2 id="the-receiver">The Receiver</h2>
+<hr>
+<p>It listens for incoming webhooks and implements a critical security best practice, <code>Cryptographic Signature Verification</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Time::Piece;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Mojolicious::Lite <span style="color:#f92672">-</span>signatures;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Digest::SHA <span style="color:#e6db74">qw(hmac_sha256_hex)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $SECRET <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;your_super_secret_key&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>post <span style="color:#e6db74">&#39;/demo-webhook&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $signature <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>req<span style="color:#f92672">-&gt;</span>headers<span style="color:#f92672">-&gt;</span>header(<span style="color:#e6db74">&#39;X-Hub-Signature-256&#39;</span>) <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $payload   <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>req<span style="color:#f92672">-&gt;</span>body;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $expected  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;sha256=&#39;</span> <span style="color:#f92672">.</span> hmac_sha256_hex($payload, $SECRET);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">unless</span> (constant_time_compare($signature, $expected)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $c<span style="color:#f92672">-&gt;</span>render(json <span style="color:#f92672">=&gt;</span> { error <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Forbidden&#39;</span> }, status <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">403</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>render(json <span style="color:#f92672">=&gt;</span> { status <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;accepted&#39;</span> }, status <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">202</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (fork <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        sleep <span style="color:#ae81ff">5</span>;
+</span></span><span style="display:flex;"><span>        open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&gt;&#39;</span>, <span style="color:#e6db74">&#39;events.log&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $time <span style="color:#f92672">=</span> localtime<span style="color:#f92672">-&gt;</span>datetime;
+</span></span><span style="display:flex;"><span>        say $fh <span style="color:#e6db74">&#34;[$time] Processed: $payload&#34;</span>;
+</span></span><span style="display:flex;"><span>        close $fh;
+</span></span><span style="display:flex;"><span>        exit; <span style="color:#75715e"># Child process finishes</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">constant_time_compare</span> ($a, $b) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> length($a) <span style="color:#f92672">==</span> length($b);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $result <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $i (<span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length($a) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>        $result <span style="color:#f92672">|=</span> ord(substr($a, $i, <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">^</span> ord(substr($b, $i, <span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $result <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="the-dashboard">The Dashboard</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/logs&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>render(inline <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">q{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;!DOCTYPE html&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;html class=&#34;dark&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;head&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;script src=&#34;https://cdn.tailwindcss.com&#34;&gt;&lt;/script&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;style&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                .glass { background: rgba(31, 41, 55, 0.7); backdrop-filter: blur(10px); }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;/style&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;/head&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;body class=&#34;bg-gray-950 text-gray-200 min-h-screen font-sans&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;nav class=&#34;border-b border-gray-800 p-4 flex justify-between items-center bg-gray-900&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;h1 class=&#34;text-xl font-semibold tracking-tight text-white&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    Webhook&lt;span class=&#34;text-blue-500&#34;&gt;Monitor&lt;/span&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;/h1&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;div class=&#34;flex items-center gap-2&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;div class=&#34;h-3 w-3 rounded-full bg-green-500 animate-pulse&#34;&gt;&lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;span class=&#34;text-xs text-gray-400&#34;&gt;Live Connection&lt;/span&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;/nav&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;main class=&#34;max-w-5xl mx-auto mt-8 px-4&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;div class=&#34;glass border border-gray-800 rounded-xl overflow-hidden shadow-2xl&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;div class=&#34;bg-gray-900 px-6 py-4 border-b border-gray-800 flex justify-between&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &lt;span class=&#34;text-sm font-medium uppercase tracking-wider text-gray-400&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                            Event History
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &lt;/span&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &lt;button onclick=&#34;clearLogs()&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                                class=&#34;text-xs text-red-400 hover:text-red-300&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                            Clear Logs
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &lt;/button&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;div id=&#34;log-container&#34; class=&#34;divide-y divide-gray-800&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;/main&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;script&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            async function clearLogs() {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                if (confirm(&#34;Are you sure you want to clear all logs?&#34;)) {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    await fetch(&#39;/logs/clear&#39;, { method: &#39;POST&#39; });
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    updateLogs();
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            async function updateLogs() {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                const timestamp = new Date().getTime();
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                const response = await fetch(`/logs/raw?t=${timestamp}`);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                if (!response.ok) return;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                const text      = await response.text();
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                const container = document.getElementById(&#39;log-container&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                const lines     = text.trim().split(&#39;\n&#39;).filter(l =&gt; l.length &gt; 0);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                container.innerHTML = lines.reverse().map(line =&gt; {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                const parts     = line.split(&#39;] &#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                const timestamp = parts[0] + &#39;]&#39;;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                const message   = parts[1] || line;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                return `
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;div class=&#34;py-4 px-6 hover:bg-gray-800/50 transition flex items-center gap-4&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &lt;span class=&#34;text-xs font-mono text-gray-500 w-40 flex-shrink-0&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                            ${timestamp}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &lt;/span&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &lt;span class=&#34;text-sm font-mono text-blue-300 bg-blue-900/20 px-2 py-0.5 rounded&#34;&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                            POST
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &lt;/span&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        &lt;span class=&#34;text-sm text-gray-300&#34;&gt;${message}&lt;/span&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    &lt;/div&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                `;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                }).join(&#39;&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            setInterval(updateLogs, 2000);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            &lt;/script&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;/body&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &lt;/html&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="data-layer">Data Layer</h2>
+<hr>
+<p><code>GET /logs/raw</code> simply reads the <code>events.log</code> file using the system <code>cat</code> command and returns the plain text results.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/logs/raw&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $content <span style="color:#f92672">=</span> <span style="color:#f92672">-</span>e <span style="color:#e6db74">&#39;events.log&#39;</span> ? <span style="color:#e6db74">`cat events.log`</span> : <span style="color:#e6db74">&#34;No events yet.&#34;</span>;
+</span></span><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>render(text <span style="color:#f92672">=&gt;</span> $content);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p><code>POST /logs/clear</code> wipes out the <code>events.log</code> file so you can start fresh.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>post <span style="color:#e6db74">&#39;/logs/clear&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>    open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&gt;&#39;</span>, <span style="color:#e6db74">&#39;events.log&#39;</span> <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Could not open file: $!&#34;</span>;
+</span></span><span style="display:flex;"><span>    close $fh;
+</span></span><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>render(json <span style="color:#f92672">=&gt;</span> { status <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;cleared&#39;</span> });
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="start-application">Start Application</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>app<span style="color:#f92672">-&gt;</span>start;
+</span></span></code></pre></div><h2 id="walkthrough-the-process">Walkthrough the Process</h2>
+<hr>
+<p>In <code>Terminal 1</code>, start the deamon.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl logger.pl daemon
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>2026-06-10 11:36:14.38595<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>392364<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>info<span style="color:#f92672">]</span> Listening at <span style="color:#e6db74">&#34;http://*:3000&#34;</span>
+</span></span><span style="display:flex;"><span>Web application available at http://127.0.0.1:3000
+</span></span></code></pre></div><p>In <code>Terminal 2</code>, simulating a <code>Webhook Provider</code></p>
+<blockquote>
+<ol>
+<li>Define the secret shared between the sender and the receiver</li>
+</ol>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ SECRET<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your_super_secret_key&#34;</span>
+</span></span></code></pre></div><blockquote>
+<ol start="2">
+<li>Define the JSON payload representing the event</li>
+</ol>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ PAYLOAD<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{&#34;action&#34;: &#34;button_clicked&#34;, &#34;user&#34;: &#34;test_user&#34;}&#39;</span>
+</span></span></code></pre></div><blockquote>
+<ol start="3">
+<li>Generate the signature using <code>OpenSSL</code></li>
+</ol>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ SIG<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo -n <span style="color:#e6db74">&#34;</span>$PAYLOAD<span style="color:#e6db74">&#34;</span> | openssl dgst -sha256 -hmac <span style="color:#e6db74">&#34;</span>$SECRET<span style="color:#e6db74">&#34;</span> | sed <span style="color:#e6db74">&#39;s/^.* //&#39;</span><span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><blockquote>
+<ol start="4">
+<li>Fire the webhook to your local application</li>
+</ol>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl -X POST http://127.0.0.1:3000/demo-webhook <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -H <span style="color:#e6db74">&#34;X-Hub-Signature-256: sha256=</span>$SIG<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>       -d <span style="color:#e6db74">&#34;</span>$PAYLOAD<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span><span style="color:#e6db74">&#34;status&#34;</span>:<span style="color:#e6db74">&#34;accepted&#34;</span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>If you open a browser window and navigate to <code>http://127.0.0.1:3000/logs</code>, you will see the <code>Webhook Monitor UI</code>.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/webhook-1.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">perl</a>
+        
+        <a href="https://theweeklychallenge.org/tags/webhook" class="post-tag">Webhook</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/roles-in-core-oo/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Roles in core Perl OO</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">roles</span>
+            </span>
+            <span class="related-post-date">9 Jun 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/mutation-in-graphql/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Mutation in GraphQL</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">DBIC</span>
+                <span class="related-post-tag">GraphQL</span>
+            </span>
+            <span class="related-post-date">8 Jun 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/cpan-graphql/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">CPAN and GraphQL</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">perl</span>
+                <span class="related-post-tag">DBIC</span>
+                <span class="related-post-tag">GraphQL</span>
+            </span>
+            <span class="related-post-date">7 Jun 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/webhook-using-perl\/';
+            this.page.identifier = 'c73951cf7d78b5c883f548ec76cd7a60';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
