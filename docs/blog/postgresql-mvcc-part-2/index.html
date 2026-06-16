@@ -5,32 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     
-    <link rel="canonical" href="https://theweeklychallenge.org/blog/postgresql-mvcc/">
-    <title>PostgreSQL and MVCC | Jun 2026 | The Weekly Challenge</title>
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/postgresql-mvcc-part-2/">
+    <title>PostgreSQL MVCC - Part 2 | Jun 2026 | The Weekly Challenge</title>
 
     
-    <meta name="description" content="Understanding Multi-Version Concurrency Control.">
+    <meta name="description" content="Find the role of xmin and xmax in transaction.">
     <meta name="author" content="Mohammad Sajid Anwar">
     
 
     
     <meta property="og:site_name"   content="The Weekly Challenge">
     <meta property="og:type"        content="article">
-    <meta property="og:url"         content="https://theweeklychallenge.org/blog/postgresql-mvcc/">
-    <meta property="og:title"       content="PostgreSQL and MVCC">
-    <meta property="og:description" content="Understanding Multi-Version Concurrency Control.">
-    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/postgresql-mvcc.jpg">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/postgresql-mvcc-part-2/">
+    <meta property="og:title"       content="PostgreSQL MVCC - Part 2">
+    <meta property="og:description" content="Find the role of xmin and xmax in transaction.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/postgresql-mvcc-part-2.jpg">
     
-    <meta property="article:published_time" content="2026-06-13T00:00:00Z">
-    <meta property="article:modified_time"  content="2026-06-13T00:00:00Z">
+    <meta property="article:published_time" content="2026-06-16T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-06-16T00:00:00Z">
     <meta property="article:author" content="Mohammad Sajid Anwar">
     
 
     
     <meta name="twitter:card"        content="summary_large_image">
-    <meta name="twitter:title"       content="PostgreSQL and MVCC">
-    <meta name="twitter:description" content="Understanding Multi-Version Concurrency Control.">
-    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/postgresql-mvcc.jpg">
+    <meta name="twitter:title"       content="PostgreSQL MVCC - Part 2">
+    <meta name="twitter:description" content="Find the role of xmin and xmax in transaction.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/postgresql-mvcc-part-2.jpg">
     <meta name="twitter:site" content="@PerlWChallenge">
 
     
@@ -60,7 +60,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
     document.documentElement.classList.add('light-mode-pre');
 }
 </script>
-<body data-url="https://theweeklychallenge.org/blog/postgresql-mvcc/">
+<body data-url="https://theweeklychallenge.org/blog/postgresql-mvcc-part-2/">
     <nav class="twc-nav" id="twc-nav">
     <div class="nav-inner">
         <a href="https://theweeklychallenge.org/" class="nav-logo">
@@ -144,14 +144,14 @@ if (localStorage.getItem('twc-theme') === 'light') {
         
 <div class="page-hero">
     <div class="page-hero-inner">
-        <h1 class="page-title">PostgreSQL and MVCC</h1>
+        <h1 class="page-title">PostgreSQL MVCC - Part 2</h1>
         <nav class="breadcrumb">
             <a href="https://theweeklychallenge.org/">Home</a>
             <span class="bc-sep">›</span>
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
-            <span>PostgreSQL and MVCC</span>
+            <span>PostgreSQL MVCC - Part 2</span>
         </nav>
-        <span class="reading-time" title="697 words">
+        <span class="reading-time" title="637 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -163,7 +163,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
         <div class="post-meta">
             <span class="post-meta-item">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                Published 13 Jun 2026
+                Published 16 Jun 2026
             </span>
             
         </div>
@@ -173,130 +173,85 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <div class="content-wrap">
     
     <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
-    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/postgresql-mvcc.jpg" alt="PostgreSQL and MVCC"></div>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/postgresql-mvcc-part-2.jpg" alt="PostgreSQL MVCC - Part 2"></div>
     
     <article class="prose">
 
         <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
 <hr>
 <br>
-<p>I started my programming career with <code>Oracle</code> as my first database, before moving to <code>MySQL</code>, which I used for a long time. Later I returned to <code>Oracle</code> for another five years. Eventually, I transitioned to <code>PostgreSQL</code>, and it has been my database of choice ever since. Overall, I have worked with <code>PostgreSQL</code> more than any other database system.</p>
-<p>However, my experience with <code>PostgreSQL</code>, has been as an ordinary user, writing <code>SQL</code> queries to get the job done without ever having the opportunity to look closely under the hood. That changed recently when a friend of mine, a professional <code>DBA</code>, mentioned the term <code>MVCC</code> during a casual conversation.</p>
-<p>When I am back to my desk, I decided to lookup official documentation: <a href="https://www.postgresql.org/docs/18/mvcc-intro.html"><strong>https://www.postgresql.org/docs/18/mvcc-intro.html</strong></a></p>
-<p>For demo purpose, I am going to use <code>PostgreSQL</code> database running inside a <code>Docker</code> container.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker run --name mvcc_test <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>             -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>secret <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>             -p 5432:5432 postgres:latest <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>             -d
-</span></span></code></pre></div><p>Now let&rsquo;s create a demo table as below:</p>
+<p>In the <a href="/blog/postgresql-mvcc"><strong>previous post</strong></a>, I discussed the <code>Transaction Isolation Levels</code> in <code>PostgreSQL</code>. In this post, we will explore how it is managed under the hood.</p>
+<p>One thing I learnt during the process of earlier post, in <code>PostgreSQL</code>, a row is never mutated in place. This was a revelation for me.</p>
+<p>Instead, <code>PostgreSQL</code> manages data using tuples i.e. row versions. Every time you insert, update, or delete data, Postgres creates or modifies these versions, using hidden system columns called <code>xmin</code> and <code>xmax</code> to determine which transaction can see which version.</p>
+<blockquote>
+<p>xmin: The Transaction ID of the transaction that created this row version.</p>
+</blockquote>
+<blockquote>
+<p>xmax: The Transaction ID of the transaction that destroyed this row version. If the row is still alive and has not been deleted or updated, xmax is set to 0.</p>
+</blockquote>
+<p>Let&rsquo;s trace exactly how xmin and xmax change through a row&rsquo;s life.</p>
+<p>We will use the same instance of <code>PostgreSQL</code> database that we used in the previous post.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it mvcc_test psql -U postgres
 </span></span><span style="display:flex;"><span>psql <span style="color:#f92672">(</span>18.4 <span style="color:#f92672">(</span>Debian 18.4-1.pgdg13+1<span style="color:#f92672">))</span>
 </span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span> <span style="color:#66d9ef">for</span> help.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># CREATE TABLE mvcc_demo (id INT PRIMARY KEY, balance INT);</span>
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e">#</span>
+</span></span></code></pre></div><p>We will create extension <code>pageinspect</code> first as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgreq<span style="color:#f92672">=</span><span style="color:#75715e"># CREATE EXTENSION IF NOT EXISTS pageinspect;</span>
+</span></span><span style="display:flex;"><span>CREATE EXTENSION
+</span></span></code></pre></div><p>Now let&rsquo;s create the demo table and insert a row.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># CREATE TABLE mvcc_demo (id INT PRIMARY KEY, balance INT);</span>
 </span></span><span style="display:flex;"><span>CREATE TABLE
 </span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># INSERT INTO mvcc_demo (id, balance) VALUES (1, 100);</span>
 </span></span><span style="display:flex;"><span>INSERT <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT * FROM mvcc_demo;</span>
-</span></span><span style="display:flex;"><span> id | balance
-</span></span><span style="display:flex;"><span>----+---------
-</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> |     <span style="color:#ae81ff">100</span>
+</span></span></code></pre></div><p>Let&rsquo;s see the hidden columns, <code>xmin</code> and <code>xmax</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT lp, t_xmin, t_xmax FROM heap_page_items(get_raw_page(&#39;mvcc_demo&#39;, 0));</span>
+</span></span><span style="display:flex;"><span> lp | t_xmin | t_xmax
+</span></span><span style="display:flex;"><span>----+--------+--------
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> |    <span style="color:#ae81ff">808</span> |      <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> row<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># EXIT</span>
-</span></span></code></pre></div><p><code>MVCC</code> is a very deep subject and can&rsquo;t be done in one sitting. In this post, I will share what I know so far.</p>
-<p>For demo purpose, we need two sessions. Let&rsquo;s call it, <code>Session A</code> and <code>Session B</code>.</p>
-<h2 id="transaction-isolation-levels">Transaction Isolation Levels</h2>
+</span></span></code></pre></div><p>The transaction id <code>808</code> has created this row. The <code>xmax</code> is <code>0</code> i.e. the row is alive.</p>
+<p>Now we will update the row and then check the <code>xmin</code>/<code>xmax</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># UPDATE mvcc_demo SET balance = 200 WHERE id = 1;</span>
+</span></span><span style="display:flex;"><span>UPDATE <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT lp, t_xmin, t_xmax FROM heap_page_items(get_raw_page(&#39;mvcc_demo&#39;, 0));</span>
+</span></span><span style="display:flex;"><span> lp | t_xmin | t_xmax
+</span></span><span style="display:flex;"><span>----+--------+--------
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> |    <span style="color:#ae81ff">808</span> |    <span style="color:#ae81ff">809</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">2</span> |    <span style="color:#ae81ff">809</span> |      <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">2</span> rows<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>When you execute an <code>UPDATE</code>:</p>
+<blockquote>
+<p>The &ldquo;Delete&rdquo; Phase: Postgres finds the existing, active row version on disk and writes the current transaction&rsquo;s ID into its t_xmax column. This effectively tells the database: &ldquo;This row version is dead to any transaction that starts after me.&rdquo;</p>
+</blockquote>
+<blockquote>
+<p>The &ldquo;Insert&rdquo; Phase: Postgres immediately creates a brand-new row version somewhere else in the data page. This new tuple gets the current transaction&rsquo;s ID in its t_xmin, and its t_xmax is set to 0.</p>
+</blockquote>
+<p>Why does it do this instead of changing the data in place?</p>
+<p>It sounds inefficient at first, why copy the whole row just to change one number?</p>
+<p>But this architecture is the core reason why <code>PostgreSQL</code> is so fast and reliable under heavy workloads.</p>
+<blockquote>
+<p>No Locking for Readers: While your <code>UPDATE</code> is running, other users can read the old version of the row seamlessly. They aren&rsquo;t blocked waiting for your update to finish.</p>
+</blockquote>
+<blockquote>
+<p>Instant Rollbacks: If your transaction fails or you type <code>ROLLBACK</code>, it doesn&rsquo;t have to undo any changes to the data. It simply marks your transaction ID as &ldquo;aborted&rdquo; in its internal log. The old row version instantly becomes valid again because its t_xmax belongs to a failed transaction, and the new row version is just ignored.</p>
+</blockquote>
+<p>Let&rsquo;s delete the row now and check the states.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># DELETE FROM mvcc_demo WHERE id = 1;</span>
+</span></span><span style="display:flex;"><span>DELETE <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT lp, t_xmin, t_xmax FROM heap_page_items(get_raw_page(&#39;mvcc_demo&#39;, 0));</span>
+</span></span><span style="display:flex;"><span> lp | t_xmin | t_xmax
+</span></span><span style="display:flex;"><span>----+--------+--------
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> |    <span style="color:#ae81ff">808</span> |    <span style="color:#ae81ff">809</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">2</span> |    <span style="color:#ae81ff">809</span> |    <span style="color:#ae81ff">810</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">2</span> rows<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Now both versions are dead. If we run <code>VACUUM</code>, then this would clean the dead rows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># VACUUM mvcc_demo;</span>
+</span></span><span style="display:flex;"><span>VACUUM
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT t_xmin, t_xmax FROM heap_page_items(get_raw_page(&#39;mvcc_demo&#39;, 0));</span>
+</span></span><span style="display:flex;"><span>ERROR:  block number <span style="color:#ae81ff">0</span> is out of range <span style="color:#66d9ef">for</span> relation <span style="color:#e6db74">&#34;mvcc_demo&#34;</span>
+</span></span></code></pre></div><p>I will probably do one more post in the series. I am enjoying the topic.</p>
 <hr>
-<br>
-<p><code>Isolation</code>, is the <code>I</code> in <code>ACID</code>. It defines how changes are made by one transaction are visible to other concurrent transactions.</p>
-<p>The <code>SQL Standard</code> defines four isolation levels. <code>PostgreSQL</code> implements three of them.</p>
-<h3 id="1-read-committed-default">1. Read Committed (Default)</h3>
-<p>In this level, a statement can only see data committed before the statement began.</p>
-<p>If another transaction commits a change while your transaction is running, a subsequent query inside your transaction will see those changes.</p>
-<h3 id="session-a">Session A</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it mvcc_test psql -U postgres
-</span></span><span style="display:flex;"><span>psql <span style="color:#f92672">(</span>18.4 <span style="color:#f92672">(</span>Debian 18.4-1.pgdg13+1<span style="color:#f92672">))</span>
-</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span> <span style="color:#66d9ef">for</span> help.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># BEGIN;</span>
-</span></span><span style="display:flex;"><span>BEGIN
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# SELECT balance FROM mvcc_demo WHERE id <span style="color:#f92672">=</span> 1;
-</span></span><span style="display:flex;"><span> balance
-</span></span><span style="display:flex;"><span>---------
-</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">100</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> row<span style="color:#f92672">)</span>
-</span></span></code></pre></div><h3 id="session-b">Session B</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it mvcc_test psql -U postgres
-</span></span><span style="display:flex;"><span>psql <span style="color:#f92672">(</span>18.4 <span style="color:#f92672">(</span>Debian 18.4-1.pgdg13+1<span style="color:#f92672">))</span>
-</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span> <span style="color:#66d9ef">for</span> help.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># BEGIN;</span>
-</span></span><span style="display:flex;"><span>BEGIN
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# UPDATE mvcc_demo SET balance <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span> WHERE id <span style="color:#f92672">=</span> 1;
-</span></span><span style="display:flex;"><span>UPDATE <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# COMMIT;
-</span></span><span style="display:flex;"><span>COMMIT
-</span></span></code></pre></div><p>Go back to <code>Session A</code> and run this again:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# SELECT balance FROM mvcc_demo WHERE id <span style="color:#f92672">=</span> 1;
-</span></span><span style="display:flex;"><span> balance
-</span></span><span style="display:flex;"><span>---------
-</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">200</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> row<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# COMMIT;
-</span></span><span style="display:flex;"><span>COMMIT
-</span></span></code></pre></div><p>The same query run twice inside the same transaction can return different results as noticed in <code>Session A</code>.</p>
-<h3 id="2-repeatable-read">2. Repeatable Read</h3>
-<p>In this level, a transaction sees a snapshot of the database taken when the transaction&rsquo;s first query begins.</p>
-<p>It doesn&rsquo;t matter what other sessions commit after thati, your data remains frozen in time.</p>
-<p>Let&rsquo;s reset the data back to original.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it mvcc_test psql -U postgres
-</span></span><span style="display:flex;"><span>psql <span style="color:#f92672">(</span>18.4 <span style="color:#f92672">(</span>Debian 18.4-1.pgdg13+1<span style="color:#f92672">))</span>
-</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span> <span style="color:#66d9ef">for</span> help.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># BEGIN;</span>
-</span></span><span style="display:flex;"><span>BEGIN
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# UPDATE mvcc_demo SET balance <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> WHERE id <span style="color:#f92672">=</span> 1;
-</span></span><span style="display:flex;"><span>UPDATE <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# COMMIT;
-</span></span><span style="display:flex;"><span>COMMIT
-</span></span></code></pre></div><h3 id="session-a-1">Session A</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it mvcc_test psql -U postgres
-</span></span><span style="display:flex;"><span>psql <span style="color:#f92672">(</span>18.4 <span style="color:#f92672">(</span>Debian 18.4-1.pgdg13+1<span style="color:#f92672">))</span>
-</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span> <span style="color:#66d9ef">for</span> help.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;</span>
-</span></span><span style="display:flex;"><span>BEGIN
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# SELECT balance FROM mvcc_demo WHERE id <span style="color:#f92672">=</span> 1;
-</span></span><span style="display:flex;"><span> balance
-</span></span><span style="display:flex;"><span>---------
-</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">100</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> row<span style="color:#f92672">)</span>
-</span></span></code></pre></div><h3 id="session-b-1">Session B</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># BEGIN;</span>
-</span></span><span style="display:flex;"><span>BEGIN
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# UPDATE mvcc_demo SET balance <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span> WHERE id <span style="color:#f92672">=</span> 1;
-</span></span><span style="display:flex;"><span>UPDATE <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# COMMIT;
-</span></span><span style="display:flex;"><span>COMMIT
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e">#</span>
-</span></span></code></pre></div><p>Go back to <code>Session A</code>, try this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# SELECT balance FROM mvcc_demo WHERE id <span style="color:#f92672">=</span> 1;
-</span></span><span style="display:flex;"><span> balance
-</span></span><span style="display:flex;"><span>---------
-</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">100</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> row<span style="color:#f92672">)</span>
-</span></span></code></pre></div><p>We didn&rsquo;t see the changes from <code>Session B</code> as we are still inside the transaction in <code>Session A</code>.</p>
-<p>Now as soon as we complete the transaction in <code>Session A</code>, we see the updated row.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span>*# COMMIT;
-</span></span><span style="display:flex;"><span>COMMIT
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT balance FROM mvcc_demo WHERE id = 1;</span>
-</span></span><span style="display:flex;"><span> balance
-</span></span><span style="display:flex;"><span>---------
-</span></span><span style="display:flex;"><span>     <span style="color:#ae81ff">200</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> row<span style="color:#f92672">)</span>
-</span></span></code></pre></div><p>That&rsquo;s it for this blog, in the next part, I will discuss the two secret columns, <code>xmin</code> and <code>xmax</code>.</p>
-<p>It is fascinating to see how this is used in transaction and <code>VACUUM</code>.</p>
 <br>
 <p><code>Happy Hacking !!!</code></p>
 
@@ -322,14 +277,14 @@ if (localStorage.getItem('twc-theme') === 'light') {
         Related Posts
     </h3>
     <div class="related-posts-grid">
-        <a class="related-post-card" href="/blog/postgresql-mvcc-part-2/">
+        <a class="related-post-card" href="/blog/postgresql-mvcc/">
             <span class="related-post-section">blog</span>
-            <span class="related-post-title">PostgreSQL MVCC - Part 2</span>
+            <span class="related-post-title">PostgreSQL and MVCC</span>
             <span class="related-post-tags">
                 <span class="related-post-tag">PostgreSQL</span>
                 <span class="related-post-tag">MVCC</span>
             </span>
-            <span class="related-post-date">16 Jun 2026</span>
+            <span class="related-post-date">13 Jun 2026</span>
         </a>
         <a class="related-post-card" href="/blog/guest-contribution/">
             <span class="related-post-section">blog</span>
@@ -355,6 +310,32 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </div>
 
     
+<nav class="post-nav" aria-label="Post navigation">
+  <div class="post-nav-inner">
+    <a class="post-nav-item post-nav-prev" href="/blog/perl-weekly-challenge-001/">
+      <span class="post-nav-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Previous
+      </span>
+      <span class="post-nav-title">A New Week a New Challenge</span>
+    </a>
+    <a class="post-nav-item post-nav-next" href="/blog/perl-weekly-challenge-003/">
+      <span class="post-nav-label">
+        Next
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </span>
+      <span class="post-nav-title">Perl Weekly Challenge - 003</span>
+    </a>
+  </div>
+</nav>
 
 
     
@@ -376,8 +357,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
         window.disqus_config = function() {
-            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/postgresql-mvcc\/';
-            this.page.identifier = '7efc186cade8621a1ff3cb537662529c';
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/postgresql-mvcc-part-2\/';
+            this.page.identifier = '6d54974a87656ef8e88e74b37f7a4146';
         };
     }
     </script>
