@@ -22,7 +22,7 @@ Instead, `PostgreSQL` manages data using tuples i.e. row versions. Every time yo
 
 > xmax: The Transaction ID of the transaction that destroyed this row version. If the row is still alive and has not been deleted or updated, xmax is set to 0.
 
-Let's trace exactly how xmin and xmax change through a row's life.
+Let's trace exactly how `xmin` and `xmax` change through a row's life.
 
 We will use the same instance of `PostgreSQL` database that we used in the previous post.
 
