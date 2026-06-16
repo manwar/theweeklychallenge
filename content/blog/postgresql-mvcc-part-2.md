@@ -53,6 +53,16 @@ INSERT 0 1
 Let's see the hidden columns, `xmin` and `xmax`.
 
 ```bash
+postgres=# SELECT xmin, xmax, id, balance FROM mvcc_demo;
+ xmin | xmax | id | balance
+------+------+----+---------
+  808 |    0 |  1 |     100
+(1 row)
+```
+
+How about the internal version of this?
+
+```bash
 postgres=# SELECT lp, t_xmin, t_xmax FROM heap_page_items(get_raw_page('mvcc_demo', 0));
  lp | t_xmin | t_xmax
 ----+--------+--------
@@ -67,6 +77,21 @@ Now we will update the row and then check the `xmin`/`xmax`.
 ```bash
 postgres=# UPDATE mvcc_demo SET balance = 200 WHERE id = 1;
 UPDATE 1
+```
+
+After the update, let's check `xmin` and `xmax` again:
+
+```bash
+postgres=# SELECT xmin, xmax, id, balance FROM mvcc_demo;
+ xmin | xmax | id | balance
+------+------+----+---------
+  809 |    0 |  1 |     200
+(1 row)
+```
+
+Now if we look how many versions we have:
+
+```bash
 postgres=# SELECT lp, t_xmin, t_xmax FROM heap_page_items(get_raw_page('mvcc_demo', 0));
  lp | t_xmin | t_xmax
 ----+--------+--------
