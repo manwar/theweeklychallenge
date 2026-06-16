@@ -114,7 +114,7 @@ But this architecture is the core reason why `PostgreSQL` is so fast and reliabl
 
 > No Locking for Readers: While your `UPDATE` is running, other users can read the old version of the row seamlessly. They aren't blocked waiting for your update to finish.
 
-> Instant Rollbacks: If your transaction fails or you type `ROLLBACK`, it doesn't have to undo any changes to the data. It simply marks your transaction ID as "aborted" in its internal log. The old row version instantly becomes valid again because its t_xmax belongs to a failed transaction, and the new row version is just ignored.
+> Instant Rollbacks: If your transaction fails or you type `ROLLBACK`, it doesn't have to undo any changes to the data. It simply marks your transaction ID as "aborted" in its internal log. The old row version instantly becomes valid again because its `t_xmax` belongs to a failed transaction, and the new row version is just ignored.
 
 Let's delete the row now and check the states.
 

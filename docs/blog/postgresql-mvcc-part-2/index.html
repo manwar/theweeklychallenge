@@ -247,7 +247,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>No Locking for Readers: While your <code>UPDATE</code> is running, other users can read the old version of the row seamlessly. They aren&rsquo;t blocked waiting for your update to finish.</p>
 </blockquote>
 <blockquote>
-<p>Instant Rollbacks: If your transaction fails or you type <code>ROLLBACK</code>, it doesn&rsquo;t have to undo any changes to the data. It simply marks your transaction ID as &ldquo;aborted&rdquo; in its internal log. The old row version instantly becomes valid again because its t_xmax belongs to a failed transaction, and the new row version is just ignored.</p>
+<p>Instant Rollbacks: If your transaction fails or you type <code>ROLLBACK</code>, it doesn&rsquo;t have to undo any changes to the data. It simply marks your transaction ID as &ldquo;aborted&rdquo; in its internal log. The old row version instantly becomes valid again because its <code>t_xmax</code> belongs to a failed transaction, and the new row version is just ignored.</p>
 </blockquote>
 <p>Let&rsquo;s delete the row now and check the states.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># DELETE FROM mvcc_demo WHERE id = 1;</span>
