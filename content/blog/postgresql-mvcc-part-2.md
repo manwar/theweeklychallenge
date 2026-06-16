@@ -75,11 +75,11 @@ postgres=# SELECT lp, t_xmin, t_xmax FROM heap_page_items(get_raw_page('mvcc_dem
 (2 rows)
 ```
 
-When you execute an `UPDATE`:
+When you execute an `UPDATE`, it goes through two phases as below:
 
-> The "Delete" Phase: Postgres finds the existing, active row version on disk and writes the current transaction's ID into its t_xmax column. This effectively tells the database: "This row version is dead to any transaction that starts after me."
+> The `"Delete"` Phase: PostgreSQL finds the existing, active row version on disk and writes the current transaction's ID into its `t_xmax` column. This effectively tells the database: "This row version is dead to any transaction that starts after me."
 
-> The "Insert" Phase: Postgres immediately creates a brand-new row version somewhere else in the data page. This new tuple gets the current transaction's ID in its t_xmin, and its t_xmax is set to 0.
+> The `"Insert"` Phase: PostgreSQL immediately creates a brand new row version somewhere else in the data page. This new tuple gets the current transaction's ID in its `t_xmin`, and its `t_xmax` is set to 0.
 
 Why does it do this instead of changing the data in place?
 
