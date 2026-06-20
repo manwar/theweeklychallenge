@@ -215,7 +215,7 @@ postgres=# SELECT xmin, xmax, id, balance FROM mvcc_demo;
 
 What if you want to lock a row so nobody can change it, but you don't mind if other transactions read or share the lock?
 
-Let's create start a new transaction in `Session A` as below:
+Let's start a new transaction in `Session A` as below:
 
 ```bash
 postgres=# BEGIN;
