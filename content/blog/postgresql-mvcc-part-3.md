@@ -182,7 +182,7 @@ postgres=# SELECT xmin, xmax, id, balance FROM mvcc_demo;
 (1 row)
 ```
 
-We now have `xmax = 833` which is the transaction created by `SELECT .... FOR UPDATE` statement in `Session A`.
+We now have `xmax = 833`, the transaction where we take exclusive lock by `SELECT .... FOR UPDATE` statement in `Session A`.
 
 Let's release the lock in `Session A` and then check what we have.
 
