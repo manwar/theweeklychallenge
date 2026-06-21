@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-06-19T00:00:00+00:00
+date: 2026-06-21T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1178,6 +1178,30 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ## [The Weekly Challenge - 378](/blog/perl-weekly-challenge-378) {#378}
 <br>
 
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/awk/ch-1.awk) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/awk/ch-2.awk) in **Awk**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/bash/ch-1.sh) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/bash/ch-2.sh) in **Bash**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/befunge-93/ch-1.bf93) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/befunge-93/ch-2.bf93) in **Befunge-93**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/c/ch-2.c) in **C**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/go/ch-1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/go/ch-2.go) in **Go**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/lua/ch-1.lua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/lua/ch-2.lua) in **Lua**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/node/ch-1.js) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/node/ch-2.js) in **Node.js**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/python/ch-2.py) in **Python**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/r/ch-1.R) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/r/ch-1.R) in **R**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/ruby/ch-1.rb) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/ruby/ch-2.rb) in **Ruby**.
+
+##### **Abigail** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/sed/ch-1.sed) in **Sed**.
+
+##### **Abigail** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/tcl/ch-1.tcl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/abigail/tcl/ch-2.tcl) in **Tcl**.
+
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/deadmarshal/c3/ch1.c3) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/deadmarshal/c3/ch2.c3) in **C3**.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/deadmarshal/erlang/ch1.erl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/deadmarshal/erlang/ch2.erl) in **Erlang**.
@@ -1187,6 +1211,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/deadmarshal/go/ch1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/deadmarshal/go/ch2.go) in **Go**.
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/deadmarshal/scheme/ch1.scm) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/deadmarshal/scheme/ch2.scm) in **Scheme**.
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/asherbhs/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/asherbhs/apl/ch-2.apl) in **APL**.
 
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/conor-hoekstra/bqn/ch-1.bqn) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-378/conor-hoekstra/bqn/ch-2.bqn) in **BQN**.
 
