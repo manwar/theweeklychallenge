@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/soap-and-perl/">
+    <title>SOAP and Perl | Jun 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Using SOAP with Perl.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/soap-and-perl/">
+    <meta property="og:title"       content="SOAP and Perl">
+    <meta property="og:description" content="Using SOAP with Perl.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/soap-and-perl.jpg">
+    
+    <meta property="article:published_time" content="2026-06-22T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-06-22T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="SOAP and Perl">
+    <meta name="twitter:description" content="Using SOAP with Perl.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/soap-and-perl.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/soap-and-perl/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">SOAP and Perl</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>SOAP and Perl</span>
+        </nav>
+        <span class="reading-time" title="1146 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  5 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 22 Jun 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/soap-and-perl.jpg" alt="SOAP and Perl"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>The current web software development space is dominated by <code>REST</code>, <code>GraphQL</code>, and <code>gRPC</code>. I have written about each of them recently.</p>
+<p><code>GraphQL</code>: | <a href="/blog/mojo-meets-graphql"><strong>Mojo meets GraphQL</strong></a> | <a href="/blog/dbic-graphql"><strong>DBIx::Class and GraphQL</strong></a> | <a href="/blog/cpan-graphql"><strong>CPAN and GraphQL</strong></a> | <a href="/blog/mutation-in-graphql"><strong>Mutation in GraphQL</strong></a> |</p>
+<p><code>gRPC</code>: | <a href="/blog/rest-vs-grpc"><strong>REST vs gRPC</strong></a> |</p>
+<p>But there was one standard that was there before the others; <code>SOAP (Simple Object Access Protocol)</code> which was created in the late <code>1990s</code>.</p>
+<p>At that time, <code>SOAP</code> was adopted as an industry standard by the <code>W3C (World Wide Web Consortium)</code> and is still used today as the primary protocol for developing enterprise applications, used in large-scale distributed systems, secure financial transactions and secure communications.</p>
+<p>Both <code>SOAP</code> and <code>REST</code> are protocols that developers of applications use to transfer structured data between different computer systems. One major distinction between <code>SOAP</code> and <code>REST</code> is that the message format used in <code>XML</code> for <code>SOAP</code> and uses <code>HTTP (Hypertext Transfer Protocol)</code> to transfer the message.</p>
+<p>The difference between <code>SOAP</code> and <code>REST</code> could be regarded as analogous to sending a postcard compared to sending a legal document using an express mail service with delivery confirmation. Postcards are lightweight, fast, fairly easy to read, but are also at risk of getting lost or damaged if not handled properly.</p>
+<p>In comparison, sending legal documents using a delivery service that provides verified payment for the sender, as well as a delivery receipt, must be packaged in many different ways so that the signature of the person that delivers the package can be seen at the time that he/she delivers the package and can be returned in the format specified by the sender. Also, the legal document will also be able to be received by the recipient in the same condition that the document was sent to the recipient.</p>
+<h3 id="the-pillars-of-soap">The Pillars of SOAP</h3>
+<hr>
+<blockquote>
+<p><code>SOAP</code> utilises <code>XML</code> exclusively for message encoding. Thus, <code>SOAP</code> is very structured, although it is also considerably more verbose than <code>JSON</code>.</p>
+</blockquote>
+<blockquote>
+<p>Although <code>SOAP</code> is primarily run over <code>HTTP</code>/<code>HTTPS</code> as the transport protocol, it is also capable of running over nearly any transport protocol (e.g. <code>SMTP</code>, <code>FTP</code>, or <code>JMS</code>).</p>
+</blockquote>
+<blockquote>
+<p><code>SOAP</code> services are based upon a <code>WSDL (Web Services Description Language)</code>, which is an <code>XML</code> based machine-readable contract that describes the <code>SOAP</code> web service, including what functions it provides, what parameters will be used by the function, and what will be returned by the service when called.</p>
+</blockquote>
+<blockquote>
+<p><code>SOAP</code> has built-in <code>WS-Security</code> and <code>WS-Reliability</code> support, making it a very good fit for banking and healthcare applications.</p>
+</blockquote>
+<p>We have this directory structure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── calculator.wsdl
+</span></span><span style="display:flex;"><span>├── client.pl
+</span></span><span style="display:flex;"><span>├── lib
+</span></span><span style="display:flex;"><span>│   ├── Calculator
+</span></span><span style="display:flex;"><span>│   │   └── Server.pm
+</span></span><span style="display:flex;"><span>│   └── Calculator.pm
+</span></span><span style="display:flex;"><span>├── server.pl
+</span></span><span style="display:flex;"><span>├── soap_client.pl
+</span></span><span style="display:flex;"><span>└── soap_server.pl
+</span></span></code></pre></div><p>Here is a simple calculator package:</p>
+<p><strong>File:</strong> <code>lib/Calculator.pm</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Calculator;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($class) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> bless {}, $class;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">add_numbers</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $num1, $num2) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $num1 <span style="color:#f92672">+</span> $num2;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Here is a <code>SOAP</code> server:</p>
+<p><strong>File:</strong> <code>server.pl</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;lib/&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> SOAP::Transport::HTTP;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $server <span style="color:#f92672">=</span> SOAP::Transport::HTTP::Daemon
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">new</span> (LocalPort <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">8081</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span> dispatch_to(<span style="color:#e6db74">&#39;Calculator&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;SOAP Server is running on http://localhost:8081/ ...\n&#34;</span>;
+</span></span><span style="display:flex;"><span>$server<span style="color:#f92672">-&gt;</span>handle;
+</span></span></code></pre></div><p>Now create <code>SOAP</code> client:</p>
+<p><strong>File:</strong> <code>client.pl</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> SOAP::Lite;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $soap <span style="color:#f92672">=</span> SOAP::Lite
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span> proxy(<span style="color:#e6db74">&#39;http://localhost:8081/&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span> uri(<span style="color:#e6db74">&#39;Calculator&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Sending numbers 15 and 25 to the SOAP server...\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $soap<span style="color:#f92672">-&gt;</span>add_numbers(<span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">25</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($response<span style="color:#f92672">-&gt;</span>fault) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Error occurred:\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  Fault Code:   &#34;</span> <span style="color:#f92672">.</span> $response<span style="color:#f92672">-&gt;</span>faultcode   <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  Fault String: &#34;</span> <span style="color:#f92672">.</span> $response<span style="color:#f92672">-&gt;</span>faultstring <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Answer from SOAP Server: &#34;</span> <span style="color:#f92672">.</span> $response<span style="color:#f92672">-&gt;</span>result <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Let&rsquo;s start the <code>SOAP</code> server first:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl server.pl
+</span></span><span style="display:flex;"><span>SOAP Server is running on http://localhost:8081/ ...
+</span></span></code></pre></div><p>Now let the client make a request:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl client.pl
+</span></span><span style="display:flex;"><span>Sending numbers <span style="color:#ae81ff">15</span> and <span style="color:#ae81ff">25</span> to the SOAP server...
+</span></span><span style="display:flex;"><span>Answer from SOAP Server: <span style="color:#ae81ff">40</span>
+</span></span></code></pre></div><p>So far so good, we will now bring <code>WSDL</code> into the picture.</p>
+<p>Let&rsquo;s create <code>calculator.wsdl</code> file first as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;definitions</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;Calculator&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">targetNamespace=</span><span style="color:#e6db74">&#34;urn:Calculator&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://schemas.xmlsoap.org/wsdl/&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">xmlns:tns=</span><span style="color:#e6db74">&#34;urn:Calculator&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">xmlns:soap=</span><span style="color:#e6db74">&#34;http://schemas.xmlsoap.org/wsdl/soap/&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">xmlns:xsd=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">xmlns:soapenc=</span><span style="color:#e6db74">&#34;http://schemas.xmlsoap.org/soap/encoding/&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;types&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;xsd:schema</span> <span style="color:#a6e22e">targetNamespace=</span><span style="color:#e6db74">&#34;urn:Calculator&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/types&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;message</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;add_numbersRequest&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;part</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;num1&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;xsd:float&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;part</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;num2&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;xsd:float&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/message&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;message</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;add_numbersResponse&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;part</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;return&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;xsd:float&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/message&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;portType</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;CalculatorPortType&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;operation</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;add_numbers&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;input</span>  <span style="color:#a6e22e">message=</span><span style="color:#e6db74">&#34;tns:add_numbersRequest&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;output</span> <span style="color:#a6e22e">message=</span><span style="color:#e6db74">&#34;tns:add_numbersResponse&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/operation&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/portType&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;binding</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;CalculatorBinding&#34;</span> <span style="color:#a6e22e">type=</span><span style="color:#e6db74">&#34;tns:CalculatorPortType&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;soap:binding</span> <span style="color:#a6e22e">style=</span><span style="color:#e6db74">&#34;rpc&#34;</span> <span style="color:#a6e22e">transport=</span><span style="color:#e6db74">&#34;http://schemas.xmlsoap.org/soap/http&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;operation</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;add_numbers&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;soap:operation</span> <span style="color:#a6e22e">soapAction=</span><span style="color:#e6db74">&#34;urn:Calculator#add_numbers&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;input&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;soap:body</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">use=</span><span style="color:#e6db74">&#34;encoded&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">namespace=</span><span style="color:#e6db74">&#34;urn:Calculator&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">encodingStyle=</span><span style="color:#e6db74">&#34;http://schemas.xmlsoap.org/soap/encoding/&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/input&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;output&gt;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">&lt;soap:body</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">use=</span><span style="color:#e6db74">&#34;encoded&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">namespace=</span><span style="color:#e6db74">&#34;urn:Calculator&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">encodingStyle=</span><span style="color:#e6db74">&#34;http://schemas.xmlsoap.org/soap/encoding/&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;/output&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/operation&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/binding&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;service</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;CalculatorService&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;port</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;CalculatorPort&#34;</span> <span style="color:#a6e22e">binding=</span><span style="color:#e6db74">&#34;tns:CalculatorBinding&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;soap:address</span> <span style="color:#a6e22e">location=</span><span style="color:#e6db74">&#34;http://localhost:8081/&#34;</span><span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;/port&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;/service&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/definitions&gt;</span>
+</span></span></code></pre></div><p>Now we will create <code>Calculator::Server</code> package as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">package</span> Calculator::Server;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> SOAP::Transport::HTTP;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $WSDL_FILE <span style="color:#f92672">=</span> $ENV{<span style="color:#e6db74">&#39;WSDL_FILE&#39;</span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">new</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($class, %args) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $daemon <span style="color:#f92672">=</span> SOAP::Transport::HTTP::Daemon<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+</span></span><span style="display:flex;"><span>        LocalPort <span style="color:#f92672">=&gt;</span> $args{LocalPort},
+</span></span><span style="display:flex;"><span>        Reuse     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">or</span> die <span style="color:#e6db74">&#34;Cannot create SOAP daemon: $!&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> bless { _daemon <span style="color:#f92672">=&gt;</span> $daemon }, $class;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">dispatch_to</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, @args) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $self<span style="color:#f92672">-&gt;</span>{_daemon}<span style="color:#f92672">-&gt;</span>dispatch_to(@args);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $self;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">handle</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $daemon <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>{_daemon};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $c <span style="color:#f92672">=</span> $daemon<span style="color:#f92672">-&gt;</span>accept ) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> ( <span style="color:#66d9ef">my</span> $r <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>get_request ) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $self<span style="color:#f92672">-&gt;</span>_is_wsdl_request($r)
+</span></span><span style="display:flex;"><span>                ? $self<span style="color:#f92672">-&gt;</span>_wsdl_response
+</span></span><span style="display:flex;"><span>                : $self<span style="color:#f92672">-&gt;</span>_soap_response($daemon, $r);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            $self<span style="color:#f92672">-&gt;</span>_send_response($c, $response);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        $self<span style="color:#f92672">-&gt;</span>_close_connection($c);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_is_wsdl_request</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $r) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $r<span style="color:#f92672">-&gt;</span>method <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;GET&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&amp;&amp;</span> ( $r<span style="color:#f92672">-&gt;</span>uri<span style="color:#f92672">-&gt;</span>query <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span> ) <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^wsdl$/i</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_wsdl_response</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $wsdl   <span style="color:#f92672">=</span> $WSDL_FILE;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ( open <span style="color:#66d9ef">my</span> $fh, <span style="color:#e6db74">&#39;&lt;&#39;</span>, $wsdl ) {
+</span></span><span style="display:flex;"><span>        local $/;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $content <span style="color:#f92672">=</span> <span style="color:#e6db74">&lt;$fh&gt;</span>;
+</span></span><span style="display:flex;"><span>        close $fh;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HTTP::Response<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+</span></span><span style="display:flex;"><span>            <span style="color:#ae81ff">200</span>, <span style="color:#e6db74">&#39;OK&#39;</span>,
+</span></span><span style="display:flex;"><span>            HTTP::Headers<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;Content-Type&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;text/xml; charset=utf-8&#39;</span>),
+</span></span><span style="display:flex;"><span>            $content,
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> HTTP::Response<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">404</span>, <span style="color:#e6db74">&#39;Not Found&#39;</span>,
+</span></span><span style="display:flex;"><span>        HTTP::Headers<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(<span style="color:#e6db74">&#39;Content-Type&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;text/plain&#39;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;WSDL file &#39;$wsdl&#39; not found.\n&#34;</span>,
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_soap_response</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $daemon, $r) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $daemon<span style="color:#f92672">-&gt;</span>request($r);
+</span></span><span style="display:flex;"><span>    SOAP::Transport::HTTP::Server::handle($daemon);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $daemon<span style="color:#f92672">-&gt;</span>response;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_send_response</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $c, $response) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    eval {
+</span></span><span style="display:flex;"><span>        local $SIG{PIPE} <span style="color:#f92672">=</span> <span style="color:#66d9ef">sub</span> { die <span style="color:#e6db74">&#34;SIGPIPE&#34;</span> };
+</span></span><span style="display:flex;"><span>        $c<span style="color:#f92672">-&gt;</span>send_response($response);
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    die $@ <span style="color:#66d9ef">if</span> $@ <span style="color:#f92672">&amp;&amp;</span> $@ <span style="color:#f92672">!~</span> <span style="color:#e6db74">/^SIGPIPE/</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">_close_connection</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> ($self, $c) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>can(<span style="color:#e6db74">&#39;shutdown&#39;</span>) ? $c<span style="color:#f92672">-&gt;</span>shutdown(<span style="color:#ae81ff">2</span>) : $c<span style="color:#f92672">-&gt;</span>close;
+</span></span><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>close;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>;
+</span></span></code></pre></div><p>Finally we can now create <code>soap_server.pl</code> as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;lib/&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Calculator::Server;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $server <span style="color:#f92672">=</span> Calculator::Server
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>( LocalPort <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">8081</span> )
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>dispatch_to(<span style="color:#e6db74">&#39;Calculator&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;SOAP Server is running on http://localhost:8081/\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;WSDL available at:  http://localhost:8081/?wsdl\n&#34;</span>;
+</span></span><span style="display:flex;"><span>$server<span style="color:#f92672">-&gt;</span>handle;
+</span></span></code></pre></div><p>And <code>soap_client.pl</code> as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> SOAP::Lite;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $soap <span style="color:#f92672">=</span> SOAP::Lite
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>proxy(<span style="color:#e6db74">&#39;http://localhost:8081/&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>uri(<span style="color:#e6db74">&#39;urn:Calculator&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Sending numbers 15 and 25 to the SOAP server...\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $response <span style="color:#f92672">=</span> $soap<span style="color:#f92672">-&gt;</span>add_numbers(
+</span></span><span style="display:flex;"><span>    SOAP::Data<span style="color:#f92672">-&gt;</span>name(<span style="color:#e6db74">&#39;num1&#39;</span>)<span style="color:#f92672">-&gt;</span>type(<span style="color:#e6db74">&#39;float&#39;</span>)<span style="color:#f92672">-&gt;</span>value(<span style="color:#ae81ff">15</span>),
+</span></span><span style="display:flex;"><span>    SOAP::Data<span style="color:#f92672">-&gt;</span>name(<span style="color:#e6db74">&#39;num2&#39;</span>)<span style="color:#f92672">-&gt;</span>type(<span style="color:#e6db74">&#39;float&#39;</span>)<span style="color:#f92672">-&gt;</span>value(<span style="color:#ae81ff">25</span>),
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($response<span style="color:#f92672">-&gt;</span>fault) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Error occurred:\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  Fault Code:   &#34;</span> <span style="color:#f92672">.</span> $response<span style="color:#f92672">-&gt;</span>faultcode   <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;  Fault String: &#34;</span> <span style="color:#f92672">.</span> $response<span style="color:#f92672">-&gt;</span>faultstring <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Answer from SOAP Server: &#34;</span> <span style="color:#f92672">.</span> $response<span style="color:#f92672">-&gt;</span>result <span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;\n&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Start the <code>SOAP</code> server now:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ WSDL_FILE<span style="color:#f92672">=</span>calculator.wsdl perl soap_server.pl
+</span></span><span style="display:flex;"><span>SOAP Server is running on http://localhost:8081/
+</span></span><span style="display:flex;"><span>WSDL available at:  http://localhost:8081/?wsdl
+</span></span></code></pre></div><p>Time to run the client:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl soap_client.pl
+</span></span><span style="display:flex;"><span>Sending numbers <span style="color:#ae81ff">15</span> and <span style="color:#ae81ff">25</span> to the SOAP server...
+</span></span><span style="display:flex;"><span>Answer from SOAP Server: <span style="color:#ae81ff">40</span>
+</span></span></code></pre></div><p>We can fetch <code>WSDL</code> file too as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:8081/?wsdl
+</span></span></code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/soap" class="post-tag">SOAP</a>
+        
+    </div>
+    
+    
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/soap-and-perl\/';
+            this.page.identifier = '1ae2ebcec3f8d29c2ec2320e7d58c29e';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
