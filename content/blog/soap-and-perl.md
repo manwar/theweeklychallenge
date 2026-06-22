@@ -23,7 +23,7 @@ But there was one standard that was there before the others; `SOAP (Simple Objec
 
 At that time, `SOAP` was adopted as an industry standard by the `W3C (World Wide Web Consortium)` and is still used today as the primary protocol for developing enterprise applications, used in large-scale distributed systems, secure financial transactions and secure communications.
 
-Both `SOAP` and `REST` are protocols that developers of applications use to transfer structured data between different computer systems. One major distinction between `SOAP` and `REST` is that the message format used in `XML` for `SOAP` and uses `HTTP (Hypertext Transfer Protocol)` to transfer the message.
+Both `SOAP` and `REST` are protocols that developers of applications use to transfer structured data between different computer systems. One major distinction between `SOAP` and `REST` is that the message format used in `XML` for `SOAP` and uses `HTTP` to transfer the message.
 
 The difference between `SOAP` and `REST` could be regarded as analogous to sending a postcard compared to sending a legal document using an express mail service with delivery confirmation. Postcards are lightweight, fast, fairly easy to read, but are also at risk of getting lost or damaged if not handled properly.
 
