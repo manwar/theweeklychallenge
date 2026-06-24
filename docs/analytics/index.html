@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Weekly Challenge - Community Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <header class="bg-indigo-900 text-white py-8 px-6 shadow-md">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-3xl font-bold">The Weekly Challenge Analytics</h1>
+            <p class="text-indigo-200 mt-2">Exploring 7+ years of community solutions, languages, and historical trends.</p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
+        
+        <!-- Top Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Total Solutions Submitted</h3>
+                <p id="stat-total" class="text-3xl font-extrabold text-indigo-600 mt-2">Loading...</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Unique Contributors</h3>
+                <p id="stat-users" class="text-3xl font-extrabold text-teal-600 mt-2">Loading...</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Distinct Languages Used</h3>
+                <p id="stat-langs" class="text-3xl font-extrabold text-amber-600 mt-2">Loading...</p>
+            </div>
+        </div>
+
+        <!-- Charts Layout Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Chart 1: Growth -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Community Growth (Submissions per Week)</h3>
+                <canvas id="growthChart" class="w-full h-64"></canvas>
+            </div>
+            
+            <!-- Chart 2: Top Languages -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Top Languages of All Time</h3>
+                <canvas id="langChart" class="w-full h-64"></canvas>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function parseCSV(url) {
+            return new Promise((resolve, reject) => {
+                Papa.parse(url, {
+                    download: true,
+                    header: true,
+                    dynamicTyping: true,
+                    complete: (results) => resolve(results.data),
+                    error: (error) => reject(error)
+                });
+            });
+        }
+
+        async function initDashboard() {
+            try {
+                // Fetch datasets asynchronously out of the same directory
+                const dataset = await parseCSV('solutions_dataset.csv');
+                const growthData = await parseCSV('growth_by_week.csv');
+                const topLangs = await parseCSV('top_languages.csv');
+
+                // 1. Calculate Top Stats Cards
+                document.getElementById('stat-total').innerText = dataset.filter(row => row.week).length.toLocaleString();
+                
+                const uniqueUsers = new Set(dataset.map(row => row.user).filter(Boolean));
+                document.getElementById('stat-users').innerText = uniqueUsers.size;
+
+                const uniqueLangs = new Set(dataset.map(row => row.language).filter(Boolean));
+                document.getElementById('stat-langs').innerText = uniqueLangs.size;
+
+                // 2. Render Growth Line Chart
+                const validGrowth = growthData.filter(d => d.week && d.total_submissions);
+                new Chart(document.getElementById('growthChart'), {
+                    type: 'line',
+                    data: {
+                        labels: validGrowth.map(d => `Wk ${d.week}`),
+                        datasets: [{
+                            label: 'Submissions',
+                            data: validGrowth.map(d => d.total_submissions),
+                            borderColor: '#4f46e5',
+                            backgroundColor: 'rgba(79, 70, 229, 0.05)',
+                            fill: true,
+                            tension: 0.1,
+                            pointRadius: 1
+                        }]
+                    },
+                    options: { responsive: true, scales: { x: { grid: { display: false } } } }
+                });
+
+                // 3. Render Top Languages Bar Chart
+                const validLangs = topLangs.filter(d => d.language || d['']); 
+                new Chart(document.getElementById('langChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: validLangs.map(d => d.language || d['']),
+                        datasets: [{
+                            label: 'Solutions Written',
+                            data: validLangs.map(d => d.count || d.submissions || Object.values(d)[1] || 0),
+                            backgroundColor: '#0d9488'
+                        }]
+                    },
+                    options: { responsive: true }
+                });
+
+            } catch (err) {
+                console.error("Error loading analytical data files: ", err);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+</body>
+</html>

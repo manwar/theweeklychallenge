@@ -1,6 +1,7 @@
 {{ define "head" }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 {{ end }}
 
 {{ define "main" }}
@@ -17,6 +18,167 @@
 </div>
 
 <div class="content-wrap chart-page">
+
+    <!-- START OF ENHANCED ANALYTICS CHARTS SECTION -->
+    <div class="analytics-container" style="max-width: 1140px; margin: 20px auto; font-family: sans-serif;">
+
+        <!-- Macro Metrics Summary Row -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px;">
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 15px; text-align: center;">
+                <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 600; letter-spacing: 0.5px;">Total Solutions Written</div>
+                <div id="stat-total" style="font-size: 24px; font-weight: bold; color: #1e293b; margin-top: 5px;">...</div>
+            </div>
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 15px; text-align: center;">
+                <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 600; letter-spacing: 0.5px;">Unique Contributors</div>
+                <div id="stat-users" style="font-size: 24px; font-weight: bold; color: #1e293b; margin-top: 5px;">...</div>
+            </div>
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 15px; text-align: center;">
+                <div style="font-size: 11px; text-transform: uppercase; color: #64748b; font-weight: 600; letter-spacing: 0.5px;">Languages Represented</div>
+                <div id="stat-langs" style="font-size: 24px; font-weight: bold; color: #1e293b; margin-top: 5px;">...</div>
+            </div>
+        </div>
+
+        <!-- 2x2 Clean Chart Matrix Grid Layout -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 20px; margin-bottom: 30px;">
+
+            <!-- Graph 1: Velocity -->
+            <div style="border: 1px solid #e2e8f0; border-radius: 4px; padding: 15px; background: #ffffff;">
+                <h3 style="font-size: 14px; margin: 0 0 15px 0; color: #334155; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; font-weight: 600;">Velocity Timeline (Submissions/Week)</h3>
+                <canvas id="growthChart" height="160"></canvas>
+            </div>
+
+            <!-- Graph 2: Top Languages Volume -->
+            <div style="border: 1px solid #e2e8f0; border-radius: 4px; padding: 15px; background: #ffffff;">
+                <h3 style="font-size: 14px; margin: 0 0 15px 0; color: #334155; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; font-weight: 600;">Top Languages Distribution</h3>
+                <canvas id="langChart" height="160"></canvas>
+            </div>
+
+            <!-- Graph 3: Language Ecosystem Shift -->
+            <div style="border: 1px solid #e2e8f0; border-radius: 4px; padding: 15px; background: #ffffff;">
+                <h3 style="font-size: 14px; margin: 0 0 15px 0; color: #334155; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; font-weight: 600;">Ecosystem Macro Evolution (Language Shares)</h3>
+                <canvas id="evolutionChart" height="160"></canvas>
+            </div>
+
+            <!-- Graph 4: Contributor Base Core History -->
+            <div style="border: 1px solid #e2e8f0; border-radius: 4px; padding: 15px; background: #ffffff;">
+                <h3 style="font-size: 14px; margin: 0 0 15px 0; color: #334155; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; font-weight: 600;">Active Contributor Footprint (Unique Users / 50 Wks)</h3>
+                <canvas id="retentionChart" height="160"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        (async function initExtendedAnalytics() {
+            const baseDir = '/analytics/';
+
+            function parseLocalCSV(filename) {
+                return new Promise((resolve, reject) => {
+                    Papa.parse(baseDir + filename, {
+                        download: true,
+                        header: true,
+                        dynamicTyping: true,
+                        complete: (results) => resolve(results.data),
+                        error: (error) => reject(error)
+                    });
+                });
+            }
+
+            try {
+                const dataset = await parseLocalCSV('solutions_dataset.csv');
+                const growthData = await parseLocalCSV('growth_by_week.csv');
+                const topLangs = await parseLocalCSV('top_languages.csv');
+                const polyglotData = await parseLocalCSV('polyglot_evolution.csv');
+                const retentionData = await parseLocalCSV('active_contributors_history.csv');
+
+                // Populate Metric Summaries
+                document.getElementById('stat-total').innerText = dataset.filter(row => row.week).length.toLocaleString();
+                document.getElementById('stat-users').innerText = new Set(dataset.map(row => row.user).filter(Boolean)).size;
+                document.getElementById('stat-langs').innerText = new Set(dataset.map(row => row.language).filter(Boolean)).size;
+
+                // 1. Velocity Timeline
+                const validGrowth = growthData.filter(d => d.week && d.total_submissions);
+                new Chart(document.getElementById('growthChart'), {
+                    type: 'line',
+                    data: {
+                        labels: validGrowth.map(d => `Wk ${d.week}`),
+                        datasets: [{
+                            data: validGrowth.map(d => d.total_submissions),
+                            borderColor: '#3182ce',
+                            backgroundColor: 'rgba(49, 130, 206, 0.03)',
+                            borderWidth: 2,
+                            fill: true,
+                            pointRadius: 0,
+                            tension: 0.15
+                        }]
+                    },
+                    options: { responsive: true, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } } } }
+                });
+
+                // 2. Top Languages distribution
+                const validLangs = topLangs.filter(d => d.language || d['']).slice(0, 10);
+                new Chart(document.getElementById('langChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: validLangs.map(d => d.language || d['']),
+                        datasets: [{
+                            data: validLangs.map(d => d.count || d.submissions || Object.values(d)[1] || 0),
+                            backgroundColor: '#4a5568',
+                            borderRadius: 2
+                        }]
+                    },
+                    options: { responsive: true, plugins: { legend: { display: false } } }
+                });
+
+                // 3. Stacked Area Chart: Polyglot Shift Over Time
+                const cleanPoly = polyglotData.filter(d => d.week_bucket !== null && d.week_bucket !== undefined);
+                const polyLabels = cleanPoly.map(d => `Wks ${d.week_bucket}-${d.week_bucket + 49}`);
+                const columns = Object.keys(cleanPoly[0]).filter(k => k !== 'week_bucket');
+
+                // Map standard design system tone parameters across color groups
+                const palette = ['#3182ce', '#e53e3e', '#718096'];
+
+                new Chart(document.getElementById('evolutionChart'), {
+                    type: 'line',
+                    data: {
+                        labels: polyLabels,
+                        datasets: columns.map((col, idx) => ({
+                            label: col.toUpperCase(),
+                            data: cleanPoly.map(d => d[col]),
+                            backgroundColor: palette[idx % palette.length],
+                            borderColor: palette[idx % palette.length],
+                            fill: true,
+                            pointRadius: 2
+                        }))
+                    },
+                    options: {
+                        responsive: true,
+                        scales: { x: { grid: { display: false } }, y: { stacked: true } },
+                        plugins: { legend: { position: 'top', labels: { boxWidth: 12 } } }
+                    }
+                });
+
+                // 4. Bar Chart: Unique Active Contributor Population History
+                const validRet = retentionData.filter(d => d.week_bucket !== null && d.week_bucket !== undefined);
+                new Chart(document.getElementById('retentionChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: validRet.map(d => `Cycle ${d.week_bucket}`),
+                        datasets: [{
+                            data: validRet.map(d => d.active_contributors),
+                            backgroundColor: '#2cc793',
+                            borderRadius: 2
+                        }]
+                    },
+                    options: { responsive: true, plugins: { legend: { display: false } } }
+                });
+
+            } catch (err) {
+                console.error("Analytical components skipped processing:", err);
+            }
+        })();
+    </script>
+    <!-- END OF ENHANCED ANALYTICS CHARTS SECTION -->
 
     <!-- TABLE OF CONTENTS -->
     <div class="chart-toc">
