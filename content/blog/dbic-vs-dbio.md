@@ -271,6 +271,10 @@ Assertion Count: 8
     -->  Result: PASSED  <--
 ```
 
+**What is yath?**
+
+In case you missed it, I wrote a blog post on the topic. Please take a look: [**Testing in Perl**](/blog/testing-in-perl).
+
 ***
 <br>
 
