@@ -20,10 +20,11 @@ Since then, `Plack` has been my top choice; for example, my personal website, [*
 
 1. [**History of Middleware**](#history-of-middleware)
 2. [**Advantages**](#advantages)
-3. [**Build Middleware**](#build-middleware)
-4. [**Build Application**](#build-application)
-5. [**Build Test Environment**](#build-test-environment)
-6. [**Moment of Truth**](#moment-of-truth)
+3. [**Install Prerequisite**](#install-prerequisite)
+4. [**Build Middleware**](#build-middleware)
+5. [**Build Application**](#build-application)
+6. [**Build Test Environment**](#build-test-environment)
+7. [**Moment of Truth**](#moment-of-truth)
 
 ## History of Middleware
 ***
@@ -87,6 +88,14 @@ In today’s world of cloud computing, mobile apps, and instant data, middleware
 > Pluggable (modular) architecture: You can take advantage of existing middleware from the developer ecosystem, so you won’t need to develop everything from scratch. For instance, if you want to enable file uploads, use multer; if you want to secure your HTTP headers, use helmet.
 
 > Ability to "Short-Circuit": As demonstrated in the code sample below, middleware allows you to immediately reject a bad/invalid/unauthenticated request before it has a chance to waste CPU cycles on your database or significant business logic processing.
+
+## Install Prerequisite
+***
+
+```bash
+$ cpanm -vS Plack
+$ pip install pytest httpx starlette
+```
 
 ## Build Middleware
 ***
