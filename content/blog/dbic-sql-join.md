@@ -137,6 +137,15 @@ my $orphan_profile = $schema->resultset('Profile')
 
 ### 1. INNER JOIN
 ***
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/inner-join.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+
 ```perl
 {
     my $rs = $schema->resultset('User')
@@ -149,6 +158,15 @@ my $orphan_profile = $schema->resultset('Profile')
 
 ### 2. LEFT JOIN
 ***
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/left-join.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+
 ```perl
 {
     my $rs = $schema->resultset('User')
@@ -160,6 +178,15 @@ my $orphan_profile = $schema->resultset('Profile')
 
 ### 3. LEFT JOIN WITH NULL CHECK
 ***
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/left-join-with-null-check.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+
 ```perl
 {
     my $rs = $schema->resultset('User')
@@ -172,6 +199,15 @@ my $orphan_profile = $schema->resultset('Profile')
 
 ### 4. RIGHT JOIN
 ***
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/right-join.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+
 ```perl
 {
     my $rs = $schema->resultset('Profile')
@@ -183,6 +219,15 @@ my $orphan_profile = $schema->resultset('Profile')
 
 ### 5. RIGHT JOIN WITH NULL CHECK
 ***
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/right-join-with-null-check.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+
 ```perl
 {
     my $rs = $schema->resultset('Profile')
@@ -195,6 +240,15 @@ my $orphan_profile = $schema->resultset('Profile')
 
 ### 6. FULL OUTER JOIN
 ***
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/full-outer-join.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+
 `DBIx::Class` has no native `FULL OUTER JOIN` support. There is no `join_type => 'full'` or `join_type => 'full outer'` option anywhere in [**DBIx::Class::Relationship**](https://metacpan.org/pod/DBIx::Class::Relationship) or the `join/prefetch` search attributes.
 
 Only `inner` and `left`/`left-outer` joins are understood by the `ORM` layer.
