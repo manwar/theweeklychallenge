@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/how-to-use-postgrest/">
+    <title>PostgREST: How to use? | Jul 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Introduction to PostgREST.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/how-to-use-postgrest/">
+    <meta property="og:title"       content="PostgREST: How to use?">
+    <meta property="og:description" content="Introduction to PostgREST.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/how-to-use-postgrest.jpg">
+    
+    <meta property="article:published_time" content="2026-07-04T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-07-04T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="PostgREST: How to use?">
+    <meta name="twitter:description" content="Introduction to PostgREST.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/how-to-use-postgrest.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/how-to-use-postgrest/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">PostgREST: How to use?</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>PostgREST: How to use?</span>
+        </nav>
+        <span class="reading-time" title="727 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  3 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 4 Jul 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/how-to-use-postgrest.jpg" alt="PostgREST: How to use?"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>Of all the databases I have worked with, <code>PostgreSQL</code>, is my favourite database. When I am doing unit test, I always go with <code>SQLite</code> as I find it easy to use in unit test. However if I am building a toy application, then I go with <code>MySQL</code>. It has enough features to build a complete application. Having said, for serious work, <code>PostgreSQL</code>, is my first choice. The best part about it is, <code>open-source</code>.</p>
+<p>Recently I had a chance to look at <code>Multi-Version Concurrency Control</code> feature of <code>PostgreSQL</code>. I published 3-part series on the subject, please do checkout if you haven&rsquo;t already.</p>
+<ul>
+<li><a href="/blog/postgresql-mvcc">PostgreSQL and MVCC</a></li>
+<li><a href="/blog/postgresql-mvcc-part-2">PostgreSQL and MVCC - Part 2</a></li>
+<li><a href="/blog/postgresql-mvcc-part-3">PostgreSQL and MVCC - Part 3</a></li>
+</ul>
+<h2 id="what-is-postgrest">What is PostgREST</h2>
+<hr>
+<blockquote>
+<p><code>PostgREST</code> is a standalone web server that turns your <code>PostgreSQL</code> database directly into a <code>RESTful API</code>.</p>
+</blockquote>
+<p>I find it fun to playwith, honestly.</p>
+<p>They have user friendly tutorials: <a href="https://docs.postgrest.org/en/v14/tutorials/tut0.html"><strong>Get it Running</strong></a> and <a href="https://docs.postgrest.org/en/v14/tutorials/tut1.html"><strong>The Golden Key</strong></a></p>
+<p>In this post, I am sharing my experience with <code>PostgREST</code>.</p>
+<p>I am running <code>Ubuntu 24.04.1 LTS</code> on <code>WSL2</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ uname -a
+</span></span><span style="display:flex;"><span>Linux manwar 6.6.87.2-microsoft-standard-WSL2 <span style="color:#75715e">#1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux</span>
+</span></span></code></pre></div><h2 id="setup">SETUP</h2>
+<hr>
+<p>Let&rsquo;s pull the tarball and install the binary.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ wget https://github.com/PostgREST/postgrest/releases/download/v14.13/postgrest-v14.13-linux-static-x86-64.tar.xz
+</span></span><span style="display:flex;"><span>$ tar xJf postgrest-v14.13-linux-static-x86-64.tar.xz
+</span></span><span style="display:flex;"><span>$ sudo mv postgresqt /usr/local/bin/
+</span></span><span style="display:flex;"><span>$ postgrest -v
+</span></span><span style="display:flex;"><span>PostgREST 14.13
+</span></span></code></pre></div><p>We need <code>PostgreSQL</code> database for demo and <code>Docker</code> is the best choice.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker run --name tutorial <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>             -p 5432:5432 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>             -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>notused <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>             -d postgres
+</span></span><span style="display:flex;"><span>$ docker ps -f <span style="color:#e6db74">&#34;name=tutorial&#34;</span> --format <span style="color:#e6db74">&#34;{{.Status}}&#34;</span>
+</span></span><span style="display:flex;"><span>Up <span style="color:#ae81ff">50</span> seconds
+</span></span></code></pre></div><h2 id="create-database">Create Database</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it tutorial psql -U postgres
+</span></span><span style="display:flex;"><span>psql <span style="color:#f92672">(</span>18.4 <span style="color:#f92672">(</span>Debian 18.4-1.pgdg13+1<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span> <span style="color:#66d9ef">for</span> help.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># create schema api;</span>
+</span></span><span style="display:flex;"><span>CREATE SCHEMA
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># create table api.todos (</span>
+</span></span><span style="display:flex;"><span>  id int primary key generated by default as identity,
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">done</span> boolean not null default false,
+</span></span><span style="display:flex;"><span>  task text not null,
+</span></span><span style="display:flex;"><span>  due timestamptz
+</span></span><span style="display:flex;"><span><span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>CREATE TABLE
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># insert into api.todos (task) values</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">(</span><span style="color:#e6db74">&#39;finish tutorial 0&#39;</span><span style="color:#f92672">)</span>, <span style="color:#f92672">(</span><span style="color:#e6db74">&#39;pat self on back&#39;</span><span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>INSERT <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e">#</span>
+</span></span></code></pre></div><h2 id="create-rolepermission">Create Role/Permission</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># create role web_anon nologin;</span>
+</span></span><span style="display:flex;"><span>CREATE ROLE
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># grant usage on schema api to web_anon;</span>
+</span></span><span style="display:flex;"><span>GRANT
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># grant select on api.todos to web_anon;</span>
+</span></span><span style="display:flex;"><span>GRANT
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># create role authenticator noinherit login password &#39;mysecretpassword&#39;;</span>
+</span></span><span style="display:flex;"><span>CREATE ROLE
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># grant web_anon to authenticator;</span>
+</span></span><span style="display:flex;"><span>GRANT ROLE
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># \q</span>
+</span></span></code></pre></div><h2 id="create-configuration">Create Configuration</h2>
+<hr>
+<p><strong>File:</strong> <code>tutorial.conf</code></p>
+<pre tabindex="0"><code>db-uri = &#34;postgres://authenticator:mysecretpassword@localhost:5432/postgres&#34;
+db-schemas = &#34;api&#34;
+db-anon-role = &#34;web_anon&#34;
+</code></pre><h2 id="start-server">Start Server</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ postgrest tutorial.conf
+</span></span><span style="display:flex;"><span>04/Jul/2026:20:42:10 +0100: Starting PostgREST 14.13...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>04/Jul/2026:20:42:10 +0100: Config reloaded
+</span></span><span style="display:flex;"><span>04/Jul/2026:20:42:10 +0100: Schema cache queried in 107.2 milliseconds
+</span></span><span style="display:flex;"><span>04/Jul/2026:20:42:10 +0100: Schema cache loaded in 1.1 milliseconds
+</span></span></code></pre></div><h2 id="test-api-call">Test API Call</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:3000/todos
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[{</span><span style="color:#e6db74">&#34;id&#34;</span>:1,<span style="color:#e6db74">&#34;done&#34;</span>:false,<span style="color:#e6db74">&#34;task&#34;</span>:<span style="color:#e6db74">&#34;finish tutorial 0&#34;</span>,<span style="color:#e6db74">&#34;due&#34;</span>:null<span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;id&#34;</span>:2,<span style="color:#e6db74">&#34;done&#34;</span>:false,<span style="color:#e6db74">&#34;task&#34;</span>:<span style="color:#e6db74">&#34;pat self on back&#34;</span>,<span style="color:#e6db74">&#34;due&#34;</span>:null<span style="color:#f92672">}]</span>
+</span></span></code></pre></div><h2 id="create-trusted-user">Create Trusted User</h2>
+<p>Earlier we created a <code>web_anon</code> role in the database with which to execute anonymous web requests.</p>
+<p>Let’s make a role called <code>todo_user</code> for users who authenticate with the API. This role will have the authority to do anything to the todo list.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it tutorial psql -U postgres
+</span></span><span style="display:flex;"><span>psql <span style="color:#f92672">(</span>18.4 <span style="color:#f92672">(</span>Debian 18.4-1.pgdg13+1<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span> <span style="color:#66d9ef">for</span> help.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># create role todo_user nologin;</span>
+</span></span><span style="display:flex;"><span>CREATE ROLE
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># grant todo_user to authenticator;</span>
+</span></span><span style="display:flex;"><span>GRANT ROLE
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># grant usage on schema api to todo_user;</span>
+</span></span><span style="display:flex;"><span>GRANT
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># grant all on api.todos to todo_user;</span>
+</span></span><span style="display:flex;"><span>GRANT
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e">#</span>
+</span></span></code></pre></div><h2 id="add-jwt-secret">Add JWT Secret</h2>
+<hr>
+<p>We need to add secret, <code>jwt-secret</code> to the configuration file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat tutorial.con
+</span></span><span style="display:flex;"><span>db-uri <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;postgres://authenticator:mysecretpassword@localhost:5432/postgres&#34;</span>
+</span></span><span style="display:flex;"><span>db-schemas <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;api&#34;</span>
+</span></span><span style="display:flex;"><span>db-anon-role <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;web_anon&#34;</span>
+</span></span><span style="display:flex;"><span>jwt-secret <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;supersecretpassphraseatleast32charslong&#34;</span>
+</span></span></code></pre></div><p>After updating the configuration, we need to restart the service: <code>postgrest tutorial.conf</code></p>
+<h2 id="create-token">Create Token</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ export TOKEN<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>python3 -c <span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">import base64, hmac, hashlib, json, time
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">def b64url(b): return base64.urlsafe_b64encode(b).decode(&#39;utf-8&#39;).rstrip(&#39;=&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 1. Calculate epoch time 5 minutes (300 seconds) from right now
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">five_minutes_from_now = int(time.time()) + 300
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">h = b64url(json.dumps({&#39;alg&#39;:&#39;HS256&#39;,&#39;typ&#39;:&#39;JWT&#39;}).encode())
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 2. Add the &#39;exp&#39; claim to the payload dictionary
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">p = b64url(json.dumps({&#39;role&#39;:&#39;todo_user&#39;, &#39;exp&#39;: five_minutes_from_now}).encode())
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">sig = b64url(hmac.new(b&#39;supersecretpassphraseatleast32charslong&#39;, f&#39;{h}.{p}&#39;.encode(), hashlib.sha256).digest())
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print(f&#39;{h}.{p}.{sig}&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><h2 id="post-call">POST call</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:3000/todos <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$TOKEN<span style="color:#e6db74">&#34;</span>   <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     -d <span style="color:#e6db74">&#39;{&#34;task&#34;: &#34;learn how to auth&#34;}&#39;</span>
+</span></span></code></pre></div><p>Test the result:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:3000/todos
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[{</span><span style="color:#e6db74">&#34;id&#34;</span>:2,<span style="color:#e6db74">&#34;done&#34;</span>:false,<span style="color:#e6db74">&#34;task&#34;</span>:<span style="color:#e6db74">&#34;pat self on back&#34;</span>,<span style="color:#e6db74">&#34;due&#34;</span>:null<span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;id&#34;</span>:1,<span style="color:#e6db74">&#34;done&#34;</span>:false,<span style="color:#e6db74">&#34;task&#34;</span>:<span style="color:#e6db74">&#34;finish tutorial 0&#34;</span>,<span style="color:#e6db74">&#34;due&#34;</span>:null<span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;id&#34;</span>:3,<span style="color:#e6db74">&#34;done&#34;</span>:false,<span style="color:#e6db74">&#34;task&#34;</span>:<span style="color:#e6db74">&#34;learn how to auth&#34;</span>,<span style="color:#e6db74">&#34;due&#34;</span>:null<span style="color:#f92672">}]</span>
+</span></span></code></pre></div><h2 id="filter">FILTER</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:3000/todos?id<span style="color:#f92672">=</span>eq.1
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[{</span><span style="color:#e6db74">&#34;id&#34;</span>:1,<span style="color:#e6db74">&#34;done&#34;</span>:false,<span style="color:#e6db74">&#34;task&#34;</span>:<span style="color:#e6db74">&#34;finish tutorial 0&#34;</span>,<span style="color:#e6db74">&#34;due&#34;</span>:null<span style="color:#f92672">}]</span>
+</span></span></code></pre></div><h2 id="column-selection">COLUMN SELECTION</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:3000/todos?select<span style="color:#f92672">=</span>task
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[{</span><span style="color:#e6db74">&#34;task&#34;</span>:<span style="color:#e6db74">&#34;finish tutorial 0&#34;</span><span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;task&#34;</span>:<span style="color:#e6db74">&#34;pat self on back&#34;</span><span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span> <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;task&#34;</span>:<span style="color:#e6db74">&#34;learn how to auth&#34;</span><span style="color:#f92672">}]</span>
+</span></span></code></pre></div><h2 id="delete">DELETE</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:3000/todos?id<span style="color:#f92672">=</span>eq.2 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     -X DELETE <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$TOKEN<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h2 id="update">UPDATE</h2>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ curl http://localhost:3000/todos?id<span style="color:#f92672">=</span>eq.3 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     -X PATCH
+</span></span><span style="display:flex;"><span>     -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     -d <span style="color:#e6db74">&#39;{&#34;task&#34;: &#34;UPDATE: learn how to auth&#34;}&#39;</span>
+</span></span></code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/postgresql" class="post-tag">PostgreSQL</a>
+        
+        <a href="https://theweeklychallenge.org/tags/postgrest" class="post-tag">PostgREST</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/guest-contribution/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">The Weekly Challenge - Guest Contributions</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Ada</span>
+                <span class="related-post-tag">APL</span>
+                <span class="related-post-tag">Awk</span>
+            </span>
+            <span class="related-post-date">4 Jul 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/postgresql-mvcc-part-3/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">PostgreSQL MVCC - Part 3</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">PostgreSQL</span>
+                <span class="related-post-tag">MVCC</span>
+            </span>
+            <span class="related-post-date">20 Jun 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/postgresql-mvcc-part-2/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">PostgreSQL MVCC - Part 2</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">PostgreSQL</span>
+                <span class="related-post-tag">MVCC</span>
+            </span>
+            <span class="related-post-date">16 Jun 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/how-to-use-postgrest\/';
+            this.page.identifier = '9a2747a1b2fe04a56baf4d65ecc0c30d';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
