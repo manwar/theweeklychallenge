@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/flatpak-with-perl/">
+    <title>Flatpak with Perl | Jul 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Introduction to Flatpak.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/flatpak-with-perl/">
+    <meta property="og:title"       content="Flatpak with Perl">
+    <meta property="og:description" content="Introduction to Flatpak.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/flatpak-with-perl.jpg">
+    
+    <meta property="article:published_time" content="2026-07-07T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-07-07T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Flatpak with Perl">
+    <meta name="twitter:description" content="Introduction to Flatpak.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/flatpak-with-perl.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/flatpak-with-perl/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Flatpak with Perl</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>Flatpak with Perl</span>
+        </nav>
+        <span class="reading-time" title="931 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  4 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 7 Jul 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/flatpak-with-perl.jpg" alt="Flatpak with Perl"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-bing"><strong>DISCLAIMER:</strong> Image is generated using <code>Bing</code>.</h4>
+<hr>
+<br>
+<p>When you’ve had experience installing software on <code>Linux</code> before, you probably know how much frustration it can cause: one application wants one version of a library installed in your system, while the second one wants an incompatible one, and this disables both of them.</p>
+<h2 id="whats-new">What&rsquo;s new</h2>
+<hr>
+<p><code>Flatpak</code> is a revolutionary new technology that will change the way we are installing and running programs on our <code>Linux</code> computers. Unlike traditional packages that need files unique to your distro, <code>Flatpak</code> packages contain both the application itself and all the dependencies it requires.</p>
+<h2 id="why-it-is-important">Why It Is Important</h2>
+<hr>
+<ol>
+<li>Compatibility: Any <code>Flatpak</code> application works the same way on <code>Ubuntu</code> or <code>Fedora</code>, in other words, <code>Flatpak</code> applications are truly universal.</li>
+<li>Security: Apps run in a sandbox that restricts their access to your data and hardware resources unless you give them permission.</li>
+<li>No Dependency Conflicts: You may update your <code>Flatpak</code> application without worrying about breaking the rules of your system or conflicting with your existing software.</li>
+</ol>
+<p>In general terms, <code>Flatpak</code> provides us with a universal, easy, and safe app store experience on <code>Linux</code>.</p>
+<ol>
+<li>Runtimes</li>
+</ol>
+<blockquote>
+<p>Applications cannot operate autonomously; they require system programs, essential libraries, and also graphics drivers all configured together. For accomplishing this, <code>Flatpak</code> makes use of <code>Runtimes</code>.</p>
+</blockquote>
+<ol start="2">
+<li>Applications</li>
+</ol>
+<blockquote>
+<p>In computer jargon, an application refers to the piece of software that you wish to execute (like <code>Spotify</code> or <code>LibreOffice</code>).</p>
+</blockquote>
+<ol start="3">
+<li>OSTree</li>
+</ol>
+<blockquote>
+<p>If you are familiar with <code>Git</code>, you will find something similar with <code>OSTree</code>. <code>OSTree</code> can also be called <code>&quot;Git for operating system binaries.&quot;</code></p>
+</blockquote>
+<ol start="4">
+<li>The Sandbox</li>
+</ol>
+<blockquote>
+<p>In order to maintain high level protection of your system, <code>Flatpak</code> uses a special technology called <code>Bubblewrap</code> which is a low-level utility that provides separation of applications from the operating system.</p>
+</blockquote>
+<p>It is common practice among experts to compare <code>Flatpak</code> and <code>Docker</code> owing to the use of containers and isolation of applications. Nevertheless, the tools have been created for two different worlds.</p>
+<p>In the real world, <code>Flatpak</code> solution suits to the desktop environment, while <code>Docker</code> has the application that fits perfectly to the server environment.</p>
+<p><code>Docker</code> is about creating copies of server environments for the same server to work on many platforms.</p>
+<p><code>Flatpak</code> is focused on creating copies of applications for their usage in many different platforms.</p>
+<h2 id="flathub">Flathub</h2>
+<hr>
+<p><code>Flathub</code> is the basic repository for the applications developed along the <code>Flatpak</code> platform.</p>
+<p>The term <code>Flatpak</code> refers to the way we create and install applications on <code>Linux</code> whereas <code>Flathub</code> is somewhat similar to that of an online store that sells the application and other products. <code>Flathub</code> could be thought of as equivalent to <code>Google play store</code> or <code>Apple App Store</code>.</p>
+<p>If you want to know more about the importance of <code>Flathub</code>, you should know how the <code>Linux</code> software was traditionally distributed.</p>
+<p>Previously, when a developer created a software application, he/she used to manually create a separate installer for each <code>Linux</code> distribution using different formats for <code>Ubuntu/Debian</code> package(.deb), <code>Fedora(RPM)</code>, etc.</p>
+<p>In one of my previous blog posts, I wrote about building a <a href="/blog/cpan-deb-package"><strong>Deb package on Linux</strong></a>.</p>
+<p>Now with <code>Flathub</code>, developers can create an application only once using <code>Flatpak</code> and upload it to the <code>Flathub</code> store.</p>
+<p>It allows other users from any distribution to install that application in no time.</p>
+<p>If <code>Flatpak</code> is like the shipping container that holds the product, <code>Flathub</code> is like the world-famous shipping yard where all shipping containers are kept in order before they are shipped away to their destinations. Without <code>Flathub</code>, <code>Flatpak</code> is just another application framework; with <code>Flathub</code>, it becomes a complete shopping platform.</p>
+<p>Let&rsquo;s do some real work:</p>
+<h2 id="step-1-prepare-manifest-file">Step 1: Prepare Manifest File</h2>
+<hr>
+<p>Make sure your <code>org.example.cpanapp.yaml</code> file looks exactly like this. This consolidated version specifies the right runtime environment, pre-loads the hidden dependencies, and maps the internal <code>Perl</code> paths.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ cat org.example.cpanapp.yaml
+</span></span><span style="display:flex;"><span>id: org.example.cpanapp
+</span></span><span style="display:flex;"><span>runtime: org.freedesktop.Sdk
+</span></span><span style="display:flex;"><span>runtime-version: <span style="color:#e6db74">&#39;24.08&#39;</span>
+</span></span><span style="display:flex;"><span>sdk: org.freedesktop.Sdk
+</span></span><span style="display:flex;"><span>command: app.pl
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>build-options:
+</span></span><span style="display:flex;"><span>  env:
+</span></span><span style="display:flex;"><span>    PERL5LIB: /app/lib/perl5:/app/share/perl5
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>modules:
+</span></span><span style="display:flex;"><span>  - name: perl-module-build
+</span></span><span style="display:flex;"><span>    buildsystem: simple
+</span></span><span style="display:flex;"><span>    build-commands:
+</span></span><span style="display:flex;"><span>      - perl Build.PL --install_base<span style="color:#f92672">=</span>/app
+</span></span><span style="display:flex;"><span>      - ./Build
+</span></span><span style="display:flex;"><span>      - ./Build install
+</span></span><span style="display:flex;"><span>    sources:
+</span></span><span style="display:flex;"><span>      - type: archive
+</span></span><span style="display:flex;"><span>        url: https://cpan.metacpan.org/authors/id/L/LE/LEONT/Module-Build-0.4234.tar.gz
+</span></span><span style="display:flex;"><span>        sha256: 66aeac6127418be5e471ead3744648c766bd01482825c5b66652675f2bc86a8f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - name: perl-text-asciitable
+</span></span><span style="display:flex;"><span>    buildsystem: simple
+</span></span><span style="display:flex;"><span>    build-commands:
+</span></span><span style="display:flex;"><span>      - perl Makefile.PL INSTALL_BASE<span style="color:#f92672">=</span>/app
+</span></span><span style="display:flex;"><span>      - make
+</span></span><span style="display:flex;"><span>      - make install
+</span></span><span style="display:flex;"><span>    sources:
+</span></span><span style="display:flex;"><span>      - type: archive
+</span></span><span style="display:flex;"><span>        url: https://cpan.metacpan.org/authors/id/L/LU/LUNATIC/Text-ASCIITable-0.22.tar.gz
+</span></span><span style="display:flex;"><span>        sha256: e4d39537db35d75eb88032d2d26a707733fe33b6baeb212f9c733fc4bff07e43
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  - name: perl-main-app
+</span></span><span style="display:flex;"><span>    buildsystem: simple
+</span></span><span style="display:flex;"><span>    build-commands:
+</span></span><span style="display:flex;"><span>      - install -D app.pl /app/bin/app.pl
+</span></span><span style="display:flex;"><span>    sources:
+</span></span><span style="display:flex;"><span>      - type: dir
+</span></span><span style="display:flex;"><span>        path: src
+</span></span></code></pre></div><h2 id="step-2-prepare-simple-app">Step 2: Prepare Simple App</h2>
+<hr>
+<p><strong>File:</strong> <code>src/app.pl</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> lib <span style="color:#e6db74">&#39;/app/lib/perl5&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Text::ASCIITable;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;========================================\n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;   Perl Flatpak with CPAN Dependency    \n&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;========================================\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a table using the bundled CPAN module</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $t <span style="color:#f92672">=</span> Text::ASCIITable<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>({ headingText <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Flatpak Environment Sandbox&#39;</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$t<span style="color:#f92672">-&gt;</span>setCols(<span style="color:#e6db74">&#39;Component&#39;</span>, <span style="color:#e6db74">&#39;Status&#39;</span>, <span style="color:#e6db74">&#39;Details&#39;</span>);
+</span></span><span style="display:flex;"><span>$t<span style="color:#f92672">-&gt;</span>addRow(<span style="color:#e6db74">&#39;Perl Core&#39;</span>, <span style="color:#e6db74">&#39;Loaded&#39;</span>, $]);
+</span></span><span style="display:flex;"><span>$t<span style="color:#f92672">-&gt;</span>addRow(<span style="color:#e6db74">&#39;Text::ASCIITable&#39;</span>, <span style="color:#e6db74">&#39;Loaded&#39;</span>, $Text::ASCIITable::VERSION);
+</span></span><span style="display:flex;"><span>$t<span style="color:#f92672">-&gt;</span>addRow(<span style="color:#e6db74">&#39;Sandbox Path&#39;</span>, <span style="color:#e6db74">&#39;Secure&#39;</span>, <span style="color:#e6db74">&#39;/app&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">print</span> $t;
+</span></span></code></pre></div><h2 id="step-3-add-flathub-remote">Step 3: Add Flathub Remote</h2>
+<hr>
+<p>To ensure your local user profile can download the required building blocks from the <code>Flatpak</code> store without needing root/sudo privileges.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+</span></span></code></pre></div><h2 id="step-4-install-freedesktop-sdk">Step 4: Install Freedesktop SDK</h2>
+<hr>
+<p>Download the modern <code>24.08</code> environment development kit where the underlying perl runtime binary lives:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ flatpak install --user flathub org.freedesktop.Sdk//24.08
+</span></span></code></pre></div><h2 id="step-5-build--install-app">Step 5: Build / Install App</h2>
+<hr>
+<p>This command downloads the <code>CPAN</code> modules, compiles them inside the network-isolated sandbox container, registers your local <code>src/app.pl</code> file, and installs the finished app bundle cleanly into your user space:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ flatpak-builder --user --install --force-clean build-dir org.example.cpanapp.yaml
+</span></span></code></pre></div><h2 id="step-6-run-app">Step 6: Run App</h2>
+<hr>
+<p>Launch your newly containerised <code>Perl</code> application from anywhere in your terminal:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ flatpak run org.example.cpanapp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">========================================</span>
+</span></span><span style="display:flex;"><span>   Perl Flatpak with CPAN Dependency
+</span></span><span style="display:flex;"><span><span style="color:#f92672">========================================</span>
+</span></span><span style="display:flex;"><span>.--------------------------------------.
+</span></span><span style="display:flex;"><span>|      Flatpak Environment Sandbox     |
+</span></span><span style="display:flex;"><span>+------------------+--------+----------+
+</span></span><span style="display:flex;"><span>| Component        | Status | Details  |
+</span></span><span style="display:flex;"><span>+------------------+--------+----------+
+</span></span><span style="display:flex;"><span>| Perl Core        | Loaded | 5.040004 |
+</span></span><span style="display:flex;"><span>| Text::ASCIITable | Loaded |     0.22 |
+</span></span><span style="display:flex;"><span>| Sandbox Path     | Secure | /app     |
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;------------------+--------+----------&#39;</span>
+</span></span></code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">Perl</a>
+        
+        <a href="https://theweeklychallenge.org/tags/flatpak" class="post-tag">Flatpak</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/recap-challenge-377/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">RECAP - The Weekly Challenge - 377</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+            </span>
+            <span class="related-post-date">6 Jul 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/recap-challenge-378/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">RECAP - The Weekly Challenge - 378</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+            </span>
+            <span class="related-post-date">6 Jul 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/recap-challenge-380/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">RECAP - The Weekly Challenge - 380</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+            </span>
+            <span class="related-post-date">6 Jul 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/flatpak-with-perl\/';
+            this.page.identifier = 'ec55d237585022b6882235bf24331cf1';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
