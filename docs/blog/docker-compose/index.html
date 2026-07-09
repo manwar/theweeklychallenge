@@ -154,7 +154,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>Docker Compose</span>
         </nav>
-        <span class="reading-time" title="863 words">
+        <span class="reading-time" title="839 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -183,196 +183,134 @@ if (localStorage.getItem('twc-theme') === 'light') {
         <h4 id="disclaimer-image-is-generated-using-free-version-of-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>FREE</code> version of <code>ChatGPT</code>.</h4>
 <hr>
 <br>
-<div class="container">
-    <div class="row g-4 justify-content-center">
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/build-docker-image" title="Build Docker Image">
-                <img src="/images/blog/build-docker-image-mini.png" class="img-fluid"
-                style="object-fit: cover; aspect-ratio: 16/9;">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/docker-volume" title="Docker Volume">
-                <img src="/images/blog/docker-volume-mini.png" class="img-fluid"
-                style="object-fit: cover; aspect-ratio: 16/9;">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/docker-secret" title="Docker Secret">
-                <img src="/images/blog/docker-secret-mini.png" class="img-fluid"
-                style="object-fit: cover; aspect-ratio: 16/9;">
-            </a>
-        </div>
-        <div class="col-12 col-sm mb-4 p-2 text-center">
-            <a href="/blog/terraform-docker" title="Terraform with Docker">
-                <img src="/images/blog/terraform-docker-mini.png" class="img-fluid"
-                style="object-fit: cover; aspect-ratio: 16/9;">
-            </a>
-        </div>
-    </div>
-</div>
-<br>
-<h2 id="docker-compose">Docker Compose</h2>
-<hr>
-<h3 id="1-setup"><a href="#setup">1. Setup</a></h3>
-<h3 id="2-docker-compose-vs-docker-compose"><a href="#docker-compose-vs-docker-compose">2. docker-compose vs docker compose</a></h3>
-<h3 id="3-plan"><a href="#plan">3. Plan</a></h3>
-<h3 id="a-create-a-docker-network"><a href="#create-a-docker-network">     a) Create a Docker Network</a></h3>
-<h3 id="b-create-the-mongodb-container"><a href="#create-the-mongodb-container">     b) Create the MongoDB Container</a></h3>
-<h3 id="c-create-the-mongo-express-container"><a href="#create-the-mongo-express-container">     c) Create the Mongo Express Container</a></h3>
-<h3 id="d-verify-containers"><a href="#verify-containers">     d) Verify Containers</a></h3>
-<h3 id="e-test-connection"><a href="#test-connection">     e) Test Connection</a></h3>
-<h3 id="4-observations"><a href="#observations">4. Observations</a></h3>
-<h3 id="5-docker-compose"><a href="#docker-compose">5. Docker Compose</a></h3>
-<h3 id="6-cleanup"><a href="#cleanup">6. Cleanup</a></h3>
-<h3 id="7-conclusion"><a href="#conclusion">7. Conclusion</a></h3>
-<br>
+<ol>
+<li><a href="#setup">Setup</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#plan">Plan</a>
+<ul>
+<li>3.1 <a href="#create-a-docker-network">Create a Docker Network</a></li>
+<li>3.2 <a href="#create-the-mongodb-container">Create the MongoDB Container</a></li>
+<li>3.3 <a href="#create-the-mongo-express-container">Create the Mongo Express Container</a></li>
+<li>3.4 <a href="#verify-containers">Verify Containers</a></li>
+<li>3.5 <a href="#test-connection">Test Connection</a></li>
+</ul>
+</li>
+<li><a href="#observations">Observations</a></li>
+<li><a href="#docker-compose">Docker Compose</a></li>
+<li><a href="#cleanup">Cleanup</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
 <h3 id="setup">Setup</h3>
 <hr>
 <p>For this post, we will need <code>docker</code>.</p>
 <p>Let’s quickly set up the environment and verify the installation.</p>
-<br>
-<pre><code>$ sudo apt update
-$ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-$ sudo usermod -aG docker $USER
-</code></pre>
-<br>
-<p>Verify the installation:</p>
-<br>
-<pre><code>$ docker --version
-Docker version 28.0.1, build 068a01e
-</code></pre>
-<br>
-<p><code>Edward J. Sabol</code>, on <code>Facebook</code> reminded me that if I am using recent version of <code>docker</code> then I can use the <code>compose</code> sub-command of the <code>docker</code> also in my examples.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo apt update
+</span></span><span style="display:flex;"><span>$ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</span></span><span style="display:flex;"><span>$ sudo usermod -aG docker $USER
+</span></span></code></pre></div><p>Verify the installation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker --version
+</span></span><span style="display:flex;"><span>Docker version 28.0.1, build 068a01e
+</span></span></code></pre></div><p><code>Edward J. Sabol</code>, on <code>Facebook</code> reminded me that if I am using recent version of <code>docker</code> then I can use the <code>compose</code> sub-command of the <code>docker</code> also in my examples.</p>
 <p>Honestly speaking this was news to me, I had no clue if it was existed.</p>
 <p>All I knew was <code>docker-compose</code>, standalone tool for managing multi-container <code>Docker</code> applications.</p>
 <p>Just for fun, I am using the <code>docker compose</code> command in this post.</p>
 <p>Having said, this will also work with <code>docker-compose</code> without any change.</p>
-<br>
-<h2 id="docker-compose-vs-docker-compose">&lsquo;docker-compose&rsquo; vs &lsquo;docker compose&rsquo;</h2>
+<h2 id="introduction">Introduction</h2>
 <hr>
-<h3 id="docker-compose-1">docker-compose</h3>
-<br>
-<pre><code>1. It is commonly referred as 'Compose V1'.
-2. It is Python-based tool.
-3. It needs separate installation e.g. sudo apt install docker-compose.
-4. It is slower comparative to 'docker compose'.
-</code></pre>
-<br>
-<h3 id="docker-compose-2">docker compose</h3>
-<br>
-<pre><code>1. It is referred as 'Compose V2'.
-2. It is Go-based tool.
-3. It is integrated with Docker CLI since Docker v20.10.0.
-4. It is much faster than 'docker-compose'.
-</code></pre>
-<br>
+<h3 id="docker-compose">docker-compose</h3>
+<ol>
+<li>It is commonly referred as <code>Compose V1</code>.</li>
+<li>It is Python-based tool.</li>
+<li>It needs separate installation e.g. sudo apt install docker-compose.</li>
+<li>It is slower comparative to &lsquo;docker compose&rsquo;.</li>
+</ol>
+<h3 id="docker-compose-1">docker compose</h3>
+<ol>
+<li>It is referred as <code>Compose V2</code>.</li>
+<li>It is Go-based tool.</li>
+<li>It is integrated with Docker CLI since Docker v20.10.0.</li>
+<li>It is much faster than &lsquo;docker-compose&rsquo;.</li>
+</ol>
 <p>There is a <a href="https://stackoverflow.com/questions/66514436/difference-between-docker-compose-and-docker-compose"><strong>stackoverflow post</strong></a> that goes into the details, if you are interested.</p>
 <p>This is what I have on my box:</p>
-<br>
-<pre><code>$ docker compose version
-Docker Compose version v2.33.1
-
-$ docker-compose version
-docker-compose version 1.29.2, build unknown
-docker-py version: 5.0.3
-CPython version: 3.12.3
-OpenSSL version: OpenSSL 3.0.13 30 Jan 2024
-</code></pre>
-<br>
-<p>I have created an alias <code>dps</code> for the command <code>docker ps</code>, as shown below:</p>
-<br>
-<pre><code>alias dps='docker ps --format &quot;Container ID: {{.ID}}\nImage: {{.Image}}\nCommand: {{.Command}}\nCreated: {{.CreatedAt}}\nStatus: {{.Status}}\nPorts: {{.Ports}}\nNames: {{.Names}}\n&quot;'
-</code></pre>
-<br>
-<p>For this demo, I am going to use the latest <code>MongoDB</code> and <code>Mongo Express</code> images.</p>
-<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker compose version
+</span></span><span style="display:flex;"><span>Docker Compose version v2.33.1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ docker-compose version
+</span></span><span style="display:flex;"><span>docker-compose version 1.29.2, build unknown
+</span></span><span style="display:flex;"><span>docker-py version: 5.0.3
+</span></span><span style="display:flex;"><span>CPython version: 3.12.3
+</span></span><span style="display:flex;"><span>OpenSSL version: OpenSSL 3.0.13 <span style="color:#ae81ff">30</span> Jan <span style="color:#ae81ff">2024</span>
+</span></span></code></pre></div><p>I have created an alias <code>dps</code> for the command <code>docker ps</code>, as shown below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ alias dps<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;docker ps --format &#34;Container ID: {{.ID}}\nImage: {{.Image}}\nCommand: {{.Command}}\nCreated: {{.CreatedAt}}\nStatus: {{.Status}}\nPorts: {{.Ports}}\nNames: {{.Names}}\n&#34;&#39;</span>
+</span></span></code></pre></div><p>For this demo, I am going to use the latest <code>MongoDB</code> and <code>Mongo Express</code> images.</p>
 <h2 id="plan">Plan</h2>
 <hr>
 <p>The goal is to create a container running <code>Mongo Express</code>, linked to a <code>MongoDB</code> container.</p>
 <p>We will start with a simple straight forward approach using just <code>docker</code> command.</p>
-<br>
 <h3 id="create-a-docker-network">Create a Docker Network</h3>
 <hr>
 <p>First, let&rsquo;s create a docker network named: <code>mongo-network</code></p>
-<br>
-<pre><code>$ docker network create mongo-network
-7ca8d14845c684336d8e494515670675a8685646455e3761a0e88b0ff4e3234e
-
-$ docker network ls
-NETWORK ID     NAME            DRIVER    SCOPE
-1240c8ea9eb8   bridge          bridge    local
-d0b60d358dfb   host            host      local
-7ca8d14845c6   mongo-network   bridge    local
-</code></pre>
-<br>
-<h3 id="create-the-mongodb-container">Create the MongoDB Container</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker network create mongo-network
+</span></span><span style="display:flex;"><span>7ca8d14845c684336d8e494515670675a8685646455e3761a0e88b0ff4e3234e
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ docker network ls
+</span></span><span style="display:flex;"><span>NETWORK ID     NAME            DRIVER    SCOPE
+</span></span><span style="display:flex;"><span>1240c8ea9eb8   bridge          bridge    local
+</span></span><span style="display:flex;"><span>d0b60d358dfb   host            host      local
+</span></span><span style="display:flex;"><span>7ca8d14845c6   mongo-network   bridge    local
+</span></span></code></pre></div><h3 id="create-the-mongodb-container">Create the MongoDB Container</h3>
 <hr>
 <p>Next, We will create a <code>MongoDB</code> container:</p>
-<br>
-<pre><code>$ docker run -d \
-  -p 27017:27017 \
-  -e MONGO_INITDB_ROOT_USERNAME=admin \
-  -e MONGO_INITDB_ROOT_PASSWORD=supersecret \
-  --network mongo-network \
-  --name mongodb \
-  mongo
-048833d02f2693bf7bae641611cc466698fb5857b6503ef5743054e9a5518a31
-</code></pre>
-<br>
-<h3 id="create-the-mongo-express-container">Create the Mongo Express Container</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 27017:27017 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e MONGO_INITDB_ROOT_USERNAME<span style="color:#f92672">=</span>admin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e MONGO_INITDB_ROOT_PASSWORD<span style="color:#f92672">=</span>supersecret <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --network mongo-network <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name mongodb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  mongo
+</span></span><span style="display:flex;"><span>  048833d02f2693bf7bae641611cc466698fb5857b6503ef5743054e9a5518a31
+</span></span></code></pre></div><h3 id="create-the-mongo-express-container">Create the Mongo Express Container</h3>
 <hr>
 <p>Now, we will create the <code>Mongo Express</code> container.</p>
-<br>
-<pre><code>$ docker run -d \
-  -p 8081:8081 \
-  -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
-  -e ME_CONFIG_MONGODB_ADMINPASSWORD=supersecret \
-  -e ME_CONFIG_MONGODB_SERVER=mongodb \
-  --network mongo-network \
-  --name mongo-express \
-  mongo-express
-a82c59ffbee01f0b1d466b747e8288846c1e11f187205e10fddc6637f864c878
-</code></pre>
-<br>
-<h3 id="verify-containers">Verify Containers</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 8081:8081 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e ME_CONFIG_MONGODB_ADMINUSERNAME<span style="color:#f92672">=</span>admin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e ME_CONFIG_MONGODB_ADMINPASSWORD<span style="color:#f92672">=</span>supersecret <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e ME_CONFIG_MONGODB_SERVER<span style="color:#f92672">=</span>mongodb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --network mongo-network <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name mongo-express <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  mongo-express
+</span></span><span style="display:flex;"><span>  a82c59ffbee01f0b1d466b747e8288846c1e11f187205e10fddc6637f864c878
+</span></span></code></pre></div><h3 id="verify-containers">Verify Containers</h3>
 <hr>
 <p>Check the status of both containers:</p>
-<br>
-<pre><code>$ dps
-Container ID: a82c59ffbee0
-Image: mongo-express
-Command: &quot;/sbin/tini -- /dock…&quot;
-Created: 2025-03-20 19:14:21 +0000 GMT
-Status: Up About a minute
-Ports: 0.0.0.0:8081-&gt;8081/tcp, [::]:8081-&gt;8081/tcp
-Names: mongo-express
-
-Container ID: 048833d02f26
-Image: mongo
-Command: &quot;docker-entrypoint.s…&quot;
-Created: 2025-03-20 19:11:09 +0000 GMT
-Status: Up 4 minutes
-Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
-Names: mongodb
-</code></pre>
-<br>
-<h3 id="test-connection">Test Connection</h3>
-<hr>
-<p><code>Mongo Express</code> should be accessible at <code>http://localhost:8081</code> using the credential <code>admin/pass</code>.</p>
-<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ dps
+</span></span><span style="display:flex;"><span>Container ID: a82c59ffbee0
+</span></span><span style="display:flex;"><span>Image: mongo-express
+</span></span><span style="display:flex;"><span>Command: <span style="color:#e6db74">&#34;/sbin/tini -- /dock…&#34;</span>
+</span></span><span style="display:flex;"><span>Created: 2025-03-20 19:14:21 +0000 GMT
+</span></span><span style="display:flex;"><span>Status: Up About a minute
+</span></span><span style="display:flex;"><span>Ports: 0.0.0.0:8081-&gt;8081/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:8081-&gt;8081/tcp
+</span></span><span style="display:flex;"><span>Names: mongo-express
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Container ID: 048833d02f26
+</span></span><span style="display:flex;"><span>Image: mongo
+</span></span><span style="display:flex;"><span>Command: <span style="color:#e6db74">&#34;docker-entrypoint.s…&#34;</span>
+</span></span><span style="display:flex;"><span>Created: 2025-03-20 19:11:09 +0000 GMT
+</span></span><span style="display:flex;"><span>Status: Up <span style="color:#ae81ff">4</span> minutes
+</span></span><span style="display:flex;"><span>Ports: 0.0.0.0:27017-&gt;27017/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:27017-&gt;27017/tcp
+</span></span><span style="display:flex;"><span>Names: mongodb
+</span></span></code></pre></div><p><code>Mongo Express</code> should be accessible at <code>http://localhost:8081</code> using the credential <code>admin/pass</code>.</p>
 <h2 id="observations">Observations</h2>
 <hr>
 <p>I found this process tedious and time consuming.</p>
 <p>Imagine if you had to create multiple containers manually, it would quickly become a nightmare.</p>
-<br>
-<h2 id="docker-compose-3">Docker Compose</h2>
+<h2 id="docker-compose-2">Docker Compose</h2>
 <hr>
 <p>To make your life easy and comfortable, <code>docker compose</code>, comes into the picture.</p>
-<br>
 <h3 id="advantages-of-docker-compose">Advantages of Docker Compose</h3>
 <hr>
-<br>
 <ul>
 <li>
 <p>Define and manage multiple containers in a single file.</p>
@@ -387,85 +325,68 @@ Names: mongodb
 <p>No need to remember long commands for running containers.</p>
 </li>
 </ul>
-<br>
 <h2 id="cleanup">Cleanup</h2>
 <hr>
 <p>Let&rsquo;s stop and remove both containers including the network, so that we have a clean setup.</p>
-<br>
-<pre><code>$ docker stop mongodb mongo-express
-$ docker rm mongodb mongo-express
-$ docker network rm mongo-network
-</code></pre>
-<br>
-<p>Re-creating <code>MongoDB</code> and <code>Mongo Express</code> containers using <code>docker compose</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker stop mongodb mongo-express
+</span></span><span style="display:flex;"><span>$ docker rm mongodb mongo-express
+</span></span><span style="display:flex;"><span>$ docker network rm mongo-network
+</span></span></code></pre></div><p>Re-creating <code>MongoDB</code> and <code>Mongo Express</code> containers using <code>docker compose</code>.</p>
 <p>First, we will create the configuration file: <code>docker-compose.yml</code></p>
-<br>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3.8&#39;</span>
-</span></span><span style="display:flex;"><span>services:
-</span></span><span style="display:flex;"><span>  mongodb:
-</span></span><span style="display:flex;"><span>    image: mongo
-</span></span><span style="display:flex;"><span>    ports:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#ae81ff">27017</span>:<span style="color:#ae81ff">27017</span>
-</span></span><span style="display:flex;"><span>    environment:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> MONGO_INITDB_ROOT_USERNAME<span style="color:#f92672">=</span>admin
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> MONGO_INITDB_ROOT_PASSWORD<span style="color:#f92672">=</span>supersecret
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mongodb</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mongo</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">27017</span>:<span style="color:#ae81ff">27017</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">MONGO_INITDB_ROOT_USERNAME=admin</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">MONGO_INITDB_ROOT_PASSWORD=supersecret</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  mongo<span style="color:#f92672">-</span>express:
-</span></span><span style="display:flex;"><span>    image: mongo<span style="color:#f92672">-</span>express
-</span></span><span style="display:flex;"><span>    ports:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#ae81ff">8081</span>:<span style="color:#ae81ff">8081</span>
-</span></span><span style="display:flex;"><span>    environment:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> ME_CONFIG_MONGODB_ADMINUSERNAME<span style="color:#f92672">=</span>admin
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> ME_CONFIG_MONGODB_ADMINPASSWORD<span style="color:#f92672">=</span>supersecret
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> ME_CONFIG_MONGODB_SERVER<span style="color:#f92672">=</span>mongodb
-</span></span><span style="display:flex;"><span>    depends_on:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">-</span> <span style="color:#e6db74">&#34;mongodb&#34;</span>
-</span></span></code></pre></div><br>
-<p>That&rsquo;s it all, we need.</p>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mongo-express</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mongo-express</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">8081</span>:<span style="color:#ae81ff">8081</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">ME_CONFIG_MONGODB_ADMINUSERNAME=admin</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">ME_CONFIG_MONGODB_ADMINPASSWORD=supersecret</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">ME_CONFIG_MONGODB_SERVER=mongodb</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;mongodb&#34;</span>
+</span></span></code></pre></div><p>That&rsquo;s it all, we need.</p>
 <p>To start the containers, simply run one command:</p>
-<br>
-<pre><code>$ docker compose up -d
-✔ Network docker-compose_default            Created             0.1s
-✔ Container docker-compose-mongodb-1        Started             0.3s
-✔ Container docker-compose-mongo-express-1  Started             0.3s
-</code></pre>
-<br>
-<p>Did you notice, it automatically created the network for us!</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker compose up -d
+</span></span><span style="display:flex;"><span>✔ Network docker-compose_default            Created             0.1s
+</span></span><span style="display:flex;"><span>✔ Container docker-compose-mongodb-1        Started             0.3s
+</span></span><span style="display:flex;"><span>✔ Container docker-compose-mongo-express-1  Started             0.3s
+</span></span></code></pre></div><p>Did you notice, it automatically created the network for us!</p>
 <p>Let&rsquo;s verify the status of both containers:</p>
-<br>
-<pre><code>$ dps
-Container ID: 4bfd8ccc3715
-Image: mongo
-Command: &quot;docker-entrypoint.s…&quot;
-Created: 2025-03-20 19:32:20 +0000 GMT
-Status: Up About a minute
-Ports: 0.0.0.0:27017-&gt;27017/tcp, [::]:27017-&gt;27017/tcp
-Names: docker-compose_mongodb_1
-
-Container ID: 2d34f54091b6
-Image: mongo-express
-Command: &quot;/sbin/tini -- /dock…&quot;
-Created: 2025-03-20 19:32:20 +0000 GMT
-Status: Up About a minute
-Ports: 0.0.0.0:8081-&gt;8081/tcp, [::]:8081-&gt;8081/tcp
-Names: docker-compose_mongo-express_1
-</code></pre>
-<br>
-<p><code>Mongo Express</code> is still accessible at: <code>http://localhost:8081</code></p>
-<br>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ dps
+</span></span><span style="display:flex;"><span>Container ID: 4bfd8ccc3715
+</span></span><span style="display:flex;"><span>Image: mongo
+</span></span><span style="display:flex;"><span>Command: <span style="color:#e6db74">&#34;docker-entrypoint.s…&#34;</span>
+</span></span><span style="display:flex;"><span>Created: 2025-03-20 19:32:20 +0000 GMT
+</span></span><span style="display:flex;"><span>Status: Up About a minute
+</span></span><span style="display:flex;"><span>Ports: 0.0.0.0:27017-&gt;27017/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:27017-&gt;27017/tcp
+</span></span><span style="display:flex;"><span>Names: docker-compose_mongodb_1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Container ID: 2d34f54091b6
+</span></span><span style="display:flex;"><span>Image: mongo-express
+</span></span><span style="display:flex;"><span>Command: <span style="color:#e6db74">&#34;/sbin/tini -- /dock…&#34;</span>
+</span></span><span style="display:flex;"><span>Created: 2025-03-20 19:32:20 +0000 GMT
+</span></span><span style="display:flex;"><span>Status: Up About a minute
+</span></span><span style="display:flex;"><span>Ports: 0.0.0.0:8081-&gt;8081/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:8081-&gt;8081/tcp
+</span></span><span style="display:flex;"><span>Names: docker-compose_mongo-express_1
+</span></span></code></pre></div><p><code>Mongo Express</code> is still accessible at: <code>http://localhost:8081</code></p>
 <p>To stop both the containers, simply run one command:</p>
-<br>
-<pre><code>$ docker compose down
-✔ Container docker-compose-mongodb-1        Removed             0.7s
-✔ Container docker-compose-mongo-express-1  Removed             0.9s
-✔ Network docker-compose_default            Removed             0.6s
-</code></pre>
-<br>
-<h2 id="conclusion">Conclusion</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker compose down
+</span></span><span style="display:flex;"><span>✔ Container docker-compose-mongodb-1        Removed             0.7s
+</span></span><span style="display:flex;"><span>✔ Container docker-compose-mongo-express-1  Removed             0.9s
+</span></span><span style="display:flex;"><span>✔ Network docker-compose_default            Removed             0.6s
+</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
 <hr>
 <p>Isn&rsquo;t it much simpler and easier to manage?</p>
 <p>This is just the <code>tip of the iceberg</code> when it comes to <code>docker compose</code>.</p>
-<br>
 <hr>
 <p><code>Keep Hacking !!</code></p>
 
