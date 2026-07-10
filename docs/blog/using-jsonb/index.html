@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/using-jsonb/">
+    <title>Using JSONB | Jul 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Using JSONB in PostgreSQL and MySQL.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/using-jsonb/">
+    <meta property="og:title"       content="Using JSONB">
+    <meta property="og:description" content="Using JSONB in PostgreSQL and MySQL.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/using-jsonb.jpg">
+    
+    <meta property="article:published_time" content="2026-07-10T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-07-10T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Using JSONB">
+    <meta name="twitter:description" content="Using JSONB in PostgreSQL and MySQL.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/using-jsonb.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+
+    /* Google Search Console */
+    <meta name="google-site-verification" content="zVrrQhRg4ReGc9zXOtGdtVyhqeN9uaCdsashWPRY-5I" />
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/using-jsonb/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Using JSONB</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>Using JSONB</span>
+        </nav>
+        <span class="reading-time" title="1105 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  5 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 10 Jul 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/using-jsonb.jpg" alt="Using JSONB"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>I am currently working on a project at work where I had to store JSON data into <code>PostgreSQL</code> database. My instant question was, what should be the data type of the new column. After a little research, I found out about <code>JSONB</code>. It worked for me as I was dealing with <code>PostgreSQL</code> database.</p>
+<p>In this post, I will share limited knowledge, so far, about <code>JSONB</code>.</p>
+<p>The <code>B</code> in <code>JSONB</code> stands for <code>Binary</code>.</p>
+<p>How it is different from regular <code>JSON</code>?</p>
+<p>Well for <code>JSON</code>, it is saved as raw string of text but for <code>JSONB</code>, the database parses the <code>JSON</code> string and stores it in a decomposed binary formats.</p>
+<p><code>JSONB</code> is not a universal <code>SQL</code> standard data type, though the ability to handle <code>JSON</code> is standard.</p>
+<p>The name <code>JSONB</code> and its exact binary implementation originate from <code>PostgreSQL</code>. Other databases handle binary <code>JSON</code> storage differently.</p>
+<h2 id="benefits">Benefits</h2>
+<hr>
+<br>
+<p><strong>1. Faster Query</strong></p>
+<blockquote>
+<p>Because the data is pre-parsed, the database doesn&rsquo;t have to re-evaluate the text string every time you run a query.</p>
+</blockquote>
+<p><strong>2. Data Integrity</strong></p>
+<blockquote>
+<p>A <code>JSONB</code> column enforces string <code>JSON</code> syntax validation. If an application tries to insert a malformed <code>JSON</code> string, the database will reject it.</p>
+</blockquote>
+<p><strong>3. Efficient Space Serialisation</strong></p>
+<blockquote>
+<p>Duplicate keys are automatically removed, object keys are sorted and whitespace is stripped away.</p>
+</blockquote>
+<p>For demo purpose, I will create the <code>PostgreSQL</code> and <code>MySQL</code> database services inside a <code>Docker</code> container.</p>
+<p>This is my docker compose configuration:</p>
+<p><strong>File:</strong> <code>docker-compose.yml</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgres</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local-postgres</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">mysecretpassword</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;5432:5432&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">pgdata:/var/lib/postgresql</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mysql</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mysql:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">local-mysql</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">MYSQL_ROOT_PASSWORD</span>: <span style="color:#ae81ff">mysecretpassword</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;3306:3306&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">mysqldata:/var/lib/mysql</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">pgdata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mysqldata</span>:
+</span></span></code></pre></div><p>Let&rsquo;s start the services:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker compose up -d
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> up 5/5
+</span></span><span style="display:flex;"><span> ✔ Network db-jsonb_default  Created         0.0s
+</span></span><span style="display:flex;"><span> ✔ Volume db-jsonb_pgdata    Created         0.0s
+</span></span><span style="display:flex;"><span> ✔ Volume db-jsonb_mysqldata Created         0.0s
+</span></span><span style="display:flex;"><span> ✔ Container local-postgres  Started         0.2s
+</span></span><span style="display:flex;"><span> ✔ Container local-mysql     Started         0.2s
+</span></span></code></pre></div><p>Check the status now:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker compose ps
+</span></span><span style="display:flex;"><span>NAME             IMAGE             COMMAND                  SERVICE    CREATED          STATUS          PORTS
+</span></span><span style="display:flex;"><span>local-mysql      mysql:latest      <span style="color:#e6db74">&#34;docker-entrypoint.s…&#34;</span>   mysql      <span style="color:#ae81ff">19</span> seconds ago   Up <span style="color:#ae81ff">18</span> seconds   0.0.0.0:3306-&gt;3306/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:3306-&gt;3306/tcp, 33060/tcp
+</span></span><span style="display:flex;"><span>local-postgres   postgres:latest   <span style="color:#e6db74">&#34;docker-entrypoint.s…&#34;</span>   postgres   <span style="color:#ae81ff">19</span> seconds ago   Up <span style="color:#ae81ff">18</span> seconds   0.0.0.0:5432-&gt;5432/tcp, <span style="color:#f92672">[</span>::<span style="color:#f92672">]</span>:5432-&gt;5432/tcp
+</span></span></code></pre></div><p>We will start with <code>PostgreSQL</code> database first:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it local-postgres psql -U postgres
+</span></span><span style="display:flex;"><span>psql <span style="color:#f92672">(</span>18.4 <span style="color:#f92672">(</span>Debian 18.4-1.pgdg13+1<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span> <span style="color:#66d9ef">for</span> help.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># CREATE TABLE users (</span>
+</span></span><span style="display:flex;"><span>    id SERIAL PRIMARY KEY,
+</span></span><span style="display:flex;"><span>    profile JSONB NOT NULL
+</span></span><span style="display:flex;"><span><span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>CREATE TABLE
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e">#</span>
+</span></span></code></pre></div><p>Time to add some data (10,000 rows), to the table <code>users</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># INSERT INTO users (profile)</span>
+</span></span><span style="display:flex;"><span>SELECT jsonb_build_object<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;name&#39;</span>, <span style="color:#e6db74">&#39;User_&#39;</span> <span style="color:#f92672">||</span> i,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;age&#39;</span>, <span style="color:#f92672">(</span>random<span style="color:#f92672">()</span> * <span style="color:#ae81ff">50</span> + 18<span style="color:#f92672">)</span>::int,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;location&#39;</span>, jsonb_build_object<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;city&#39;</span>,    CASE WHEN i % 2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> THEN <span style="color:#e6db74">&#39;London&#39;</span> ELSE <span style="color:#e6db74">&#39;New York&#39;</span> END,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;country&#39;</span>, CASE WHEN i % 2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> THEN <span style="color:#e6db74">&#39;UK&#39;</span> ELSE <span style="color:#e6db74">&#39;US&#39;</span> END
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">)</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;skills&#39;</span>, ARRAY<span style="color:#f92672">[</span><span style="color:#e6db74">&#39;SQL&#39;</span>, <span style="color:#e6db74">&#39;Python&#39;</span>, <span style="color:#e6db74">&#39;Perl&#39;</span><span style="color:#f92672">]</span>::text<span style="color:#f92672">[]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>FROM generate_series<span style="color:#f92672">(</span>1, 10000<span style="color:#f92672">)</span> AS i;
+</span></span><span style="display:flex;"><span>INSERT <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">10000</span>
+</span></span></code></pre></div><p>Finally, find user where age is 30:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT profile-&gt;&gt;&#39;name&#39; AS user_name</span>
+</span></span><span style="display:flex;"><span>FROM users
+</span></span><span style="display:flex;"><span>WHERE profile-&gt;&gt;<span style="color:#e6db74">&#39;age&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;30&#39;</span>;
+</span></span><span style="display:flex;"><span> user_name
+</span></span><span style="display:flex;"><span>-----------
+</span></span><span style="display:flex;"><span> User_76
+</span></span><span style="display:flex;"><span> User_143
+</span></span><span style="display:flex;"><span> User_165
+</span></span><span style="display:flex;"><span> User_168
+</span></span><span style="display:flex;"><span> User_213
+</span></span><span style="display:flex;"><span> User_404
+</span></span><span style="display:flex;"><span> User_432
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>So that&rsquo;s done for <code>PostgreSQL</code>, we will now re-create the same using <code>MySQL</code> database.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it local-mysql mysql -u root -pmysecretpassword
+</span></span><span style="display:flex;"><span>mysql: <span style="color:#f92672">[</span>Warning<span style="color:#f92672">]</span> Using a password on the command line interface can be insecure.
+</span></span><span style="display:flex;"><span>Welcome to the MySQL monitor.  Commands end with ; or <span style="color:#ae81ff">\g</span>.
+</span></span><span style="display:flex;"><span>Your MySQL connection id is <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>Server version: 9.7.1 MySQL Community Server - GPL
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Copyright <span style="color:#f92672">(</span>c<span style="color:#f92672">)</span> 2000, 2026, Oracle and/or its affiliates.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Oracle is a registered trademark of Oracle Corporation and/or its
+</span></span><span style="display:flex;"><span>affiliates. Other names may be trademarks of their respective
+</span></span><span style="display:flex;"><span>owners.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#39;help;&#39;</span> or <span style="color:#e6db74">&#39;\h&#39;</span> <span style="color:#66d9ef">for</span> help. Type <span style="color:#e6db74">&#39;\c&#39;</span> to clear the current input statement.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql&gt; CREATE DATABASE IF NOT EXISTS testdb;
+</span></span><span style="display:flex;"><span>Query OK, <span style="color:#ae81ff">1</span> row affected <span style="color:#f92672">(</span>0.018 sec<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql&gt; USE testdb;
+</span></span><span style="display:flex;"><span>Database changed
+</span></span><span style="display:flex;"><span>mysql&gt; CREATE TABLE users <span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>    -&gt;     id INT AUTO_INCREMENT PRIMARY KEY,
+</span></span><span style="display:flex;"><span>    -&gt;     profile JSON NOT NULL
+</span></span><span style="display:flex;"><span>    -&gt; <span style="color:#f92672">)</span>;
+</span></span><span style="display:flex;"><span>Query OK, <span style="color:#ae81ff">0</span> rows affected <span style="color:#f92672">(</span>0.022 sec<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql&gt;
+</span></span></code></pre></div><p>Adding, 10,000 rows into <code>MySQL</code> table is a bit tricky using <code>SQL</code> command.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mysql&gt; SET SESSION cte_max_recursion_depth <span style="color:#f92672">=</span> 10000;
+</span></span><span style="display:flex;"><span>Query OK, <span style="color:#ae81ff">0</span> rows affected <span style="color:#f92672">(</span>0.000 sec<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql&gt; INSERT INTO users <span style="color:#f92672">(</span>profile<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    -&gt; WITH RECURSIVE seq AS <span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>    -&gt;     SELECT <span style="color:#ae81ff">1</span> AS i
+</span></span><span style="display:flex;"><span>    -&gt;     UNION ALL
+</span></span><span style="display:flex;"><span>    -&gt;     SELECT i + <span style="color:#ae81ff">1</span> FROM seq WHERE i &lt; <span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span>    -&gt; <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    -&gt; SELECT
+</span></span><span style="display:flex;"><span>    -&gt;     JSON_OBJECT<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>    -&gt;         <span style="color:#e6db74">&#39;name&#39;</span>, CONCAT<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;User_&#39;</span>, i<span style="color:#f92672">)</span>,
+</span></span><span style="display:flex;"><span>    -&gt;         <span style="color:#e6db74">&#39;age&#39;</span>, FLOOR<span style="color:#f92672">(</span><span style="color:#ae81ff">18</span> + <span style="color:#f92672">(</span>RAND<span style="color:#f92672">()</span> * 50<span style="color:#f92672">))</span>,
+</span></span><span style="display:flex;"><span>    -&gt;         <span style="color:#e6db74">&#39;location&#39;</span>, JSON_OBJECT<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>    -&gt;             <span style="color:#e6db74">&#39;city&#39;</span>, IF<span style="color:#f92672">(</span>i % 2 <span style="color:#f92672">=</span> 0, <span style="color:#e6db74">&#39;London&#39;</span>, <span style="color:#e6db74">&#39;New York&#39;</span><span style="color:#f92672">)</span>,
+</span></span><span style="display:flex;"><span>    -&gt;             <span style="color:#e6db74">&#39;country&#39;</span>, IF<span style="color:#f92672">(</span>i % 2 <span style="color:#f92672">=</span> 0, <span style="color:#e6db74">&#39;UK&#39;</span>, <span style="color:#e6db74">&#39;US&#39;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    -&gt;         <span style="color:#f92672">)</span>,
+</span></span><span style="display:flex;"><span>    -&gt;         <span style="color:#e6db74">&#39;skills&#39;</span>, JSON_ARRAY<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;SQL&#39;</span>, <span style="color:#e6db74">&#39;Python&#39;</span>, <span style="color:#e6db74">&#39;Perl&#39;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    -&gt;     <span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>    -&gt; FROM seq;
+</span></span><span style="display:flex;"><span>Query OK, <span style="color:#ae81ff">10000</span> rows affected <span style="color:#f92672">(</span>0.166 sec<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Records: <span style="color:#ae81ff">10000</span>  Duplicates: <span style="color:#ae81ff">0</span>  Warnings: <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><p>Now search user where age is 30:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mysql&gt; SELECT profile-&gt;&gt;<span style="color:#e6db74">&#39;$.name&#39;</span> AS user_name
+</span></span><span style="display:flex;"><span>    -&gt; FROM users
+</span></span><span style="display:flex;"><span>    -&gt; WHERE CAST<span style="color:#f92672">(</span>profile-&gt;&gt;<span style="color:#e6db74">&#39;$.age&#39;</span> AS UNSIGNED<span style="color:#f92672">)</span> <span style="color:#f92672">=</span> 30;
+</span></span><span style="display:flex;"><span>+-----------+
+</span></span><span style="display:flex;"><span>| user_name |
+</span></span><span style="display:flex;"><span>+-----------+
+</span></span><span style="display:flex;"><span>| User_30   |
+</span></span><span style="display:flex;"><span>| User_51   |
+</span></span><span style="display:flex;"><span>| User_76   |
+</span></span><span style="display:flex;"><span>| User_93   |
+</span></span><span style="display:flex;"><span>| User_107  |
+</span></span><span style="display:flex;"><span>| User_116  |
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><h2 id="generalised-inverted-gin-index">Generalised Inverted (GIN) Index</h2>
+<hr>
+<p>We can create GIN indexes on <code>JSONB</code> column. It allows you to instantly search for specific keys or values nested deep.</p>
+<p>We will create GIN index in <code>PostgreSQL</code> first:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># CREATE INDEX idx_users_profile ON users USING gin (profile);</span>
+</span></span><span style="display:flex;"><span>CREATE INDEX
+</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># EXPLAIN ANALYZE</span>
+</span></span><span style="display:flex;"><span>SELECT * FROM users WHERE profile @&gt; <span style="color:#e6db74">&#39;{&#34;name&#34;: &#34;User_42&#34;}&#39;</span>;
+</span></span><span style="display:flex;"><span>                                                          QUERY PLAN
+</span></span><span style="display:flex;"><span>------------------------------------------------------------------------------------------------------------------------------
+</span></span><span style="display:flex;"><span> Bitmap Heap Scan on users  <span style="color:#f92672">(</span>cost<span style="color:#f92672">=</span>21.53..25.54 rows<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> width<span style="color:#f92672">=</span>159<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>actual time<span style="color:#f92672">=</span>0.060..0.061 rows<span style="color:#f92672">=</span>1.00 loops<span style="color:#f92672">=</span>1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   Recheck Cond: <span style="color:#f92672">(</span>profile @&gt; <span style="color:#e6db74">&#39;{&#34;name&#34;: &#34;User_42&#34;}&#39;</span>::jsonb<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>   Heap Blocks: exact<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>   Buffers: shared hit<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>   -&gt;  Bitmap Index Scan on idx_users_profile  <span style="color:#f92672">(</span>cost<span style="color:#f92672">=</span>0.00..21.52 rows<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> width<span style="color:#f92672">=</span>0<span style="color:#f92672">)</span> <span style="color:#f92672">(</span>actual time<span style="color:#f92672">=</span>0.050..0.050 rows<span style="color:#f92672">=</span>1.00 loops<span style="color:#f92672">=</span>1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>         Index Cond: <span style="color:#f92672">(</span>profile @&gt; <span style="color:#e6db74">&#39;{&#34;name&#34;: &#34;User_42&#34;}&#39;</span>::jsonb<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>         Index Searches: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>         Buffers: shared hit<span style="color:#f92672">=</span><span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span> Planning:
+</span></span><span style="display:flex;"><span>   Buffers: shared hit<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span> Planning Time: 0.080 ms
+</span></span><span style="display:flex;"><span> Execution Time: 2.485 ms
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">12</span> rows<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>The explain plan confirms, the use of index, specially the line:</p>
+<blockquote>
+<p>Bitmap Index Scan on idx_users_profile</p>
+</blockquote>
+<p>Since, <code>MySQL</code> database doesn&rsquo;t have a native <code>GIN</code> index for full <code>JSON</code> objects, the common approach is to extract the specific <code>JSON</code> key you care about into a <code>Functional Index</code>.</p>
+<p>This is how we can do it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mysql&gt; ALTER TABLE users  ADD INDEX idx_users_name <span style="color:#f92672">((</span>CAST<span style="color:#f92672">(</span>profile-&gt;&gt;<span style="color:#e6db74">&#39;$.name&#39;</span> AS CHAR<span style="color:#f92672">(</span>50<span style="color:#f92672">))))</span>;
+</span></span><span style="display:flex;"><span>Query OK, <span style="color:#ae81ff">0</span> rows affected <span style="color:#f92672">(</span>0.056 sec<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Records: <span style="color:#ae81ff">0</span>  Duplicates: <span style="color:#ae81ff">0</span>  Warnings: <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><p>Time to confirm the use of index:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mysql&gt; EXPLAIN SELECT * FROM users
+</span></span><span style="display:flex;"><span>    -&gt; WHERE CAST<span style="color:#f92672">(</span>profile-&gt;&gt;<span style="color:#e6db74">&#39;$.name&#39;</span> AS CHAR<span style="color:#f92672">(</span>50<span style="color:#f92672">))</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;User_42&#39;</span>;
+</span></span><span style="display:flex;"><span>+--------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| EXPLAIN                                                                  |
+</span></span><span style="display:flex;"><span>+--------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| -&gt; Index lookup on users using idx_users_name <span style="color:#f92672">(</span>cast<span style="color:#f92672">(</span>json_unquote<span style="color:#f92672">(</span>json_extract<span style="color:#f92672">(</span><span style="color:#e6db74">`</span>profile<span style="color:#e6db74">`</span>,_latin1<span style="color:#e6db74">&#39;$.name&#39;</span><span style="color:#f92672">))</span> as char<span style="color:#f92672">(</span>50<span style="color:#f92672">)</span> charset latin1<span style="color:#f92672">)</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;User_42&#39;</span><span style="color:#f92672">)</span>  <span style="color:#f92672">(</span>cost<span style="color:#f92672">=</span>0.35 rows<span style="color:#f92672">=</span>1<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span> |
+</span></span><span style="display:flex;"><span>+--------------------------------------------------------------------------+
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> row in set <span style="color:#f92672">(</span>0.003 sec<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>This confirms the use of index.</p>
+<p>In the next post, I will show you how to update, modify and delete elements inside the <code>JSONB</code> structure in <code>PostgreSQL</code> database.</p>
+<p>Finally we stop the containers:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker compose stop
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> stop 2/2
+</span></span><span style="display:flex;"><span> ✔ Container local-mysql    Stopped                                     2.0s
+</span></span><span style="display:flex;"><span> ✔ Container local-postgres Stopped                                     0.3s
+</span></span></code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/jsonb" class="post-tag">JSONB</a>
+        
+        <a href="https://theweeklychallenge.org/tags/mysql" class="post-tag">MySQL</a>
+        
+        <a href="https://theweeklychallenge.org/tags/postgresql" class="post-tag">PostgreSQL</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/guest-contribution/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">The Weekly Challenge - Guest Contributions</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Ada</span>
+                <span class="related-post-tag">APL</span>
+                <span class="related-post-tag">Awk</span>
+            </span>
+            <span class="related-post-date">8 Jul 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/how-to-use-postgrest/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">PostgREST: How to use?</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">PostgreSQL</span>
+                <span class="related-post-tag">PostgREST</span>
+            </span>
+            <span class="related-post-date">4 Jul 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/postgresql-mvcc-part-3/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">PostgreSQL MVCC - Part 3</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">PostgreSQL</span>
+                <span class="related-post-tag">MVCC</span>
+            </span>
+            <span class="related-post-date">20 Jun 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/using-jsonb\/';
+            this.page.identifier = '177a354c0ef140327d8bf75b24a2a4ee';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
