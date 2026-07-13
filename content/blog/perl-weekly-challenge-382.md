@@ -259,7 +259,9 @@ Write a script to arrange all the whole numbers from 1 up to the given target nu
 #### Example 3
 
     Input: $n = 34
-    Output: 1, 8, 17, 32, 4, 21, 28, 11, 25, 24, 12, 13, 3, 6, 30, 19, 14, 22, 27, 9, 16, 20, 29, 7, 18, 31, 5, 4, 34, 15, 10, 26, 23, 2
+    Output: 1 8 28 21 4 32 17 19 6 30 34 15 10 26 23 2 14 22 27 9 16 33 31 18 7 29 20 5 11 25 24 12 13 3
+
+**[2026-07-13 11:45]**: `Output was incorrect, corrected by E. Choroba.`
 
 ## Task 2: Replace Question Mark {#TASK2}
 ##### **Submitted by:** [Simon Green](https://github.com/simongreen-net)
