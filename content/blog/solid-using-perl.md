@@ -36,7 +36,7 @@ Here is the breakdown of `Design Principles`:
 4. `[I]`nterface Segregation Principle (ISP)
 5. `[D]`ependency Inversion Principle (DIP)
 
-Applying the `SOLID` design principles in `Perl` gives us the structural guardrails needed to keep our code clean, testable, and highly maintainable, even in a highly dynamic, loosely-typed environment.
+Applying the `SOLID` design principles in `Perl` gives us the structural protection needed to keep our code clean, testable, and highly maintainable, even in a highly dynamic, loosely-typed environment.
 
 ### [S]ingle Responsibility Principle
 ***
