@@ -20,7 +20,7 @@ Never mind, I can talk about it now in this blog post.
 
 `Design Patterns` sounds very similar to `Design Principles` but they both operate at completely different levels of abstraction.
 
-> Take an example of when building a house: Principles are the building codes while Patterns are the architectural solutions.
+> Take an example of building a house: Principles are the building codes while Patterns are the architectural solutions.
 
 `Perl` is famous for its philosophy:
 
