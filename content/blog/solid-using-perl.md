@@ -1,5 +1,5 @@
 ---
-title: "Using JSONB"
+title: "SOLID using Perl"
 date: 2026-07-18T00:00:00+00:00
 description: "SOLID design principles in Perl."
 type: post
