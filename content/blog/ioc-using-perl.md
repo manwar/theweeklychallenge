@@ -1,6 +1,6 @@
 ---
 title: "IoC using Perl"
-date: 2026-07-18T00:00:00+00:00
+date: 2026-07-19T00:00:00+00:00
 description: "Implementation of IoC using Perl."
 type: post
 image: images/blog/ioc-using-perl.jpg
