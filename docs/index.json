@@ -1,5 +1,12 @@
 [
   {
+    "title": "IoC using Perl",
+    "url":   "/blog/ioc-using-perl/",
+    "tags":  "IoC, Perl",
+    "section": "blog",
+    "body":  "DISCLAIMER: Image is generated using ChatGPT. Yesterday, I posted a blog, SOLID using Perl where I discussed the SOLID design principles in detail.\nWhile my brain was still in the Design Principles world, I decided to tackle one more topic somewhat related i.e. Inversion of Control (IoC).\nIoC is also referred as Dependency Injection.\nAs I enjoy reading research papers, I came across two very informative papers:\nDesigning Reusable Classes Inversion of Control Containers and the Dependency Injection pattern Inversion of Control (IoC) is a design principle where the control flow of a program is inverted.\nInstead of your custom code calling a framework or creating its own dependencies, an external entity injects those dependencies into your code.\nThe Traditional Approach Here is a simple, classic example in Perl taking the traditional approach.\nIn this scenario, a Car class is entirely responsible for creating its own Engine. It is tightly coupled to a specific type of engine.\nProblem:\nIf you want to test the Car with a mock engine, or change it to an ElectricEngine, you have to modify the internal code of the Car class.\npackage GasEngine; use strict; use warnings; sub new { my $class = shift; return bless {}, $class; } sub start { return \u0026amp;#34;Vroom! gas engine roaring.\u0026amp;#34;; } 1; package Car; use strict; use warnings; use GasEngine; sub new { my $class = shift; my $engine = GasEngine-\u0026amp;gt;new; return bless { engine =\u0026amp;gt; $engine }, $class; } sub drive { my $self = shift; return \u0026amp;#34;Starting the car: \u0026amp;#34; . $self-\u0026amp;gt;{engine}-\u0026amp;gt;start; } 1; Final implementation as unit test:\n#!/usr/bin/env perl use strict; use warnings; use Car; use Test::More; is(Car-\u0026amp;gt;new-\u0026amp;gt;drive, \u0026amp;#39;Starting the car: Vroom! gas engine roaring.\u0026amp;#39;); done_testing; The IoC / Dependency Injection Approach In the case of the IoC design principle, we invert the control. The Car no more makes the engine, it only asks for an engine in its constructor.\nHere are few of the benefits of IoC: …"
+  },
+  {
     "title": "RECAP - The Weekly Challenge - 381",
     "url":   "/blog/recap-challenge-381/",
     "tags":  "Perl, Raku",
