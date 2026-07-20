@@ -212,6 +212,7 @@ I would like to `THANK` every member of the team for their valuable suggestions.
 
 ## NEW MEMBERS {#NEWMEMBERS}
 ***
+[**ygrek**](https://github.com/ygrek), an experienced `K` hacker joined the `Team PWC`.
 
 Please find out [**How to contribute?**](/blog/how-to-contribute), if you have any doubts.
 
@@ -219,8 +220,6 @@ Please try the excellent tool [**EZPWC**](https://github.com/saiftynet/EZPWC) cr
 
 ## GUESTS {#GUESTS}
 ***
-[**ygrek**](https://github.com/ygrek), an experienced `K` hacker joined the `Team PWC`.
-
 Please check out the guest contributions for the [**Week #381**](/blog/guest-contribution/#381).
 
 Please find [**past solutions**](/blog/guest-contribution) by respected **guests**. Please share your creative solutions in other languages.
