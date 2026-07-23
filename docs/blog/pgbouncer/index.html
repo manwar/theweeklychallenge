@@ -5,32 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     
-    <link rel="canonical" href="https://theweeklychallenge.org/blog/postgresql-mvcc-part-2/">
-    <title>PostgreSQL MVCC - Part 2 | Jun 2026 | The Weekly Challenge</title>
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/pgbouncer/">
+    <title>PgBouncer - PostgreSQL | Jul 2026 | The Weekly Challenge</title>
 
     
-    <meta name="description" content="Find the role of xmin and xmax in transaction.">
+    <meta name="description" content="Implementation of IoC using Perl.">
     <meta name="author" content="Mohammad Sajid Anwar">
     
 
     
     <meta property="og:site_name"   content="The Weekly Challenge">
     <meta property="og:type"        content="article">
-    <meta property="og:url"         content="https://theweeklychallenge.org/blog/postgresql-mvcc-part-2/">
-    <meta property="og:title"       content="PostgreSQL MVCC - Part 2">
-    <meta property="og:description" content="Find the role of xmin and xmax in transaction.">
-    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/postgresql-mvcc-part-2.jpg">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/pgbouncer/">
+    <meta property="og:title"       content="PgBouncer - PostgreSQL">
+    <meta property="og:description" content="Implementation of IoC using Perl.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/pgbouncer.jpg">
     
-    <meta property="article:published_time" content="2026-06-16T00:00:00Z">
-    <meta property="article:modified_time"  content="2026-06-16T00:00:00Z">
+    <meta property="article:published_time" content="2026-07-23T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-07-23T00:00:00Z">
     <meta property="article:author" content="Mohammad Sajid Anwar">
     
 
     
     <meta name="twitter:card"        content="summary_large_image">
-    <meta name="twitter:title"       content="PostgreSQL MVCC - Part 2">
-    <meta name="twitter:description" content="Find the role of xmin and xmax in transaction.">
-    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/postgresql-mvcc-part-2.jpg">
+    <meta name="twitter:title"       content="PgBouncer - PostgreSQL">
+    <meta name="twitter:description" content="Implementation of IoC using Perl.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/pgbouncer.jpg">
     <meta name="twitter:site" content="@PerlWChallenge">
 
     
@@ -63,7 +63,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
     document.documentElement.classList.add('light-mode-pre');
 }
 </script>
-<body data-url="https://theweeklychallenge.org/blog/postgresql-mvcc-part-2/">
+<body data-url="https://theweeklychallenge.org/blog/pgbouncer/">
     <nav class="twc-nav" id="twc-nav">
     <div class="nav-inner">
         <a href="https://theweeklychallenge.org/" class="nav-logo">
@@ -147,26 +147,26 @@ if (localStorage.getItem('twc-theme') === 'light') {
         
 <div class="page-hero">
     <div class="page-hero-inner">
-        <h1 class="page-title">PostgreSQL MVCC - Part 2</h1>
+        <h1 class="page-title">PgBouncer - PostgreSQL</h1>
         <nav class="breadcrumb">
             <a href="https://theweeklychallenge.org/">Home</a>
             <span class="bc-sep">›</span>
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
-            <span>PostgreSQL MVCC - Part 2</span>
+            <span>PgBouncer - PostgreSQL</span>
         </nav>
-        <span class="reading-time" title="720 words">
+        <span class="reading-time" title="547 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
     <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
   </svg>
-  3 min read
+  2 min read
 </span>
 
         <div class="post-meta">
             <span class="post-meta-item">
                 <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                Published 16 Jun 2026
+                Published 23 Jul 2026
             </span>
             
         </div>
@@ -176,97 +176,92 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <div class="content-wrap">
     
     <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
-    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/postgresql-mvcc-part-2.jpg" alt="PostgreSQL MVCC - Part 2"></div>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/pgbouncer.jpg" alt="PgBouncer - PostgreSQL"></div>
     
     <article class="prose">
 
         <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
 <hr>
 <br>
-<p>In the <a href="/blog/postgresql-mvcc"><strong>previous post</strong></a>, I discussed the <code>Transaction Isolation Levels</code> in <code>PostgreSQL</code>. In this post, we will explore how it is managed under the hood.</p>
-<p>One thing I learnt during the process of earlier post, in <code>PostgreSQL</code>, a row is never mutated in place. This was a revelation for me.</p>
-<p>Instead, <code>PostgreSQL</code> manages data using tuples i.e. row versions. Every time you insert, update, or delete data, Postgres creates or modifies these versions, using hidden system columns called <code>xmin</code> and <code>xmax</code> to determine which transaction can see which version.</p>
+<p><code>PgBouncer</code> is simply a connection management tool for <code>PostgreSQL</code>.</p>
+<p>In a way, it functions like an efficient bartender in a busy bar. Instead of giving every client the right to have a direct connection to the database, <code>PgBouncer</code> acts as an intermediary and controls a small group of connections among many clients.</p>
+<h3 id="why-use-pgbouncer">Why use PgBouncer?</h3>
+<p><code>PostgreSQL</code> connects clients by creating a new backend each time a client connects, which is great but costly.</p>
+<p>If your application grows and seeks to create dozens of simultaneous connections, your database may not have enough memory to manage all the connection overhead instead of actually processing queries.</p>
+<p><code>PgBouncer</code> solves the connection problem by making the application believe that it is connected to the database directly while the actual connections are managed through a small pool of optimally designed connections.</p>
+<h3 id="the-three-pooling-modes">The Three Pooling Modes</h3>
+<p>Depending on the needs of your application, <code>PgBouncer</code> can recycle connections at three different levels:</p>
+<ol>
+<li>Transaction Pooling</li>
+</ol>
 <blockquote>
-<p>xmin: The Transaction ID of the transaction that created this row version.</p>
+<p>A database connection is granted to a client only for the length of a single transaction. When the transaction is over (<code>COMMIT</code> or <code>ROLLBACK</code>), the database connection is immediately released to another client.</p>
 </blockquote>
+<ol start="2">
+<li>Session Pooling</li>
+</ol>
 <blockquote>
-<p>xmax: The Transaction ID of the transaction that destroyed this row version. If the row is still alive and has not been deleted or updated, xmax is set to 0.</p>
+<p><code>PgBouncer</code> gives the client a connection for the time period during which he or she remains connected. Once the client disconnects, the connection is returned to the pool.</p>
 </blockquote>
-<p>Let&rsquo;s trace exactly how <code>xmin</code> and <code>xmax</code> change through a row&rsquo;s life.</p>
-<p>We will use the same instance of <code>PostgreSQL</code> database that we used in the previous post.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it mvcc_test psql -U postgres
-</span></span><span style="display:flex;"><span>psql <span style="color:#f92672">(</span>18.4 <span style="color:#f92672">(</span>Debian 18.4-1.pgdg13+1<span style="color:#f92672">))</span>
-</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span> <span style="color:#66d9ef">for</span> help.
+<ol start="3">
+<li>Statement Pooling</li>
+</ol>
+<blockquote>
+<p>The connection is assigned for just one <code>SQL</code> statement. This type of pooling is rarely used except for specific read intensive analytical tasks as it makes it impossible to process transactions.</p>
+</blockquote>
+<h3 id="step-1-the-docker-setup">Step 1: The Docker Setup</h3>
+<p>Create a file named <code>docker-compose.yml</code> and paste the following configuration. This spins up a <code>Postgres database</code>, limited to a tiny max connection limit of 10 for demonstration purposes and a <code>PgBouncer</code> instance in front of it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e">#</span>
-</span></span></code></pre></div><p>We will create extension <code>pageinspect</code> first as below:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgreq<span style="color:#f92672">=</span><span style="color:#75715e"># CREATE EXTENSION IF NOT EXISTS pageinspect;</span>
-</span></span><span style="display:flex;"><span>CREATE EXTENSION
-</span></span></code></pre></div><p>Now let&rsquo;s create the demo table and insert a row.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># CREATE TABLE mvcc_demo (id INT PRIMARY KEY, balance INT);</span>
-</span></span><span style="display:flex;"><span>CREATE TABLE
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># INSERT INTO mvcc_demo (id, balance) VALUES (1, 100);</span>
-</span></span><span style="display:flex;"><span>INSERT <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span>
-</span></span></code></pre></div><p>Let&rsquo;s see the hidden columns, <code>xmin</code> and <code>xmax</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT xmin, xmax, id, balance FROM mvcc_demo;</span>
-</span></span><span style="display:flex;"><span> xmin | xmax | id | balance
-</span></span><span style="display:flex;"><span>------+------+----+---------
-</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">808</span> |    <span style="color:#ae81ff">0</span> |  <span style="color:#ae81ff">1</span> |     <span style="color:#ae81ff">100</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> row<span style="color:#f92672">)</span>
-</span></span></code></pre></div><p>How about the internal version of this?</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT lp, t_xmin, t_xmax FROM heap_page_items(get_raw_page(&#39;mvcc_demo&#39;, 0));</span>
-</span></span><span style="display:flex;"><span> lp | t_xmin | t_xmax
-</span></span><span style="display:flex;"><span>----+--------+--------
-</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> |    <span style="color:#ae81ff">808</span> |      <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> row<span style="color:#f92672">)</span>
-</span></span></code></pre></div><p>The transaction id <code>808</code> has created this row. The <code>xmax</code> is <code>0</code> i.e. the row is alive.</p>
-<p>Now we will update the row and then check the <code>xmin</code>/<code>xmax</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># UPDATE mvcc_demo SET balance = 200 WHERE id = 1;</span>
-</span></span><span style="display:flex;"><span>UPDATE <span style="color:#ae81ff">1</span>
-</span></span></code></pre></div><p>After the update, let&rsquo;s check <code>xmin</code> and <code>xmax</code> again:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT xmin, xmax, id, balance FROM mvcc_demo;</span>
-</span></span><span style="display:flex;"><span> xmin | xmax | id | balance
-</span></span><span style="display:flex;"><span>------+------+----+---------
-</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">809</span> |    <span style="color:#ae81ff">0</span> |  <span style="color:#ae81ff">1</span> |     <span style="color:#ae81ff">200</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">1</span> row<span style="color:#f92672">)</span>
-</span></span></code></pre></div><p>Now if we look how many versions we have:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT lp, t_xmin, t_xmax FROM heap_page_items(get_raw_page(&#39;mvcc_demo&#39;, 0));</span>
-</span></span><span style="display:flex;"><span> lp | t_xmin | t_xmax
-</span></span><span style="display:flex;"><span>----+--------+--------
-</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> |    <span style="color:#ae81ff">808</span> |    <span style="color:#ae81ff">809</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">2</span> |    <span style="color:#ae81ff">809</span> |      <span style="color:#ae81ff">0</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">2</span> rows<span style="color:#f92672">)</span>
-</span></span></code></pre></div><p>When you execute an <code>UPDATE</code>, it goes through two phases as below:</p>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgres</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:15</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">pgbouncer-postgres</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">supersecretpassword</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_USER</span>: <span style="color:#ae81ff">myuser</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_DB</span>: <span style="color:#ae81ff">mydb</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_HOST_AUTH_METHOD</span>: <span style="color:#ae81ff">trust</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: [<span style="color:#e6db74">&#34;postgres&#34;</span>, <span style="color:#e6db74">&#34;-c&#34;</span>, <span style="color:#e6db74">&#34;max_connections=10&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;5432:5432&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">pgbouncer</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">edoburu/pgbouncer:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">pgbouncer</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_HOST=postgres</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_USER=myuser</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_PASSWORD=supersecretpassword</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_NAME=mydb</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">POOL_MODE=transaction</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">AUTH_TYPE=trust</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">MAX_CLIENT_CONN=100</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DEFAULT_POOL_SIZE=5</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;6432:6432&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">postgres</span>
+</span></span></code></pre></div><p><strong>Start the container:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker compose up -d
+</span></span></code></pre></div><p><strong>Initialise <code>pgbench</code> tables:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it pgbouncer-postgres pgbench -h localhost -U myuser -d mydb -i
+</span></span></code></pre></div><h3 id="step-2-watch-postgres-fail">Step 2: Watch Postgres Fail</h3>
+<p>We will use <code>pgbench</code> to simulate <code>25</code> concurrent clients trying to talk to <code>Postgres</code> at the exact same time.</p>
+<p>Remember, we capped <code>Postgres</code> at <code>max_connections=10</code>.</p>
+<p><strong>Let&rsquo;s attack Postgres directly:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it pgbouncer-postgres pgbench -h localhost -U myuser -d mydb -c <span style="color:#ae81ff">25</span> -t <span style="color:#ae81ff">100</span>
+</span></span></code></pre></div><p>It will instantly crash with an error looking like this:</p>
 <blockquote>
-<p>The <code>&quot;Delete&quot;</code> Phase: PostgreSQL finds the existing, active row version on disk and writes the current transaction&rsquo;s ID into its <code>t_xmax</code> column. This effectively tells the database: &ldquo;This row version is dead to any transaction that starts after me.&rdquo;</p>
+<p>FATAL: sorry, too many clients already</p>
 </blockquote>
-<blockquote>
-<p>The <code>&quot;Insert&quot;</code> Phase: PostgreSQL immediately creates a brand new row version somewhere else in the data page. This new tuple gets the current transaction&rsquo;s ID in its <code>t_xmin</code>, and its <code>t_xmax</code> is set to 0.</p>
-</blockquote>
-<p>Why does it do this instead of changing the data in place?</p>
-<p>It sounds inefficient at first, why copy the whole row just to change one number?</p>
-<p>But this architecture is the core reason why <code>PostgreSQL</code> is so fast and reliable under heavy workloads.</p>
-<blockquote>
-<p>No Locking for Readers: While your <code>UPDATE</code> is running, other users can read the old version of the row seamlessly. They aren&rsquo;t blocked waiting for your update to finish.</p>
-</blockquote>
-<blockquote>
-<p>Instant Rollbacks: If your transaction fails or you type <code>ROLLBACK</code>, it doesn&rsquo;t have to undo any changes to the data. It simply marks your transaction ID as &ldquo;aborted&rdquo; in its internal log. The old row version instantly becomes valid again because its <code>t_xmax</code> belongs to a failed transaction, and the new row version is just ignored.</p>
-</blockquote>
-<p>Let&rsquo;s delete the row now and check the states.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># DELETE FROM mvcc_demo WHERE id = 1;</span>
-</span></span><span style="display:flex;"><span>DELETE <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT lp, t_xmin, t_xmax FROM heap_page_items(get_raw_page(&#39;mvcc_demo&#39;, 0));</span>
-</span></span><span style="display:flex;"><span> lp | t_xmin | t_xmax
-</span></span><span style="display:flex;"><span>----+--------+--------
-</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">1</span> |    <span style="color:#ae81ff">808</span> |    <span style="color:#ae81ff">809</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">2</span> |    <span style="color:#ae81ff">809</span> |    <span style="color:#ae81ff">810</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span><span style="color:#ae81ff">2</span> rows<span style="color:#f92672">)</span>
-</span></span></code></pre></div><p>Now both versions are dead. If we run <code>VACUUM</code>, then this would clean the dead rows.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># VACUUM mvcc_demo;</span>
-</span></span><span style="display:flex;"><span>VACUUM
-</span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e"># SELECT t_xmin, t_xmax FROM heap_page_items(get_raw_page(&#39;mvcc_demo&#39;, 0));</span>
-</span></span><span style="display:flex;"><span>ERROR:  block number <span style="color:#ae81ff">0</span> is out of range <span style="color:#66d9ef">for</span> relation <span style="color:#e6db74">&#34;mvcc_demo&#34;</span>
-</span></span></code></pre></div><p>I will probably do one more post in the series. I am enjoying the topic.</p>
+<p><code>Postgres</code> ran out of worker processes and flat-out rejected the extra clients.</p>
+<h3 id="step-3-watch-pgbouncer">Step 3: Watch PgBouncer</h3>
+<p>Now, let&rsquo;s route the exact same test, <code>25</code> concurrent clients, through <code>PgBouncer</code>.</p>
+<p><code>PgBouncer</code> will take those <code>25</code> incoming requests, queue them up, and funnel them through its small pool of actual database connections.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it pgbouncer-postgres pgbench -h pgbouncer -p <span style="color:#ae81ff">5432</span> -U myuser -d mydb -c <span style="color:#ae81ff">25</span> -t <span style="color:#ae81ff">100</span>
+</span></span></code></pre></div><p>The benchmark completes successfully!</p>
+<p>Even though <code>Postgres</code> only has a handful of actual connections open, <code>PgBouncer</code> seamlessly juggled the <code>25</code> clients at the transaction level so quickly that the clients didn&rsquo;t even notice they were sharing.</p>
 <hr>
 <br>
 <p><code>Happy Hacking !!!</code></p>
@@ -276,9 +271,9 @@ if (localStorage.getItem('twc-theme') === 'light') {
     <div class="post-tags">
         <span class="post-tags-label">Tags</span>
         
-        <a href="https://theweeklychallenge.org/tags/postgresql" class="post-tag">PostgreSQL</a>
+        <a href="https://theweeklychallenge.org/tags/pgbouncer" class="post-tag">PgBouncer</a>
         
-        <a href="https://theweeklychallenge.org/tags/mvcc" class="post-tag">MVCC</a>
+        <a href="https://theweeklychallenge.org/tags/postgresql" class="post-tag">PostgreSQL</a>
         
     </div>
     
@@ -293,63 +288,39 @@ if (localStorage.getItem('twc-theme') === 'light') {
         Related Posts
     </h3>
     <div class="related-posts-grid">
-        <a class="related-post-card" href="/blog/postgresql-mvcc-part-3/">
+        <a class="related-post-card" href="/blog/guest-contribution/">
             <span class="related-post-section">blog</span>
-            <span class="related-post-title">PostgreSQL MVCC - Part 3</span>
+            <span class="related-post-title">The Weekly Challenge - Guest Contributions</span>
             <span class="related-post-tags">
-                <span class="related-post-tag">PostgreSQL</span>
-                <span class="related-post-tag">MVCC</span>
-            </span>
-            <span class="related-post-date">20 Jun 2026</span>
-        </a>
-        <a class="related-post-card" href="/blog/postgresql-mvcc/">
-            <span class="related-post-section">blog</span>
-            <span class="related-post-title">PostgreSQL and MVCC</span>
-            <span class="related-post-tags">
-                <span class="related-post-tag">PostgreSQL</span>
-                <span class="related-post-tag">MVCC</span>
-            </span>
-            <span class="related-post-date">13 Jun 2026</span>
-        </a>
-        <a class="related-post-card" href="/blog/pgbouncer/">
-            <span class="related-post-section">blog</span>
-            <span class="related-post-title">PgBouncer - PostgreSQL</span>
-            <span class="related-post-tags">
-                <span class="related-post-tag">PgBouncer</span>
-                <span class="related-post-tag">PostgreSQL</span>
+                <span class="related-post-tag">Ada</span>
+                <span class="related-post-tag">APL</span>
+                <span class="related-post-tag">Awk</span>
             </span>
             <span class="related-post-date">23 Jul 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/using-jsonb/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Using JSONB</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">JSONB</span>
+                <span class="related-post-tag">MySQL</span>
+                <span class="related-post-tag">PostgreSQL</span>
+            </span>
+            <span class="related-post-date">10 Jul 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/how-to-use-postgrest/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">PostgREST: How to use?</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">PostgreSQL</span>
+                <span class="related-post-tag">PostgREST</span>
+            </span>
+            <span class="related-post-date">4 Jul 2026</span>
         </a>
     </div>
 </div>
 
     
-<nav class="post-nav" aria-label="Post navigation">
-  <div class="post-nav-inner">
-    <a class="post-nav-item post-nav-prev" href="/blog/perl-weekly-challenge-001/">
-      <span class="post-nav-label">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-             stroke-linejoin="round" aria-hidden="true">
-          <polyline points="15 18 9 12 15 6"/>
-        </svg>
-        Previous
-      </span>
-      <span class="post-nav-title">A New Week a New Challenge</span>
-    </a>
-    <a class="post-nav-item post-nav-next" href="/blog/perl-weekly-challenge-003/">
-      <span class="post-nav-label">
-        Next
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-             stroke-linejoin="round" aria-hidden="true">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </span>
-      <span class="post-nav-title">Perl Weekly Challenge - 003</span>
-    </a>
-  </div>
-</nav>
 
 
     
@@ -371,8 +342,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
         s.setAttribute('data-timestamp', +new Date());
         (d.head || d.body).appendChild(s);
         window.disqus_config = function() {
-            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/postgresql-mvcc-part-2\/';
-            this.page.identifier = '6d54974a87656ef8e88e74b37f7a4146';
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/pgbouncer\/';
+            this.page.identifier = '61f33fc07f3cb7a457125818bd45f974';
         };
     }
     </script>
