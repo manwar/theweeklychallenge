@@ -26,7 +26,7 @@ Little dig, I found out the magic line in the package perform a performance impr
 
 Little confession, I am not a big fan of `Moose`, instead I use [**Moo**](https://metacpan.org/pod/Moo) whenever I need to work with class.
 
-I posted my thought about `Immutable Class` and performance benefits on `LinkedIn` and `Facebook` couple of days ago, and received few comments.
+I posted my thought about `Immutable Class` and performance benefits on [**LinkedIn**](https://www.linkedin.com/feed/update/urn:li:activity:7486763380414951426) and [**Facebook**](https://www.facebook.com/groups/perlcommunity/posts/2309052596569020/) yesterday, and received few comments.
 
 One of them was:
 
