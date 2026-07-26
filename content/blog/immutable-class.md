@@ -114,7 +114,7 @@ $account->deposit(50);
 say $account->balance;  # Output: 150
 ```
 
-> 2. `Complex References:` If a field contains a reference like an arrayref or hashref, callers receiving the reference via a `:reader` could still mutate the referenced data internally.
+> 2. `Complex References:` If a field contains a reference like an `arrayref` or `hashref`, callers receiving the reference via a `:reader` could still mutate the referenced data internally.
 
 ```perl
 #!/usr/bin/env perl
