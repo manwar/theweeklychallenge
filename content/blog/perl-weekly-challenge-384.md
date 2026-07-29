@@ -256,7 +256,7 @@ Write a script to return all non-empty substrings (distinct) that have the same 
 #### Example 1
 
     Input: $binary = "0101"
-    Output: ("01", "10", "01")
+    Output: ("01", "10")
 
 #### Example 2
 
@@ -272,7 +272,7 @@ Write a script to return all non-empty substrings (distinct) that have the same 
 #### Example 4
 
     Input: $binary = "10011100"
-    Output: ("10", "0011", "01", "1100", "10")
+    Output: ("10", "0011", "01", "1100")
 
 #### Example 5
 
