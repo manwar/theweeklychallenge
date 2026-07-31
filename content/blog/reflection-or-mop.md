@@ -12,7 +12,7 @@ tags: ["Perl", "Java", "Reflection", "MOP"]
 ***
 <br>
 
-The inspiration for writing this blog post came from the creation of this [**LinkedIn post**](https://www.linkedin.com/posts/mohammadanwar_the-four-foundational-pillars-of-oop-abstraction-share-7488917976763588609-C8SQ).
+The inspiration for writing this blog post came from creation of this [**LinkedIn post**](https://www.linkedin.com/posts/mohammadanwar_the-four-foundational-pillars-of-oop-abstraction-share-7488917976763588609-C8SQ).
 
 `Reflection` refers to a programming language's capacity to analyse, alter, and execute its own code or structure during program's execution.
 
