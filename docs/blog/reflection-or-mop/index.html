@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/reflection-or-mop/">
+    <title>Reflection / MOP | Jul 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Revisit reflection/mop in Perl.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/reflection-or-mop/">
+    <meta property="og:title"       content="Reflection / MOP">
+    <meta property="og:description" content="Revisit reflection/mop in Perl.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/reflection-or-mop.jpg">
+    
+    <meta property="article:published_time" content="2026-07-31T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-07-31T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Reflection / MOP">
+    <meta name="twitter:description" content="Revisit reflection/mop in Perl.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/reflection-or-mop.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+
+    /* Google Search Console */
+    <meta name="google-site-verification" content="zVrrQhRg4ReGc9zXOtGdtVyhqeN9uaCdsashWPRY-5I" />
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/reflection-or-mop/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Reflection / MOP</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>Reflection / MOP</span>
+        </nav>
+        <span class="reading-time" title="984 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  4 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 31 Jul 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/reflection-or-mop.jpg" alt="Reflection / MOP"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>The inspiration for writing this blog post came from the creation of this <a href="https://www.linkedin.com/posts/mohammadanwar_the-four-foundational-pillars-of-oop-abstraction-share-7488917976763588609-C8SQ"><strong>LinkedIn post</strong></a>.</p>
+<p><code>Reflection</code> refers to a programming language&rsquo;s capacity to analyse, alter, and execute its own code or structure during program&rsquo;s execution.</p>
+<p>There was no distinction between data and instructions in the early computers. During that period, the programs were used to analyse their memory addresses and modify the available instructions at the same time.</p>
+<p><code>Lisp</code> was released by <code>John McCarthy</code>, it considered the code as data. A program was able to investigate a function&rsquo;s structure through the commands <code>eval</code> and <code>apply</code> because code was formed as basic lists.</p>
+<p><code>FORTRAN</code> and <code>C</code> dominated in the <code>1970</code>s, and the programs were deprived of their ability to inspect themselves when they were executing. The code was transformed into simple machine instructions along with all information about the variable and structure.</p>
+<p>The explicit concept and formalisation of computational reflection was invented by <code>Brian Cantwell Smith</code> in his 1982 MIT PhD dissertation, titled <code>&quot;Procedural Reflection in Programming Languages&quot;</code>. <a href="https://en.wikipedia.org/wiki/Reflective_programming"><strong>source</strong></a></p>
+<p>The discovered concept of computational reflection has been formally formulated by <code>Brain Cantwell Smith</code> in his dissertation but but the late <code>1980</code>s saw the explosion of <code>Object-Oriented Programming (OOP)</code>. <a href="https://technology.online.city.ac.uk/blogs/how-programming-languages-have-evolved-over-time"><strong>source</strong></a></p>
+<p><code>Kiczales</code> and his team developed the <code>Metaobject Protocol (MOP)</code> in their time at <code>Xerox PARC</code>. The protocol revealed the inner workings of the object oriented programming system in his language. The class system of the programming language could be subclassed in order to customise the functioning of method calls.</p>
+<pre><code>1982: Smith (PhD Thesis) &quot;Theory of Reflection&quot;
+1991: Common List Object System (CLOS) MOP &quot;OOP Metaprogramming&quot;
+1997: Java 1.1 &quot;java.lang.reflect&quot;
+2002: .NET/C# &quot;System.Reflection&quot;
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.lang.reflect.Method;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ReflectionDemo</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 1. Obtain the Class object dynamically using a string name</span>
+</span></span><span style="display:flex;"><span>        Class<span style="color:#f92672">&lt;?&gt;</span> clazz <span style="color:#f92672">=</span> Class.<span style="color:#a6e22e">forName</span>(<span style="color:#e6db74">&#34;java.lang.String&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 2. Inspect and get a reference to the &#39;toUpperCase&#39; method</span>
+</span></span><span style="display:flex;"><span>        Method method <span style="color:#f92672">=</span> clazz.<span style="color:#a6e22e">getMethod</span>(<span style="color:#e6db74">&#34;toUpperCase&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 3. Invoke the method dynamically on a String instance</span>
+</span></span><span style="display:flex;"><span>        String result <span style="color:#f92672">=</span> (String) method.<span style="color:#a6e22e">invoke</span>(<span style="color:#e6db74">&#34;hello world&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(result); <span style="color:#75715e">// Outputs: HELLO WORLD</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-C#" data-lang="C#"><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> System.Reflection;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ReflectionDemo</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 1. Obtain the Type object dynamically or via typeof</span>
+</span></span><span style="display:flex;"><span>        Type type = <span style="color:#66d9ef">typeof</span>(<span style="color:#66d9ef">string</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 2. Inspect and get a reference to the &#39;ToUpper&#39; method</span>
+</span></span><span style="display:flex;"><span>        MethodInfo method = type.GetMethod(<span style="color:#e6db74">&#34;ToUpper&#34;</span>, Type.EmptyTypes);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 3. Invoke the method dynamically on a string instance</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">string</span> result = (<span style="color:#66d9ef">string</span>)method.Invoke(<span style="color:#e6db74">&#34;hello world&#34;</span>, <span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Console.WriteLine(result); <span style="color:#75715e">// Outputs: HELLO WORLD</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<br>
+<p><code>Larry Wall</code> was inspired by languages such as <code>AWK</code>, <code>C</code>, and <code>shell scripting</code> when creating <code>Perl</code> in <code>1987</code>.</p>
+<p><code>Perl</code> was thus formally born as a dynamic interpreted programming language.</p>
+<p>Due to the ability of the interpreter to read and execute commands during runtime, it was never required to compile commands to machine-readable codes.</p>
+<p>Any function or variable was recorded into a dynamic symbol table.</p>
+<p>For the very beginning of <code>Perl</code> development and before the concept of <code>Object-Oriented Programming</code> was established there, programmers could check the existence of variables and functions directly from <code>%main::</code> Perl hash table.</p>
+<p>With the arrival of <code>Perl 5</code> in <code>1994</code>, object-orientated programming was introduced. <code>Larry Wall</code> did not add any complicated rigid class structure, like for instance <code>C++</code>, but followed his own principle: <code>&quot;There is more than one way of doing it.&quot;</code></p>
+<p>In <code>Perl 5</code>, object programming simply meant that a reference has been blessed with a package name. And since packages are in fact name spaces, reflection becomes automatic.</p>
+<p><strong>The UNIVERSAL base class</strong></p>
+<blockquote>
+<p>Thanks to <code>Perl 5</code>, all created objects automatically inherit from the class called <code>UNIVERSAL</code>. This way there are introspection methods like <code>$obj-&gt;isa(&quot;Class&quot;)</code> or <code>$obj-&gt;can(&quot;method&quot;)</code> that can help with runtime capability tests.</p>
+</blockquote>
+<p><strong>Typeglobs</strong></p>
+<blockquote>
+<p>An ability was provided for the programmers to check the presence of <code>methods</code>, <code>scalars</code>, <code>arrays</code>, and <code>hashes</code> by inspecting the symbol table slots of the package straight away.</p>
+</blockquote>
+<p><strong>eval Metaprogramming</strong></p>
+<blockquote>
+<p><code>String</code> eval allowed creating subroutines or injecting them into classes while the program is being executed.</p>
+</blockquote>
+<hr>
+<br>
+<p>In <code>2006</code>, <code>Stevan Little</code> published the <a href="https://metacpan.org/pod/Moose"><strong>Moose</strong></a>, a modern object system for <code>Perl 5</code>.</p>
+<p><code>Moose</code> provided Perl with academic-level reflection and is based on the <a href="https://metacpan.org/pod/Class::MOP"><strong>Class::MOP</strong></a> Meta-Object Protocol.</p>
+<blockquote>
+<p>Each class has become an object now. And it is possible to obtain <a href="https://metacpan.org/pod/Moose::Meta::Class"><strong>Moose::Meta::Class</strong></a> with the help of <code>$class-&gt;meta</code>.</p>
+</blockquote>
+<blockquote>
+<p>It is possible to use a clear interrogative method and query the attributes, methods, roles, and even superclasses without dealing with the stash directly.</p>
+</blockquote>
+<blockquote>
+<p>Structural transformation makes it possible to alter classes and add roles or change the work of the method at runtime.</p>
+</blockquote>
+<p>Fast forward, <code>Perl v5.38+</code> introduced core <code>experimental class</code> feature.</p>
+<h3 id="modern--type--introspection">Modern   Type   Introspection</h3>
+<p>With the advent of the general operator in <code>Perl</code>, alongside its implementation in core classes, the fundamental function of this operator is to examine class hierarchies.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.44</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Animal {}
+</span></span><span style="display:flex;"><span>class Dog :isa(Animal) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $pup <span style="color:#f92672">=</span> Dog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($pup isa Dog) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;It&#39;s a Dog!&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($pup isa Animal) {
+</span></span><span style="display:flex;"><span>    say <span style="color:#e6db74">&#34;It inherits from Animal!&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="runtime--class--resolution">Runtime   Class   Resolution</h3>
+<p>The introduction of the <code>__CLASS__</code> keyword in <code>Perl v5.40</code> made it a runtime keyword that points to the exact class of the object used. Unlike the static <code>__PACKAGE__</code> constant, it reflects the dynamic dispatch and inheritance during method invocation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.44</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Base {
+</span></span><span style="display:flex;"><span>    field $created_by <span style="color:#f92672">=</span> __CLASS__;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    method identify {
+</span></span><span style="display:flex;"><span>        say <span style="color:#e6db74">&#34;I am an instance of &#34;</span> <span style="color:#f92672">.</span> __CLASS__;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class SubClass :isa(Base) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $obj <span style="color:#f92672">=</span> SubClass<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>$obj<span style="color:#f92672">-&gt;</span>identify; <span style="color:#75715e"># &#34;I am an instance of SubClass&#34;</span>
+</span></span></code></pre></div><h3 id="capability--introspection">Capability   Introspection</h3>
+<p>Class methods can still be reflected using <code>$obj-&gt;can(&quot;method_name&quot;)</code>. When executed, this retrieves whether or not the method exists in the relevant class or any of its ancestors.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.44</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;class&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>class Dog  { method speak() { say <span style="color:#e6db74">&#34;Woof!&#34;</span> } }
+</span></span><span style="display:flex;"><span>class Cat  { method speak() { say <span style="color:#e6db74">&#34;Meow!&#34;</span> } }
+</span></span><span style="display:flex;"><span>class Rock { }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @objects <span style="color:#f92672">=</span> (Dog<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>, Cat<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>, Rock<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $obj (@objects) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">my</span> $code_ref <span style="color:#f92672">=</span> $obj<span style="color:#f92672">-&gt;</span>can(<span style="color:#e6db74">&#39;speak&#39;</span>)) {
+</span></span><span style="display:flex;"><span>        $obj<span style="color:#f92672">-&gt;</span>$code_ref();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">Perl</a>
+        
+        <a href="https://theweeklychallenge.org/tags/java" class="post-tag">Java</a>
+        
+        <a href="https://theweeklychallenge.org/tags/reflection" class="post-tag">Reflection</a>
+        
+        <a href="https://theweeklychallenge.org/tags/mop" class="post-tag">MOP</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/guest-contribution/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">The Weekly Challenge - Guest Contributions</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Ada</span>
+                <span class="related-post-tag">APL</span>
+                <span class="related-post-tag">Awk</span>
+            </span>
+            <span class="related-post-date">30 Jul 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/recap-challenge-355/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">RECAP - The Weekly Challenge - 355</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+            </span>
+            <span class="related-post-date">29 Jul 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/recap-challenge-382/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">RECAP - The Weekly Challenge - 382</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+            </span>
+            <span class="related-post-date">29 Jul 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/reflection-or-mop\/';
+            this.page.identifier = 'b178d0a049d9bd77779308ee35f87aba';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
