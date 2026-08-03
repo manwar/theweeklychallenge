@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/access-refresh-token/">
+    <title>Access / Refresh Token | Aug 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Demonstrate the use of access/refresh token using Perl.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/access-refresh-token/">
+    <meta property="og:title"       content="Access / Refresh Token">
+    <meta property="og:description" content="Demonstrate the use of access/refresh token using Perl.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/access-refresh-token.jpg">
+    
+    <meta property="article:published_time" content="2026-08-03T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-08-03T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Access / Refresh Token">
+    <meta name="twitter:description" content="Demonstrate the use of access/refresh token using Perl.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/access-refresh-token.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+
+    /* Google Search Console */
+    <meta name="google-site-verification" content="zVrrQhRg4ReGc9zXOtGdtVyhqeN9uaCdsashWPRY-5I" />
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/access-refresh-token/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Access / Refresh Token</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>Access / Refresh Token</span>
+        </nav>
+        <span class="reading-time" title="1284 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  6 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 3 Aug 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/access-refresh-token.jpg" alt="Access / Refresh Token"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>Couple of months ago, I shared my experience with <code>JSON Web Token (JWT)</code> in the post titled: <a href="/blog/jwt-with-dancer2"><strong>JWT with Dancer2</strong></a>.</p>
+<p>Having done that, I keep getting mixed up with <code>Access Token</code> and <code>Refresh Token</code>.</p>
+<p>In this post, I will try to get to the bottom of it.</p>
+<h3 id="access-token">Access Token</h3>
+<p>It&rsquo;s like a wristband, short-lived, e.g. expires in <code>15 minutes</code>. You present it at every gate, bar, or stage to get immediate entry. If someone steals it, the damage is temporary because it expires fast.</p>
+<h3 id="refresh-token">Refresh Token</h3>
+<p>It&rsquo;s like a ticket receipt, long-lived, e.g. valid for <code>30 days</code>. You keep it safely in your wallet. You don&rsquo;t show it to the bartender, you only present it at the box office to get a new wristband when your old one expires.</p>
+<p><strong>Why Use Both?</strong></p>
+<p>If you only used an <code>Access Token</code> with a long lifespan, a stolen token would give an attacker full access for a long time.</p>
+<p>If you only used a short-lived token without a <code>Refresh Token</code>, the user would have to type in their username and password every <code>15 minutes</code>.</p>
+<p>Combining both provides high security with a frictionless user experience.</p>
+<p><strong>Does this apply to <code>JWT</code>?</strong></p>
+<p>As a matter of fact, the access tokens are presently designed in the format of JWT cybertokens.</p>
+<p>In order to understand how these tokens work together, it is important to mention the difference between <code>Roles</code> and <code>Formats</code> that is as follows:</p>
+<blockquote>
+<p><code>Access Token</code> and <code>Refresh Token</code> refer to the <code>ROLES</code>, that is, the function performed by the token.</p>
+</blockquote>
+<blockquote>
+<p><code>JWT</code> refers to the <code>FORMAT</code>, meaning the type of data packaged into the token.</p>
+</blockquote>
+<p>Usually, the <code>Access Token</code> is a <code>JWT</code> since it contains signed data about a user that can be verified by any microservice.</p>
+<p>As for the <code>Refresh Token</code>, it may be represented in the instance of a <code>JWT</code>, however, in the majority of cases, it is just a random secure string which is kept in a database.</p>
+<p><strong>Where is it used?</strong></p>
+<p>In the case of a <code>Web</code> or a <code>Mobile</code> application, the <code>Access Tokens</code> and <code>Refresh Tokens</code> are utilized in three particular instances, namely:</p>
+<p><strong>Where are they applied?</strong></p>
+<p>In case of a <code>Web</code> or <code>Mobile</code> application, <code>Access Tokens</code> and <code>Refresh Tokens</code> serve three specific purposes, which are:</p>
+<h3 id="1-client-side-storage">1. Client-Side Storage</h3>
+<blockquote>
+<p>Access Token: Kept in the memory of the application or a JavaScript variable/state or a temporary cookie. The fact that it quickly expires makes storing it in memory help to minimize the potential period when the attacker could take advantage of the XSS Vulnerability.</p>
+</blockquote>
+<blockquote>
+<p>Refresh Token: Preserved in an HttpOnly, Secure, SameSite Cookie for web-based applications, or Encrypted OS Storage. As JavaScript can’t read HttpOnly cookies, the refresh token cannot be stolen in an XSS attack.</p>
+</blockquote>
+<h3 id="2-network-requests">2. Network Requests</h3>
+<blockquote>
+<p>Access Token:  Passed to all API back-end endpoints. It is given in the request header of the HTTP request:</p>
+</blockquote>
+<blockquote>
+<p>Refresh Token: Sent ONLY to the renewal endpoint of the server of the authorization. It is not sent to API endpoints.</p>
+</blockquote>
+<h3 id="3-server-side-validation">3. Server-Side Validation</h3>
+<blockquote>
+<p>Access Token: Verified by <code>API Gateways</code> and <code>Microservices</code>. With <code>JWTs</code> having cryptographic signatures, the microservices don’t need to check the database, so they don’t need to do anything other than verifying the signature locally.</p>
+</blockquote>
+<blockquote>
+<p>Refresh Token: Verified by the <code>Authorisation Server</code>. <code>Auth Server</code> checks its database or cache to confirm the validity of refresh token and that it is not revoked.</p>
+</blockquote>
+<p>By default, common browser storage (like local storage or cookies) is accessible to <code>JavaScript</code>.</p>
+<p>If a hacker manages to inject a malicious <code>JavaScript</code> into your site, he will easily get your <code>Refresh Token</code> and have unlimited access to the account for some time.</p>
+<p>The combination of <code>HttpOnly</code>, <code>Secure</code>, and <code>SameSite</code> makes a cookie protected properly against the three main attacks on web applications.</p>
+<p>Here is the example demo app that is created with real <code>Perl</code> web server using <a href="https://metacpan.org/pod/Mojolicious::Lite"><strong>Mojolicious::Lite</strong></a>.</p>
+<p>It has the frontend solution that performs login and returns the access token and <code>HttpOnly</code> refresh cookie as well as manages token rotation.</p>
+<p><strong>Source:</strong> <code>app.pl</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Mojolicious::Lite <span style="color:#f92672">-</span>signatures;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> %active_refresh_tokens;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># UI FRONTEND</span>
+</span></span><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>    $c<span style="color:#f92672">-&gt;</span>render(template <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;index&#39;</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># LOGIN ENDPOINT</span>
+</span></span><span style="display:flex;"><span>post <span style="color:#e6db74">&#39;/api/login&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $req <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>req<span style="color:#f92672">-&gt;</span>json;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($req<span style="color:#f92672">-&gt;</span>{username} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;alice&#39;</span> <span style="color:#f92672">&amp;&amp;</span> $req<span style="color:#f92672">-&gt;</span>{password} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;secret123&#39;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $access_token  <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;at_access_&#34;</span>  <span style="color:#f92672">.</span> int(rand(<span style="color:#ae81ff">100000</span>));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $refresh_token <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rt_refresh_&#34;</span> <span style="color:#f92672">.</span> int(rand(<span style="color:#ae81ff">100000</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Save refresh token to server memory</span>
+</span></span><span style="display:flex;"><span>        $active_refresh_tokens{$refresh_token} <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;alice&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Set HttpOnly, Secure, SameSite Cookie</span>
+</span></span><span style="display:flex;"><span>        $c<span style="color:#f92672">-&gt;</span>res<span style="color:#f92672">-&gt;</span>cookies({
+</span></span><span style="display:flex;"><span>            name     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;refresh_token&#39;</span>,
+</span></span><span style="display:flex;"><span>            value    <span style="color:#f92672">=&gt;</span> $refresh_token,
+</span></span><span style="display:flex;"><span>            path     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/api/refresh&#39;</span>,
+</span></span><span style="display:flex;"><span>            httponly <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            samesite <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Lax&#39;</span>,
+</span></span><span style="display:flex;"><span>            max_age  <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">3600</span> <span style="color:#75715e"># 1 hour</span>
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $c<span style="color:#f92672">-&gt;</span>render(json <span style="color:#f92672">=&gt;</span> { access_token <span style="color:#f92672">=&gt;</span> $access_token });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $c<span style="color:#f92672">-&gt;</span>render(json <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        error <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Invalid credentials&#39;</span>
+</span></span><span style="display:flex;"><span>    }, status <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">401</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># PROTECTED API ENDPOINT</span>
+</span></span><span style="display:flex;"><span>get <span style="color:#e6db74">&#39;/api/data&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $auth_header <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>req<span style="color:#f92672">-&gt;</span>headers<span style="color:#f92672">-&gt;</span>authorization <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($auth_header <span style="color:#f92672">=~</span><span style="color:#e6db74"> /^Bearer (at_access_\d+)$/</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $c<span style="color:#f92672">-&gt;</span>render(json <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            message <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;SUCCESS! Accessing top-secret user profile for Alice.&#34;</span>
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $c<span style="color:#f92672">-&gt;</span>render(json <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        error <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;401 Unauthorized: Access token missing or invalid!&#34;</span>
+</span></span><span style="display:flex;"><span>    }, status <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">401</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># REFRESH ENDPOINT</span>
+</span></span><span style="display:flex;"><span>post <span style="color:#e6db74">&#39;/api/refresh&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Read cookie sent automatically by the browser</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $cookie_token <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>cookie(<span style="color:#e6db74">&#39;refresh_token&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ($cookie_token <span style="color:#f92672">&amp;&amp;</span> exists $active_refresh_tokens{$cookie_token}) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $new_access_token <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;at_access_&#34;</span> <span style="color:#f92672">.</span> int(rand(<span style="color:#ae81ff">100000</span>));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> $c<span style="color:#f92672">-&gt;</span>render(json <span style="color:#f92672">=&gt;</span> { access_token <span style="color:#f92672">=&gt;</span> $new_access_token });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $c<span style="color:#f92672">-&gt;</span>render(json <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        error <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;403 Forbidden: Invalid or missing refresh cookie&#34;</span>
+</span></span><span style="display:flex;"><span>    }, status <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">403</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app<span style="color:#f92672">-&gt;</span>start;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>__DATA__
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>@@ index<span style="color:#f92672">.</span>html<span style="color:#f92672">.</span>ep
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;!</span>DOCTYPE html<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;html&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;head&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&lt;title&gt;</span>Perl Auth Demo<span style="color:#e6db74">&lt;/title&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&lt;style&gt;</span>
+</span></span><span style="display:flex;"><span>        body { font<span style="color:#f92672">-</span>family: sans<span style="color:#f92672">-</span>serif; max<span style="color:#f92672">-</span>width: <span style="color:#ae81ff">600</span>px; margin: <span style="color:#ae81ff">40</span>px auto; line<span style="color:#f92672">-</span>height: <span style="color:#ae81ff">1.6</span>; }
+</span></span><span style="display:flex;"><span>        button { margin: <span style="color:#ae81ff">5</span>px <span style="color:#ae81ff">0</span>; padding: <span style="color:#ae81ff">10</span>px <span style="color:#ae81ff">15</span>px; cursor: pointer; }
+</span></span><span style="display:flex;"><span>        pre { background: <span style="color:#75715e">#f4f4f4; padding: 10px; border-radius: 5px; }</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span>box { border: <span style="color:#ae81ff">1</span>px solid <span style="color:#75715e">#ccc; padding: 15px; border-radius: 8px; margin-bottom: 15px; }</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&lt;/style&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/head&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;body&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&lt;h2&gt;</span>Perl Access <span style="color:#f92672">&amp;</span> Refresh Token Demo<span style="color:#e6db74">&lt;/h2&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>div class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;box&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&lt;h3&gt;</span><span style="color:#ae81ff">1</span><span style="color:#f92672">.</span> Authentication<span style="color:#e6db74">&lt;/h3&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>button onclick<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;login()&#34;</span><span style="color:#f92672">&gt;</span>Log In (as alice)<span style="color:#e6db74">&lt;/button&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&lt;div&gt;&lt;strong&gt;</span>Stored In<span style="color:#f92672">-</span>Memory Access Token:<span style="color:#e6db74">&lt;/strong&gt;</span> <span style="color:#f92672">&lt;</span>span id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;token-val&#34;</span><span style="color:#f92672">&gt;</span>None<span style="color:#e6db74">&lt;/span&gt;&lt;/div&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&lt;/div&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>div class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;box&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&lt;h3&gt;</span><span style="color:#ae81ff">2</span><span style="color:#f92672">.</span> Access Protected Resource<span style="color:#e6db74">&lt;/h3&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>button onclick<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fetchData()&#34;</span><span style="color:#f92672">&gt;</span>Fetch <span style="color:#e6db74">/api/</span>data<span style="color:#e6db74">&lt;/button&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>button onclick<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;clearAccessToken()&#34;</span><span style="color:#f92672">&gt;</span>Simulate Access Token Expiration<span style="color:#e6db74">&lt;/button&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&lt;/div&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>div class<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;box&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&lt;h3&gt;</span><span style="color:#ae81ff">3</span><span style="color:#f92672">.</span> Token Renewal<span style="color:#e6db74">&lt;/h3&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>button onclick<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;refreshToken()&#34;</span><span style="color:#f92672">&gt;</span>Renew Access Token via HttpOnly Cookie<span style="color:#e6db74">&lt;/button&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&lt;</span>button onclick<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inspectCookies()&#34;</span><span style="color:#f92672">&gt;</span>Try to read document<span style="color:#f92672">.</span>cookie via JS<span style="color:#e6db74">&lt;/button&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&lt;/div&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&lt;h3&gt;</span>Output Log:<span style="color:#e6db74">&lt;/h3&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span>pre id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;log&#34;</span><span style="color:#f92672">&gt;</span>Click a button to start<span style="color:#f92672">...</span><span style="color:#e6db74">&lt;/pre&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&lt;script&gt;</span>
+</span></span><span style="display:flex;"><span>        let accessToken <span style="color:#f92672">=</span> null;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        function log(msg) {
+</span></span><span style="display:flex;"><span>            document<span style="color:#f92672">.</span>getElementById(<span style="color:#e6db74">&#39;log&#39;</span>)<span style="color:#f92672">.</span>innerText <span style="color:#f92672">=</span> msg;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        async function login() {
+</span></span><span style="display:flex;"><span>            const res <span style="color:#f92672">=</span> await fetch(<span style="color:#e6db74">&#39;/api/login&#39;</span>, {
+</span></span><span style="display:flex;"><span>                method: <span style="color:#e6db74">&#39;POST&#39;</span>,
+</span></span><span style="display:flex;"><span>                headers: { <span style="color:#e6db74">&#39;Content-Type&#39;</span>: <span style="color:#e6db74">&#39;application/json&#39;</span> },
+</span></span><span style="display:flex;"><span>                body: JSON<span style="color:#f92672">.</span>stringify({ username: <span style="color:#e6db74">&#39;alice&#39;</span>, password: <span style="color:#e6db74">&#39;secret123&#39;</span> })
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>            const data <span style="color:#f92672">=</span> await res<span style="color:#f92672">.</span>json();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (res<span style="color:#f92672">.</span>ok) {
+</span></span><span style="display:flex;"><span>                accessToken <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>access_token;
+</span></span><span style="display:flex;"><span>                document<span style="color:#f92672">.</span>getElementById(<span style="color:#e6db74">&#39;token-val&#39;</span>)<span style="color:#f92672">.</span>innerText <span style="color:#f92672">=</span> accessToken;
+</span></span><span style="display:flex;"><span>                log(<span style="color:#e6db74">&#34;Logged in successfully!\nAccess Token saved to JS variable.\nRefresh Cookie saved to browser (HttpOnly).&#34;</span>);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                log(<span style="color:#e6db74">&#34;Login failed: &#34;</span> <span style="color:#f92672">+</span> data<span style="color:#f92672">.</span>error);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        async function fetchData() {
+</span></span><span style="display:flex;"><span>            const res <span style="color:#f92672">=</span> await fetch(<span style="color:#e6db74">&#39;/api/data&#39;</span>, {
+</span></span><span style="display:flex;"><span>                headers: { <span style="color:#e6db74">&#39;Authorization&#39;</span>: <span style="color:#e6db74">`Bearer ${accessToken}`</span> }
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>            const data <span style="color:#f92672">=</span> await res<span style="color:#f92672">.</span>json();
+</span></span><span style="display:flex;"><span>            log(<span style="color:#e6db74">`HTTP Status: ${res.status}\nResponse: ${JSON.stringify(data, null, 2)}`</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        function clearAccessToken() {
+</span></span><span style="display:flex;"><span>            accessToken <span style="color:#f92672">=</span> null;
+</span></span><span style="display:flex;"><span>            document<span style="color:#f92672">.</span>getElementById(<span style="color:#e6db74">&#39;token-val&#39;</span>)<span style="color:#f92672">.</span>innerText <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;None (Expired)&#39;</span>;
+</span></span><span style="display:flex;"><span>            log(<span style="color:#e6db74">&#34;Access Token cleared from JS memory. Standard API calls will now fail with 401 Unauthorized.&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        async function refreshToken() {
+</span></span><span style="display:flex;"><span>            const res <span style="color:#f92672">=</span> await fetch(<span style="color:#e6db74">&#39;/api/refresh&#39;</span>, { method: <span style="color:#e6db74">&#39;POST&#39;</span> });
+</span></span><span style="display:flex;"><span>            const data <span style="color:#f92672">=</span> await res<span style="color:#f92672">.</span>json();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (res<span style="color:#f92672">.</span>ok) {
+</span></span><span style="display:flex;"><span>                accessToken <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>access_token;
+</span></span><span style="display:flex;"><span>                document<span style="color:#f92672">.</span>getElementById(<span style="color:#e6db74">&#39;token-val&#39;</span>)<span style="color:#f92672">.</span>innerText <span style="color:#f92672">=</span> accessToken;
+</span></span><span style="display:flex;"><span>                log(<span style="color:#e6db74">&#34;Token Renewed!\nThe browser automatically sent the HttpOnly cookie to /api/refresh.\nNew Access Token stored in JS variable.&#34;</span>);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                log(<span style="color:#e6db74">&#34;Refresh failed: &#34;</span> <span style="color:#f92672">+</span> data<span style="color:#f92672">.</span>error);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        function inspectCookies() {
+</span></span><span style="display:flex;"><span>            alert(<span style="color:#e6db74">&#34;document.cookie output: \&#34;&#34;</span> <span style="color:#f92672">+</span> document<span style="color:#f92672">.</span>cookie <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\&#34;\n\nNotice that &#39;refresh_token&#39; is NOT listed! JavaScript cannot access it.&#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&lt;/script&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/body&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/html&gt;</span>
+</span></span></code></pre></div><h3 id="start-the-application">Start the Application</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl app.pl daemon
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>2026-08-03 13:43:34.85207<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>400543<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>info<span style="color:#f92672">]</span> Listening at <span style="color:#e6db74">&#34;http://*:3000&#34;</span>
+</span></span><span style="display:flex;"><span>Web application available at http://127.0.0.1:3000
+</span></span></code></pre></div><h3 id="landing-page">Landing page</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/access-refresh-token-pic-1.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+<h3 id="click-log-in-button">Click &ldquo;Log in&rdquo; button</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/access-refresh-token-pic-2.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+<h3 id="click-fetch-apidata-button">Click &ldquo;Fetch /api/data&rdquo; button</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/access-refresh-token-pic-3.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+<h3 id="click-simulate-access-token-expiration-button">Click &ldquo;Simulate Access Token Expiration&rdquo; button</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/access-refresh-token-pic-4.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+<h3 id="click-renew-access-token-via-httponly-cookie-button">Click &ldquo;Renew Access Token via HttpOnly Cookie&rdquo; button</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/access-refresh-token-pic-5.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+<h3 id="click-try-to-read-documentcookie-via-js-button">Click &ldquo;Try to read document.cookie via JS&rdquo; button</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/access-refresh-token-pic-6.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">Perl</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/recap-challenge-384/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">RECAP - The Weekly Challenge - 384</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+            </span>
+            <span class="related-post-date">3 Aug 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/perl-weekly-challenge-385/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">The Weekly Challenge - 385</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+                <span class="related-post-tag">Challenge</span>
+            </span>
+            <span class="related-post-date">3 Aug 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/reflection-or-mop/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Reflection / MOP</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Java</span>
+                <span class="related-post-tag">Reflection</span>
+            </span>
+            <span class="related-post-date">31 Jul 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/access-refresh-token\/';
+            this.page.identifier = '88be830039c8f8fa1df49ff52e70f6c8';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
