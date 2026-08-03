@@ -75,7 +75,7 @@ In case of a `Web` or `Mobile` application, `Access Tokens` and `Refresh Tokens`
 
 > `Refresh Token`: Verified by the `Authorisation Server`. `Auth Server` checks its database or cache to confirm the validity of refresh token and that it is not revoked.
 
-By default, common browser storage (like local storage or cookies) is accessible to `JavaScript`.
+By default, common browser storage (like `local storage` or `cookies`) is accessible to `JavaScript`.
 
 If a hacker manages to inject a malicious `JavaScript` into your site, he will easily get your `Refresh Token` and have unlimited access to the account for some time.
 
