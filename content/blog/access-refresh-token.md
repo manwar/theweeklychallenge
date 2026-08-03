@@ -59,21 +59,21 @@ In case of a `Web` or `Mobile` application, `Access Tokens` and `Refresh Tokens`
 
 ### 1. Client-Side Storage
 
-> Access Token: Kept in the memory of the application or a JavaScript variable/state or a temporary cookie. The fact that it quickly expires makes storing it in memory help to minimize the potential period when the attacker could take advantage of the XSS Vulnerability.
+> `Access Token`: Kept in the memory of the application or a `JavaScript` variable/state or a temporary cookie. The fact that it quickly expires makes storing it in memory help to minimise the potential period when the attacker could take advantage of the `XSS` Vulnerability.
 
-> Refresh Token: Preserved in an HttpOnly, Secure, SameSite Cookie for web-based applications, or Encrypted OS Storage. As JavaScript can’t read HttpOnly cookies, the refresh token cannot be stolen in an XSS attack.
+> `Refresh Token`: Preserved in an `HttpOnly`, `Secure`, `SameSite` Cookie for web-based applications, or Encrypted OS Storage. As `JavaScript` can’t read `HttpOnly` cookies, the refresh token cannot be stolen in an `XSS` attack.
 
 ### 2. Network Requests
 
-> Access Token:  Passed to all API back-end endpoints. It is given in the request header of the HTTP request:
+> `Access Token`:  Passed to all API back-end endpoints. It is given in the request header of the `HTTP` request:
 
-> Refresh Token: Sent ONLY to the renewal endpoint of the server of the authorization. It is not sent to API endpoints.
+> `Refresh Token`: Sent ONLY to the renewal endpoint of the server of the authorisation. It is not sent to API endpoints.
 
 ### 3. Server-Side Validation
 
-> Access Token: Verified by `API Gateways` and `Microservices`. With `JWTs` having cryptographic signatures, the microservices don’t need to check the database, so they don’t need to do anything other than verifying the signature locally.
+> `Access Token`: Verified by `API Gateways` and `Microservices`. With `JWTs` having cryptographic signatures, the microservices don’t need to check the database, so they don’t need to do anything other than verifying the signature locally.
 
-> Refresh Token: Verified by the `Authorisation Server`. `Auth Server` checks its database or cache to confirm the validity of refresh token and that it is not revoked.
+> `Refresh Token`: Verified by the `Authorisation Server`. `Auth Server` checks its database or cache to confirm the validity of refresh token and that it is not revoked.
 
 By default, common browser storage (like local storage or cookies) is accessible to `JavaScript`.
 
