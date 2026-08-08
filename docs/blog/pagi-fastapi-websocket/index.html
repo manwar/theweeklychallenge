@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/pagi-fastapi-websocket/">
+    <title>PAGI::FastAPI &#43; WebSocket | Aug 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Using WebSocket with PAGI::FastAPI.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/pagi-fastapi-websocket/">
+    <meta property="og:title"       content="PAGI::FastAPI &#43; WebSocket">
+    <meta property="og:description" content="Using WebSocket with PAGI::FastAPI.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/pagi-fastapi-websocket.jpg">
+    
+    <meta property="article:published_time" content="2026-08-08T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-08-08T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="PAGI::FastAPI &#43; WebSocket">
+    <meta name="twitter:description" content="Using WebSocket with PAGI::FastAPI.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/pagi-fastapi-websocket.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+
+    /* Google Search Console */
+    <meta name="google-site-verification" content="zVrrQhRg4ReGc9zXOtGdtVyhqeN9uaCdsashWPRY-5I" />
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/pagi-fastapi-websocket/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">PAGI::FastAPI &#43; WebSocket</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>PAGI::FastAPI &#43; WebSocket</span>
+        </nav>
+        <span class="reading-time" title="839 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  4 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 8 Aug 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/pagi-fastapi-websocket.jpg" alt="PAGI::FastAPI &#43; WebSocket"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>For last week or so, I have been playing with <a href="https://metacpan.org/dist/PAGI-FastAPI"><strong>PAGI::FastAPI</strong></a>. This is my latest creation also my first attempt in creating async micro web framework.</p>
+<p>I have been, <a href="https://metacpan.org/pod/Dancer2"><strong>Dancer2</strong></a> fan all my life. It has done all I wanted without any extra effort.</p>
+<p>While going through my old notes, I came across Python&rsquo;s <a href="https://fastapi.tiangolo.com"><strong>FastAPI</strong></a>. I decided to port it to <code>Perl</code>. Using <a href="https://metacpan.org/pod/PAGI"><strong>PAGI</strong></a>, the job was half done already.</p>
+<p>I released the first draft on <code>Aug 3, 2026</code>. After the first release, I started looking ways to integrate <a href="https://metacpan.org/dist/DBIx-Class-Async"><strong>DBIx::Class::Async</strong></a>. It was obvious choice when creating application with database. It helped me in integration as I am the creator of <code>DBIx::Class::Async</code>.</p>
+<p>The best part was, no code change was needed in <code>PAGI::FastAPI</code>. I quickly had a demo application up and running. Just to record the process, I created a <a href="/blog/pagi-fastapi"><strong>blog post</strong></a>.</p>
+<p><strong>What next?</strong></p>
+<p>In <code>Feb, 2026</code>, I created <a href="/blog/mojo-with-websocket"><strong>blog post</strong></a> about creating chat server using websocket. When I shared the post on social media, I got suggestion to re-create using <code>Redis</code> and <code>PostgreSQL</code>. At that point in time, I decided to create <a href="https://github.com/manwar/Mojo-with-WebSocket"><strong>GitHub repository</strong></a> so that I can keep track of different implementations.</p>
+<p>Having done that, I didn&rsquo;t stop, I then re-create the chat server using <code>PAGI</code> and <code>Thunderhorse</code>. You can find working codes in the repository.</p>
+<p>I started exploring ways to add the support of <code>WebSocket</code> to the <code>PAGI::FastAPI</code>. The idea was to create chat server using <code>PAGI::FastAPI</code> after that.</p>
+<p>I really had to fight hard but eventually got what I wanted and released <code>v0.0.6</code> with websocket support. I released the distribution with simple <a href="https://github.com/manwar/PAGI-FastAPI/blob/master/eg/websocket_app.pl"><strong>example using websocket</strong></a>.</p>
+<p>You can try sample chat:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ pagi-server websocket_app.pl
+</span></span></code></pre></div><p>In the browser, visit <a href="http://localhost:5000"><strong>http://localhost:5000</strong></a> and start chatting.</p>
+<p>My end goal was to re-create the original chat server using <code>PAGI::FastAPI</code>. Looking at the <a href="https://github.com/manwar/Mojo-with-WebSocket"><strong>GitHub repository</strong></a>, I had to start the <code>PostgreSQL</code> database in docker container as other implementations also used the same.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker compose up -d
+</span></span></code></pre></div><p>Finally, I have a <a href="https://github.com/manwar/Mojo-with-WebSocket/blob/master/chat-server-v6.pl"><strong>working example</strong></a> using <code>PAGI::FastAPI</code>.</p>
+<p>Let me share the excerpts:</p>
+<p><strong>Skeleton</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> PAGI::FastAPI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+</span></span><span style="display:flex;"><span>    title   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;PAGI::FastAPI Chat Server&#39;</span>,
+</span></span><span style="display:flex;"><span>    version <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1.0.0&#39;</span>,
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p><strong>Setup Lifespan Protocol</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>on_startup(async <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Server starting up...\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $cleanup_timer <span style="color:#f92672">=</span> IO::Async::Timer::Periodic<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+</span></span><span style="display:flex;"><span>        interval <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">60</span>,
+</span></span><span style="display:flex;"><span>        on_tick  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>            eval {
+</span></span><span style="display:flex;"><span>                $pg<span style="color:#f92672">-&gt;</span>db<span style="color:#f92672">-&gt;</span>query(<span style="color:#e6db74">q{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    DELETE FROM chat_users
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    WHERE last_seen &lt; NOW() - INTERVAL &#39;2 minutes&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                }</span>);
+</span></span><span style="display:flex;"><span>            };
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    $loop<span style="color:#f92672">-&gt;</span>add($cleanup_timer);
+</span></span><span style="display:flex;"><span>    $cleanup_timer<span style="color:#f92672">-&gt;</span>start;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Cross-process fan-out: other server processes publish here too, so a</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># message sent to the server on :3000 reaches clients connected to :3001.</span>
+</span></span><span style="display:flex;"><span>    $pubsub<span style="color:#f92672">-&gt;</span>listen(<span style="color:#e6db74">&#39;chat_messages&#39;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> ($pubsub, $payload) <span style="color:#f92672">=</span> @_;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> ref($payload) <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;HASH&#39;</span>
+</span></span><span style="display:flex;"><span>            ? $payload
+</span></span><span style="display:flex;"><span>            : eval { decode_json($payload) };
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $data;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $from_process <span style="color:#f92672">=</span> delete $data<span style="color:#f92672">-&gt;</span>{_process_id};
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">if</span> defined $from_process <span style="color:#f92672">&amp;&amp;</span> $from_process <span style="color:#f92672">eq</span> $process_id;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;message&#39;</span>) {
+</span></span><span style="display:flex;"><span>            push @history, $data;
+</span></span><span style="display:flex;"><span>            shift @history <span style="color:#66d9ef">if</span> @history <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $client (values %$clients) {
+</span></span><span style="display:flex;"><span>            eval { $client<span style="color:#f92672">-&gt;</span>{ws}<span style="color:#f92672">-&gt;</span>send_json($data) };
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>on_shutdown(async <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Server shutting down...\n&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    $cleanup_timer<span style="color:#f92672">-&gt;</span>stop <span style="color:#66d9ef">if</span> $cleanup_timer;
+</span></span><span style="display:flex;"><span>    $loop<span style="color:#f92672">-&gt;</span>remove($cleanup_timer) <span style="color:#66d9ef">if</span> $cleanup_timer;
+</span></span><span style="display:flex;"><span>    eval { $pubsub<span style="color:#f92672">-&gt;</span>unlisten(<span style="color:#e6db74">&#39;chat_messages&#39;</span>) };
+</span></span><span style="display:flex;"><span>    eval { $pg<span style="color:#f92672">-&gt;</span>db<span style="color:#f92672">-&gt;</span>disconnect };
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Having done that, finally looking at the core:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>websocket(<span style="color:#e6db74">&#39;/chat&#39;</span>,
+</span></span><span style="display:flex;"><span>    handler <span style="color:#f92672">=&gt;</span> async <span style="color:#66d9ef">sub</span> ($ws, $deps) {
+</span></span><span style="display:flex;"><span>        await $ws<span style="color:#f92672">-&gt;</span>accept;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$ws&#34;</span>;
+</span></span><span style="display:flex;"><span>        $clients<span style="color:#f92672">-&gt;</span>{$id} <span style="color:#f92672">=</span> { ws <span style="color:#f92672">=&gt;</span> $ws, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Anonymous&#39;</span> };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Heartbeat timer (30 seconds)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $heartbeat_timer <span style="color:#f92672">=</span> IO::Async::Timer::Periodic<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+</span></span><span style="display:flex;"><span>            interval <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>            on_tick  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $clients<span style="color:#f92672">-&gt;</span>{$id};
+</span></span><span style="display:flex;"><span>                eval {
+</span></span><span style="display:flex;"><span>                    $pg<span style="color:#f92672">-&gt;</span>db<span style="color:#f92672">-&gt;</span>query(<span style="color:#e6db74">q{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        UPDATE chat_users
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        SET last_seen = NOW()
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        WHERE session_id = ?
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    }</span>, $id);
+</span></span><span style="display:flex;"><span>                };
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        $loop<span style="color:#f92672">-&gt;</span>add($heartbeat_timer);
+</span></span><span style="display:flex;"><span>        $heartbeat_timer<span style="color:#f92672">-&gt;</span>start;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Handle incoming messages</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $msg_text <span style="color:#f92672">=</span> await $ws<span style="color:#f92672">-&gt;</span>receive_text;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">last</span> <span style="color:#66d9ef">unless</span> defined $msg_text;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $data <span style="color:#f92672">=</span> eval { decode_json($msg_text) };
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">next</span> <span style="color:#66d9ef">unless</span> $data;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;typing&#39;</span>) {
+</span></span><span style="display:flex;"><span>                await broadcast({
+</span></span><span style="display:flex;"><span>                    type     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;typing&#39;</span>,
+</span></span><span style="display:flex;"><span>                    user     <span style="color:#f92672">=&gt;</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name},
+</span></span><span style="display:flex;"><span>                    isTyping <span style="color:#f92672">=&gt;</span> $data<span style="color:#f92672">-&gt;</span>{isTyping} ? <span style="color:#ae81ff">1</span> : <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>                }, $id);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elsif</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;join&#39;</span>) {
+</span></span><span style="display:flex;"><span>                $clients<span style="color:#f92672">-&gt;</span>{$id}{name} <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span>{name};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                $pg<span style="color:#f92672">-&gt;</span>db<span style="color:#f92672">-&gt;</span>query(<span style="color:#e6db74">q{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    INSERT INTO chat_users (session_id, username, last_seen)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    VALUES (?, ?, NOW())
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    ON CONFLICT (session_id)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    DO UPDATE SET username  = EXCLUDED.username,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                                  last_seen = NOW()
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                }</span>, $id, $data<span style="color:#f92672">-&gt;</span>{name});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># Send history to new user</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">foreach</span> <span style="color:#66d9ef">my</span> $old_msg (@history) {
+</span></span><span style="display:flex;"><span>                    await $ws<span style="color:#f92672">-&gt;</span>send_text(encode_json($old_msg));
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                await broadcast({
+</span></span><span style="display:flex;"><span>                    type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;system&#39;</span>,
+</span></span><span style="display:flex;"><span>                    text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$data-&gt;{name} joined&#34;</span>
+</span></span><span style="display:flex;"><span>                });
+</span></span><span style="display:flex;"><span>                await send_user_list();
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elsif</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;message&#39;</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span> (undef, $min, $hour) <span style="color:#f92672">=</span> localtime();
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span> $timestamp <span style="color:#f92672">=</span> sprintf(<span style="color:#e6db74">&#34;%02d:%02d&#34;</span>, $hour, $min);
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">my</span> $msg_out <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>                    type      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;message&#39;</span>,
+</span></span><span style="display:flex;"><span>                    user      <span style="color:#f92672">=&gt;</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name},
+</span></span><span style="display:flex;"><span>                    text      <span style="color:#f92672">=&gt;</span> $data<span style="color:#f92672">-&gt;</span>{text},
+</span></span><span style="display:flex;"><span>                    timestamp <span style="color:#f92672">=&gt;</span> $timestamp
+</span></span><span style="display:flex;"><span>                };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                push @history, $msg_out;
+</span></span><span style="display:flex;"><span>                shift @history <span style="color:#66d9ef">if</span> @history <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                await broadcast($msg_out);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Cleanup on disconnect</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name};
+</span></span><span style="display:flex;"><span>        delete $clients<span style="color:#f92672">-&gt;</span>{$id};
+</span></span><span style="display:flex;"><span>        $heartbeat_timer<span style="color:#f92672">-&gt;</span>stop;
+</span></span><span style="display:flex;"><span>        $loop<span style="color:#f92672">-&gt;</span>remove($heartbeat_timer);
+</span></span><span style="display:flex;"><span>        $pg<span style="color:#f92672">-&gt;</span>db<span style="color:#f92672">-&gt;</span>query(<span style="color:#e6db74">q{DELETE FROM chat_users WHERE session_id = ?}</span>, $id);
+</span></span><span style="display:flex;"><span>        await broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;system&#39;</span>, text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$name left&#34;</span> });
+</span></span><span style="display:flex;"><span>        await send_user_list();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>Now run the complete chat server:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ pagi<span style="color:#f92672">-</span>server chat<span style="color:#f92672">-</span>server<span style="color:#f92672">-</span>v6<span style="color:#f92672">.</span>pl
+</span></span><span style="display:flex;"><span>Future::IO configured <span style="color:#66d9ef">for</span> IO::Async
+</span></span><span style="display:flex;"><span>PAGI development mode <span style="color:#f92672">-</span> Lint middleware enabled
+</span></span><span style="display:flex;"><span>Server starting up<span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>access_log is a terminal; this may impact performance<span style="color:#f92672">.</span> Consider redirecting to a file <span style="color:#f92672">or</span> setting access_log <span style="color:#f92672">=&gt;</span> undef <span style="color:#66d9ef">for</span> benchmarks<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>PAGI Server listening on http:<span style="color:#e6db74">//</span><span style="color:#ae81ff">127.0.0.1</span>:<span style="color:#ae81ff">5000</span><span style="color:#f92672">/</span> (loop: Poll, max_conn: <span style="color:#ae81ff">1000</span>, http2: <span style="color:#f92672">not</span> installed, tls: <span style="color:#f92672">not</span> installed, future_xs: available)
+</span></span></code></pre></div><p>Open the browser and visit <a href="http://localhost:5000"><strong>http://localhost:5000</strong></a></p>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/chat-using-websocket.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">Perl</a>
+        
+        <a href="https://theweeklychallenge.org/tags/pagi" class="post-tag">PAGI</a>
+        
+        <a href="https://theweeklychallenge.org/tags/fastapi" class="post-tag">FastAPI</a>
+        
+        <a href="https://theweeklychallenge.org/tags/websocket" class="post-tag">WebSocket</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/pagi-fastapi/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">PAGI::FastAPI &#43; DBIx::Class::Async</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">PAGI</span>
+                <span class="related-post-tag">FastAPI</span>
+            </span>
+            <span class="related-post-date">3 Aug 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/access-refresh-token/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Access / Refresh Token</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+            </span>
+            <span class="related-post-date">3 Aug 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/recap-challenge-384/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">RECAP - The Weekly Challenge - 384</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">Raku</span>
+            </span>
+            <span class="related-post-date">3 Aug 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/pagi-fastapi-websocket\/';
+            this.page.identifier = 'd2a076f27e8e055585be7d4cba8003b4';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
