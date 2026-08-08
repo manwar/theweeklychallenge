@@ -294,6 +294,7 @@ Let's try `POST` method first using the generated token:
 ```bash
 $ curl -X POST http://127.0.0.1:5000/users \
        -H "Authorization: Bearer $TOKEN" \
+       -H "Content-Type: application/json" \
        -d '{"name":"Grace Hopper","email":"grace@example.com"}'
 {"email":"grace@example.com","id":"1","name":"Grace Hopper"}
 ```
