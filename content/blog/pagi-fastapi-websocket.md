@@ -65,15 +65,23 @@ my $app = PAGI::FastAPI->new(
 $app->on_startup(async sub {
     print "Server starting up...\n";
 
+    await pg_query(q{
+        CREATE TABLE IF NOT EXISTS chat_users (
+            session_id TEXT PRIMARY KEY,
+            username   TEXT NOT NULL,
+            last_seen  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    });
+
     $cleanup_timer = IO::Async::Timer::Periodic->new(
         interval => 60,
         on_tick  => sub {
-            eval {
-                $pg->db->query(q{
+            (async sub {
+                await pg_query(q{
                     DELETE FROM chat_users
                     WHERE last_seen < NOW() - INTERVAL '2 minutes'
                 });
-            };
+            })->()->else(sub { Future->done })->retain;
         }
     );
     $loop->add($cleanup_timer);
@@ -130,13 +138,15 @@ $app->websocket('/chat',
             interval => 30,
             on_tick  => sub {
                 return unless $clients->{$id};
-                eval {
-                    $pg->db->query(q{
+                # on_tick is a plain (non-async) callback, so we can't await
+                # here directly, fire the query and swallow any failure.
+                (async sub {
+                    await pg_query(q{
                         UPDATE chat_users
                         SET last_seen = NOW()
                         WHERE session_id = ?
                     }, $id);
-                };
+                })->()->else(sub { Future->done })->retain;
             }
         );
         $loop->add($heartbeat_timer);
@@ -160,7 +170,7 @@ $app->websocket('/chat',
             elsif ($data->{type} eq 'join') {
                 $clients->{$id}{name} = $data->{name};
 
-                $pg->db->query(q{
+                await pg_query(q{
                     INSERT INTO chat_users (session_id, username, last_seen)
                     VALUES (?, ?, NOW())
                     ON CONFLICT (session_id)
@@ -201,7 +211,7 @@ $app->websocket('/chat',
         delete $clients->{$id};
         $heartbeat_timer->stop;
         $loop->remove($heartbeat_timer);
-        $pg->db->query(q{DELETE FROM chat_users WHERE session_id = ?}, $id);
+        await pg_query(q{DELETE FROM chat_users WHERE session_id = ?}, $id);
         await broadcast({ type => 'system', text => "$name left" });
         await send_user_list();
     }
@@ -211,12 +221,12 @@ $app->websocket('/chat',
 Now run the complete chat server:
 
 ```perl
-$ pagi-server chat-server-v6.pl
+$ IO_ASYNC_LOOP=EV pagi-server chat-server-v6.pl
 Future::IO configured for IO::Async
 PAGI development mode - Lint middleware enabled
 Server starting up...
 access_log is a terminal; this may impact performance. Consider redirecting to a file or setting access_log => undef for benchmarks.
-PAGI Server listening on http://127.0.0.1:5000/ (loop: Poll, max_conn: 1000, http2: not installed, tls: not installed, future_xs: available)
+PAGI Server listening on http://127.0.0.1:5000/ (loop: EV, max_conn: 1000, http2: not installed, tls: not installed, future_xs: available)
 ```
 
 Open the browser and visit [**http://localhost:5000**](http://localhost:5000)
@@ -228,9 +238,6 @@ Open the browser and visit [**http://localhost:5000**](http://localhost:5000)
         </div>
     </div>
 </div>
-
-
-
 
 ***
 <br>

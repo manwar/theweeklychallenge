@@ -154,7 +154,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>PAGI::FastAPI &#43; WebSocket</span>
         </nav>
-        <span class="reading-time" title="839 words">
+        <span class="reading-time" title="896 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -209,15 +209,23 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>on_startup(async <span style="color:#66d9ef">sub</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Server starting up...\n&#34;</span>;
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    await pg_query(<span style="color:#e6db74">q{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        CREATE TABLE IF NOT EXISTS chat_users (
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            session_id TEXT PRIMARY KEY,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            username   TEXT NOT NULL,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            last_seen  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        )
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }</span>);
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    $cleanup_timer <span style="color:#f92672">=</span> IO::Async::Timer::Periodic<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
 </span></span><span style="display:flex;"><span>        interval <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">60</span>,
 </span></span><span style="display:flex;"><span>        on_tick  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-</span></span><span style="display:flex;"><span>            eval {
-</span></span><span style="display:flex;"><span>                $pg<span style="color:#f92672">-&gt;</span>db<span style="color:#f92672">-&gt;</span>query(<span style="color:#e6db74">q{
+</span></span><span style="display:flex;"><span>            (async <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>                await pg_query(<span style="color:#e6db74">q{
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    DELETE FROM chat_users
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    WHERE last_seen &lt; NOW() - INTERVAL &#39;2 minutes&#39;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                }</span>);
-</span></span><span style="display:flex;"><span>            };
+</span></span><span style="display:flex;"><span>            })<span style="color:#f92672">-&gt;</span>()<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">else</span>(<span style="color:#66d9ef">sub</span> { Future<span style="color:#f92672">-&gt;</span>done })<span style="color:#f92672">-&gt;</span>retain;
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    );
 </span></span><span style="display:flex;"><span>    $loop<span style="color:#f92672">-&gt;</span>add($cleanup_timer);
@@ -267,13 +275,15 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>            interval <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span>,
 </span></span><span style="display:flex;"><span>            on_tick  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
 </span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $clients<span style="color:#f92672">-&gt;</span>{$id};
-</span></span><span style="display:flex;"><span>                eval {
-</span></span><span style="display:flex;"><span>                    $pg<span style="color:#f92672">-&gt;</span>db<span style="color:#f92672">-&gt;</span>query(<span style="color:#e6db74">q{
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># on_tick is a plain (non-async) callback, so we can&#39;t await</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># here directly, fire the query and swallow any failure.</span>
+</span></span><span style="display:flex;"><span>                (async <span style="color:#66d9ef">sub</span> {
+</span></span><span style="display:flex;"><span>                    await pg_query(<span style="color:#e6db74">q{
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        UPDATE chat_users
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        SET last_seen = NOW()
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        WHERE session_id = ?
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    }</span>, $id);
-</span></span><span style="display:flex;"><span>                };
+</span></span><span style="display:flex;"><span>                })<span style="color:#f92672">-&gt;</span>()<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">else</span>(<span style="color:#66d9ef">sub</span> { Future<span style="color:#f92672">-&gt;</span>done })<span style="color:#f92672">-&gt;</span>retain;
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        );
 </span></span><span style="display:flex;"><span>        $loop<span style="color:#f92672">-&gt;</span>add($heartbeat_timer);
@@ -297,7 +307,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elsif</span> ($data<span style="color:#f92672">-&gt;</span>{type} <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;join&#39;</span>) {
 </span></span><span style="display:flex;"><span>                $clients<span style="color:#f92672">-&gt;</span>{$id}{name} <span style="color:#f92672">=</span> $data<span style="color:#f92672">-&gt;</span>{name};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>                $pg<span style="color:#f92672">-&gt;</span>db<span style="color:#f92672">-&gt;</span>query(<span style="color:#e6db74">q{
+</span></span><span style="display:flex;"><span>                await pg_query(<span style="color:#e6db74">q{
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    INSERT INTO chat_users (session_id, username, last_seen)
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    VALUES (?, ?, NOW())
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    ON CONFLICT (session_id)
@@ -338,18 +348,18 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>        delete $clients<span style="color:#f92672">-&gt;</span>{$id};
 </span></span><span style="display:flex;"><span>        $heartbeat_timer<span style="color:#f92672">-&gt;</span>stop;
 </span></span><span style="display:flex;"><span>        $loop<span style="color:#f92672">-&gt;</span>remove($heartbeat_timer);
-</span></span><span style="display:flex;"><span>        $pg<span style="color:#f92672">-&gt;</span>db<span style="color:#f92672">-&gt;</span>query(<span style="color:#e6db74">q{DELETE FROM chat_users WHERE session_id = ?}</span>, $id);
+</span></span><span style="display:flex;"><span>        await pg_query(<span style="color:#e6db74">q{DELETE FROM chat_users WHERE session_id = ?}</span>, $id);
 </span></span><span style="display:flex;"><span>        await broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;system&#39;</span>, text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$name left&#34;</span> });
 </span></span><span style="display:flex;"><span>        await send_user_list();
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>);
 </span></span></code></pre></div><p>Now run the complete chat server:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ pagi<span style="color:#f92672">-</span>server chat<span style="color:#f92672">-</span>server<span style="color:#f92672">-</span>v6<span style="color:#f92672">.</span>pl
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$ IO_ASYNC_LOOP<span style="color:#f92672">=</span>EV pagi<span style="color:#f92672">-</span>server chat<span style="color:#f92672">-</span>server<span style="color:#f92672">-</span>v6<span style="color:#f92672">.</span>pl
 </span></span><span style="display:flex;"><span>Future::IO configured <span style="color:#66d9ef">for</span> IO::Async
 </span></span><span style="display:flex;"><span>PAGI development mode <span style="color:#f92672">-</span> Lint middleware enabled
 </span></span><span style="display:flex;"><span>Server starting up<span style="color:#f92672">...</span>
 </span></span><span style="display:flex;"><span>access_log is a terminal; this may impact performance<span style="color:#f92672">.</span> Consider redirecting to a file <span style="color:#f92672">or</span> setting access_log <span style="color:#f92672">=&gt;</span> undef <span style="color:#66d9ef">for</span> benchmarks<span style="color:#f92672">.</span>
-</span></span><span style="display:flex;"><span>PAGI Server listening on http:<span style="color:#e6db74">//</span><span style="color:#ae81ff">127.0.0.1</span>:<span style="color:#ae81ff">5000</span><span style="color:#f92672">/</span> (loop: Poll, max_conn: <span style="color:#ae81ff">1000</span>, http2: <span style="color:#f92672">not</span> installed, tls: <span style="color:#f92672">not</span> installed, future_xs: available)
+</span></span><span style="display:flex;"><span>PAGI Server listening on http:<span style="color:#e6db74">//</span><span style="color:#ae81ff">127.0.0.1</span>:<span style="color:#ae81ff">5000</span><span style="color:#f92672">/</span> (loop: EV, max_conn: <span style="color:#ae81ff">1000</span>, http2: <span style="color:#f92672">not</span> installed, tls: <span style="color:#f92672">not</span> installed, future_xs: available)
 </span></span></code></pre></div><p>Open the browser and visit <a href="http://localhost:5000"><strong>http://localhost:5000</strong></a></p>
 <div class="container">
     <div class="row">
