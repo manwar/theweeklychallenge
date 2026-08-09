@@ -1180,6 +1180,10 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/deadmarshal/go/ch1.go) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/deadmarshal/go/ch2.go) in **Go**.
 
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/asherbhs/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/asherbhs/apl/ch-2.apl) in **APL**.
+
+##### **Asher Harvey-Smith** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/asherbhs/odin/ch-1.odin) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/asherbhs/odin/ch-2.odin) in **Odin**.
+
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/zapwai/c/ch-2.c) in **C**.
 
 ##### **Elias Martenson** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/loke/kap/ch-1.kap) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/loke/kap/ch-2.kap) in **Kap**.
