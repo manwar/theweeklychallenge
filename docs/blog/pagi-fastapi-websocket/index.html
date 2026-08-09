@@ -154,7 +154,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>PAGI::FastAPI &#43; WebSocket</span>
         </nav>
-        <span class="reading-time" title="896 words">
+        <span class="reading-time" title="969 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -217,19 +217,10 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        )
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    $cleanup_timer <span style="color:#f92672">=</span> IO::Async::Timer::Periodic<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
-</span></span><span style="display:flex;"><span>        interval <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">60</span>,
-</span></span><span style="display:flex;"><span>        on_tick  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-</span></span><span style="display:flex;"><span>            (async <span style="color:#66d9ef">sub</span> {
-</span></span><span style="display:flex;"><span>                await pg_query(<span style="color:#e6db74">q{
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    DELETE FROM chat_users
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    WHERE last_seen &lt; NOW() - INTERVAL &#39;2 minutes&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                }</span>);
-</span></span><span style="display:flex;"><span>            })<span style="color:#f92672">-&gt;</span>()<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">else</span>(<span style="color:#66d9ef">sub</span> { Future<span style="color:#f92672">-&gt;</span>done })<span style="color:#f92672">-&gt;</span>retain;
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    );
-</span></span><span style="display:flex;"><span>    $loop<span style="color:#f92672">-&gt;</span>add($cleanup_timer);
-</span></span><span style="display:flex;"><span>    $cleanup_timer<span style="color:#f92672">-&gt;</span>start;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Stale-user cleanup, every 60s. Same Future::IO approach as the</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># heartbeat above, started here, stopped via the $shutting_down flag</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># in on_shutdown rather than an explicit timer object.</span>
+</span></span><span style="display:flex;"><span>    cleanup_loop()<span style="color:#f92672">-&gt;</span>retain;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Cross-process fan-out: other server processes publish here too, so a</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># message sent to the server on :3000 reaches clients connected to :3001.</span>
@@ -257,8 +248,21 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>on_shutdown(async <span style="color:#66d9ef">sub</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">print</span> <span style="color:#e6db74">&#34;Server shutting down...\n&#34;</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    $cleanup_timer<span style="color:#f92672">-&gt;</span>stop <span style="color:#66d9ef">if</span> $cleanup_timer;
-</span></span><span style="display:flex;"><span>    $loop<span style="color:#f92672">-&gt;</span>remove($cleanup_timer) <span style="color:#66d9ef">if</span> $cleanup_timer;
+</span></span><span style="display:flex;"><span>    $shutting_down <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Instantly wake every heartbeat/cleanup coroutine currently sleeping,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># instead of leaving them to notice $shutting_down up to 30-60s later.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $sleep (values %active_sleeps) {
+</span></span><span style="display:flex;"><span>        $sleep<span style="color:#f92672">-&gt;</span>cancel <span style="color:#66d9ef">unless</span> $sleep<span style="color:#f92672">-&gt;</span>is_ready;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Cancelling sleeps stops *new*  queries from starting, but doesn&#39;t</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># touch a query already sent to Postgres, wait (up to 5s) for those</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># to actually get a response and  resolve their Future normally, so</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># we don&#39;t disconnect out from under one and risk the same class of</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># use-after-free during global destruction.</span>
+</span></span><span style="display:flex;"><span>    await wait_for_inflight_queries();
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    eval { $pubsub<span style="color:#f92672">-&gt;</span>unlisten(<span style="color:#e6db74">&#39;chat_messages&#39;</span>) };
 </span></span><span style="display:flex;"><span>    eval { $pg<span style="color:#f92672">-&gt;</span>db<span style="color:#f92672">-&gt;</span>disconnect };
 </span></span><span style="display:flex;"><span>});
@@ -270,24 +274,13 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$ws&#34;</span>;
 </span></span><span style="display:flex;"><span>        $clients<span style="color:#f92672">-&gt;</span>{$id} <span style="color:#f92672">=</span> { ws <span style="color:#f92672">=&gt;</span> $ws, name <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Anonymous&#39;</span> };
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Heartbeat timer (30 seconds)</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $heartbeat_timer <span style="color:#f92672">=</span> IO::Async::Timer::Periodic<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
-</span></span><span style="display:flex;"><span>            interval <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">30</span>,
-</span></span><span style="display:flex;"><span>            on_tick  <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> {
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">unless</span> $clients<span style="color:#f92672">-&gt;</span>{$id};
-</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># on_tick is a plain (non-async) callback, so we can&#39;t await</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#75715e"># here directly, fire the query and swallow any failure.</span>
-</span></span><span style="display:flex;"><span>                (async <span style="color:#66d9ef">sub</span> {
-</span></span><span style="display:flex;"><span>                    await pg_query(<span style="color:#e6db74">q{
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        UPDATE chat_users
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        SET last_seen = NOW()
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        WHERE session_id = ?
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    }</span>, $id);
-</span></span><span style="display:flex;"><span>                })<span style="color:#f92672">-&gt;</span>()<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">else</span>(<span style="color:#66d9ef">sub</span> { Future<span style="color:#f92672">-&gt;</span>done })<span style="color:#f92672">-&gt;</span>retain;
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>        );
-</span></span><span style="display:flex;"><span>        $loop<span style="color:#f92672">-&gt;</span>add($heartbeat_timer);
-</span></span><span style="display:flex;"><span>        $heartbeat_timer<span style="color:#f92672">-&gt;</span>start;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Heartbeat: keeps this connection&#39;s last_seen fresh in Postgres</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># for cross-process presence. Future::IO-&gt;sleep is loop-agnostic,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># no IO::Async::Loop object of our own is needed, since it delegates</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># to whatever Future::IO backend is already configured (PAGI::Server</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># provides one). The loop naturally stops once $clients-&gt;{$id} is</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># deleted on disconnect below, no explicit timer teardown needed.</span>
+</span></span><span style="display:flex;"><span>        heartbeat_loop($id)<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">else</span>(<span style="color:#66d9ef">sub</span> { Future<span style="color:#f92672">-&gt;</span>done })<span style="color:#f92672">-&gt;</span>retain;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Handle incoming messages</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>) {
@@ -346,8 +339,6 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Cleanup on disconnect</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $name <span style="color:#f92672">=</span> $clients<span style="color:#f92672">-&gt;</span>{$id}{name};
 </span></span><span style="display:flex;"><span>        delete $clients<span style="color:#f92672">-&gt;</span>{$id};
-</span></span><span style="display:flex;"><span>        $heartbeat_timer<span style="color:#f92672">-&gt;</span>stop;
-</span></span><span style="display:flex;"><span>        $loop<span style="color:#f92672">-&gt;</span>remove($heartbeat_timer);
 </span></span><span style="display:flex;"><span>        await pg_query(<span style="color:#e6db74">q{DELETE FROM chat_users WHERE session_id = ?}</span>, $id);
 </span></span><span style="display:flex;"><span>        await broadcast({ type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;system&#39;</span>, text <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;$name left&#34;</span> });
 </span></span><span style="display:flex;"><span>        await send_user_list();
