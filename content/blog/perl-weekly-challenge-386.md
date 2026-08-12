@@ -225,7 +225,10 @@ Write a script to return true if the two given rational numbers are same otherwi
 
     Input: $rat1 = "0.1(23)"
            $rat2 = "0.12(32)"
-    Output: false
+    Output: true
+
+    Expansion of "0.1(23)"  = 0.1 23 23 23
+    Expansion of "0.12(32)" = 0.12 32 32 32
 
 #### Example 3
 
