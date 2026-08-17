@@ -228,7 +228,7 @@ Write a script to re-arrange the given binary string that all occurrences of "01
     Step 3: "01000"
     Step 4: "10000"
 
-## Task 2: Rational Numbers {#TASK2}
+## Task 2: Atoms Count {#TASK2}
 ##### **Submitted by:** [Mohammad Sajid Anwar](https://manwar.org)
 ***
 
