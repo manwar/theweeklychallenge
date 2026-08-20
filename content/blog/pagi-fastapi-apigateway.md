@@ -197,8 +197,17 @@ $app->to_app;
 
 sub constant_time_eq ($a, $b) {
     return 0 unless length($a) == length($b);
+
+    # Unpack strings into real byte arrays
+    my @a_bytes = unpack('C*', $a);
+    my @b_bytes = unpack('C*', $b);
+
     my $diff = 0;
-    $diff |= ord(substr($a, $_, 1)) ^ ord(substr($b, $_, 1)) for 0 .. length($a) - 1;
+
+    for (my $i = 0; $i < @a_bytes; $i++) {
+        $diff |= $a_bytes[$i] ^ $b_bytes[$i];
+    }
+
     return $diff == 0;
 }
 ```
