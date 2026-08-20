@@ -107,6 +107,8 @@ I must point out, we are using, two very important features of `PAGI::FastAPI` i
 
 I am not fully satisfied with it as I don't like manually creating `HTTP` client. I will see if I can improve it later.
 
+**NOTE**: You would need `PAGI::FastAPI v1.2.3` and `PAGI::FastAPI::Security v0.0.6` for this demo application.
+
 **Source**: [https://github.com/manwar/PAGI-FastAPI/blob/master/eg/api_gateway.pl](https://github.com/manwar/PAGI-FastAPI/blob/master/eg/api_gateway.pl)
 
 ```perl
@@ -128,12 +130,13 @@ my $app = PAGI::FastAPI->new(
 my $html_content = do { local $/; <DATA> };
 
 # 1. Bearer Token Extractor
-my $bearer = PAGI::FastAPI::Security::HTTPBearer->new;
+my $bearer = PAGI::FastAPI::Security::HTTPBearer->new(realm => 'APIGateway');
 
 # 2. Token Validator Dependency
 my $auth_check = async sub ($c) {
     my $token = $c->stash->{authToken} // '';
     unless (constant_time_eq($token, $SECRET_TOKEN)) {
+        $c->set_header($bearer->challenge_header(error => 'invalid_token'));
         $c->status(401);
         return { message => 'Unauthorised Access' };
     }

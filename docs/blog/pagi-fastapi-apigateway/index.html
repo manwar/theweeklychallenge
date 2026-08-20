@@ -154,7 +154,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>API Gateway using PAGI::FastAPI</span>
         </nav>
-        <span class="reading-time" title="679 words">
+        <span class="reading-time" title="697 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -258,6 +258,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Finally we build the public facing <code>API Gateway</code> that link the two microservices.</p>
 <p>I must point out, we are using, two very important features of <code>PAGI::FastAPI</code> i.e. <a href="https://metacpan.org/pod/PAGI::FastAPI::Security::HTTPBearer"><strong>PAGI::FastAPI::Security::HTTPBearer</strong></a> and <a href="https://metacpan.org/pod/PAGI::FastAPI::Depends"><strong>PAGI::FastAPI::Depends</strong></a>.</p>
 <p>I am not fully satisfied with it as I don&rsquo;t like manually creating <code>HTTP</code> client. I will see if I can improve it later.</p>
+<p><strong>NOTE</strong>: You would need <code>PAGI::FastAPI v1.2.3</code> and <code>PAGI::FastAPI::Security v0.0.6</code> for this demo application.</p>
 <p><strong>Source</strong>: <a href="https://github.com/manwar/PAGI-FastAPI/blob/master/eg/api_gateway.pl">https://github.com/manwar/PAGI-FastAPI/blob/master/eg/api_gateway.pl</a></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.36</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> JSON::PP;
@@ -277,12 +278,13 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $html_content <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> { local $/; <span style="color:#e6db74">&lt;DATA&gt;</span> };
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. Bearer Token Extractor</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $bearer <span style="color:#f92672">=</span> PAGI::FastAPI::Security::HTTPBearer<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $bearer <span style="color:#f92672">=</span> PAGI::FastAPI::Security::HTTPBearer<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(realm <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;APIGateway&#39;</span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Token Validator Dependency</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $auth_check <span style="color:#f92672">=</span> async <span style="color:#66d9ef">sub</span> ($c) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $token <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>stash<span style="color:#f92672">-&gt;</span>{authToken} <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">unless</span> (constant_time_eq($token, $SECRET_TOKEN)) {
+</span></span><span style="display:flex;"><span>        $c<span style="color:#f92672">-&gt;</span>set_header($bearer<span style="color:#f92672">-&gt;</span>challenge_header(error <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;invalid_token&#39;</span>));
 </span></span><span style="display:flex;"><span>        $c<span style="color:#f92672">-&gt;</span>status(<span style="color:#ae81ff">401</span>);
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> { message <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Unauthorised Access&#39;</span> };
 </span></span><span style="display:flex;"><span>    }
