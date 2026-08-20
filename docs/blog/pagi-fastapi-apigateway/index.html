@@ -154,7 +154,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>API Gateway using PAGI::FastAPI</span>
         </nav>
-        <span class="reading-time" title="641 words">
+        <span class="reading-time" title="679 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -267,6 +267,8 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> PAGI::FastAPI::Depends <span style="color:#e6db74">qw(Depends)</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> PAGI::FastAPI::Security::HTTPBearer;
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $SECRET_TOKEN <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;secret-token-123&#39;</span>;
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> PAGI::FastAPI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
 </span></span><span style="display:flex;"><span>    title   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;API Gateway Dashboard&#34;</span>,
 </span></span><span style="display:flex;"><span>    version <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;1.0.0&#34;</span>
@@ -280,9 +282,9 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Token Validator Dependency</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $auth_check <span style="color:#f92672">=</span> async <span style="color:#66d9ef">sub</span> ($c) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $token <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>stash<span style="color:#f92672">-&gt;</span>{authToken} <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">unless</span> ($token <span style="color:#f92672">eq</span> <span style="color:#e6db74">&#39;secret-token-123&#39;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">unless</span> (constant_time_eq($token, $SECRET_TOKEN)) {
 </span></span><span style="display:flex;"><span>        $c<span style="color:#f92672">-&gt;</span>status(<span style="color:#ae81ff">401</span>);
-</span></span><span style="display:flex;"><span>        die { message <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Unauthorised Access&#39;</span> };
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> { message <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Unauthorised Access&#39;</span> };
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>};
@@ -338,6 +340,13 @@ if (localStorage.getItem('twc-theme') === 'light') {
 </span></span><span style="display:flex;"><span>);
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>to_app;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">sub</span> <span style="color:#a6e22e">constant_time_eq</span> ($a, $b) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">unless</span> length($a) <span style="color:#f92672">==</span> length($b);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">my</span> $diff <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    $diff <span style="color:#f92672">|=</span> ord(substr($a, $_, <span style="color:#ae81ff">1</span>)) <span style="color:#f92672">^</span> ord(substr($b, $_, <span style="color:#ae81ff">1</span>)) <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">..</span> length($a) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> $diff <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="demo">Demo</h3>
 <p>Let&rsquo;s start the <code>API Gateway</code> first:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ pagi-server api_gateway --port <span style="color:#ae81ff">3000</span>

@@ -118,6 +118,8 @@ use Future::AsyncAwait;
 use PAGI::FastAPI::Depends qw(Depends);
 use PAGI::FastAPI::Security::HTTPBearer;
 
+my $SECRET_TOKEN = 'secret-token-123';
+
 my $app = PAGI::FastAPI->new(
     title   => "API Gateway Dashboard",
     version => "1.0.0"
@@ -131,9 +133,9 @@ my $bearer = PAGI::FastAPI::Security::HTTPBearer->new;
 # 2. Token Validator Dependency
 my $auth_check = async sub ($c) {
     my $token = $c->stash->{authToken} // '';
-    unless ($token eq 'secret-token-123') {
+    unless (constant_time_eq($token, $SECRET_TOKEN)) {
         $c->status(401);
-        die { message => 'Unauthorised Access' };
+        return { message => 'Unauthorised Access' };
     }
     return 1;
 };
@@ -189,6 +191,13 @@ $app->get('/api/v1/dashboard/{id}',
 );
 
 $app->to_app;
+
+sub constant_time_eq ($a, $b) {
+    return 0 unless length($a) == length($b);
+    my $diff = 0;
+    $diff |= ord(substr($a, $_, 1)) ^ ord(substr($b, $_, 1)) for 0 .. length($a) - 1;
+    return $diff == 0;
+}
 ```
 
 ### Demo
