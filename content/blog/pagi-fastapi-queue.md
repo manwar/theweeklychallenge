@@ -12,7 +12,11 @@ tags: ["Perl", "PAGI", "FastAPI", "Queue"]
 ***
 <br>
 
-The latest release of [**PAGI::FastAPI**](https://metacpan.org/dist/PAGI-FastAPI) is `v1.2.0`. Having said, in the release `v1.1.0`, we added the support for `Message Queue` facade.
+Yesterday, I shared a post about [**API Gateway using PAGI::FastAPI**](/blog/pagi-fastapi-apigateway).
+
+Today, in this post, I will talk about `Message Queue`.
+
+The latest release of [**PAGI::FastAPI**](https://metacpan.org/dist/PAGI-FastAPI) is `v1.2.4`. Having said, in the release `v1.1.0`, we added the support for `Message Queue` facade.
 
 The distribution shipped with the simple memory-based message queue facade. There is even a handy demo app, i.e. [**eg/memory_queue_demo.pl**](https://github.com/manwar/PAGI-FastAPI/blob/master/eg/memory_queue_demo.pl).
 
@@ -229,9 +233,9 @@ $app->get('/tasks/status',
 );
 ```
 
-For this demo, we would also need a redis work.
+For this demo, we would also need redis worker.
 
-Here is the [**eg/redis_worker.pl**](https://github.com/manwar/PAGI-FastAPI-Queue-Driver-Redis/blob/master/eg/redis_worker.pl)
+Here is the script for redis worker: [**eg/redis_worker.pl**](https://github.com/manwar/PAGI-FastAPI-Queue-Driver-Redis/blob/master/eg/redis_worker.pl)
 
 ```perl
 use v5.38;
