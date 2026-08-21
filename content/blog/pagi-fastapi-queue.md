@@ -299,9 +299,9 @@ In another terminal, we will push `10 tasks`:
 
 ```bash
 $ for i in {1..10}; \
-     do \
-     curl -s -X POST "http://127.0.0.1:5000/tasks?item=job_$i" > /dev/null; \
-     done
+  do \
+  curl -s -X POST "http://127.0.0.1:5000/tasks?item=job_$i" > /dev/null; \
+  done
 ```
 
 **Task Status**
