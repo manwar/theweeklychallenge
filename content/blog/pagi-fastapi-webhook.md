@@ -12,11 +12,11 @@ tags: ["Perl", "PAGI", "FastAPI", "Webhook"]
 ***
 <br>
 
-So far, I have discussed [**API Gateway**](/blog/pagi-fastapi-apigateway) and [**Message Queue**](/blog/pagi-fastapi-queue). In this post, I will talk about `Webhook`.
+So far, I have discussed [**WebSocket**](/blog/pagi-fastapi-websocket), [**API Gateway**](/blog/pagi-fastapi-apigateway) and [**Message Queue**](/blog/pagi-fastapi-queue). In this post, I will talk about **Webhook**.
 
-Webhooks serve as the foundation for contemporary event-driven architectures. Whether it’s the integration of Stripe’s payment alerts, tracking repository push events through GitHub, or synchronizing the live user experience, webhooks provide instantaneous communication channels of connected microservices.
+Webhooks serve as the foundation for contemporary event-driven architectures. Whether it’s the integration of Stripe’s payment alerts, tracking repository push events through GitHub, or synchronising the live user experience, webhooks provide instantaneous communication channels of connected microservices.
 
-Picture a webhook as an automated software alarm system providing “don’t call us, we’ll call you” notifications. Rather than asking a server repeatedly if there is new data (polling), the webhook fires an HTTP POST request with payload data to a URL immediately after an occurrence takes place. For instance, if a customer buys a t-shirt from an online store, Shopify does not wait for fulfillment software to inquire if there is an order; it sends the webhook immediately with the order information to the warehouse software to commence the packing process.
+Picture a webhook as an automated software alarm system providing `"don’t call us, we’ll call you"` notifications. Rather than asking a server repeatedly if there is new data (polling), the webhook fires an **HTTP POST** request with payload data to a **URL** immediately after an occurrence takes place. For instance, if a customer buys a t-shirt from an online store, Shopify does not wait for fulfillment software to inquire if there is an order; it sends the webhook immediately with the order information to the warehouse software to commence the packing process.
 
 In this deep dive, we walk through building a complete, lightweight, and production-grade `Webhook` using Perl's modern async framework: [**PAGI::FastAPI**](https://metacpan.org/dist/PAGI-FastAPI).
 
