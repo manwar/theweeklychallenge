@@ -28,19 +28,21 @@ It bridges the graph world and the relational world.
 
 You feed it graph visual patterns, and it outputs rows and columns that fit directly into standard SQL queries (e.g., **SELECT**, **WHERE**, **JOIN**, or **GROUP BY**).
 
-**GRAPH_TABLE** is a table-valued function introduced in the SQL/PGQ standard that allows you to query a property graph using pattern-matching syntax and return the results as a standard relational table.
+**GRAPH_TABLE** is a table-valued function introduced in the **SQL/PGQ** standard that allows you to query a property graph using pattern-matching syntax and return the results as a standard relational table.
 
-    SELECT *
-    FROM GRAPH_TABLE ( graph_name
+```sql
+ SELECT *
+   FROM GRAPH_TABLE ( graph_name
         MATCH pattern
         COLUMNS ( projection_list )
-    ) AS alias;
+   ) AS alias;
+```
 
 ### Key Components
 
 **1. Graph Context (graph_name)**
 
-Specifies which defined Property Graph (created via CREATE PROPERTY GRAPH) you are querying.
+Specifies which defined Property Graph (created via **CREATE PROPERTY GRAPH**) you are querying.
 
 **2. Pattern Matching (MATCH)**
 
@@ -60,9 +62,11 @@ Defines what property graph values to extract and output into the resulting tabl
 
 When **PostgreSQL** evaluates a **GRAPH_TABLE** expression, it performs the following steps:
 
-1. Schema Resolution: Looks up **graph_name** to find mapping rules for **vertex** and **edge** tables.
-2. Relational Translation: Rewrites **MATCH** patterns into standard **SQL JOIN** clauses and **WHERE** predicates.
-3. Execution: Runs the rewritten query against standard relational tables using existing **B-tree indexes** and query planner optimisations.
+>**1. Schema Resolution:** Looks up **graph_name** to find mapping rules for **vertex** and **edge** tables.
+
+>**2. Relational Translation:** Rewrites **MATCH** patterns into standard **SQL JOIN** clauses and **WHERE** predicates.
+
+>**3. Execution:** Runs the rewritten query against standard relational tables using existing **B-tree indexes** and query planner optimisations.
 
 Time for some action now.
 
@@ -90,7 +94,7 @@ postgres=#
 We will create the relational table, `users` first:
 
 ```sql
-postgres=# CREATE TABLE users ( id SERIAL PRIMARY KEY, name TEXT NOT NULL);
+postgres=# CREATE TABLE users (id SERIAL PRIMARY KEY, name TEXT NOT NULL);
 CREATE TABLE
 postgres=#
 ```

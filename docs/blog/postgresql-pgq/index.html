@@ -154,7 +154,7 @@ if (localStorage.getItem('twc-theme') === 'light') {
             <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
             <span>PostgreSQL PGQ</span>
         </nav>
-        <span class="reading-time" title="704 words">
+        <span class="reading-time" title="706 words">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
        aria-hidden="true">
@@ -191,16 +191,15 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Native <strong>SQL/PGQ</strong> is a core feature introduced natively starting in <strong>PostgreSQL 19</strong>.</p>
 <p>It bridges the graph world and the relational world.</p>
 <p>You feed it graph visual patterns, and it outputs rows and columns that fit directly into standard SQL queries (e.g., <strong>SELECT</strong>, <strong>WHERE</strong>, <strong>JOIN</strong>, or <strong>GROUP BY</strong>).</p>
-<p><strong>GRAPH_TABLE</strong> is a table-valued function introduced in the SQL/PGQ standard that allows you to query a property graph using pattern-matching syntax and return the results as a standard relational table.</p>
-<pre><code>SELECT *
-FROM GRAPH_TABLE ( graph_name
-    MATCH pattern
-    COLUMNS ( projection_list )
-) AS alias;
-</code></pre>
-<h3 id="key-components">Key Components</h3>
+<p><strong>GRAPH_TABLE</strong> is a table-valued function introduced in the <strong>SQL/PGQ</strong> standard that allows you to query a property graph using pattern-matching syntax and return the results as a standard relational table.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">FROM</span> GRAPH_TABLE ( graph_name
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">MATCH</span> pattern
+</span></span><span style="display:flex;"><span>        COLUMNS ( projection_list )
+</span></span><span style="display:flex;"><span>   ) <span style="color:#66d9ef">AS</span> <span style="color:#66d9ef">alias</span>;
+</span></span></code></pre></div><h3 id="key-components">Key Components</h3>
 <p><strong>1. Graph Context (graph_name)</strong></p>
-<p>Specifies which defined Property Graph (created via CREATE PROPERTY GRAPH) you are querying.</p>
+<p>Specifies which defined Property Graph (created via <strong>CREATE PROPERTY GRAPH</strong>) you are querying.</p>
 <p><strong>2. Pattern Matching (MATCH)</strong></p>
 <p>Uses visual ASCII-art style pattern expressions to traverse nodes (vertices) and relationships (edges).</p>
 <blockquote>
@@ -216,11 +215,15 @@ FROM GRAPH_TABLE ( graph_name
 <p>Defines what property graph values to extract and output into the resulting table. Each expression must be aliased (a.name AS follower).</p>
 <h3 id="how-it-works-under-the-hood">How It Works Under the Hood</h3>
 <p>When <strong>PostgreSQL</strong> evaluates a <strong>GRAPH_TABLE</strong> expression, it performs the following steps:</p>
-<ol>
-<li>Schema Resolution: Looks up <strong>graph_name</strong> to find mapping rules for <strong>vertex</strong> and <strong>edge</strong> tables.</li>
-<li>Relational Translation: Rewrites <strong>MATCH</strong> patterns into standard <strong>SQL JOIN</strong> clauses and <strong>WHERE</strong> predicates.</li>
-<li>Execution: Runs the rewritten query against standard relational tables using existing <strong>B-tree indexes</strong> and query planner optimisations.</li>
-</ol>
+<blockquote>
+<p><strong>1. Schema Resolution:</strong> Looks up <strong>graph_name</strong> to find mapping rules for <strong>vertex</strong> and <strong>edge</strong> tables.</p>
+</blockquote>
+<blockquote>
+<p><strong>2. Relational Translation:</strong> Rewrites <strong>MATCH</strong> patterns into standard <strong>SQL JOIN</strong> clauses and <strong>WHERE</strong> predicates.</p>
+</blockquote>
+<blockquote>
+<p><strong>3. Execution:</strong> Runs the rewritten query against standard relational tables using existing <strong>B-tree indexes</strong> and query planner optimisations.</p>
+</blockquote>
 <p>Time for some action now.</p>
 <p>We need <strong>PostgreSQL 19</strong> to begin with. Don&rsquo;t worry, <strong>Docker</strong> is your friend.</p>
 <p>We can quickly create docker container running <code>PostgreSQL 19</code> as below:</p>
@@ -235,7 +238,7 @@ FROM GRAPH_TABLE ( graph_name
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=</span><span style="color:#75715e">#</span>
 </span></span></code></pre></div><p>We will create the relational table, <code>users</code> first:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> users ( id SERIAL <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>, name TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> users (id SERIAL <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>, name TEXT <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span>
 </span></span><span style="display:flex;"><span>postgres<span style="color:#f92672">=#</span>
 </span></span></code></pre></div><p>Then another table <code>follows</code> as below:</p>
