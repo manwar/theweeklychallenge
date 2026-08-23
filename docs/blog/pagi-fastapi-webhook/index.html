@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/pagi-fastapi-webhook/">
+    <title>Webhook using PAGI::FastAPI | Aug 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Webhook using PAGI::FastAPI.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/pagi-fastapi-webhook/">
+    <meta property="og:title"       content="Webhook using PAGI::FastAPI">
+    <meta property="og:description" content="Webhook using PAGI::FastAPI.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/pagi-fastapi-webhook.jpg">
+    
+    <meta property="article:published_time" content="2026-08-23T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-08-23T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Webhook using PAGI::FastAPI">
+    <meta name="twitter:description" content="Webhook using PAGI::FastAPI.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/pagi-fastapi-webhook.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+
+    /* Google Search Console */
+    <meta name="google-site-verification" content="zVrrQhRg4ReGc9zXOtGdtVyhqeN9uaCdsashWPRY-5I" />
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/pagi-fastapi-webhook/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Webhook using PAGI::FastAPI</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>Webhook using PAGI::FastAPI</span>
+        </nav>
+        <span class="reading-time" title="1201 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  6 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 23 Aug 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/pagi-fastapi-webhook.jpg" alt="Webhook using PAGI::FastAPI"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>So far, I have discussed <a href="/blog/pagi-fastapi-apigateway"><strong>API Gateway</strong></a> and <a href="/blog/pagi-fastapi-queue"><strong>Message Queue</strong></a>. In this post, I will talk about <code>Webhook</code>.</p>
+<p>Webhooks serve as the foundation for contemporary event-driven architectures. Whether it’s the integration of Stripe’s payment alerts, tracking repository push events through GitHub, or synchronizing the live user experience, webhooks provide instantaneous communication channels of connected microservices.</p>
+<p>Picture a webhook as an automated software alarm system providing “don’t call us, we’ll call you” notifications. Rather than asking a server repeatedly if there is new data (polling), the webhook fires an HTTP POST request with payload data to a URL immediately after an occurrence takes place. For instance, if a customer buys a t-shirt from an online store, Shopify does not wait for fulfillment software to inquire if there is an order; it sends the webhook immediately with the order information to the warehouse software to commence the packing process.</p>
+<p>In this deep dive, we walk through building a complete, lightweight, and production-grade <code>Webhook</code> using Perl&rsquo;s modern async framework: <a href="https://metacpan.org/dist/PAGI-FastAPI"><strong>PAGI::FastAPI</strong></a>.</p>
+<hr>
+<h3 id="architecture-overview">Architecture Overview</h3>
+<p>Our demo application covers two fundamental webhook paradigms within a single service:</p>
+<ol>
+<li><strong>Webhook Producer (Dispatcher)</strong></li>
+</ol>
+<blockquote>
+<p>Registers subscriber target endpoints, constructs event payloads, and dispatches them asynchronously over HTTP.</p>
+</blockquote>
+<ol start="2">
+<li><strong>Webhook Consumer (Receiver)</strong></li>
+</ol>
+<blockquote>
+<p>Receives incoming payloads, enforces security via <strong>HMAC SHA-256 signature verification</strong>, and processes domain events.</p>
+</blockquote>
+<ol start="3">
+<li><strong>Real-time Monitoring UI</strong></li>
+</ol>
+<blockquote>
+<p>An interactive single-page dashboard to trigger domain events and view live verification logs.</p>
+</blockquote>
+<pre tabindex="0"><code>        [ Web Dashboard UI ]
+                |
+                ▼ (Trigger Event)
+    +------------------------+         HTTP POST w/ Signature          +------------------------+
+    |   Webhook Dispatcher   | --------------------------------------&gt; |    Incoming Receiver   |
+    |   (/events/trigger)    |    X-PAGI-Signature: 2085a17bdb...      |  (/webhooks/incoming)  |
+    +------------------------+                                         +------------------------+
+                                                                                   │
+                                                                         (Verify HMAC SHA-256)
+                                                                                   │
+                                                                                   ▼
+                                                                         [ Live Feed Dashboard ]
+</code></pre><hr>
+<h3 id="the-hmac-signature-challenge">The HMAC Signature Challenge</h3>
+<p>One of the most important aspects of webhook security is payload signature verification.</p>
+<p>When sending a payload, the dispatcher computes a cryptographic signature:</p>
+<pre><code>Signature = HMAC-SHA256 (Secret, Payload String)
+</code></pre>
+<p>When the consumer receives the <code>HTTP</code> request, it recomputes the <code>HMAC</code> signature using the shared secret and compares it to the incoming header (<code>X-PAGI-Signature</code>).</p>
+<h3 id="the-problem">The Problem</h3>
+<p>In <code>Perl</code> (and many dynamic languages), hash key iteration order is non-deterministic. If the dispatcher formats <code>JSON</code> as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{<span style="color:#f92672">&#34;data&#34;</span>:{<span style="color:#f92672">&#34;user_id&#34;</span>:<span style="color:#ae81ff">101</span>},<span style="color:#f92672">&#34;event_type&#34;</span>:<span style="color:#e6db74">&#34;user.signup&#34;</span>}
+</span></span></code></pre></div><p>and the receiver parses it into a <code>HashRef</code> and re-serialises it as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{<span style="color:#f92672">&#34;event_type&#34;</span>:<span style="color:#e6db74">&#34;user.signup&#34;</span>,<span style="color:#f92672">&#34;data&#34;</span>:{<span style="color:#f92672">&#34;user_id&#34;</span>:<span style="color:#ae81ff">101</span>}}
+</span></span></code></pre></div><p>the calculated <code>HMAC</code> hashes will <strong>never match</strong>, resulting in an artificial signature failure.</p>
+<h3 id="the-solution">The Solution</h3>
+<p>To guarantee bit-for-bit equivalence across <code>HTTP</code> boundaries, both the dispatcher and receiver enforce <strong>canonical JSON sorting</strong> via <code>JSON::PP</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $json_formatter <span style="color:#f92672">=</span> JSON::PP<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>canonical(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>utf8(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $canonical_json <span style="color:#f92672">=</span> $json_formatter<span style="color:#f92672">-&gt;</span>encode($payload);
+</span></span></code></pre></div><p>By sorting keys alphabetically prior to signature calculation, both sender and receiver evaluate the exact same byte sequence.</p>
+<h3 id="application-code">Application Code</h3>
+<p>The complete single-file Perl application: <a href="https://github.com/manwar/PAGI-FastAPI/blob/master/eg/webhook_demo.pl"><strong>eg/webhook_demo.pl</strong></a>:</p>
+<p>The demo app shipped with <a href="https://metacpan.org/dist/PAGI-FastAPI"><strong>PAGI::FastAPI v1.2.6</strong></a>.</p>
+<p>First the ground work:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> v5<span style="color:#ae81ff">.38</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> HTTP::Tiny;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> PAGI::FastAPI;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Future::AsyncAwait;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> JSON::PP <span style="color:#e6db74">qw(encode_json)</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> Digest::SHA <span style="color:#e6db74">qw(hmac_sha256_hex)</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $SHARED_SECRET <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my_shared_secret&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $app <span style="color:#f92672">=</span> PAGI::FastAPI<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(
+</span></span><span style="display:flex;"><span>    title   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;PAGI::FastAPI Webhook Dashboard&#39;</span>,
+</span></span><span style="display:flex;"><span>    version <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;1.0.0&#39;</span>,
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># In-memory data stores</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @subscribers;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> @delivery_logs;
+</span></span></code></pre></div><p>The dashboard:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $html_content <span style="color:#f92672">=</span> <span style="color:#66d9ef">do</span> { local $/; <span style="color:#e6db74">&lt;DATA&gt;</span> };
+</span></span><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;/&#39;</span>,
+</span></span><span style="display:flex;"><span>    summary <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Serve Webhook Management Dashboard&#39;</span>,
+</span></span><span style="display:flex;"><span>    handler <span style="color:#f92672">=&gt;</span> async <span style="color:#66d9ef">sub</span> ($c) { $c<span style="color:#f92672">-&gt;</span>html($html_content); },
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>The subscribe route:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>post(<span style="color:#e6db74">&#39;/webhooks/subscribe&#39;</span>,
+</span></span><span style="display:flex;"><span>    summary <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Register a new webhook target endpoint&#39;</span>,
+</span></span><span style="display:flex;"><span>    handler <span style="color:#f92672">=&gt;</span> async <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $body       <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>body <span style="color:#e6db74">//</span> {};
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $target_url <span style="color:#f92672">=</span> $body<span style="color:#f92672">-&gt;</span>{target_url};
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $secret     <span style="color:#f92672">=</span> $body<span style="color:#f92672">-&gt;</span>{secret} <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;default_secret&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($target_url) {
+</span></span><span style="display:flex;"><span>            $c<span style="color:#f92672">-&gt;</span>status(<span style="color:#ae81ff">400</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> { error <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Missing target_url in request body&#39;</span> };
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $sub <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            id         <span style="color:#f92672">=&gt;</span> scalar(@subscribers) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>            target_url <span style="color:#f92672">=&gt;</span> $target_url,
+</span></span><span style="display:flex;"><span>            secret     <span style="color:#f92672">=&gt;</span> $secret,
+</span></span><span style="display:flex;"><span>            created_at <span style="color:#f92672">=&gt;</span> time(),
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        push @subscribers, $sub;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        unshift @delivery_logs, {
+</span></span><span style="display:flex;"><span>            timestamp  <span style="color:#f92672">=&gt;</span> scalar(localtime),
+</span></span><span style="display:flex;"><span>            event      <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;subscriber.created&#39;</span>,
+</span></span><span style="display:flex;"><span>            target     <span style="color:#f92672">=&gt;</span> $target_url,
+</span></span><span style="display:flex;"><span>            status     <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">200</span>,
+</span></span><span style="display:flex;"><span>            status_msg <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Subscriber Registered (ID: $sub-&gt;{id})&#34;</span>,
+</span></span><span style="display:flex;"><span>            details    <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>                subscriber_id <span style="color:#f92672">=&gt;</span> $sub<span style="color:#f92672">-&gt;</span>{id},
+</span></span><span style="display:flex;"><span>                target_url    <span style="color:#f92672">=&gt;</span> $target_url,
+</span></span><span style="display:flex;"><span>                secret_key    <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;*&#39;</span> x length($secret),
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>            status     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;subscribed&#39;</span>,
+</span></span><span style="display:flex;"><span>            subscriber <span style="color:#f92672">=&gt;</span> $sub,
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>The event trigger:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>post(<span style="color:#e6db74">&#39;/events/trigger&#39;</span>,
+</span></span><span style="display:flex;"><span>    summary <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Simulate a domain event that dispatches webhooks to all subscribers&#39;</span>,
+</span></span><span style="display:flex;"><span>    handler <span style="color:#f92672">=&gt;</span> async <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $body       <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>body <span style="color:#e6db74">//</span> {};
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $event_type <span style="color:#f92672">=</span> $body<span style="color:#f92672">-&gt;</span>{event_type};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $payload <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            event_id   <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;evt_&#39;</span> <span style="color:#f92672">.</span> time(),
+</span></span><span style="display:flex;"><span>            event_type <span style="color:#f92672">=&gt;</span> $event_type,
+</span></span><span style="display:flex;"><span>            timestamp  <span style="color:#f92672">=&gt;</span> time(),
+</span></span><span style="display:flex;"><span>            data       <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>                user_id <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">101</span>,
+</span></span><span style="display:flex;"><span>                message <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Action $event_type successfully processed&#34;</span>,
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $json_formatter <span style="color:#f92672">=</span> JSON::PP<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>canonical(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>utf8(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $json_payload   <span style="color:#f92672">=</span> $json_formatter<span style="color:#f92672">-&gt;</span>encode($payload);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $dispatched_count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $ua <span style="color:#f92672">=</span> HTTP::Tiny<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>(timeout <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $sub (@subscribers) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $signature <span style="color:#f92672">=</span> hmac_sha256_hex($json_payload, $sub<span style="color:#f92672">-&gt;</span>{secret});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $res <span style="color:#f92672">=</span> $ua<span style="color:#f92672">-&gt;</span>post($sub<span style="color:#f92672">-&gt;</span>{target_url}, {
+</span></span><span style="display:flex;"><span>                headers <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;Content-Type&#39;</span>     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;application/json&#39;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;X-PAGI-Signature&#39;</span> <span style="color:#f92672">=&gt;</span> $signature,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#39;X-PAGI-Event&#39;</span>     <span style="color:#f92672">=&gt;</span> $event_type,
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                content <span style="color:#f92672">=&gt;</span> $json_payload,
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($res<span style="color:#f92672">-&gt;</span>{success}) {
+</span></span><span style="display:flex;"><span>                $dispatched_count<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>            status     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;dispatched&#39;</span>,
+</span></span><span style="display:flex;"><span>            event      <span style="color:#f92672">=&gt;</span> $payload,
+</span></span><span style="display:flex;"><span>            delivered  <span style="color:#f92672">=&gt;</span> $dispatched_count,
+</span></span><span style="display:flex;"><span>            total_subs <span style="color:#f92672">=&gt;</span> scalar(@subscribers),
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>The webhook incoming:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>post(<span style="color:#e6db74">&#39;/webhooks/incoming&#39;</span>,
+</span></span><span style="display:flex;"><span>    summary <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Endpoint that receives, verifies, and consumes incoming webhooks&#39;</span>,
+</span></span><span style="display:flex;"><span>    handler <span style="color:#f92672">=&gt;</span> async <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $data      <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>body <span style="color:#e6db74">//</span> {};
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $event     <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>header(<span style="color:#e6db74">&#39;x-pagi-event&#39;</span>)     <span style="color:#e6db74">//</span> $c<span style="color:#f92672">-&gt;</span>header(<span style="color:#e6db74">&#39;X-PAGI-Event&#39;</span>)     <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;unknown&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $signature <span style="color:#f92672">=</span> $c<span style="color:#f92672">-&gt;</span>header(<span style="color:#e6db74">&#39;x-pagi-signature&#39;</span>) <span style="color:#e6db74">//</span> $c<span style="color:#f92672">-&gt;</span>header(<span style="color:#e6db74">&#39;X-PAGI-Signature&#39;</span>) <span style="color:#e6db74">//</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $json_formatter <span style="color:#f92672">=</span> JSON::PP<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span><span style="color:#f92672">-&gt;</span>canonical(<span style="color:#ae81ff">1</span>)<span style="color:#f92672">-&gt;</span>utf8(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $raw_body       <span style="color:#f92672">=</span> $json_formatter<span style="color:#f92672">-&gt;</span>encode($data);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $matched <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $expected_sig <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> @secrets <span style="color:#f92672">=</span> map { $_<span style="color:#f92672">-&gt;</span>{secret} } @subscribers;
+</span></span><span style="display:flex;"><span>        push @secrets, $SHARED_SECRET <span style="color:#66d9ef">unless</span> @secrets;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">my</span> $sec (@secrets) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">my</span> $candidate_sig <span style="color:#f92672">=</span> hmac_sha256_hex($raw_body, $sec);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (constant_time_eq($signature, $candidate_sig)) {
+</span></span><span style="display:flex;"><span>                $matched <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>                $expected_sig <span style="color:#f92672">=</span> $candidate_sig;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $status_code <span style="color:#f92672">=</span> $matched ? <span style="color:#ae81ff">200</span> : <span style="color:#ae81ff">401</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $status_msg  <span style="color:#f92672">=</span> $matched ? <span style="color:#e6db74">&#39;Verified &amp; Accepted&#39;</span> : <span style="color:#e6db74">&#39;Signature Verification Failed&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">unless</span> ($matched) {
+</span></span><span style="display:flex;"><span>            $c<span style="color:#f92672">-&gt;</span>status(<span style="color:#ae81ff">401</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        unshift @delivery_logs, {
+</span></span><span style="display:flex;"><span>            timestamp  <span style="color:#f92672">=&gt;</span> scalar(localtime),
+</span></span><span style="display:flex;"><span>            event      <span style="color:#f92672">=&gt;</span> $event,
+</span></span><span style="display:flex;"><span>            target     <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;/webhooks/incoming&#39;</span>,
+</span></span><span style="display:flex;"><span>            status     <span style="color:#f92672">=&gt;</span> $status_code,
+</span></span><span style="display:flex;"><span>            status_msg <span style="color:#f92672">=&gt;</span> $status_msg,
+</span></span><span style="display:flex;"><span>            details    <span style="color:#f92672">=&gt;</span> { payload <span style="color:#f92672">=&gt;</span> $data },
+</span></span><span style="display:flex;"><span>        };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> { status <span style="color:#f92672">=&gt;</span> $status_msg, event <span style="color:#f92672">=&gt;</span> $event };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><p>And finally the logs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span>$app<span style="color:#f92672">-&gt;</span>get(<span style="color:#e6db74">&#39;/webhooks/logs&#39;</span>,
+</span></span><span style="display:flex;"><span>    summary <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Retrieve current delivery logs&#39;</span>,
+</span></span><span style="display:flex;"><span>    handler <span style="color:#f92672">=&gt;</span> async <span style="color:#66d9ef">sub</span> ($c) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">\</span>@delivery_logs;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h3 id="demo-action">Demo Action</h3>
+<p><strong>Start the <code>pagi-server</code> server</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ pagi-server eg/webhook_demo.pl
+</span></span></code></pre></div><p><strong>Open the Web UI</strong></p>
+<p>Navigate to <a href="http://127.0.0.1:5000"><strong>http://127.0.0.1:5000</strong></a> in your web browser.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm mb-4 p-2 text-center">
+            <img src="/images/blog/pagi-webhook-img-1.jpg" class="img-fluid">
+        </div>
+    </div>
+</div>
+<p><strong>Register an Endpoint</strong></p>
+<p>Keep the default values and click <strong>Subscribe Endpoint</strong>.</p>
+<p>You should see this in the log section:</p>
+<pre><code>[Sun Aug 23 11:45:34 2026] Event: subscriber.created (Subscriber Registered (ID: 1))
+Target: http://127.0.0.1:5000/webhooks/incoming
+{
+    &quot;secret_key&quot;: &quot;****************&quot;,
+    &quot;subscriber_id&quot;: 1,
+    &quot;target_url&quot;: &quot;http://127.0.0.1:5000/webhooks/incoming&quot;
+}
+</code></pre>
+<p><strong>Trigger Events:</strong></p>
+<p>Select an event type (e.g., <code>user.signup</code>, <code>order.created</code>, <code>payment.completed</code>) and click <strong>Dispatch Event</strong>.</p>
+<p>You will instantly see verification logs appear in the feed confirming that the <code>HMAC</code> signature was computed, transmitted, and validated successfully!</p>
+<p>On <code>user.signup</code> event trigger, we got this:</p>
+<pre><code>[Sun Aug 23 11:48:25 2026] Event: user.signup (Verified &amp; Accepted)
+Target: /webhooks/incoming
+{
+    &quot;payload&quot;: {
+        &quot;data&quot;: {
+            &quot;message&quot;: &quot;Action user.signup successfully processed&quot;,
+            &quot;user_id&quot;: 101
+        },
+        &quot;event_id&quot;: &quot;evt_1787482100&quot;,
+        &quot;event_type&quot;: &quot;user.signup&quot;,
+        &quot;timestamp&quot;: 1787482100
+    }
+}
+</code></pre>
+<p>On <code>order.created</code> event trigger, we have this:</p>
+<pre><code>[Sun Aug 23 11:51:40 2026] Event: order.created (Verified &amp; Accepted)
+Target: /webhooks/incoming
+{
+    &quot;payload&quot;: {
+        &quot;data&quot;: {
+            &quot;message&quot;: &quot;Action order.created successfully processed&quot;,
+            &quot;user_id&quot;: 101
+        },
+        &quot;event_id&quot;: &quot;evt_1787482295&quot;,
+        &quot;event_type&quot;: &quot;order.created&quot;,
+        &quot;timestamp&quot;: 1787482295
+    }
+}
+</code></pre>
+<p>amd finally on <code>payment.completed</code> event, we got this:</p>
+<pre><code>[Sun Aug 23 11:53:09 2026] Event: payment.completed (Verified &amp; Accepted)
+Target: /webhooks/incoming
+{
+    &quot;payload&quot;: {
+        &quot;data&quot;: {
+            &quot;message&quot;: &quot;Action payment.completed successfully processed&quot;,
+            &quot;user_id&quot;: 101
+        },
+        &quot;event_id&quot;: &quot;evt_1787482384&quot;,
+        &quot;event_type&quot;: &quot;payment.completed&quot;,
+        &quot;timestamp&quot;: 1787482384
+    }
+}
+</code></pre>
+<h3 id="key-takeaways">Key Takeaways</h3>
+<ul>
+<li><strong>PAGI::FastAPI</strong> makes writing modern, asynchronous Perl APIs intuitive and structured.</li>
+<li><strong>Security First:</strong> Never trust unauthenticated webhooks, always require <code>HMAC SHA-256</code> signature headers.</li>
+<li><strong>Canonical JSON is Critical:</strong> Always serialise <code>JSON</code> deterministically when performing cryptographic signature checks.</li>
+</ul>
+<hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">Perl</a>
+        
+        <a href="https://theweeklychallenge.org/tags/pagi" class="post-tag">PAGI</a>
+        
+        <a href="https://theweeklychallenge.org/tags/fastapi" class="post-tag">FastAPI</a>
+        
+        <a href="https://theweeklychallenge.org/tags/webhook" class="post-tag">Webhook</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/pagi-fastapi-queue/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Message Queue using PAGI::FastAPI</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">PAGI</span>
+                <span class="related-post-tag">FastAPI</span>
+            </span>
+            <span class="related-post-date">21 Aug 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/pagi-fastapi-apigateway/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">API Gateway using PAGI::FastAPI</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">PAGI</span>
+                <span class="related-post-tag">FastAPI</span>
+            </span>
+            <span class="related-post-date">20 Aug 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/pagi-fastapi-websocket/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">PAGI::FastAPI &#43; WebSocket</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">PAGI</span>
+                <span class="related-post-tag">FastAPI</span>
+            </span>
+            <span class="related-post-date">8 Aug 2026</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/pagi-fastapi-webhook\/';
+            this.page.identifier = '93b41ac0ce4c3a1d4ca17f940c2d9bc5';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
