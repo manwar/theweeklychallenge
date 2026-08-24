@@ -35,7 +35,7 @@ At the beginning of the computing era, the software operated on the same hardwar
 
 ### The Rise of Distributed Computing (1980 and 1990)
 
-As companies started to move away from using just one computer, more and more computers were different types of networked systems therefore, creating the need for one entire dedicated connection between these networks. The phrase "middleware" became popularized during this time period. The remote procedure call (RPC) enabled a program running on one computer to execute a program on another computer as if it was running on the same computer.
+As companies started to move away from using just one computer, more and more computers were different types of networked systems therefore, creating the need for one entire dedicated connection between these networks. The phrase "middleware" became popularised during this time period. The remote procedure call (RPC) enabled a program running on one computer to execute a program on another computer as if it was running on the same computer.
 
 ### The Internet/SOA Era (2000 and onwards)
 
