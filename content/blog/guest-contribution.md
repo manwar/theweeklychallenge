@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-08-23T00:00:00+00:00
+date: 2026-08-24T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1210,6 +1210,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Ulrich Rieke** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-387/ulrich-rieke/rust/ch-1.rs) in **Rust**.
 
+##### **ygrek** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-387/ygrek/k/ch-1.k) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-387/ygrek/k/ch-2.k) in **K**.
+
 ___
 ## [The Weekly Challenge - 386](/blog/perl-weekly-challenge-386) {#386}
 <br>
@@ -1293,6 +1295,8 @@ ___
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/ulrich-rieke/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/ulrich-rieke/python/ch-2.py) in **Python**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+
+##### **ygrek** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/ygrek/k/ch-1.k) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-385/ygrek/k/ch-2.k) in **K**.
 
 ___
 ## [The Weekly Challenge - 384](/blog/perl-weekly-challenge-384) {#384}
