@@ -1,5 +1,5 @@
 ---
-title: "PAGI::FastAPI + WebSocket"
+title: "WebSocket using PAGI::FastAPI"
 date: 2026-08-08T00:00:00+00:00
 description: "Using WebSocket with PAGI::FastAPI."
 type: post
