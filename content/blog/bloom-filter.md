@@ -38,13 +38,13 @@ Positions **3**, **7**, and **12** are now set to **1**.
 
 When someone looks up a **username**, the system hashes that name using the exact same functions and checks those positions.
 
-**Scenario A: &nbsp;&nbsp;Checking for "Bob"
+**Scenario A: &nbsp;&nbsp;Checking for "Bob"**
 
 The hashes point to positions **2**, **7**, and **9**. Position **2** is still a **0**.
 
 Conclusion: **"Bob"** definitively does not exist. If he did, that bit would have been flipped to **1**.
 
-**Scenario B: &nbsp;&nbsp;Checking for "Charlie"
+**Scenario B: &nbsp;&nbsp;Checking for "Charlie"**
 
 The hashes point to positions **3**, **7**, and **12**.
 
