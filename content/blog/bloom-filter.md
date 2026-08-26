@@ -12,7 +12,7 @@ tags: ["Perl", "Bloom Filter"]
 ***
 <br>
 
-I have heard about it but never got the opportunity to use it any real projects. Recently I was reading this [**research paper**](https://openaccess.city.ac.uk/id/eprint/14304/) that reminded me to give it a try.
+**Bloom** filter, I have heard about it but never got the opportunity to use it any real projects. Recently I was reading this [**research paper**](https://openaccess.city.ac.uk/id/eprint/14304/) that reminded me to give it a try.
 
 Imagine you are running a massive website with billions of users. When someone tries to sign up with a username, you need to check if that username is already taken.
 
