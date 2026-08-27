@@ -1,5 +1,12 @@
 [
   {
+    "title": "Partial Index",
+    "url":   "/blog/partial-index/",
+    "tags":  "Perl, PostgreSQL, MySQL, Partial Index",
+    "section": "blog",
+    "body":  "DISCLAIMER: Image is generated using ChatGPT. Confession time, I have never heard of this term, Partial Index, in my entire programming career. I was having deep conversation about database performance with my friend (DBA by profession) and this term just popped out.\nAs always, I decided to dig deep and find out more about it.\nA Partial Index (also called a Filtered Index) is an index built over a subset of rows in a table, defined by a WHERE clause.\nStandard indexes map every single row in a table where as a partial index only includes rows that satisfy its specific condition.\nPostgreSQL has supported partial indexes since version 7.2 using a WHERE clause in CREATE INDEX.\nMySQL does not support a WHERE clause in CREATE INDEX statements.\nHowever, you can mimic a partial index in MySQL (8.0+) using Virtual Generated Columns or Functional Indexes that return NULL for excluded rows (since MySQL skips NULL values in standard B-tree index paths).\nLet setup docker container quickly, so that we demo this behaviour.\nDocker Configuraton File: docker-compose.yml\nservices: postgres-db: image: postgres:latest container_name: demo_postgres restart: always environment: POSTGRES_USER: demo_user POSTGRES_PASSWORD: demo_password POSTGRES_DB: demo_db ports: - \u0026amp;#34;5434:5432\u0026amp;#34; mysql-db: image: mysql:latest container_name: demo_mysql restart: always environment: MYSQL_ROOT_PASSWORD: demo_password MYSQL_DATABASE: demo_db MYSQL_USER: demo_user MYSQL_PASSWORD: demo_password ports: - \u0026amp;#34;3307:3306\u0026amp;#34; volumes: pgdata: mysqldata: Start Container $ docker compose up -d [+] up 3/3 ✔ Network partial-index_default Created 0.0s ✔ Container demo_postgres Started 0.3s ✔ Container demo_mysql Started 0.4s PostgreSQL Lets open a connection to PostgreSQL session:\n$ docker exec -it demo_postgres psql -U demo_user -d demo_db psql (18.4 (Debian 18.4-1.pgdg13+1)) Type \u0026amp;#34;help\u0026amp;#34; for help. demo_db=# Create table orders first:\ndemo_db=# CREATE TABLE orders ( id SERIAL PRIMARY KEY, customer_id INT, …"
+  },
+  {
     "title": "Bloom Filter",
     "url":   "/blog/bloom-filter/",
     "tags":  "Perl, Bloom Filter",

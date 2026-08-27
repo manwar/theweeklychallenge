@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/partial-index/">
+    <title>Partial Index | Aug 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Use of partial index in PostgreSQL and MySQL.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/partial-index/">
+    <meta property="og:title"       content="Partial Index">
+    <meta property="og:description" content="Use of partial index in PostgreSQL and MySQL.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/partial-index.jpg">
+    
+    <meta property="article:published_time" content="2026-08-27T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-08-27T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="Partial Index">
+    <meta name="twitter:description" content="Use of partial index in PostgreSQL and MySQL.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/partial-index.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+
+    /* Google Search Console */
+    <meta name="google-site-verification" content="zVrrQhRg4ReGc9zXOtGdtVyhqeN9uaCdsashWPRY-5I" />
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/partial-index/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">Partial Index</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>Partial Index</span>
+        </nav>
+        <span class="reading-time" title="924 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  4 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 27 Aug 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/partial-index.jpg" alt="Partial Index"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>Confession time, I have never heard of this term, <code>Partial Index</code>, in my entire programming career. I was having deep conversation about database performance with my friend (DBA by profession) and this term just popped out.</p>
+<p>As always, I decided to dig deep and find out more about it.</p>
+<p>A <strong>Partial Index</strong> (also called a <strong>Filtered Index</strong>) is an index built over a subset of rows in a table, defined by a <strong>WHERE</strong> clause.</p>
+<p>Standard indexes map every single row in a table where as a partial index only includes rows that satisfy its specific condition.</p>
+<p><strong>PostgreSQL</strong> has supported partial indexes since version <strong>7.2</strong> using a <strong>WHERE</strong> clause in <strong>CREATE INDEX</strong>.</p>
+<p><strong>MySQL</strong> does not support a <strong>WHERE</strong> clause in <strong>CREATE INDEX</strong> statements.</p>
+<p>However, you can mimic a partial index in <strong>MySQL (8.0+)</strong>  using <strong>Virtual Generated Columns</strong> or <strong>Functional Indexes</strong> that return NULL for excluded rows (since <strong>MySQL</strong> skips <strong>NULL</strong> values in standard <strong>B-tree</strong> index paths).</p>
+<p>Let setup docker container quickly, so that we demo this behaviour.</p>
+<h3 id="docker-configuraton">Docker Configuraton</h3>
+<p><strong>File:</strong> <code>docker-compose.yml</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">services</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgres-db</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">postgres:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">demo_postgres</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_USER</span>: <span style="color:#ae81ff">demo_user</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">demo_password</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_DB</span>: <span style="color:#ae81ff">demo_db</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;5434:5432&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mysql-db</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">mysql:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">demo_mysql</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">MYSQL_ROOT_PASSWORD</span>: <span style="color:#ae81ff">demo_password</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">MYSQL_DATABASE</span>: <span style="color:#ae81ff">demo_db</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">MYSQL_USER</span>: <span style="color:#ae81ff">demo_user</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">MYSQL_PASSWORD</span>: <span style="color:#ae81ff">demo_password</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;3307:3306&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">pgdata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mysqldata</span>:
+</span></span></code></pre></div><h3 id="start-container">Start Container</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker compose up -d
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> up 3/3
+</span></span><span style="display:flex;"><span> ✔ Network partial-index_default Created                                0.0s
+</span></span><span style="display:flex;"><span> ✔ Container demo_postgres       Started                                0.3s
+</span></span><span style="display:flex;"><span> ✔ Container demo_mysql          Started                                0.4s
+</span></span></code></pre></div><h3 id="postgresql">PostgreSQL</h3>
+<p>Lets open a connection to PostgreSQL session:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it demo_postgres psql -U demo_user -d demo_db
+</span></span><span style="display:flex;"><span>psql <span style="color:#f92672">(</span>18.4 <span style="color:#f92672">(</span>Debian 18.4-1.pgdg13+1<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#34;help&#34;</span> <span style="color:#66d9ef">for</span> help.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>demo_db<span style="color:#f92672">=</span><span style="color:#75715e">#</span>
+</span></span></code></pre></div><p>Create table <code>orders</code> first:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>demo_db<span style="color:#f92672">=#</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> orders (
+</span></span><span style="display:flex;"><span>    id          SERIAL <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+</span></span><span style="display:flex;"><span>    customer_id INT,
+</span></span><span style="display:flex;"><span>    status      VARCHAR(<span style="color:#ae81ff">20</span>),
+</span></span><span style="display:flex;"><span>    amount      DECIMAL(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span>
+</span></span><span style="display:flex;"><span>demo_db<span style="color:#f92672">=#</span>
+</span></span></code></pre></div><p>Populate sample data:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>demo_db<span style="color:#f92672">=#</span> <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> orders (customer_id, status, amount)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>    (random() <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>)::int,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">CASE</span> <span style="color:#66d9ef">WHEN</span> random() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">9</span> <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;completed&#39;</span> <span style="color:#66d9ef">ELSE</span> <span style="color:#e6db74">&#39;pending&#39;</span> <span style="color:#66d9ef">END</span>,
+</span></span><span style="display:flex;"><span>    (random() <span style="color:#f92672">*</span> <span style="color:#ae81ff">500</span>)::numeric(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> generate_series(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">100000</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">100000</span>
+</span></span><span style="display:flex;"><span>demo_db<span style="color:#f92672">=#</span>
+</span></span></code></pre></div><p>Create the Partial Index:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>demo_db<span style="color:#f92672">=#</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_postgres_pending_orders
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">ON</span> orders (customer_id)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pending&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span>
+</span></span><span style="display:flex;"><span>demo_db<span style="color:#f92672">=#</span>
+</span></span></code></pre></div><p>Verify Execution Plan:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>demo_db<span style="color:#f92672">=#</span> <span style="color:#66d9ef">EXPLAIN</span> <span style="color:#66d9ef">ANALYZE</span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> orders <span style="color:#66d9ef">WHERE</span> customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span> <span style="color:#66d9ef">AND</span> status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pending&#39;</span>;
+</span></span><span style="display:flex;"><span>                                                               QUERY PLAN
+</span></span><span style="display:flex;"><span><span style="color:#75715e">----------------------------------------------------------------------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span> Bitmap Heap Scan <span style="color:#66d9ef">on</span> orders  (cost<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>.<span style="color:#ae81ff">36</span>..<span style="color:#ae81ff">40</span>.<span style="color:#ae81ff">99</span> <span style="color:#66d9ef">rows</span><span style="color:#f92672">=</span><span style="color:#ae81ff">10</span> width<span style="color:#f92672">=</span><span style="color:#ae81ff">23</span>) (actual time<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">025</span>..<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">030</span> <span style="color:#66d9ef">rows</span><span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>.<span style="color:#ae81ff">00</span> loops<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">Recheck</span> Cond: ((customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>) <span style="color:#66d9ef">AND</span> ((status)::text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pending&#39;</span>::text))
+</span></span><span style="display:flex;"><span>   Heap Blocks: exact<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>   Buffers: shared hit<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span> <span style="color:#66d9ef">read</span><span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">-&gt;</span>  Bitmap <span style="color:#66d9ef">Index</span> Scan <span style="color:#66d9ef">on</span> idx_postgres_pending_orders  (cost<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span>..<span style="color:#ae81ff">4</span>.<span style="color:#ae81ff">36</span> <span style="color:#66d9ef">rows</span><span style="color:#f92672">=</span><span style="color:#ae81ff">10</span> width<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>) (actual time<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">018</span>..<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">018</span> <span style="color:#66d9ef">rows</span><span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>.<span style="color:#ae81ff">00</span> loops<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">Index</span> Cond: (customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>)
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">Index</span> Searches: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>         Buffers: shared <span style="color:#66d9ef">read</span><span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span> Planning:
+</span></span><span style="display:flex;"><span>   Buffers: shared hit<span style="color:#f92672">=</span><span style="color:#ae81ff">52</span> <span style="color:#66d9ef">read</span><span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span> Planning Time: <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">416</span> ms
+</span></span><span style="display:flex;"><span> Execution Time: <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">065</span> ms
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">12</span> <span style="color:#66d9ef">rows</span>)
+</span></span></code></pre></div><p>You can clearly see, <strong>PostgreSQL</strong> uses an Index Scan using <strong>idx_postgres_pending_orders</strong> because the WHERE condition matches the index filter.</p>
+<p>If you search for status = &lsquo;completed&rsquo;, <strong>PostgreSQL</strong> skips this index entirely and runs a <strong>Sequential Scan</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>demo_db<span style="color:#f92672">=#</span> <span style="color:#66d9ef">EXPLAIN</span> <span style="color:#66d9ef">ANALYZE</span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> orders <span style="color:#66d9ef">WHERE</span> customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span> <span style="color:#66d9ef">AND</span> status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;completed&#39;</span>;
+</span></span><span style="display:flex;"><span>                                               QUERY PLAN
+</span></span><span style="display:flex;"><span><span style="color:#75715e">---------------------------------------------------------------------------------------------------------
+</span></span></span><span style="display:flex;"><span> Seq Scan <span style="color:#66d9ef">on</span> orders  (cost<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span>..<span style="color:#ae81ff">2227</span>.<span style="color:#ae81ff">00</span> <span style="color:#66d9ef">rows</span><span style="color:#f92672">=</span><span style="color:#ae81ff">89</span> width<span style="color:#f92672">=</span><span style="color:#ae81ff">23</span>) (actual time<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">036</span>..<span style="color:#ae81ff">4</span>.<span style="color:#ae81ff">988</span> <span style="color:#66d9ef">rows</span><span style="color:#f92672">=</span><span style="color:#ae81ff">93</span>.<span style="color:#ae81ff">00</span> loops<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>   Filter: ((customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>) <span style="color:#66d9ef">AND</span> ((status)::text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;completed&#39;</span>::text))
+</span></span><span style="display:flex;"><span>   <span style="color:#66d9ef">Rows</span> Removed <span style="color:#66d9ef">by</span> Filter: <span style="color:#ae81ff">99907</span>
+</span></span><span style="display:flex;"><span>   Buffers: shared hit<span style="color:#f92672">=</span><span style="color:#ae81ff">727</span>
+</span></span><span style="display:flex;"><span> Planning:
+</span></span><span style="display:flex;"><span>   Buffers: shared hit<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> <span style="color:#66d9ef">read</span><span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span> Planning Time: <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">407</span> ms
+</span></span><span style="display:flex;"><span> Execution Time: <span style="color:#ae81ff">5</span>.<span style="color:#ae81ff">015</span> ms
+</span></span><span style="display:flex;"><span>(<span style="color:#ae81ff">8</span> <span style="color:#66d9ef">rows</span>)
+</span></span></code></pre></div><h3 id="mysql">MySQL</h3>
+<p>Let&rsquo;s connect to <strong>MySQL</strong> database session using password, <strong>demo_password</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it demo_mysql mysql -u demo_user -p demo_db
+</span></span><span style="display:flex;"><span>Enter password:
+</span></span><span style="display:flex;"><span>Welcome to the MySQL monitor.  Commands end with ; or <span style="color:#ae81ff">\g</span>.
+</span></span><span style="display:flex;"><span>Your MySQL connection id is <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>Server version: 9.7.1 MySQL Community Server - GPL
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Copyright <span style="color:#f92672">(</span>c<span style="color:#f92672">)</span> 2000, 2026, Oracle and/or its affiliates.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Oracle is a registered trademark of Oracle Corporation and/or its
+</span></span><span style="display:flex;"><span>affiliates. Other names may be trademarks of their respective
+</span></span><span style="display:flex;"><span>owners.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Type <span style="color:#e6db74">&#39;help;&#39;</span> or <span style="color:#e6db74">&#39;\h&#39;</span> <span style="color:#66d9ef">for</span> help. Type <span style="color:#e6db74">&#39;\c&#39;</span> to clear the current input statement.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql&gt;
+</span></span></code></pre></div><p>Create table, <strong>orders</strong>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> orders (
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>     id          INT AUTO_INCREMENT <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>     customer_id INT,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>     status      VARCHAR(<span style="color:#ae81ff">20</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>     amount      DECIMAL(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span> );
+</span></span><span style="display:flex;"><span>Query OK, <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">rows</span> affected (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">030</span> sec)
+</span></span><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Populate sample data, first increasing the maximum recursion depth.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SET</span> <span style="color:#66d9ef">SESSION</span> cte_max_recursion_depth <span style="color:#f92672">=</span> <span style="color:#ae81ff">100000</span>;
+</span></span><span style="display:flex;"><span>Query OK, <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">rows</span> affected (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">001</span> sec)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> orders (customer_id, status, amount)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">WITH</span> <span style="color:#66d9ef">RECURSIVE</span> seq <span style="color:#66d9ef">AS</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>     <span style="color:#66d9ef">SELECT</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">AS</span> n
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>     <span style="color:#66d9ef">UNION</span> <span style="color:#66d9ef">ALL</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>     <span style="color:#66d9ef">SELECT</span> n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">FROM</span> seq <span style="color:#66d9ef">WHERE</span> n <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">100000</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span> )
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">SELECT</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>     FLOOR(RAND() <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>     <span style="color:#66d9ef">IF</span>(RAND() <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">9</span>, <span style="color:#e6db74">&#39;completed&#39;</span>, <span style="color:#e6db74">&#39;pending&#39;</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>     ROUND(RAND() <span style="color:#f92672">*</span> <span style="color:#ae81ff">500</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">FROM</span> seq;
+</span></span><span style="display:flex;"><span>Query OK, <span style="color:#ae81ff">100000</span> <span style="color:#66d9ef">rows</span> affected (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">365</span> sec)
+</span></span><span style="display:flex;"><span>Records: <span style="color:#ae81ff">100000</span>  Duplicates: <span style="color:#ae81ff">0</span>  Warnings: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Now create the simulated Partial Index.</p>
+<p>Add a virtual column that returns <strong>customer_id</strong> ONLY for <strong>&lsquo;pending&rsquo;</strong> orders.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> orders
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">ADD</span> <span style="color:#66d9ef">COLUMN</span> pending_customer_id INT <span style="color:#66d9ef">GENERATED</span> ALWAYS <span style="color:#66d9ef">AS</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span>     <span style="color:#66d9ef">IF</span>(status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pending&#39;</span>, customer_id, <span style="color:#66d9ef">NULL</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-&gt;</span> ) VIRTUAL;
+</span></span><span style="display:flex;"><span>Query OK, <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">rows</span> affected (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">017</span> sec)
+</span></span><span style="display:flex;"><span>Records: <span style="color:#ae81ff">0</span>  Duplicates: <span style="color:#ae81ff">0</span>  Warnings: <span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><p>Index the virtual column:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_mysql_pending_orders <span style="color:#66d9ef">ON</span> orders (pending_customer_id);
+</span></span><span style="display:flex;"><span>Query OK, <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">rows</span> affected (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">142</span> sec)
+</span></span><span style="display:flex;"><span>Records: <span style="color:#ae81ff">0</span>  Duplicates: <span style="color:#ae81ff">0</span>  Warnings: <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><p>Verify Execution Plan</p>
+<p>Index Lookup (Reads ~10 rows directly via B-tree)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">EXPLAIN</span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> orders <span style="color:#66d9ef">WHERE</span> pending_customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">----------------------------------------------------------------------------------------------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">EXPLAIN</span>                                                                                                  <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">----------------------------------------------------------------------------------------------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Index</span> lookup <span style="color:#66d9ef">on</span> orders <span style="color:#66d9ef">using</span> idx_mysql_pending_orders (pending_customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>)  (cost<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>.<span style="color:#ae81ff">5</span> <span style="color:#66d9ef">rows</span><span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)  <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">----------------------------------------------------------------------------------------------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">row</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">009</span> sec)
+</span></span></code></pre></div><p>Full Table Scan (Reads all ~100,000 rows from disk)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">EXPLAIN</span> <span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> orders <span style="color:#66d9ef">WHERE</span> customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span> <span style="color:#66d9ef">AND</span> status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pending&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">--------------------------------------------------------------------------------------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">EXPLAIN</span>                                                                                          <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">--------------------------------------------------------------------------------------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#f92672">-&gt;</span> Filter: ((orders.<span style="color:#f92672">`</span>status<span style="color:#f92672">`</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pending&#39;</span>) <span style="color:#66d9ef">and</span> (orders.customer_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>))  (cost<span style="color:#f92672">=</span><span style="color:#ae81ff">10073</span> <span style="color:#66d9ef">rows</span><span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>) <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>    <span style="color:#f92672">-&gt;</span> <span style="color:#66d9ef">Table</span> scan <span style="color:#66d9ef">on</span> orders  (cost<span style="color:#f92672">=</span><span style="color:#ae81ff">10073</span> <span style="color:#66d9ef">rows</span><span style="color:#f92672">=</span><span style="color:#ae81ff">100007</span>)                                             <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">--------------------------------------------------------------------------------------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#66d9ef">row</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">005</span> sec)
+</span></span></code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/perl" class="post-tag">Perl</a>
+        
+        <a href="https://theweeklychallenge.org/tags/postgresql" class="post-tag">PostgreSQL</a>
+        
+        <a href="https://theweeklychallenge.org/tags/mysql" class="post-tag">MySQL</a>
+        
+        <a href="https://theweeklychallenge.org/tags/partial-index" class="post-tag">Partial Index</a>
+        
+    </div>
+    
+    <div class="related-posts">
+    <h3 class="related-posts-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+        </svg>
+        Related Posts
+    </h3>
+    <div class="related-posts-grid">
+        <a class="related-post-card" href="/blog/postgresql-pgq/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">PostgreSQL PGQ</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">PostgreSQL</span>
+                <span class="related-post-tag">PGQ</span>
+            </span>
+            <span class="related-post-date">23 Aug 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/using-jsonb/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Using JSONB</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">JSONB</span>
+                <span class="related-post-tag">MySQL</span>
+                <span class="related-post-tag">PostgreSQL</span>
+            </span>
+            <span class="related-post-date">10 Jul 2026</span>
+        </a>
+        <a class="related-post-card" href="/blog/advent-calendar-2025-12-07/">
+            <span class="related-post-section">blog</span>
+            <span class="related-post-title">Advent Calendar - December 7, 2025</span>
+            <span class="related-post-tags">
+                <span class="related-post-tag">Raku</span>
+                <span class="related-post-tag">Perl</span>
+                <span class="related-post-tag">PostgreSQL</span>
+            </span>
+            <span class="related-post-date">7 Dec 2025</span>
+        </a>
+    </div>
+</div>
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/partial-index\/';
+            this.page.identifier = '601b33789cea920a64a3f248b6e4734d';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
