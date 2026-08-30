@@ -70,7 +70,7 @@ $app->post('/gallery',
 );
 ```
 
-The start the app like below:
+Start the app like below:
 
 ```bash
 $ pagi-server eg/file_uploads_demo.pl
@@ -163,7 +163,7 @@ $app->get('/activity-log',
 );
 ```
 
-The start the app like below:
+Start the app like below:
 
 ```bash
 $ pagi-server eg/background_demo.pl
@@ -366,7 +366,7 @@ $app->post('/widgets',
 );
 ```
 
-The start the app like below:
+Start the app like below:
 
 ```bash
 $ pagi-server eg/docs_demo.pl
@@ -391,8 +391,6 @@ Clicking the button **Open Swagger UI**, gives this page:
         </div>
     </div>
 </div>
-
-
 
 ***
 <br>
