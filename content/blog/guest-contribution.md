@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-09-02T00:00:00+00:00
+date: 2026-09-03T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1990,6 +1990,8 @@ ___
 ##### **Jorge Morales** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-377/mrbocch/haskell/ch-1.hs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-377/mrbocch/haskell/ch-2.hs) in **Haskell**.
 
 ##### **Jorge Morales** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-377/mrbocch/ruby/ch-1.rb) in **Ruby**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-377/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-377/lubos-kolouch/python/ch-2.py) in **Python**.
 
 ##### **Mohammad Sajid Anwar** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-377/mohammad-anwar/python/ch-1.py) in **Python**.
 
