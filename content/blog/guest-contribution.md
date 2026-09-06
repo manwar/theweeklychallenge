@@ -1204,6 +1204,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **David Ferrone** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/zapwai/c/ch-2.c) in **C**.
 
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/eric-cheung/python/ch-2.py) in **Python**.
+
 ##### **Jorg Sommrey** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/jo-37/j/ch-1.ijs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/jo-37/j/ch-2.ijs) in **J**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/lubos-kolouch/python/ch-2.py) in **Python**.
@@ -1233,6 +1235,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/roger-bell-west/scala/ch-1.scala) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/roger-bell-west/scala/ch-2.scala) in **Scala**.
 
 ##### **Roger Bell_West** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/roger-bell-west/typst/ch-1.typ) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/roger-bell-west/typst/ch-2.typ) in **Typst**.
+
+##### **Simon Green** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/sgreen/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/sgreen/python/ch-2.py) in **Python**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/ulrich-rieke/cpp/ch-1.cpp) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/ulrich-rieke/cpp/ch-2.cpp) in **C++**.
 
