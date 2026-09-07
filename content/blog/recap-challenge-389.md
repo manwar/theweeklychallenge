@@ -584,7 +584,7 @@ Please checkout the technical class of **Andrew**'s **Raku** Knowledge. You can 
 [[**PERL #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/jaldhar-h-vyas/perl/ch-2.pl)]
 [[**RAKU #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/jaldhar-h-vyas/raku/ch-1.raku)]
 [[**RAKU #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-389/jaldhar-h-vyas/raku/ch-2.raku)]
-[[**BLOG #1**](https://www.braincells.com/perl/2026/08/perl_weekly_challenge_week_389.html)]
+[[**BLOG #1**](https://www.braincells.com/perl/2026/09/perl_weekly_challenge_week_389.html)]
 
 ***
 
