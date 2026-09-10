@@ -1,6 +1,6 @@
 ---
 title: "OSI Network Model"
-date: 2026-09-09T00:00:00+00:00
+date: 2026-09-12T00:00:00+00:00
 description: "Gentle introduction to OSI network model."
 type: post
 image: images/blog/osi-network-model.jpg
