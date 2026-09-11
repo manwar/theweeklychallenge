@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/osi-network-model/">
+    <title>OSI Network Model | Sep 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Gentle introduction to OSI network model.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/osi-network-model/">
+    <meta property="og:title"       content="OSI Network Model">
+    <meta property="og:description" content="Gentle introduction to OSI network model.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/osi-network-model.jpg">
+    
+    <meta property="article:published_time" content="2026-09-11T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-09-11T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="OSI Network Model">
+    <meta name="twitter:description" content="Gentle introduction to OSI network model.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/osi-network-model.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+
+    /* Google Search Console */
+    <meta name="google-site-verification" content="zVrrQhRg4ReGc9zXOtGdtVyhqeN9uaCdsashWPRY-5I" />
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/osi-network-model/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">OSI Network Model</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>OSI Network Model</span>
+        </nav>
+        <span class="reading-time" title="2352 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  11 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 11 Sep 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/osi-network-model.jpg" alt="OSI Network Model"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>For understanding networking in detail, one can envision <strong>OSI Network Model</strong> which is the universal model for networking comprising of <strong>7 layers</strong>, as a postal service delivering gifts worldwide.</p>
+<p>Just like sending letters or packages requires something more than simply tossing the letters into the air and expecting it to be delivered.</p>
+<p>To send out a letter one needs to first write it and encode it or put it in an envelope if needed, place that into the mail box, put the address on the envelope, either deliver to the actual post office or give it to the delivery boy.</p>
+<p>Each layer in <strong>OSI</strong> has a separate role and is responsible for one essential aspect in the process.</p>
+<h2 id="layer-7-application-layer">Layer 7: Application layer</h2>
+<p>This is the layer that the end users are going to see on their devices be it a browser or email application or WhatsApp.</p>
+<blockquote>
+<p>Example: For instance, a user might type a message on WhatsApp as <strong>&ldquo;Hello World&rdquo;</strong></p>
+</blockquote>
+<blockquote>
+<p>Purpose: It plays the role of the user interface and creates the raw information that needs to be transmitted over internet.</p>
+</blockquote>
+<h2 id="layer-6-presentation-layer">Layer 6: Presentation Layer</h2>
+<p>Computers communicate using different languages and formats.</p>
+<p>This layer processes your information and gets it ready for shipment through transformation, compression, and secrecy.</p>
+<blockquote>
+<p>Example: Turning your text into a coded message, such as using <strong>TLS</strong> encryption, so that no burglar can understand if he intercepts the shipment.</p>
+</blockquote>
+<blockquote>
+<p>Purpose: Prepares and hides your data.</p>
+</blockquote>
+<h2 id="layer-5-session-layer">Layer 5: Session Layer</h2>
+<p>Before data transmission, two devices have to set the line for communication.</p>
+<p>The function of the <strong>Session Layer</strong> is to open, control, and stop this connection.</p>
+<blockquote>
+<p>Example: Calling your friend and waiting for the other person to say <strong>&ldquo;Hello?&rdquo;</strong> after which you can start your conversation.</p>
+</blockquote>
+<blockquote>
+<p>Purpose: Establishes the connection between the two parties and helps maintain this connection until it is needed.</p>
+</blockquote>
+<h2 id="layer-4-transport-layer">Layer 4: Transport Layer</h2>
+<p>This layer determines the shipment techniques chosen for transportation, either emphasising exactness (as in registered mail) or speed (like in live television).</p>
+<p>Here <strong>TCP</strong> and <strong>QUIC</strong> are in use.</p>
+<blockquote>
+<p>Example: For instance, if you have to send a bulky book, you would divide the book into pages, put every page in individual small envelopes, and verify that every page reaches its destination.</p>
+</blockquote>
+<blockquote>
+<p>Purpose: Chunking large files into smaller packets and checking that every piece is present and requesting reroute if necessary.</p>
+</blockquote>
+<h2 id="layer-3-network-layer">Layer 3: Network Layer</h2>
+<p>To ship an item around the world, addresses (IP Addresses) and routes must be known.</p>
+<blockquote>
+<p>Example: Put <strong>&ldquo;London, UK&rdquo;</strong> on your envelope. Routers would interpret your address and use it to find the shortest route possible.</p>
+</blockquote>
+<blockquote>
+<p>Purpose: Determining <strong>IP addresses</strong> and directing packets across other networks.</p>
+</blockquote>
+<h2 id="layer-2-data-link-layer">Layer 2: Data Link Layer</h2>
+<p>When your parcel arrives at the sorting station in your area, the global <strong>IP addresses</strong> take a backseat to the individual address in the area, referred to as the <strong>MAC Address</strong>.</p>
+<blockquote>
+<p>Example: The carrier goes around the neighborhood delivering the letter directly into the letterbox of House number 42.</p>
+</blockquote>
+<blockquote>
+<p>Purpose: Making direct transfers between machines on the same local network.</p>
+</blockquote>
+<h2 id="layer-1-physical-layer">Layer 1: Physical Layer</h2>
+<p>This refers to the physical medium of transmitting the signals, the cables, radio signals, or light beams in reality.</p>
+<blockquote>
+<p>Example: The pavement where the truck moves on or the wire in the telephone tower.</p>
+</blockquote>
+<blockquote>
+<p>Purpose: Converting data to signal form, electric pulse through cable, stream of light through the fiber optics, or radio waves in the air.</p>
+</blockquote>
+<hr>
+<br>
+<p>Here is a breakdown of bash script visualises each of the <strong>7 OSI</strong> layers as <strong>&ldquo;Hello World&rdquo;</strong> moves down the network stack and gets verified at the receiving end.</p>
+<h2 id="script-architecture--setup">Script Architecture &amp; Setup</h2>
+<p>The script begins with <strong>#!/usr/bin/env bash</strong> and <strong>set -e</strong> to halt execution if a command throws an unhandled error.</p>
+<p>It defines <strong>ANSI</strong> escape codes to color-code output headers and variables.</p>
+<p>Also defines, <strong>pause()</strong>, a helper function. It clears the terminal screen and waits for user input, <strong>read -r</strong>, turning the demo into an interactive, step-by-step walkthrough.</p>
+<p><strong>File:</strong> <code>osi_hello.sh</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env bash
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set -e
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">9999</span>
+</span></span><span style="display:flex;"><span>MESSAGE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Hello World&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>BOLD<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\033[1m&#34;</span>
+</span></span><span style="display:flex;"><span>CYAN<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\033[1;36m&#34;</span>
+</span></span><span style="display:flex;"><span>GREEN<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\033[1;32m&#34;</span>
+</span></span><span style="display:flex;"><span>YELLOW<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\033[1;33m&#34;</span>
+</span></span><span style="display:flex;"><span>MAGENTA<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\033[1;35m&#34;</span>
+</span></span><span style="display:flex;"><span>BLUE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\033[1;34m&#34;</span>
+</span></span><span style="display:flex;"><span>RED<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\033[1;31m&#34;</span>
+</span></span><span style="display:flex;"><span>NC<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;\033[0m&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>pause<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    echo -e <span style="color:#e6db74">&#34;\n</span><span style="color:#e6db74">${</span>YELLOW<span style="color:#e6db74">}</span><span style="color:#e6db74">Press [ENTER] to see what happens at the next layer...</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    read -r
+</span></span><span style="display:flex;"><span>    clear
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>clear
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BOLD<span style="color:#e6db74">}${</span>CYAN<span style="color:#e6db74">}</span><span style="color:#e6db74">   TRACKING REAL-TIME &#39;Hello World&#39; DISPATCH THROUGH OSI LAYERS    </span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BOLD<span style="color:#e6db74">}${</span>CYAN<span style="color:#e6db74">}</span><span style="color:#e6db74">-------------------------------------------------------------------</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>pause
+</span></span></code></pre></div><h2 id="osi--layer--breakdown">OSI   Layer   Breakdown</h2>
+<h3 id="layer-7-application-layer-1">Layer 7: Application Layer</h3>
+<p>At the top of the stack, the script initialises the raw string <strong>MESSAGE=&ldquo;Hello World&rdquo;</strong>.</p>
+<p>It measures payload length using <strong>wc -c</strong> (11 bytes + 1 byte for newline 0x0A) and displays the payload structure.</p>
+<p>Application-level protocols (like <strong>HTTP</strong> or <strong>SMTP</strong>) deal purely with human-readable or application-native data.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BOLD<span style="color:#e6db74">}${</span>MAGENTA<span style="color:#e6db74">}</span><span style="color:#e6db74">[LAYER 7: APPLICATION LAYER]</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Creating application data payload...\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dynamic length calculation</span>
+</span></span><span style="display:flex;"><span>PAYLOAD_LEN<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo -n <span style="color:#e6db74">&#34;</span>$MESSAGE<span style="color:#e6db74">&#34;</span> | wc -c | tr -d <span style="color:#e6db74">&#39; &#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Raw Payload String: </span><span style="color:#e6db74">${</span>GREEN<span style="color:#e6db74">}</span><span style="color:#e6db74">\&#34;</span><span style="color:#e6db74">${</span>MESSAGE<span style="color:#e6db74">}</span><span style="color:#e6db74">\&#34;</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Payload Length:     </span><span style="color:#e6db74">${</span>GREEN<span style="color:#e6db74">}${</span>PAYLOAD_LEN<span style="color:#e6db74">}</span><span style="color:#e6db74"> bytes</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Structure:          Unformatted ASCII String + Line Feed (0x0A)&#34;</span>
+</span></span><span style="display:flex;"><span>pause
+</span></span></code></pre></div><h3 id="layer-6-presentation-layer-1">Layer 6: Presentation Layer</h3>
+<p>This layer formats, encodes, compresses, or encrypts raw data for transport.</p>
+<p>It uses <strong>xxd -p</strong> (or falls back to od) to convert each <strong>ASCII</strong> character of <strong>&ldquo;Hello World&rdquo;</strong> into its hexadecimal byte matrix (e.g., <strong>&lsquo;H&rsquo;</strong> becomes <strong>0x48</strong>).</p>
+<p>It converts abstract characters into standardisation formats (<strong>UTF-8/ASCII bytes</strong>) that different operating systems can parse uniformly.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BOLD<span style="color:#e6db74">}${</span>MAGENTA<span style="color:#e6db74">}</span><span style="color:#e6db74">[LAYER 6: PRESENTATION LAYER]</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Translating ASCII characters into raw Hexadecimal/Byte representation...\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BLUE<span style="color:#e6db74">}</span><span style="color:#e6db74">Character to Byte Translation Matrix:</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34; Char: &#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">((</span> i<span style="color:#f92672">=</span>0; i&lt;<span style="color:#e6db74">${#</span>MESSAGE<span style="color:#e6db74">}</span>; i++ <span style="color:#f92672">))</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    printf <span style="color:#e6db74">&#34;%4s&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>MESSAGE:$i:1<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>printf <span style="color:#e6db74">&#34; Hex:  &#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> command -v xxd &amp;&gt;/dev/null; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo -n <span style="color:#e6db74">&#34;</span>$MESSAGE<span style="color:#e6db74">&#34;</span> | xxd -p | sed <span style="color:#e6db74">&#39;s/../ 0x&amp;/g&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    echo -n <span style="color:#e6db74">&#34;</span>$MESSAGE<span style="color:#e6db74">&#34;</span> | od -An -tx1 | sed <span style="color:#e6db74">&#39;s/ / 0x/g&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;\nPayload Encoding: </span><span style="color:#e6db74">${</span>GREEN<span style="color:#e6db74">}</span><span style="color:#e6db74">ASCII / UTF-8</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74"> (No encryption applied)&#34;</span>
+</span></span><span style="display:flex;"><span>pause
+</span></span></code></pre></div><h3 id="layer-5-session-layer-1">Layer 5: Session Layer</h3>
+<p>The session layer manages persistent connections between applications.</p>
+<p>It cleans up <strong>/tmp/osi_rcv.txt</strong> and launches a background <strong>Netcat</strong> server (<strong>nc -l -p 9999</strong>) to listen on <strong>loopback port 9999</strong>.</p>
+<p>It establishes and binds local socket endpoints before data exchange begins.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BOLD<span style="color:#e6db74">}${</span>MAGENTA<span style="color:#e6db74">}</span><span style="color:#e6db74">[LAYER 5: SESSION LAYER]</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Establishing transport socket session...\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clean temporary buffer</span>
+</span></span><span style="display:flex;"><span>rm -f /tmp/osi_rcv.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Bind background listener</span>
+</span></span><span style="display:flex;"><span>nc -l -p $PORT &gt; /tmp/osi_rcv.txt 2&gt;/dev/null &amp;
+</span></span><span style="display:flex;"><span>SERVER_PID<span style="color:#f92672">=</span>$!
+</span></span><span style="display:flex;"><span>sleep 0.5
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dynamic Session Inspection</span>
+</span></span><span style="display:flex;"><span>LISTEN_ADDR<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ss -tuln 2&gt;/dev/null | grep <span style="color:#e6db74">&#34;:</span>$PORT<span style="color:#e6db74">&#34;</span> | awk <span style="color:#e6db74">&#39;{print $5}&#39;</span> | head -n1<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Session Status:     </span><span style="color:#e6db74">${</span>GREEN<span style="color:#e6db74">}</span><span style="color:#e6db74">ACTIVE (PID </span>$SERVER_PID<span style="color:#e6db74">)</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Session Bind:       </span><span style="color:#e6db74">${</span>CYAN<span style="color:#e6db74">}${</span>LISTEN_ADDR<span style="color:#66d9ef">:-</span><span style="color:#e6db74">&#34;*:</span>$PORT<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">}${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Session Control:    Socket initialised via local system API&#34;</span>
+</span></span><span style="display:flex;"><span>pause
+</span></span></code></pre></div><h3 id="layer-4-transport-layer-1">Layer 4: Transport Layer</h3>
+<p>Transport protocols manage port-to-port multiplexing, flow control, and transmission reliability.</p>
+<p>It sends the payload using nc with cross-platform flags (<strong>-N</strong> or <strong>-w 1</strong>) to ensure socket auto-closure.</p>
+<p>It then inspects the active socket using <strong>ss</strong> or <strong>netstat</strong>.</p>
+<p>Encapsulates the payload into a <strong>TCP</strong> segment with Source/Destination ports and control flags (e.g., <strong>[PSH, ACK]</strong>).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BOLD<span style="color:#e6db74">}${</span>MAGENTA<span style="color:#e6db74">}</span><span style="color:#e6db74">[LAYER 4: TRANSPORT LAYER]</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Encapsulating into TCP Segment (Port addressing &amp; Sequence tracking)...\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hold TCP connection open briefly for live socket state capture</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">(</span> sleep 0.1; echo <span style="color:#e6db74">&#34;</span>$MESSAGE<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">)</span> | nc -w <span style="color:#ae81ff">1</span> 127.0.0.1 $PORT 2&gt;/dev/null &amp;
+</span></span><span style="display:flex;"><span>CLIENT_PID<span style="color:#f92672">=</span>$!
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sleep 0.05
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BLUE<span style="color:#e6db74">}</span><span style="color:#e6db74"> Live Socket Inspection (Layer 4 State)</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> command -v ss &amp;&gt;/dev/null; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    ss -tunp state established <span style="color:#e6db74">&#34;( dport = :</span>$PORT<span style="color:#e6db74"> or sport = :</span>$PORT<span style="color:#e6db74"> )&#34;</span> 2&gt;/dev/null <span style="color:#f92672">||</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    ss -tun state established 2&gt;/dev/null | grep <span style="color:#e6db74">&#34;:</span>$PORT<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">||</span> true
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    netstat -tun 2&gt;/dev/null | grep <span style="color:#e6db74">&#34;:</span>$PORT<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">||</span> true
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dynamic port discovery</span>
+</span></span><span style="display:flex;"><span>EPHEMERAL_PORT<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ss -tun state established <span style="color:#e6db74">&#34;( dport = :</span>$PORT<span style="color:#e6db74"> )&#34;</span> 2&gt;/dev/null | awk <span style="color:#e6db74">&#39;NR==2 {print $4}&#39;</span> | awk -F: <span style="color:#e6db74">&#39;{print $NF}&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wait $CLIENT_PID 2&gt;/dev/null <span style="color:#f92672">||</span> true
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query kernel network sysfs to check if TCP Timestamps are enabled</span>
+</span></span><span style="display:flex;"><span>TCP_BASE_HDR<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>TCP_OPTIONS_LEN<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check sysctl state for TCP timestamps (1 = enabled, 0 = disabled)</span>
+</span></span><span style="display:flex;"><span>TS_ENABLED<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat /proc/sys/net/ipv4/tcp_timestamps 2&gt;/dev/null <span style="color:#f92672">||</span> echo <span style="color:#e6db74">&#34;1&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$TS_ENABLED<span style="color:#e6db74">&#34;</span> -eq <span style="color:#ae81ff">1</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Standard TCP timestamp option header adds exactly 12 bytes (NOP + NOP + TSopt)</span>
+</span></span><span style="display:flex;"><span>    TCP_OPTIONS_LEN<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>DYNAMIC_TCP_HDR_LEN<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span> TCP_BASE_HDR <span style="color:#f92672">+</span> TCP_OPTIONS_LEN <span style="color:#66d9ef">))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;\nGenerated TCP Header Info:&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  Source Port:      </span><span style="color:#e6db74">${</span>CYAN<span style="color:#e6db74">}${</span>EPHEMERAL_PORT<span style="color:#66d9ef">:-</span><span style="color:#e6db74">&#34;Dynamic Ephemeral&#34;</span><span style="color:#e6db74">}${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  Destination Port: </span><span style="color:#e6db74">${</span>CYAN<span style="color:#e6db74">}${</span>PORT<span style="color:#e6db74">}${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  Control Flags:    </span><span style="color:#e6db74">${</span>GREEN<span style="color:#e6db74">}</span><span style="color:#e6db74">[PSH, ACK]</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74"> (Push data immediately, ACK received connection)&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  TCP Header Size:  </span><span style="color:#e6db74">${</span>DYNAMIC_TCP_HDR_LEN<span style="color:#e6db74">}</span><span style="color:#e6db74"> bytes (</span><span style="color:#e6db74">${</span>TCP_BASE_HDR<span style="color:#e6db74">}</span><span style="color:#e6db74">B Base + </span><span style="color:#e6db74">${</span>TCP_OPTIONS_LEN<span style="color:#e6db74">}</span><span style="color:#e6db74">B Timestamp Option)&#34;</span>
+</span></span><span style="display:flex;"><span>pause
+</span></span></code></pre></div><h3 id="layer-3-network-layer-1">Layer 3: Network Layer</h3>
+<p>The network layer handles logical IP addressing and path routing.</p>
+<p>It formats the generated IP packet header metadata, mapping local address <strong>127.0.0.1</strong> to destination <strong>127.0.0.1</strong> and marking Protocol ID 6 (<strong>TCP</strong>).</p>
+<p>It wraps the TCP segment inside an IP packet frame (~64 total bytes).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BOLD<span style="color:#e6db74">}${</span>MAGENTA<span style="color:#e6db74">}</span><span style="color:#e6db74">[LAYER 3: NETWORK LAYER]</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Encapsulating TCP Segment into IP Packet...\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dynamic host IP resolution (falls back to active system loopback if offline)</span>
+</span></span><span style="display:flex;"><span>HOST_IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ip route get 1.1.1.1 2&gt;/dev/null | awk <span style="color:#e6db74">&#39;{print $7; exit}&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span>$HOST_IP<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    HOST_IP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>hostname -I 2&gt;/dev/null | awk <span style="color:#e6db74">&#39;{print $1}&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>SRC_IP<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>HOST_IP<span style="color:#66d9ef">:-</span><span style="color:#e6db74">&#34;127.0.0.1&#34;</span><span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dynamic calculation of total packet length (IP Header + TCP Header + Payload)</span>
+</span></span><span style="display:flex;"><span>TCP_HDR_LEN<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>DYNAMIC_TCP_HDR_LEN<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>IP_HDR_LEN<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>TOTAL_PACKET_SIZE<span style="color:#f92672">=</span><span style="color:#66d9ef">$((</span> IP_HDR_LEN <span style="color:#f92672">+</span> TCP_HDR_LEN <span style="color:#f92672">+</span> PAYLOAD_LEN <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BLUE<span style="color:#e6db74">}</span><span style="color:#e6db74">Generated IP Packet Header Info:</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  Source IP:        </span><span style="color:#e6db74">${</span>CYAN<span style="color:#e6db74">}${</span>SRC_IP<span style="color:#e6db74">}${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  Destination IP:   </span><span style="color:#e6db74">${</span>CYAN<span style="color:#e6db74">}</span><span style="color:#e6db74">127.0.0.1</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  IP Protocol ID:   </span><span style="color:#e6db74">${</span>GREEN<span style="color:#e6db74">}</span><span style="color:#e6db74">6</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74"> (Explicitly specifies TCP payload)&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  Total Packet Size: ~</span><span style="color:#e6db74">${</span>TOTAL_PACKET_SIZE<span style="color:#e6db74">}</span><span style="color:#e6db74"> bytes (</span><span style="color:#e6db74">${</span>IP_HDR_LEN<span style="color:#e6db74">}</span><span style="color:#e6db74">B IP + </span><span style="color:#e6db74">${</span>TCP_HDR_LEN<span style="color:#e6db74">}</span><span style="color:#e6db74">B TCP + </span><span style="color:#66d9ef">$((</span>PAYLOAD_LEN <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#66d9ef">))</span><span style="color:#e6db74">B Payload)&#34;</span>
+</span></span><span style="display:flex;"><span>pause
+</span></span></code></pre></div><h3 id="layer-2-data-link-layer-1">Layer 2: Data Link Layer</h3>
+<p>Data link handling manages physical node-to-node frame delivery via hardware addresses.</p>
+<p>It performs a multi-interface check across <strong>eth0</strong>, <strong>wlan0</strong>, <strong>en0</strong>, and <strong>lo</strong> using <strong>ip link</strong> or <strong>ifconfig</strong> to fetch an active hardware <strong>MAC address</strong>.</p>
+<p>It attaches Ethernet II framing (<strong>0x0800</strong> for <strong>IPv4</strong>) and MAC addressing metadata.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BOLD<span style="color:#e6db74">}${</span>MAGENTA<span style="color:#e6db74">}</span><span style="color:#e6db74">[LAYER 2: DATA LINK LAYER]</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Encapsulating IP Packet into Ethernet Frame...\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dynamic MAC address discovery using regex matching (excluding 00:00:00:00:00:00 loopback)</span>
+</span></span><span style="display:flex;"><span>MAC_ADDR<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>ip link show 2&gt;/dev/null | grep -E -o <span style="color:#e6db74">&#39;([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}&#39;</span> | grep -v <span style="color:#e6db74">&#39;00:00:00:00:00:00&#39;</span> | head -n1<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span>$MAC_ADDR<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> sys_iface in /sys/class/net/*; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>        ifname<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>basename <span style="color:#e6db74">&#34;</span>$sys_iface<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$ifname<span style="color:#e6db74">&#34;</span> !<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;lo&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">[</span> -f <span style="color:#e6db74">&#34;</span>$sys_iface<span style="color:#e6db74">/address&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>            candidate<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat <span style="color:#e6db74">&#34;</span>$sys_iface<span style="color:#e6db74">/address&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">&#34;</span>$candidate<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$candidate<span style="color:#e6db74">&#34;</span> !<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;00:00:00:00:00:00&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>                MAC_ADDR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$candidate<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                break
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BLUE<span style="color:#e6db74">}</span><span style="color:#e6db74">Frame Metadata &amp; Addressing:</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  Source MAC:       </span><span style="color:#e6db74">${</span>CYAN<span style="color:#e6db74">}${</span>MAC_ADDR<span style="color:#66d9ef">:-</span><span style="color:#e6db74">&#34;No active hardware NIC found&#34;</span><span style="color:#e6db74">}${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  Frame Type:       </span><span style="color:#e6db74">${</span>GREEN<span style="color:#e6db74">}</span><span style="color:#e6db74">0x0800</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74"> (Ethernet II framing - IPv4)&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  CRC Checksum:     Calculated at network interface driver level&#34;</span>
+</span></span><span style="display:flex;"><span>pause
+</span></span></code></pre></div><h3 id="layer-1-physical-layer-1">Layer 1: Physical Layer</h3>
+<p>The lowest level turns structured frames into electrical, optical, or radio signals.</p>
+<p>It prints the exact hexadecimal frame stream (<strong>48 65 6c 6c 6f 20 57 6f 72 6c 64 0a</strong>) alongside the raw binary bit representation (<strong>01001000 01100101&hellip;</strong>) generated from <strong>ASCII</strong> bit-shifts.</p>
+<p>It demonstrates how abstract data ultimately transmits across physical hardware as <strong>1s</strong> and <strong>0s</strong>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BOLD<span style="color:#e6db74">}${</span>MAGENTA<span style="color:#e6db74">}</span><span style="color:#e6db74">[LAYER 1: PHYSICAL LAYER]</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Converting encapsulated packet into physical electrical/optical signal bits...\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dynamic Hex Stream Generation</span>
+</span></span><span style="display:flex;"><span>HEX_STREAM<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo -n <span style="color:#e6db74">&#34;</span>$MESSAGE<span style="color:#e6db74">&#34;</span> | xxd -p 2&gt;/dev/null <span style="color:#f92672">||</span> echo -n <span style="color:#e6db74">&#34;</span>$MESSAGE<span style="color:#e6db74">&#34;</span> | od -An -tx1 | tr -d <span style="color:#e6db74">&#39; \n&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BLUE<span style="color:#e6db74">}</span><span style="color:#e6db74">Raw Hexadecimal Frame Stream on Wire/Loopback Medium:</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;  </span><span style="color:#e6db74">${</span>YELLOW<span style="color:#e6db74">}${</span>HEX_STREAM<span style="color:#e6db74">}</span><span style="color:#e6db74">0a</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BLUE<span style="color:#e6db74">}</span><span style="color:#e6db74">Raw Binary Signal Stream (Bits transmitted over Physical Interface):</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -n <span style="color:#e6db74">&#34;  &#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> <span style="color:#f92672">((</span> i<span style="color:#f92672">=</span>0; i&lt;<span style="color:#e6db74">${#</span>MESSAGE<span style="color:#e6db74">}</span>; i++ <span style="color:#f92672">))</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    char<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>MESSAGE:$i:1<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    printf <span style="color:#e6db74">&#34;%08b &#34;</span> <span style="color:#e6db74">&#34;&#39;</span>$char<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;\n&#34;</span>
+</span></span><span style="display:flex;"><span>pause
+</span></span></code></pre></div><h3 id="receiver-verification">Receiver Verification</h3>
+<p>Once the physical bits arrive at the destination, the operating system reverses the process (decapsulation).</p>
+<p>The script reads <strong>/tmp/osi_rcv.txt</strong> and compares the received payload against the original <strong>&ldquo;Hello World&rdquo;</strong> string.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BOLD<span style="color:#e6db74">}${</span>GREEN<span style="color:#e6db74">}</span><span style="color:#e6db74">                  RECEIVER END-RESULT VERIFICATION                 </span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BOLD<span style="color:#e6db74">}${</span>GREEN<span style="color:#e6db74">}</span><span style="color:#e6db74">-------------------------------------------------------------------</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sleep 0.5
+</span></span><span style="display:flex;"><span>RECEIVED<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat /tmp/osi_rcv.txt 2&gt;/dev/null <span style="color:#f92672">||</span> echo <span style="color:#e6db74">&#34;&#34;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo -e <span style="color:#e6db74">&#34;Decapsulated Data Received at Layer 7: </span><span style="color:#e6db74">${</span>CYAN<span style="color:#e6db74">}</span><span style="color:#e6db74">\&#34;</span><span style="color:#e6db74">${</span>RECEIVED<span style="color:#e6db74">}</span><span style="color:#e6db74">\&#34;</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">\n&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$MESSAGE<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span>$RECEIVED<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>GREEN<span style="color:#e6db74">}</span><span style="color:#e6db74"> SUCCESS: Physical bits correctly decoded back into &#39;Hello World&#39;</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    echo -e <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>RED<span style="color:#e6db74">}</span><span style="color:#e6db74"> ERROR: Receiver mismatch.</span><span style="color:#e6db74">${</span>NC<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><h2 id="live-demo">Live Demo</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ sudo osi_hello.sh
+</span></span><span style="display:flex;"><span>   TRACKING REAL-TIME <span style="color:#e6db74">&#39;Hello World&#39;</span> DISPATCH THROUGH OSI LAYERS
+</span></span><span style="display:flex;"><span>-------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Press <span style="color:#f92672">[</span>ENTER<span style="color:#f92672">]</span> to see what happens at the next layer...
+</span></span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>LAYER 7: APPLICATION LAYER<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Creating application data payload...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Raw Payload String: <span style="color:#e6db74">&#34;Hello World&#34;</span>
+</span></span><span style="display:flex;"><span>Payload Length:     <span style="color:#ae81ff">11</span> bytes
+</span></span><span style="display:flex;"><span>Structure:          Unformatted ASCII String + Line Feed <span style="color:#f92672">(</span>0x0A<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Press <span style="color:#f92672">[</span>ENTER<span style="color:#f92672">]</span> to see what happens at the next layer...
+</span></span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>LAYER 6: PRESENTATION LAYER<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Translating ASCII characters into raw Hexadecimal/Byte representation...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Character to Byte Translation Matrix:
+</span></span><span style="display:flex;"><span> Char:    H   e    l    l    o          W    o    r   l    d
+</span></span><span style="display:flex;"><span> Hex:   0x48 0x65 0x6c 0x6c 0x6f 0x20 0x57 0x6f 0x72 0x6c 0x64
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Payload Encoding: ASCII / UTF-8 <span style="color:#f92672">(</span>No encryption applied<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Press <span style="color:#f92672">[</span>ENTER<span style="color:#f92672">]</span> to see what happens at the next layer...
+</span></span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>LAYER 5: SESSION LAYER<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Establishing transport socket session...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Session Status:     ACTIVE <span style="color:#f92672">(</span>PID 117404<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Session Bind:       0.0.0.0:9999
+</span></span><span style="display:flex;"><span>Session Control:    Socket initialised via local system API
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Press <span style="color:#f92672">[</span>ENTER<span style="color:#f92672">]</span> to see what happens at the next layer...
+</span></span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>LAYER 4: TRANSPORT LAYER<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Encapsulating into TCP Segment <span style="color:#f92672">(</span>Port addressing &amp; Sequence tracking<span style="color:#f92672">)</span>...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Live Socket Inspection <span style="color:#f92672">(</span>Layer <span style="color:#ae81ff">4</span> State<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Netid  Recv-Q  Send-Q  Local Address:Port  Peer Address:Port  Process
+</span></span><span style="display:flex;"><span>tcp    <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>       127.0.0.1:9999      127.0.0.1:58748    users:<span style="color:#f92672">((</span><span style="color:#e6db74">&#34;nc&#34;</span>,pid<span style="color:#f92672">=</span>117404,fd<span style="color:#f92672">=</span>4<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>tcp    <span style="color:#ae81ff">0</span>       <span style="color:#ae81ff">0</span>       127.0.0.1:58748     127.0.0.1:9999     users:<span style="color:#f92672">((</span><span style="color:#e6db74">&#34;nc&#34;</span>,pid<span style="color:#f92672">=</span>117462,fd<span style="color:#f92672">=</span>3<span style="color:#f92672">))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Generated TCP Header Info:
+</span></span><span style="display:flex;"><span>  Source Port:      <span style="color:#ae81ff">58748</span>
+</span></span><span style="display:flex;"><span>  Destination Port: <span style="color:#ae81ff">9999</span>
+</span></span><span style="display:flex;"><span>  Control Flags:    <span style="color:#f92672">[</span>PSH, ACK<span style="color:#f92672">]</span> <span style="color:#f92672">(</span>Push data immediately, ACK received connection<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  TCP Header Size:  <span style="color:#ae81ff">32</span> bytes <span style="color:#f92672">(</span>20B Base + 12B Timestamp Option<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Press <span style="color:#f92672">[</span>ENTER<span style="color:#f92672">]</span> to see what happens at the next layer...
+</span></span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>LAYER 3: NETWORK LAYER<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Encapsulating TCP Segment into IP Packet...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Generated IP Packet Header Info:
+</span></span><span style="display:flex;"><span>  Source IP:        172.19.28.199
+</span></span><span style="display:flex;"><span>  Destination IP:   127.0.0.1
+</span></span><span style="display:flex;"><span>  IP Protocol ID:   <span style="color:#ae81ff">6</span> <span style="color:#f92672">(</span>Explicitly specifies TCP payload<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  Total Packet Size: ~64 bytes <span style="color:#f92672">(</span>20B IP + 32B TCP + 12B Payload<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Press <span style="color:#f92672">[</span>ENTER<span style="color:#f92672">]</span> to see what happens at the next layer...
+</span></span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>LAYER 2: DATA LINK LAYER<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Encapsulating IP Packet into Ethernet Frame...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Frame Metadata &amp; Addressing:
+</span></span><span style="display:flex;"><span>  Source MAC:       00:15:5d:1b:8a:5c
+</span></span><span style="display:flex;"><span>  Frame Type:       0x0800 <span style="color:#f92672">(</span>Ethernet II framing - IPv4<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  CRC Checksum:     Calculated at network interface driver level
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Press <span style="color:#f92672">[</span>ENTER<span style="color:#f92672">]</span> to see what happens at the next layer...
+</span></span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span>LAYER 1: PHYSICAL LAYER<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Converting encapsulated packet into physical electrical/optical signal bits...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Raw Hexadecimal Frame Stream on Wire/Loopback Medium:
+</span></span><span style="display:flex;"><span>  48656c6c6f20576f726c640a
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Raw Binary Signal Stream <span style="color:#f92672">(</span>Bits transmitted over Physical Interface<span style="color:#f92672">)</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;H       &#39;</span>e       <span style="color:#e6db74">&#39;l       &#39;</span>l       <span style="color:#e6db74">&#39;o       &#39;</span>        <span style="color:#e6db74">&#39;W       &#39;</span>o       <span style="color:#e6db74">&#39;r       &#39;</span>l       <span style="color:#960050;background-color:#1e0010">&#39;</span>d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Press <span style="color:#f92672">[</span>ENTER<span style="color:#f92672">]</span> to see what happens at the next layer...
+</span></span></code></pre></div><hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>                  RECEIVER END-RESULT VERIFICATION
+</span></span><span style="display:flex;"><span>-------------------------------------------------------------------
+</span></span><span style="display:flex;"><span>Decapsulated Data Received at Layer 7: <span style="color:#e6db74">&#34;Hello World&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> SUCCESS: Physical bits correctly decoded back into <span style="color:#e6db74">&#39;Hello World&#39;</span>
+</span></span></code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/network" class="post-tag">Network</a>
+        
+        <a href="https://theweeklychallenge.org/tags/osi" class="post-tag">OSI</a>
+        
+    </div>
+    
+    
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/osi-network-model\/';
+            this.page.identifier = '3b15fd5acc5747fd937d86e4dc3c20d9';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
