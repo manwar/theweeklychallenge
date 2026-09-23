@@ -1190,7 +1190,7 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 
 ##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-392/conor-hoekstra/apl/ch-1.apl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-392/conor-hoekstra/apl/ch-2.apl) in **APL**.
 
-##### **Conor Hoekstra** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-392/conor-hoekstra/kap/ch-2.kap) in **Kap**.
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-392/conor-hoekstra/kap/ch-1.kap) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-392/conor-hoekstra/kap/ch-2.kap) in **Kap**.
 
 ##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-392/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-392/zapwai/c/ch-2.c) in **C**.
 
