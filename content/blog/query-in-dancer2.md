@@ -1,7 +1,7 @@
 ---
 title: "QUERY in Dancer2"
 date: 2026-09-27T00:00:00+00:00
-description: "Proposed implementation of QUERY mthod in Dancer2."
+description: "Proposed implementation of QUERY method in Dancer2."
 type: post
 image: images/blog/query-in-dancer2.jpg
 author: Mohammad Sajid Anwar
