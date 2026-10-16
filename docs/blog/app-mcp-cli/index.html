@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="canonical" href="https://theweeklychallenge.org/blog/app-mcp-cli/">
+    <title>App::MCP::CLI | Oct 2026 | The Weekly Challenge</title>
+
+    
+    <meta name="description" content="Introduction to App::MCP::CLI.">
+    <meta name="author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta property="og:site_name"   content="The Weekly Challenge">
+    <meta property="og:type"        content="article">
+    <meta property="og:url"         content="https://theweeklychallenge.org/blog/app-mcp-cli/">
+    <meta property="og:title"       content="App::MCP::CLI">
+    <meta property="og:description" content="Introduction to App::MCP::CLI.">
+    <meta property="og:image" content="https://theweeklychallenge.org/images/blog/app-mcp-cli.jpg">
+    
+    <meta property="article:published_time" content="2026-10-16T00:00:00Z">
+    <meta property="article:modified_time"  content="2026-10-16T00:00:00Z">
+    <meta property="article:author" content="Mohammad Sajid Anwar">
+    
+
+    
+    <meta name="twitter:card"        content="summary_large_image">
+    <meta name="twitter:title"       content="App::MCP::CLI">
+    <meta name="twitter:description" content="Introduction to App::MCP::CLI.">
+    <meta name="twitter:image" content="https://theweeklychallenge.org/images/blog/app-mcp-cli.jpg">
+    <meta name="twitter:site" content="@PerlWChallenge">
+
+    
+    <link rel="icon" type="image/x-icon" href="https://theweeklychallenge.org/images/favicon.ico">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    
+    <link rel="stylesheet" href="https://theweeklychallenge.org/css/twc.css">
+
+    
+
+    
+
+    
+    
+
+    /* Google Search Console */
+    <meta name="google-site-verification" content="zVrrQhRg4ReGc9zXOtGdtVyhqeN9uaCdsashWPRY-5I" />
+</head>
+<script>
+ 
+if (localStorage.getItem('twc-theme') === 'light') {
+    document.documentElement.classList.add('light-mode-pre');
+}
+</script>
+<body data-url="https://theweeklychallenge.org/blog/app-mcp-cli/">
+    <nav class="twc-nav" id="twc-nav">
+    <div class="nav-inner">
+        <a href="https://theweeklychallenge.org/" class="nav-logo">
+            
+            <img src="https://theweeklychallenge.org/images/logo.svg" alt="The Weekly Challenge" height="36">
+            
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+            <span id="theme-icon">☀️</span>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="https://theweeklychallenge.org/" class="nav-link">Home</a></li>
+            <li><a href="https://theweeklychallenge.org/about" class="nav-link">About</a></li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Community <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/champions">Champions</a></li>
+                    <li><a href="https://theweeklychallenge.org/guests">Guests</a></li>
+                    <li><a href="https://theweeklychallenge.org/regulars">Regulars</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">This Week <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/challenges">Challenges</a></li>
+                    <li><a href="https://theweeklychallenge.org/chart">Chart</a></li>
+                    <li><a href="https://theweeklychallenge.org/guest-contributions">Guest Contributions</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Reviews <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/p5-reviews">Perl</a></li>
+                    <li><a href="https://theweeklychallenge.org/p6-reviews">Raku</a></li>
+                    <li><a href="https://theweeklychallenge.org/recaps">Recaps</a></li>
+                </ul>
+            </li>
+
+            <li><a href="https://theweeklychallenge.org/blogs" class="nav-link">Blogs</a></li>
+
+            <li>
+                <a href="https://theweeklychallenge.org/search" class="nav-link nav-search-link" title="Search (press /)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2.5"
+                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                         style="vertical-align:-2px;margin-right:4px;">
+                        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                    </svg>Search <kbd class="nav-kbd">/</kbd>
+                </a>
+            </li>
+
+            <li class="nav-dropdown">
+                <a href="#" class="nav-link nav-drop-toggle">Info <span class="drop-arrow">&#9660;</span></a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="https://theweeklychallenge.org/tags">Tags</a></li>
+                    <li><a href="https://theweeklychallenge.org/sponsors">Sponsors</a></li>
+                    <li><a href="https://theweeklychallenge.org/faq">FAQ</a></li>
+                    <li><a href="https://theweeklychallenge.org/contact">Contact</a></li>
+                    <li><a href="https://theweeklychallenge.org/rss.xml">RSS Feed</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <div id="reading-progress-wrap"><div id="reading-progress"></div></div>
+
+    
+    <div id="perl-ad-target" data-no-styles></div>
+    <script src="https://perl-ads.perlhacks.com/perl-ads.js"></script>
+    <main class="main-content">
+        
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <h1 class="page-title">App::MCP::CLI</h1>
+        <nav class="breadcrumb">
+            <a href="https://theweeklychallenge.org/">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="https://theweeklychallenge.org/blog">Blog</a><span class="bc-sep">›</span>
+            <span>App::MCP::CLI</span>
+        </nav>
+        <span class="reading-time" title="1073 words">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+       aria-hidden="true">
+    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+  </svg>
+  5 min read
+</span>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Published 16 Oct 2026
+            </span>
+            
+        </div>
+    </div>
+</div>
+
+<div class="content-wrap">
+    
+    <a href="https://theweeklychallenge.org/blogs" class="back-btn">&#8592; Back to Blogs</a>
+    <div class="post-hero-img"><img src="https://theweeklychallenge.org/images/blog/app-mcp-cli.jpg" alt="App::MCP::CLI"></div>
+    
+    <article class="prose">
+
+        <h4 id="disclaimer-image-is-generated-using-chatgpt"><strong>DISCLAIMER:</strong> Image is generated using <code>ChatGPT</code>.</h4>
+<hr>
+<br>
+<p>My formal introduction to <strong>MCP</strong> was by this <code>Dave Cross</code>&rsquo;s post: <a href="https://perlhacks.com/2026/05/teaching-ai-about-the-british-monarchy-with-mcp"><strong>Teaching AI About the British Monarchy with MCP</strong></a></p>
+<p>In the article Dave mentioned this line:</p>
+<blockquote>
+<p>MCP is Mostly JSON-RPC</p>
+</blockquote>
+<p>That gave me an idea to create a dedicated blog post: <a href="/blog/jsonrpc-with-perl"><strong>JSON-RPC with Perl</strong></a>.</p>
+<p>Fast forward (5 months later), I am back on the subject with another blog post.</p>
+<p>This post is mostly about my CPAN distribution, <a href="https://metacpan.org/release/MANWAR/App-MCP-CLI-v0.0.1"><strong>App::MCP::CLI</strong></a>.</p>
+<p>In simple term, <strong>Model Context Protocol (MCP)</strong>, is a universal USB port for <strong>AI</strong>.</p>
+<p>It creates a standard plugin that any AI can talk to.</p>
+<p>For example, you can create <strong>MCP</strong> connector for <strong>Google Drive</strong> and any AI tool that supports <strong>MCP</strong> can use it to read or search your files.</p>
+<p>The inspiration of creating <strong>MCP CLI</strong> came from this tool: <a href="https://pypi.org/project/mcp"><strong>https://pypi.org/project/mcp</strong></a></p>
+<p>I created initial draft few months ago and never got time to revisit it.</p>
+<p>Recently I got a reminder about <strong>Dave Cross</strong> upcoming online talk, <a href="https://luma.com/6qqyscbm"><strong>MCP - Model Context Protocol in Perl: From Web App to AI Tools</strong></a></p>
+<p>This made me go back and finish it off.</p>
+<p>I have an experimental <strong>mcpcli</strong> ready for you to play.</p>
+<p>You just need to install the CPAN module, <strong>App::MCP::CLI</strong>.</p>
+<p>The distribution comes with simple example to let you play with it.</p>
+<p>Once you install the distribution, you have everything you need.</p>
+<p>Here is a basic <strong>stdio</strong> server. You would need to install <a href="https://metacpan.org/dist/MCP"><strong>MCP</strong></a> to be able to use it.</p>
+<p>This server creates a tool <strong>add_numbers</strong> which adds two numbers.</p>
+<p>There can never be any simpler example than this.</p>
+<p><strong>File:</strong> <code>stdio_server.pl</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-perl" data-lang="perl"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> strict;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> warnings;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> utf8;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> MCP::Server;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> experimental <span style="color:#e6db74">&#39;signatures&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">my</span> $server <span style="color:#f92672">=</span> MCP::Server<span style="color:#f92672">-&gt;</span><span style="color:#66d9ef">new</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$server<span style="color:#f92672">-&gt;</span>tool(
+</span></span><span style="display:flex;"><span>    name        <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;add_numbers&#39;</span>,
+</span></span><span style="display:flex;"><span>    description <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;Adds two numeric values together and returns the sum.&#39;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    input_schema <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        type       <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;object&#39;</span>,
+</span></span><span style="display:flex;"><span>        properties <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>            a <span style="color:#f92672">=&gt;</span> { type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;number&#39;</span>, description <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;The first number&#39;</span>  },
+</span></span><span style="display:flex;"><span>            b <span style="color:#f92672">=&gt;</span> { type <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;number&#39;</span>, description <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#39;The second number&#39;</span> },
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        required <span style="color:#f92672">=&gt;</span> [<span style="color:#e6db74">&#39;a&#39;</span>, <span style="color:#e6db74">&#39;b&#39;</span>],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    code <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">sub</span> ($tool, $args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $num1 <span style="color:#f92672">=</span> $args<span style="color:#f92672">-&gt;</span>{a};
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $num2 <span style="color:#f92672">=</span> $args<span style="color:#f92672">-&gt;</span>{b};
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">my</span> $sum  <span style="color:#f92672">=</span> $num1 <span style="color:#f92672">+</span> $num2;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;The result of adding $num1 and $num2 is $sum.&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$server<span style="color:#f92672">-&gt;</span>to_stdio;
+</span></span></code></pre></div><p>This is how we can all the server:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mcpcli call add_numbers --server ./stdio_server.pl a<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span> b<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Calling tool <span style="color:#e6db74">&#39;add_numbers&#39;</span>...
+</span></span><span style="display:flex;"><span>The result of adding <span style="color:#ae81ff">10</span> and <span style="color:#ae81ff">5</span> is 15.
+</span></span></code></pre></div><p>We can make this even more simple to use.</p>
+<p>Let&rsquo;s create server config now:</p>
+<p><strong>File:</strong> <code>server_config.json</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mcpServers&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;perl-math-server&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;perl&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [<span style="color:#e6db74">&#34;stdio_server.pl&#34;</span>]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;confirmTools&#34;</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Now using this config, we can list the servers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mcpcli servers
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Reading configuration from: server_config.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Configured MCP Servers:
+</span></span><span style="display:flex;"><span>+------------------+-----------+----------------------+
+</span></span><span style="display:flex;"><span>| Server Name      | Transport | Command / URL        |
+</span></span><span style="display:flex;"><span>+------------------+-----------+----------------------+
+</span></span><span style="display:flex;"><span>| perl-math-server | stdio     | perl stdio_server.pl |
+</span></span><span style="display:flex;"><span>+------------------+-----------+----------------------+
+</span></span></code></pre></div><p>You can list the tools defined in the server:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mcpcli list --server perl-math-server
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Reading configuration from: server_config.json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Resolved server settings <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#39;perl-math-server&#39;</span> via config file.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Available MCP Tools:
+</span></span><span style="display:flex;"><span>+-------------+-------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| Tool Name   | Description                                           |
+</span></span><span style="display:flex;"><span>+-------------+-------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| add_numbers | Adds two numeric values together and returns the sum. |
+</span></span><span style="display:flex;"><span>+-------------+-------------------------------------------------------+
+</span></span></code></pre></div><p>Now the above mcp call becomes this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mcpcli call add_numbers --server perl-math-server a<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span> b<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Reading configuration from: server_config.json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Resolved server settings <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#39;perl-math-server&#39;</span> via config file.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Calling tool <span style="color:#e6db74">&#39;add_numbers&#39;</span>...
+</span></span><span style="display:flex;"><span>The result of adding <span style="color:#ae81ff">10</span> and <span style="color:#ae81ff">5</span> is 15.
+</span></span></code></pre></div><p>This is much better, in my opinion.</p>
+<p>How about make it interactive?</p>
+<p>We would need to install <strong>Ollama</strong> first.</p>
+<p>I am using <code>Docker</code> as I am in love with it.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
+</span></span></code></pre></div><p>Then pull the model <strong>qwen2.5:1.5b</strong>, the default model used by <strong>mcpcli</strong>.</p>
+<p>This can be overriden by the switch <code>--model</code> flag.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it ollama ollama pull qwen2.5:1.5b
+</span></span></code></pre></div><p>Verify if the model in installed:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ docker exec -it ollama ollama list
+</span></span></code></pre></div><p>Once you have the setup ready.</p>
+<p>We can now start the interactive session as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mcpcli chat --server perl-math-server
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Reading configuration from: server_config.json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Resolved server settings <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#39;perl-math-server&#39;</span> via config file.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Launching Local Pipe MCP Server: perl stdio_server.pl
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Connected to MCP Server. Found <span style="color:#ae81ff">1</span> tool<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Connected to LLM provider <span style="color:#e6db74">&#39;ollama&#39;</span> using model <span style="color:#e6db74">&#39;qwen2.5:1.5b&#39;</span>.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Starting agent loop. Type <span style="color:#e6db74">&#39;exit&#39;</span> or <span style="color:#e6db74">&#39;quit&#39;</span> to end session.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>You&gt;
+</span></span></code></pre></div><p>Now you can type the message as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>You&gt; What is <span style="color:#ae81ff">10</span> plus 5?
+</span></span><span style="display:flex;"><span>Thinking...
+</span></span><span style="display:flex;"><span> -&gt; <span style="color:#f92672">[</span>Agent decided to call tool <span style="color:#e6db74">&#39;add_numbers&#39;</span> with args: <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;b&#34;</span>:5,<span style="color:#e6db74">&#34;a&#34;</span>:10<span style="color:#f92672">}]</span>
+</span></span><span style="display:flex;"><span>Response: The sum of <span style="color:#ae81ff">10</span> and <span style="color:#ae81ff">5</span> is 15.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>You&gt;
+</span></span></code></pre></div><p>Isn&rsquo;t fun?</p>
+<p>It is all happening using your favourite programming language <strong>Perl</strong>.</p>
+<p>Next example is <code>SSE</code> after we have done with <strong>stdio</strong>.</p>
+<p><strong>Source:</strong> <a href="https://github.com/manwar/App-MCP-CLI/blob/master/examples/sse_server.pl">https://github.com/manwar/App-MCP-CLI/blob/master/examples/sse_server.pl</a></p>
+<p>This is little tricky but not that complicated.</p>
+<p>The server by default runs on <strong>127.0.0.1</strong> and listen to port <strong>8080</strong>.</p>
+<p>You can override that using env vars <strong>SSE_HOST</strong> and <strong>SSE_PORT</strong>.</p>
+<p>You start the server as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ perl sse_server.pl
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Mock MCP SSE Server listening at: http://127.0.0.1:8080/sse
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Press Ctrl+C to stop the server
+</span></span></code></pre></div><p>Now we actual test the sse server, let&rsquo;s update the <strong>server_config.json</strong> first.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mcpServers&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;perl-math-server&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;perl&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [<span style="color:#e6db74">&#34;stdio_server.pl&#34;</span>]
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;weather-sse-service&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;transport&#34;</span>: <span style="color:#e6db74">&#34;sse&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;http://localhost:8080/sse&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;confirmTools&#34;</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Let&rsquo;s list all the servers now:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mcpcli servers
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Reading configuration from: server_config.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Configured MCP Servers:
+</span></span><span style="display:flex;"><span>+---------------------+-----------+---------------------------+
+</span></span><span style="display:flex;"><span>| Server Name         | Transport | Command / URL             |
+</span></span><span style="display:flex;"><span>+---------------------+-----------+---------------------------+
+</span></span><span style="display:flex;"><span>| perl-math-server    | stdio     | perl stdio_server.pl      |
+</span></span><span style="display:flex;"><span>| weather-sse-service | SSE       | http://localhost:8080/sse |
+</span></span><span style="display:flex;"><span>+---------------------+-----------+---------------------------+
+</span></span></code></pre></div><p>List MCP tools supported by the SSE server:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mcpcli list --server weather-sse-service
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Reading configuration from: server_config.json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Resolved server settings <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#39;weather-sse-service&#39;</span> via config file.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Available MCP Tools:
+</span></span><span style="display:flex;"><span>+------------------+---------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| Tool Name        | Description                                             |
+</span></span><span style="display:flex;"><span>+------------------+---------------------------------------------------------+
+</span></span><span style="display:flex;"><span>| get_mock_weather | Returns static mock weather information <span style="color:#66d9ef">for</span> a location. |
+</span></span><span style="display:flex;"><span>+------------------+---------------------------------------------------------+
+</span></span></code></pre></div><p>Finally start the interactive session with SSE server as below:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ mcpcli chat --server weather-sse-service
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Reading configuration from: server_config.json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Resolved server settings <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#39;weather-sse-service&#39;</span> via config file.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Connecting to MCP Server via HTTP/SSE: http://localhost:8080/sse
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> SSE Channel Established. Target Post Route: http://127.0.0.1:8080/message
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>+<span style="color:#f92672">]</span> Connected to MCP Server. Found <span style="color:#ae81ff">1</span> tool<span style="color:#f92672">(</span>s<span style="color:#f92672">)</span>.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Connected to LLM provider <span style="color:#e6db74">&#39;ollama&#39;</span> using model <span style="color:#e6db74">&#39;qwen2.5:1.5b&#39;</span>.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>-<span style="color:#f92672">]</span> Starting agent loop. Type <span style="color:#e6db74">&#39;exit&#39;</span> or <span style="color:#e6db74">&#39;quit&#39;</span> to end session.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>You&gt;
+</span></span></code></pre></div><p>Now you type the message:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>You&gt; what is the weather in London?
+</span></span><span style="display:flex;"><span>Thinking...
+</span></span><span style="display:flex;"><span> -&gt; <span style="color:#f92672">[</span>Agent decided to call tool <span style="color:#e6db74">&#39;get_mock_weather&#39;</span> with args: <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;location&#34;</span>:<span style="color:#e6db74">&#34;London&#34;</span><span style="color:#f92672">}]</span>
+</span></span><span style="display:flex;"><span>Response: The current temperature in London is <span style="color:#ae81ff">21</span> degrees Celsius and there are clear skies.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>You&gt;
+</span></span></code></pre></div><hr>
+<br>
+<p><code>Happy Hacking !!!</code></p>
+
+    </article>
+    
+    <div class="post-tags">
+        <span class="post-tags-label">Tags</span>
+        
+        <a href="https://theweeklychallenge.org/tags/mcp" class="post-tag">MCP</a>
+        
+    </div>
+    
+    
+
+    
+
+
+    
+    
+    
+    <div class="disqus-wrap">
+        <button class="disqus-load-btn" id="disqus-load-btn" onclick="loadDisqus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Load Comments
+        </button>
+        <div id="disqus_thread" style="display:none"></div>
+    </div>
+    <script>
+    function loadDisqus() {
+        document.getElementById('disqus-load-btn').style.display = 'none';
+        document.getElementById('disqus_thread').style.display = 'block';
+        var d = document, s = d.createElement('script');
+        s.src = 'https://theweeklychallenge.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        window.disqus_config = function() {
+            this.page.url = 'https:\/\/theweeklychallenge.org\/blog\/app-mcp-cli\/';
+            this.page.identifier = 'b3e2eb6feb6a2cb0d6fd247d510ff77a';
+        };
+    }
+    </script>
+    
+    
+</div>
+<script>
+(function() {
+    var toc = document.getElementById('table-of-contents');
+    if (!toc) return;
+
+    
+    var el = toc.nextElementSibling;
+    if (el && el.tagName === 'HR') el = el.nextElementSibling;
+
+    var h3s = [];
+    while (el && el.tagName === 'H3') {
+        h3s.push(el);
+        el = el.nextElementSibling;
+    }
+    if (!h3s.length) return;
+
+    
+    var taskLinks  = [];
+    var otherLinks = [];
+    h3s.forEach(function(h3) {
+        var a = h3.querySelector('a');
+        if (!a) return;
+        if (/^TASK/i.test(a.textContent.trim())) taskLinks.push(a);
+        else otherLinks.push(a);
+        h3.remove();
+    });
+
+    var row1 = document.createElement('div');
+    row1.className = 'toc-pill-row toc-row-main';
+    otherLinks.forEach(function(a) { row1.appendChild(a); });
+
+    var row2 = document.createElement('div');
+    row2.className = 'toc-pill-row toc-row-tasks';
+    taskLinks.forEach(function(a) { row2.appendChild(a); });
+
+    
+    var hr = toc.nextElementSibling;
+    var insertAfter = (hr && hr.tagName === 'HR') ? hr : toc;
+    insertAfter.after(row2);
+    insertAfter.after(row1);
+})();
+</script>
+
+    </main>
+    <footer class="twc-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <span class="footer-title">The Weekly <span style="color:var(--accent)">Challenge</span></span>
+            <p class="footer-tagline">
+                <span class="tq-you">You</span>
+                <span class="tq-dont">don't</span>
+                <span class="tq-have">have &nbsp; to</span>
+                <span class="tq-be">be</span>
+                <span class="tq-expert">an &nbsp; expert</span>
+            </p>
+
+            <div class="footer-app">
+               <a href="https://play.google.com/store/apps/details?id=org.theweeklychallenge.app"
+                  target="_blank" rel="noopener" class="footer-app-inner" title="Get it on Google Play">
+                  <div class="footer-qr-wrap">
+                    <img src="/images/qrcode.png" alt="QR code — The Weekly Challenge Android app" class="footer-qr" />
+                  </div>
+                  <div class="footer-app-text">
+                    <span class="footer-app-label">Get the app</span>
+                    <span class="footer-app-sub">Scan to download on Android</span>
+                  </div>
+               </a>
+            </div>
+
+        </div>
+        <div class="footer-nav-groups">
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Community</span>
+                <a href="https://theweeklychallenge.org/champions" class="footer-link">Champions</a>
+                <a href="https://theweeklychallenge.org/guests" class="footer-link">Guests</a>
+                <a href="https://theweeklychallenge.org/regulars" class="footer-link">Regulars</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">This Week</span>
+                <a href="https://theweeklychallenge.org/challenges" class="footer-link">Challenges</a>
+                <a href="https://theweeklychallenge.org/chart" class="footer-link">Chart</a>
+                <a href="https://theweeklychallenge.org/guest-contributions" class="footer-link">Guest Contributions</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Reviews</span>
+                <a href="https://theweeklychallenge.org/p5-reviews" class="footer-link">Perl</a>
+                <a href="https://theweeklychallenge.org/p6-reviews" class="footer-link">Raku</a>
+                <a href="https://theweeklychallenge.org/recaps" class="footer-link">Recaps</a>
+            </div>
+            
+            <div class="footer-group">
+                <span class="footer-group-title">Info</span>
+                <a href="https://theweeklychallenge.org/about" class="footer-link">About</a>
+                <a href="https://theweeklychallenge.org/tags" class="footer-link">Tags</a>
+                <a href="https://theweeklychallenge.org/sponsors" class="footer-link">Sponsors</a>
+                <a href="https://theweeklychallenge.org/faq" class="footer-link">FAQ</a>
+                <a href="https://theweeklychallenge.org/contact" class="footer-link">Contact</a>
+                <a href="https://theweeklychallenge.org/rss.xml" class="footer-link">RSS Feed</a>
+                <a href="https://theweeklychallenge.org/privacy-policy" class="footer-link">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-social">
+            
+            <a href="https://github.com/manwar" target="_blank" rel="noopener" class="social-btn" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+            
+            <a href="https://twitter.com/cpan_author" target="_blank" rel="noopener" class="social-btn" title="Twitter">
+                <i class="fab fa-twitter"></i>
+            </a>
+            
+            
+            <a href="http://www.linkedin.com/in/mohammadanwar" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            
+            <a href="https://fosstodon.org/@manwar" target="_blank" rel="noopener me" class="social-btn" title="Mastodon">
+                <i class="fab fa-mastodon"></i>
+            </a>
+            <a href="https://manwar.org" target="_blank" rel="noopener" class="social-btn social-btn-web" title="manwar.org">
+                <i class="fas fa-globe"></i>
+            </a>
+        </div>
+
+    </div>
+    <div class="footer-bottom">
+        <span>© 2019 - 2026 The Weekly Challenge. Built with ❤️ for Perl.</span>
+    </div>
+</footer>
+
+    <script src="https://theweeklychallenge.org/js/twc.js"></script>
+    
+
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>
+
+<style>
+#back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0b0e14;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34,211,238,0.35);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .25s, transform .25s;
+    pointer-events: none;
+    z-index: 999;
+}
+#back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+#back-to-top:hover {
+    background: var(--text);
+    box-shadow: 0 6px 24px rgba(34,211,238,0.5);
+}
+#back-to-top svg { width: 20px; height: 20px; }
+</style>
+
+<script>
+(function() {
+    var btn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+
+</body>
+</html>
