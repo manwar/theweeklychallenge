@@ -22,7 +22,7 @@ That gave me an idea to create a dedicated blog post: [**JSON-RPC with Perl**](/
 
 Fast forward (5 months later), I am back on the subject with another blog post.
 
-This post is mostly about my CPAN distribution, [**App::MCP::CLI**](https://metacpan.org/release/MANWAR/App-MCP-CLI-v0.0.1).
+This post is mostly about my CPAN distribution, [**App::MCP::CLI**](https://metacpan.org/dist/App-MCP-CLI).
 
 In simple term, **Model Context Protocol (MCP)**, is a universal USB port for **AI**.
 
