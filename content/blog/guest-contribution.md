@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-10-18T00:00:00+00:00
+date: 2026-10-19T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1175,6 +1175,30 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
   }
 </style>
 
+## [The Weekly Challenge - 396](/blog/perl-weekly-challenge-396) {#396}
+<br>
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/deadmarshal/c3/ch1.c3) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/deadmarshal/c3/ch2.c3) in **C3**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/deadmarshal/erlang/ch1.erl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/deadmarshal/erlang/ch2.erl) in **Erlang**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/deadmarshal/gleam/ch1/src/ch1.gleam) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/deadmarshal/gleam/ch2/src/ch2.gleam) in **Gleam**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/deadmarshal/rexx/ch1.rexx) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/deadmarshal/rexx/ch2.rexx) in **Rexx**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/deadmarshal/sml/ch1.sml) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/deadmarshal/sml/ch2.sml) in **Standard ML**.
+
+##### **Conor Hoekstra** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/conor-hoekstra/apl/ch-1.tinyapl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/conor-hoekstra/apl/ch-2.tinyapl) in **APL**.
+
+##### **David Ferrone** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/zapwai/c/ch-1.c) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/zapwai/c/ch-2.c) in **C**.
+
+##### **Jorge Morales** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/mrbocch/uiua/ch-1.ua) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/mrbocch/uiua/ch-2.ua) in **Uiua**.
+
+##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/lubos-kolouch/python/ch-2.py) in **Python**.
+
+##### **Mohammad Sajid Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/mohammad-anwar/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/mohammad-anwar/python/ch-2.py) in **Python**.
+
+___
 ## [The Weekly Challenge - 395](/blog/perl-weekly-challenge-395) {#395}
 <br>
 
@@ -1237,6 +1261,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-395/ulrich-rieke/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-395/ulrich-rieke/python/ch-2.py) in **Python**.
 
 ##### **Ulrich Rieke** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-395/ulrich-rieke/rust/ch-1.rs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-395/ulrich-rieke/rust/ch-2.rs) in **Rust**.
+
+##### **ygrek** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-395/ygrek/k/ch-1.k) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-395/ygrek/k/ch-2.k) in **K**.
 
 ___
 ## [The Weekly Challenge - 394](/blog/perl-weekly-challenge-394) {#394}
