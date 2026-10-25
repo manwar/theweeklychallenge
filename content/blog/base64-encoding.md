@@ -39,7 +39,7 @@ $ echo -n "Super_Secret_Password" | base64
 U3VwZXJfU2VjcmV0X1Bhc3N3b3Jk
 ```
 
-So, the bas364 encoding of text **"Super_Secret_Password"** is **U3VwZXJfU2VjcmV0X1Bhc3N3b3Jk**.
+So, the **base64** encoding of text **"Super_Secret_Password"** is **U3VwZXJfU2VjcmV0X1Bhc3N3b3Jk**.
 
 How about reverse engineering?
 
@@ -54,20 +54,20 @@ It looks simple, isn't it?
 
 Let's figure out the magic behind the scene.
 
-For this, we will use tool, **xxd**. It creates a hexadecimal dump of a given file or standard input.
+For this, we will use tool, **xxd**. It creates a **hexadecimal** dump of a given file or standard input.
 
 ```bash
 $ echo -n abc | xxd -b
 00000000: 01100001 01100010 01100011                             abc
 ```
 
-So we got 3 letters, 8 bits each as below:
+So we got **3 letters, 8 bits** each as below:
 
     a: 0 1 1 0 0 0 0 1
     b: 0 1 1 0 0 0 1 0
     c: 0 1 1 0 0 0 1 1
 
-First this gets converted into 4 groups, 6 bits each.
+First this gets converted into **4 groups, 6 bits** each.
 
     Group 1: 0 1 1 0 0 0
     Group 2: 0 1 0 1 1 0

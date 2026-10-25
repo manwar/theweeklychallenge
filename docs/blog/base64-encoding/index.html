@@ -198,22 +198,22 @@ if (localStorage.getItem('twc-theme') === 'light') {
 <p>Here is the simple introduction, using the tool, <strong>base64</strong>:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ echo -n <span style="color:#e6db74">&#34;Super_Secret_Password&#34;</span> | base64
 </span></span><span style="display:flex;"><span>U3VwZXJfU2VjcmV0X1Bhc3N3b3Jk
-</span></span></code></pre></div><p>So, the bas364 encoding of text <strong>&ldquo;Super_Secret_Password&rdquo;</strong> is <strong>U3VwZXJfU2VjcmV0X1Bhc3N3b3Jk</strong>.</p>
+</span></span></code></pre></div><p>So, the <strong>base64</strong> encoding of text <strong>&ldquo;Super_Secret_Password&rdquo;</strong> is <strong>U3VwZXJfU2VjcmV0X1Bhc3N3b3Jk</strong>.</p>
 <p>How about reverse engineering?</p>
 <p>We can use the same tool to decode the encoded string.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ base64 -d <span style="color:#f92672">&lt;&lt;&lt;</span> U3VwZXJfU2VjcmV0X1Bhc3N3b3Jk
 </span></span><span style="display:flex;"><span>Super_Secret_Password
 </span></span></code></pre></div><p>It looks simple, isn&rsquo;t it?</p>
 <p>Let&rsquo;s figure out the magic behind the scene.</p>
-<p>For this, we will use tool, <strong>xxd</strong>. It creates a hexadecimal dump of a given file or standard input.</p>
+<p>For this, we will use tool, <strong>xxd</strong>. It creates a <strong>hexadecimal</strong> dump of a given file or standard input.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ echo -n abc | xxd -b
 </span></span><span style="display:flex;"><span>00000000: <span style="color:#ae81ff">01100001</span> <span style="color:#ae81ff">01100010</span> <span style="color:#ae81ff">01100011</span>                             abc
-</span></span></code></pre></div><p>So we got 3 letters, 8 bits each as below:</p>
+</span></span></code></pre></div><p>So we got <strong>3 letters, 8 bits</strong> each as below:</p>
 <pre><code>a: 0 1 1 0 0 0 0 1
 b: 0 1 1 0 0 0 1 0
 c: 0 1 1 0 0 0 1 1
 </code></pre>
-<p>First this gets converted into 4 groups, 6 bits each.</p>
+<p>First this gets converted into <strong>4 groups, 6 bits</strong> each.</p>
 <pre><code>Group 1: 0 1 1 0 0 0
 Group 2: 0 1 0 1 1 0
 Group 3: 0 0 1 0 0 1
