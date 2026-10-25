@@ -97,10 +97,10 @@ Having done that, now we need to lookup this table for encoding.
 
 Using the above encoding table, replace the each group with the equivalent alphabet.
 
-    Group 1: 011000 => Y
-    Group 2: 010110 => W
-    Group 3: 001001 => J
-    Group 4: 100011 => j
+    Group 1: 0 1 1 0 0 0 => Y
+    Group 2: 0 1 0 1 1 0 => W
+    Group 3: 0 0 1 0 0 1 => J
+    Group 4: 1 0 0 0 1 1 => j
 
 Double check, the above manual encoding with this command:
 
