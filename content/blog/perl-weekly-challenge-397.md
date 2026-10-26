@@ -29,7 +29,7 @@ Thank you, **Team PWC**, for the big jump in the contributions last week.
 
 Even I managed to share solutions to both task this time.
 
-Below is my contributions to the `Task #1` of `Week #396`.
+Below is my contributions to the `Week #396`.
 
 ### [Task #1 - Perl]: [source code](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-396/mohammad-anwar/perl/ch-1.pl)
 ***
