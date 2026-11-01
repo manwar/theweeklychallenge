@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-10-28T00:00:00+00:00
+date: 2026-11-01T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1205,6 +1205,8 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
 ##### **Jorge Morales** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-397/mrbocch/racket/ch-1.rkt) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-397/mrbocch/racket/ch-2.rkt) in **Racket**.
 
 ##### **Jorge Morales** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-397/mrbocch/uiua/ch-1.ua) in **Uiua**.
+
+##### **Jorg Sommrey** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-397/jo-37/j/ch-1.ijs) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-397/jo-37/j/ch-2.ijs) in **J**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-397/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-397/lubos-kolouch/python/ch-2.py) in **Python**.
 
@@ -23621,6 +23623,8 @@ ____
 ##### **Darren Bottin** shared solution to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/darren-bottin/prolog/ch-1.pro) in **Prolog**.
 
 ##### **Jaldhar H. Vyas** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/jaldhar-h-vyas/c%2B%2B/ch-2.cpp) in **C++**.
+
+##### **Jorg Sommrey** shared solution to [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/jo-37/j/ch-2.ijs) in **J**.
 
 ##### **Lubos Kolouch** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/lubos-kolouch/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-044/lubos-kolouch/python/ch-2.py) in **Python**.
 
