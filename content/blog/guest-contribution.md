@@ -1,6 +1,6 @@
 ---
 title: "The Weekly Challenge - Guest Contributions"
-date: 2026-11-09T00:00:00+00:00
+date: 2026-11-10T00:00:00+00:00
 description: "Contributions by guest."
 type: post
 image: images/blog/guest-contribution.jpg
@@ -1175,6 +1175,20 @@ As you know, `The Weekly Challenge`, primarily focus on **Perl** and **Raku**. D
   }
 </style>
 
+## [The Weekly Challenge - 399](/blog/perl-weekly-challenge-399) {#399}
+<br>
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-399/deadmarshal/erlang/ch1.erl) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-399/deadmarshal/erlang/ch2.erl) in **Erlang**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-399/deadmarshal/gleam/ch1/src/ch1.gleam) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-399/deadmarshal/gleam/ch2/src/ch2.gleam) in **Gleam**.
+
+##### **Ali Moradi** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-399/deadmarshal/sml/ch1.sml) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-399/deadmarshal/sml/ch2.sml) in **Standard ML**.
+
+##### **Eric Cheung** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-399/eric-cheung/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-399/eric-cheung/python/ch-2.py) in **Python**.
+
+##### **Mohammad Sajid Anwar** shared solutions to [**Task #1**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-399/mohammad-anwar/python/ch-1.py) and [**Task #2**](https://github.com/manwar/perlweeklychallenge-club/blob/master/challenge-399/mohammad-anwar/python/ch-2.py) in **Python**.
+
+___
 ## [The Weekly Challenge - 398](/blog/perl-weekly-challenge-398) {#398}
 <br>
 
