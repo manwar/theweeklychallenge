@@ -328,7 +328,6 @@ Write a script to return the minimum number of mutations required to mutate from
     Output: 2
 
     Path 1 (2 steps): "AACCGGTT" => "AACCGGTA" => "AACCGGAA"
-    Path 2 (3 steps): "AACCGGTT" => "AACCGGTA" => "AACCGTAA" => "AACCGGAA"
 
 #### Example 3
 
