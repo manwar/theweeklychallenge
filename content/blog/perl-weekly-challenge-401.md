@@ -359,7 +359,7 @@ Write a script to return the digits in ascending order.
 
 #### Example 2
 
-    Input: $str = "sveeneinght"
+    Input: $str = "sveeeinght"
     Output: "78"
 
     'g' appears one time => one "eight"
