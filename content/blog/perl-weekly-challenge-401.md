@@ -25,7 +25,7 @@ tags: ["Perl", "Raku", "Challenge"]
 ***
 Welcome to the `Week #401` of `The Weekly Challenge`.
 
-Welcome aboard, **Caden Young**, and thanks your first contributions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-400/caden-young).
+Welcome aboard, **Caden Young**, and thanks for your first contributions in [**Perl**](https://github.com/manwar/perlweeklychallenge-club/tree/master/challenge-400/caden-young).
 
 With regret, I announce **Peter Campbell Smith** has decided to formally retire from active contributions to the weekly challenge. He has been with us for a very long time even after retirement from regular job. He has been declared champions twice during this period, first in **December 2021** and then in **February 2025**. He is currently ranked **#15** in the leaderboard. He has been inspirational for me. I really wanted to lead an active **Perl** contribution life post retirement like him. The format of the weekly challenge is such that you are not tied to it. You are free to take a break and come back when you are available. I have seen members taking a short break and coming back with full energy. I hope and wish **Peter** might come back again.
 
